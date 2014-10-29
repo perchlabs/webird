@@ -1,0 +1,18 @@
+{
+  "name": "webird",
+  "version": "0.4.0",
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1",
+    "when": "~3.4.6",
+    "angular": "1.3.x",
+    "angular-resource": "1.3.x",
+    "angular-ui-router": "~0.2.10",
+    "angular-cookies": "~1.2.16",
+    "font-awesome": "~4.2.0",
+    "jed": "~1.0.1"
+  },
+  "resolutions": {
+    "angular": "1.3.x"
+  }
+}

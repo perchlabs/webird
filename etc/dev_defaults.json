@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "webpackPort": 8091,
+    "phpEncode": false,
+    "phpEncoders": {
+      "ioncube": {
+        "path": "/usr/local/bin/ioncube_encoder"
+      }
+    }
+  },
+  "app": {
+    "httpPort": 80,
+    "wsPort": 8092,
+    "zmqPort": 5500
+  },
+  "security": {
+    "https": false,
+    "hsts": 0,
+    "preventClickjack": true,
+    "preventReplay": false,
+    "nonceExpire": 900
+  }
+}

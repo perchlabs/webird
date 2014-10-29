@@ -1,0 +1,14 @@
+{
+  "app": {
+    "httpPort": 443,
+    "wsPort": 8192,
+    "zmqPort": 5500
+  },
+  "security": {
+    "https": true,
+    "hsts": 31536000,
+    "preventClickjack": true,
+    "preventReplay": false,
+    "nonceExpire": 900
+  }
+}

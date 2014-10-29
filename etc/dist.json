@@ -1,0 +1,37 @@
+{
+  "app": {
+    "webUser": "www-data",
+    "webGroup": "www-data"
+  },
+  "site": {
+    "domain": "dist.webird.io"
+  },
+  "database": {
+    "host": "localhost",
+    "dbname":   "webird",
+    "username":  "root",
+    "password":   "root"
+  },
+  "security": {
+    "salt": "CHANGE ME!!!",
+    "cryptKey": "CHANGE ME!!!"
+  },
+  "services": {
+    "google": {
+      "clientId": "",
+      "clientSecret":  ""
+    },
+    "microsoft": {
+      "clientId": "",
+      "clientSecret": ""
+    }
+  },
+  "mailer": {
+    "driver": "smtp",
+    "host": "smtp.gmail.com",
+    "port": "465",
+    "encryption": "ssl",
+    "username": "USER@gmail.com",
+    "password": "SET_PASSWORD"
+  }
+}

@@ -1,0 +1,4 @@
+# You must add -alpha or -beta if the package is not yet stable
+zmq-beta
+libevent-beta
+msgpack-beta

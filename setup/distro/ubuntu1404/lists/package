@@ -1,0 +1,26 @@
+vim
+git
+curl
+gcc
+make
+pkg-config
+nginx
+mariadb-server
+mariadb-client
+nodejs
+nodejs-legacy
+npm
+php-pear
+php5-common
+php5-cli
+php5-fpm
+php5-mysqlnd
+gettext
+poedit
+potool
+# dev libraries
+php5-dev
+libpcre3-dev
+libzmq3
+libzmq3-dev
+libevent-dev

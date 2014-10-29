@@ -1,0 +1,610 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Webird\n"
+"POT-Creation-Date: 2014-09-23 00:54+0300\n"
+"PO-Revision-Date: 2014-09-23 00:54+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;ngettext:1,2;_t:1,2;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: ../../../phalcon\n"
+"X-Poedit-SearchPath-1: ../../../webpack\n"
+"X-Poedit-SearchPath-2: ../../../../dist/cache/volt\n"
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:61
+msgid "The search did not find any users"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:107
+#, php-format
+msgid "A confirmation mail has been sent to %s"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:112
+msgid "User was created successfully"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:129
+#: ../../../phalcon/modules/web/controllers/UsersController.php:172
+msgid "User was not found"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:155
+msgid "User was updated successfully"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:181
+msgid "User was deleted"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UsersController.php:214
+msgid "Your password was successfully changed"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:80
+msgid "The email was successfully confirmed. Now you must change your password"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:88
+msgid "The email was successfully confirmed"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:138
+msgid "Please reset your password"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/SessionController.php:156
+msgid "There is no account associated to this email"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/SessionController.php:162
+msgid "Success! Please check your messages for an email reset password"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/PermissionsController.php:51
+msgid "Permissions were updated with success"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/RolesController.php:59
+msgid "The search did not find any roles"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/RolesController.php:95
+msgid "Role was created successfully"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/RolesController.php:112
+#: ../../../phalcon/modules/web/controllers/RolesController.php:154
+msgid "Role was not found"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/RolesController.php:135
+msgid "Role was updated successfully"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/RolesController.php:164
+msgid "Role was deleted"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:32
+#: ../../../phalcon/modules/web/forms/UsersForm.php:38
+#: ../../../phalcon/modules/web/forms/UsersForm.php:40
+#: ../../../phalcon/modules/web/forms/RolesForm.php:33
+#: ../../../phalcon/modules/web/forms/RolesForm.php:35
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:63
+#: ../../../../dist/cache/volt/roles%%search.volt.php:24
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:6
+#: ../../../../dist/cache/volt/users%%search.volt.php:22
+msgid "Name"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:35
+msgid "Full name is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:42
+msgid "E-Mail"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:45
+#: ../../../phalcon/modules/web/forms/UsersForm.php:55
+#: ../../../phalcon/modules/web/forms/SigninForm.php:32
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:29
+msgid "Email is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:48
+#: ../../../phalcon/modules/web/forms/UsersForm.php:58
+#: ../../../phalcon/modules/web/forms/SigninForm.php:35
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:32
+msgid "Email is not valid"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:55
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:25
+#: ../../../phalcon/modules/web/forms/SigninForm.php:42
+msgid "Password"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:58
+msgid "The password is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:62
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:32
+#, php-format
+msgid "Password is too short. Minimum %d characters"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:65
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:35
+msgid "Password doesn't match confirmation"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:73
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:43
+msgid "Confirm Password"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:76
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:46
+msgid "The confirmation password is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:83
+#: ../../../phalcon/modules/web/forms/SigninForm.php:51
+msgid "yes"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:85
+msgid "Accept terms and conditions"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:88
+msgid "Terms and conditions must be accepted"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:96
+#: ../../../phalcon/modules/web/forms/SigninForm.php:60
+msgid "CSRF validation failed"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:101
+msgid "Sign Up"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:33
+#: ../../../phalcon/modules/web/forms/RolesForm.php:29
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:62
+#: ../../../../dist/cache/volt/roles%%search.volt.php:23
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:5
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:5
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_password_changes.volt.php:5
+#: ../../../../dist/cache/volt/users%%edit.volt.php:92
+#: ../../../../dist/cache/volt/users%%edit.volt.php:117
+#: ../../../../dist/cache/volt/users%%edit.volt.php:144
+#: ../../../../dist/cache/volt/users%%search.volt.php:21
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_successful_signins.volt.php:5
+msgid "Id"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:43
+#: ../../../phalcon/modules/web/forms/RolesForm.php:38
+msgid "Name is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:50
+#: ../../../phalcon/modules/web/forms/UsersForm.php:52
+#: ../../../phalcon/modules/web/forms/SigninForm.php:28
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:24
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:26
+#: ../../../../dist/cache/volt/users%%search.volt.php:23
+msgid "Email"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:73
+#: ../../../../dist/cache/volt/users%%search.volt.php:24
+msgid "Role"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:76
+msgid "The user role must be set."
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:83
+#: ../../../phalcon/modules/web/forms/UsersForm.php:92
+#: ../../../phalcon/modules/web/forms/UsersForm.php:100
+#: ../../../phalcon/modules/web/forms/RolesForm.php:45
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:73
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:74
+#: ../../../../dist/cache/volt/roles%%search.volt.php:33
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:16
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:17
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:15
+#: ../../../../dist/cache/volt/users%%edit.volt.php:154
+#: ../../../../dist/cache/volt/users%%search.volt.php:36
+#: ../../../../dist/cache/volt/users%%search.volt.php:37
+msgid "No"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:84
+#: ../../../phalcon/modules/web/forms/UsersForm.php:91
+#: ../../../phalcon/modules/web/forms/UsersForm.php:99
+#: ../../../phalcon/modules/web/forms/RolesForm.php:44
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:73
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:74
+#: ../../../../dist/cache/volt/roles%%search.volt.php:33
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:16
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:17
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:15
+#: ../../../../dist/cache/volt/users%%edit.volt.php:154
+#: ../../../../dist/cache/volt/users%%search.volt.php:36
+#: ../../../../dist/cache/volt/users%%search.volt.php:37
+msgid "Yes"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:86
+#: ../../../phalcon/modules/web/forms/RolesForm.php:47
+#: ../../../../dist/cache/volt/users%%search.volt.php:25
+msgid "Active"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:94
+msgid "Send Email Activation:"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:102
+#: ../../../../dist/cache/volt/users%%search.volt.php:26
+msgid "Banned"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/UsersForm.php:107
+#: ../../../phalcon/modules/web/forms/RolesForm.php:52
+#: ../../../../dist/cache/volt/permissions%%index.volt.php:55
+msgid "Save"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:28
+#: ../../../phalcon/modules/web/forms/SigninForm.php:45
+msgid "Password is required"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SigninForm.php:53
+msgid "Remember me"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SigninForm.php:66
+msgid "Go"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:37
+msgid "send"
+msgstr ""
+
+#: ../../../phalcon/library/Auth/Auth.php:71
+#: ../../../phalcon/library/Auth/Auth.php:112
+#: ../../../phalcon/library/Auth/Auth.php:119
+#: ../../../phalcon/library/Auth/Auth.php:125
+msgid "OAuth signin error"
+msgstr ""
+
+#: ../../../phalcon/library/Auth/Auth.php:130
+msgid "Oauth authentication failed"
+msgstr ""
+
+#: ../../../phalcon/library/Auth/Auth.php:133
+msgid "The email could not be verified."
+msgstr ""
+
+#: ../../../phalcon/library/Auth/Auth.php:140
+msgid "This email is not registered in the system."
+msgstr ""
+
+#: ../../../phalcon/library/Auth/Auth.php:184
+msgid "Invalid oauth provider"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:6
+#: ../../../../dist/cache/volt/roles%%search.volt.php:7
+#: ../../../../dist/cache/volt/users%%create.volt.php:4
+#: ../../../../dist/cache/volt/users%%edit.volt.php:6
+#: ../../../../dist/cache/volt/users%%search.volt.php:6
+msgid "Go Back"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:9
+msgid "Create Role"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:16
+msgid "Edit Role"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:17
+msgid "List Users"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:64
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:7
+msgid "Banned?"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:65
+#: ../../../../dist/cache/volt/roles%%search.volt.php:25
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:8
+msgid "Active?"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:75
+#: ../../../../dist/cache/volt/roles%%search.volt.php:34
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:18
+#: ../../../../dist/cache/volt/users%%edit.volt.php:13
+#: ../../../../dist/cache/volt/users%%search.volt.php:39
+msgid "Edit"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:76
+#: ../../../../dist/cache/volt/roles%%search.volt.php:35
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:19
+#: ../../../../dist/cache/volt/users%%search.volt.php:40
+msgid "Delete"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%edit.volt.php:79
+#: ../../../../dist/cache/volt/roles%%edit%%tab_pane_users.volt.php:22
+msgid "There are no users assigned to this role"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:10
+msgid "Create roles"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:43
+#: ../../../../dist/cache/volt/users%%search.volt.php:49
+msgid "First"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:44
+#: ../../../../dist/cache/volt/users%%search.volt.php:50
+msgid "Previous"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:45
+#: ../../../../dist/cache/volt/users%%search.volt.php:51
+msgid "Next"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:46
+#: ../../../../dist/cache/volt/users%%search.volt.php:52
+msgid "Last"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%search.volt.php:55
+msgid "No roles are recorded"
+msgstr ""
+
+#: ../../../../dist/cache/volt/framework%%marionette.volt.php:4
+msgid "Webird Marionette Technology Demo"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%signin.volt.php:33
+#: ../../../../dist/cache/volt/templates%%partials%%noscript.volt.php:3
+msgid "Your javascript is disabled."
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%signin.volt.php:35
+#: ../../../../dist/cache/volt/templates%%partials%%noscript.volt.php:5
+msgid "This website requires javascript to function properly."
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%admin.volt.php:39
+msgid "Frameworks"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%admin.volt.php:39
+msgid "Users"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%admin.volt.php:39
+msgid "Roles"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%admin.volt.php:39
+msgid "Permissions"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%index.volt.php:5
+msgid "Create Roles"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%index.volt.php:12
+msgid "Search roles"
+msgstr ""
+
+#: ../../../../dist/cache/volt/roles%%index.volt.php:35
+#: ../../../../dist/cache/volt/permissions%%index.volt.php:22
+#: ../../../../dist/cache/volt/users%%index.volt.php:49
+msgid "Search"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:6
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_password_changes.volt.php:8
+#: ../../../../dist/cache/volt/users%%edit.volt.php:120
+#: ../../../../dist/cache/volt/users%%edit.volt.php:145
+msgid "Date"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:7
+#: ../../../../dist/cache/volt/users%%edit.volt.php:146
+msgid "Reset?"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_reset_passwords.volt.php:18
+#: ../../../../dist/cache/volt/users%%edit.volt.php:157
+msgid "User has not requested reset his/her password"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%create.volt.php:11
+msgid "Create a User"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%create.volt.php:59
+msgid "* This can be done at a later time"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:4
+msgid "Welcome!"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:5
+msgid "This technology is built with Phalcon and Webpack."
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:8
+msgid "Create an Account"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:15
+msgid "Awesome Section"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:20
+msgid "Important Stuff"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:25
+msgid "Example addresses"
+msgstr ""
+
+#: ../../../../dist/cache/volt/index%%index.volt.php:32
+msgid "Full Name"
+msgstr ""
+
+#: ../../../../dist/cache/volt/privacy%%index.volt.php:4
+msgid "Privacy"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_password_changes.volt.php:6
+#: ../../../../dist/cache/volt/users%%edit.volt.php:93
+#: ../../../../dist/cache/volt/users%%edit.volt.php:118
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_successful_signins.volt.php:6
+msgid "IP Address"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_password_changes.volt.php:7
+#: ../../../../dist/cache/volt/users%%edit.volt.php:94
+#: ../../../../dist/cache/volt/users%%edit.volt.php:119
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_successful_signins.volt.php:7
+msgid "User Agent"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_password_changes.volt.php:20
+#: ../../../../dist/cache/volt/users%%edit.volt.php:132
+msgid "User has not changed his/her password"
+msgstr ""
+
+#: ../../../../dist/cache/volt/permissions%%index.volt.php:5
+msgid "Role Permissions"
+msgstr ""
+
+#: ../../../../dist/cache/volt/permissions%%index.volt.php:35
+msgid "Description"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%public.volt.php:4
+msgid "Webird Public Page"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%public.volt.php:31
+msgid "Toggle navigation"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%public.volt.php:41
+msgid "About"
+msgstr ""
+
+#: ../../../../dist/cache/volt/layouts%%public.volt.php:50
+#: ../../../../dist/cache/volt/layouts%%public.volt.php:52
+msgid "Signin"
+msgstr ""
+
+#: ../../../../dist/cache/volt/framework%%index.volt.php:3
+msgid "Webird Frameworks"
+msgstr ""
+
+#: ../../../../dist/cache/volt/framework%%index.volt.php:6
+msgid ""
+"This Phalcon and Webpack scaffold has starting support for the following "
+"Javascript frameworks."
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%changePassword.volt.php:6
+#: ../../../../dist/cache/volt/users%%changePassword.volt.php:29
+msgid "Change Password"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit.volt.php:14
+msgid "Signins"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit.volt.php:15
+msgid "Password Changes"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit.volt.php:16
+msgid "Reset Passwords"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%edit.volt.php:105
+#: ../../../../dist/cache/volt/users%%edit%%tab_pane_successful_signins.volt.php:18
+msgid "User does not have successfull signins"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%index.volt.php:5
+msgid "Create Users"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%index.volt.php:12
+msgid "Search users"
+msgstr ""
+
+#: ../../../../dist/cache/volt/framework%%angular.volt.php:4
+msgid "Webird Angular Technology Demo"
+msgstr ""
+
+#: ../../../../dist/cache/volt/about%%index.volt.php:4
+msgid "About this Demo"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%search.volt.php:9
+msgid "Create users"
+msgstr ""
+
+#: ../../../../dist/cache/volt/users%%search.volt.php:61
+msgid "No users are recorded"
+msgstr ""
+
+#: ../../../webpack/modules/marionette_module.helloworld/partials/header.hbs:1
+msgid "Module"
+msgstr ""
+
+#: ../../../webpack/modules/marionette_module.helloworld/partials/content.hbs:4
+msgid ""
+"The counter change buttons will post a message to the global channel that is "
+"listening to the Console Module."
+msgstr ""
+
+#: ../../../webpack/modules/marionette_module.helloworld/partials/content.hbs:7
+msgid "Decrement"
+msgstr ""
+
+#: ../../../webpack/modules/marionette_module.helloworld/partials/content.hbs:8
+msgid "Increment"
+msgstr ""

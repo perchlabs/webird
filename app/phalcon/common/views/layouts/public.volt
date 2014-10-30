@@ -58,7 +58,7 @@
         Webird
         {{ link_to("privacy", "Privacy Policy") }}
         {{ link_to("terms", "Terms") }}
-    © 2013 Phalcon Team.
+    © 2014 Webird Team.
     </footer>
   </div>
 </div>

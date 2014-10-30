@@ -57,6 +57,7 @@ setup/install-local-packages.sh
 # nginx setup
 sudo ./dev/webird.php nginx > /etc/nginx/sites-available/dev.webird.io
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
+service nginx restart
 
 # /etc/hosts setup
 sudo echo "\n127.0.0.1       dev.webird.io" > /etc/hosts
@@ -64,8 +65,7 @@ sudo echo "\n127.0.0.1       dev.webird.io" > /etc/hosts
 # mariadb setup
 # set DB_ROOT_PW to
 mysqladmin --user=root --password=DB_ROOT_PW create webird
-mysql --user=root --password=DB_ROOT_PW webird < ./etc/setup/schema.sql
-
+mysql --user=root --password=DB_ROOT_PW webird < ./etc/schema.sql
 ```
 
 ### Poedit Localization editor:
@@ -119,7 +119,7 @@ At this point you may run Poedit from any locale file in `./dev/locale` to extra
 3. Run server processes: `./webird.php`
 4. If something is wrong modify `./config.json` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `dist.json` file and then rebuild the dist environment.
 
-The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If custom settings are required it is recommended to first modify the `./etc/template/nginx_dist` file.
+The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If custom settings are required it is recommended to first modify the `./etc/template/dist_nginx` file.
 
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 

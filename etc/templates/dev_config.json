@@ -10,7 +10,7 @@
     "domain": "dev.webird.io",
     "mail": {
       "name": "Webird Development",
-      "email": "notification-noreply@dev.webird.io"
+      "email": ""
     }
   },
   "database": {
@@ -38,7 +38,7 @@
     "host": "smtp.gmail.com",
     "port": "465",
     "encryption": "ssl",
-    "username": "USER@gmail.com",
-    "password": "SET_PASSWORD"
+    "username": "",
+    "password": ""
   }
 }

@@ -31,7 +31,7 @@
     "host": "smtp.gmail.com",
     "port": "465",
     "encryption": "ssl",
-    "username": "USER@gmail.com",
-    "password": "SET_PASSWORD"
+    "username": "",
+    "password": ""
   }
 }

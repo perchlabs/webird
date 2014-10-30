@@ -18,16 +18,7 @@
       <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
     </div>
     <div class="col-md-4">
-      <h3>{{_('Example addresses')}}</h3>
-      <address>
-        <strong>Vokuri, Inc.</strong><br>
-        456 Infinite Loop, Suite 101<br>
-        <abbr title="Phone">P:</abbr> (123) 456-7890
-      </address>
-      <address>
-        <strong>{{_('Full Name')}}</strong><br>
-        <a href="mailto:#">vokuro@phalconphp.com</a>
-      </address>
+      <a href="mailto:#">perchlayer@gmail.com</a>
     </div>
   </div>
 

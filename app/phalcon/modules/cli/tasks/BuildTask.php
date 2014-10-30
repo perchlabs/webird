@@ -265,7 +265,7 @@ WEBIRD_ENTRY;
         `cp -R $appDir/theme/assets $distDir/public/assets`;
 
         copy("$etcDir/schema.sql", "$distDir/etc/schema.sql");
-        copy("$etcDir/templates/nginx_dist", "$distDir/etc/nginx_template");
+        copy("$etcDir/templates/dist_nginx", "$distDir/etc/nginx_template");
         // Move the CLI startup program to the root dist directory
         chmod("$distDir/webird.php", 0775);
 

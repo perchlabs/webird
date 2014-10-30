@@ -1,3 +1,5 @@
+etc/dev.json
+etc/dist.json
 dist/
 dev/node_modules/
 dev/bower_components/

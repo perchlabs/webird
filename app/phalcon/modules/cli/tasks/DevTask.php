@@ -82,7 +82,7 @@ class DevTask extends TaskBase
         $wsPort = $config->app->wsPort;
         $randomHash = uniqid();
 
-        $inputFile = $etcDir . 'templates/nginx_dev';
+        $inputFile = $etcDir . 'templates/dev_nginx';
         $tpl = file_get_contents($inputFile);
 
         $tpl = str_replace('{{host}}', $domain, $tpl);

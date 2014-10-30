@@ -9,7 +9,8 @@ skipclean=1
 npm install
 [[ $? -ne 0 ]] && exit $?
 
-bower install --config.interactive=false
+# Its best not to run this script as root but the script will allow it
+bower install --allow-root --config.interactive=false
 [[ $? -ne 0 ]] && exit $?
 
 composer install

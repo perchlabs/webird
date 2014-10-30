@@ -31,7 +31,7 @@ php-extension-enable() {
   local fpm_ini=$(php-confd-ini-path fpm $name $code)
   local mod_ini="/etc/php5/mods-available/$name.ini"
 
-  echo  "extension=$name.so" > "$mod_ini"
+  echo "extension=$name.so" > "$mod_ini"
   [[ $? -ne 0 ]] && exit 1
 
   if [[ ! -f $cli_ini ]]; then
@@ -39,7 +39,7 @@ php-extension-enable() {
     [[ $? -ne 0 ]] && exit 1
   fi
   if [[ ! -f $fpm_ini ]]; then
-    ln -s --relative "$mod_ini" "$cli_fpm"
+    ln -s --relative "$mod_ini" "$fpm_ini"
     [[ $? -ne 0 ]] && exit 1
   fi
 

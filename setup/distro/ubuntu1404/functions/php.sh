@@ -32,8 +32,16 @@ php-extension-enable() {
   local mod_ini="/etc/php5/mods-available/$name.ini"
 
   echo  "extension=$name.so" > "$mod_ini"
-  ln -s --relative "$mod_ini" "$cli_ini"
-  ln -s --relative "$mod_ini" "$fpm_ini"
+  [[ $? -ne 0 ]] && exit 1
+
+  if [[ ! -f $cli_ini ]]; then
+    ln -s --relative "$mod_ini" "$cli_ini"
+    [[ $? -ne 0 ]] && exit 1
+  fi
+  if [[ ! -f $fpm_ini ]]; then
+    ln -s --relative "$mod_ini" "$cli_fpm"
+    [[ $? -ne 0 ]] && exit 1
+  fi
 
   return $?
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-require 'jquery'
+require 'bootstrap/js/transition.js'
 require 'bootstrap/js/alert.js'
 require 'bootstrap/js/button.js'
 require 'bootstrap/js/carousel.js'
@@ -11,4 +11,4 @@ require 'bootstrap/js/tooltip.js'
 require 'bootstrap/js/popover.js'
 require 'bootstrap/js/scrollspy.js'
 require 'bootstrap/js/tab.js'
-require 'bootstrap/js/transition.js'
+require 'bootstrap/js/affix.js'

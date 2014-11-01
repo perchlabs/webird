@@ -4,7 +4,10 @@
     "webGroup": "www-data"
   },
   "site": {
-    "domain": "dist.webird.io"
+    "domains": [
+      "dist.webird.io",
+      "www.dist.webird.io"
+    ]
   },
   "database": {
     "host": "localhost",

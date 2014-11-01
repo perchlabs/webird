@@ -7,7 +7,7 @@ server {
   # You are encouraged to modify the source template and regenerate ##
   ####################################################################
 
-  server_name  {{host}};
+  server_name {{domains}};
   listen      {{http_port}};
 
   root        "{{dev_path}}public";

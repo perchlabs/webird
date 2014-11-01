@@ -7,7 +7,10 @@
     "webGroup": "www-data"
   },
   "site": {
-    "domain": "dev.webird.io",
+    "domain": [
+      "dev.webird.io",
+      "www.dev.webird.io"
+    ],
     "mail": {
       "name": "Webird Development",
       "email": ""

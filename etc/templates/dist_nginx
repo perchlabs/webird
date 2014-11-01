@@ -4,7 +4,7 @@ upstream websocketserver-{{random_hash}} {
 
 server {
   set $appPath {{app_path}};
-  server_name  {{host}};
+  server_name {{domains}};
 
   ####################################################################
   # You are encouraged to modify the source template and regenerate ##

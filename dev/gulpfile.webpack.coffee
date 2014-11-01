@@ -247,7 +247,7 @@ gulp.task 'webpack:dev-server', (callback) ->
 
   wpConf.devtool = 'source-map'
   wpConf.debug = true
-  wpConf.output.publicPath = "http://#{config.site.domain}:#{webpackPort}/"
+  wpConf.output.publicPath = "http://#{config.site.domains[0]}:#{webpackPort}/"
 
 
   # Start a webpack-dev-server
@@ -257,7 +257,7 @@ gulp.task 'webpack:dev-server', (callback) ->
       colors: true
   .listen webpackPort, 'localhost', (err) ->
     throw new gutil.PluginError('webpack-dev-server', err) if err
-    gutil.log '[webpack-dev-server]', "http://#{config.site.domain}:#{webpackPort}/webpack-dev-server"
+    gutil.log '[webpack-dev-server]', "http://#{config.site.domains[0]}:#{webpackPort}/webpack-dev-server"
 
 
 

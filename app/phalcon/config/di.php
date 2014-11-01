@@ -155,7 +155,7 @@ $di->set('viewSimple', function() use ($di, $voltService) {
 
     // TODO: Move this into a base class
     $view->setVars([
-        'domain' => $config->site->domain,
+        'domain' => $config->site->domains[0],
         'link'   => $config->site->link
     ]);
 
@@ -244,8 +244,6 @@ $di->setShared('translate', function() use ($di) {
 
 
 
-
-
 $di->setShared('url', function() use ($di) {
     $config = $di->get('config');
 
@@ -253,7 +251,7 @@ $di->setShared('url', function() use ($di) {
     $shouldHttps = $config->security->https;
     $usingHsts = ($config->security->hsts > 0);
 
-    $host = $config->site->domain;
+    $host = $config->site->domains[0];
     $uri = $config->app->baseUri;
 
     $proto = ($isCurrentlyHttps || $shouldHttps || $usingHsts) ? 'https' : 'http';

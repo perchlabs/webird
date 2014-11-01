@@ -126,7 +126,7 @@ class BuildTask extends TaskBase
         $voltCompileDirBak = $path->voltCompileDir;
         $voltCompileDirDist = $dev->path->distDir . "cache-static/volt/";
         $path->voltCompileDir = $voltCompileDirDist;
-        echo "Temporarily changing voltCompilePath to {$voltCompileDirDist}\n";
+        echo "Temporarily changing voltCompileDir to {$voltCompileDirDist}\n";
 
         $di = $this->getDI();
 

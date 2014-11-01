@@ -77,15 +77,22 @@ class DevTask extends TaskBase
         $appDir = $config->path->appDir;
         $devDir = $config->dev->path->devDir;
         $etcDir = $config->dev->path->etcDir;
-        $domain = $config->site->domain;
         $httpPort = $config->app->httpPort;
         $wsPort = $config->app->wsPort;
         $randomHash = uniqid();
 
+        $domainFirst = $config->site->domains[0];
+        $domains = [];
+        foreach($config->site->domains as $domain) {
+            $domains[] = $domain;
+        }
+        $domainStr = implode("\n" . str_pad(' ', 14, ' '), $domains);
+
         $inputFile = $etcDir . 'templates/dev_nginx';
         $tpl = file_get_contents($inputFile);
 
-        $tpl = str_replace('{{host}}', $domain, $tpl);
+        $tpl = str_replace('{{host}}', $domainFirst, $tpl);
+        $tpl = str_replace('{{domains}}', $domainStr, $tpl);
         $tpl = str_replace('{{http_port}}', $httpPort, $tpl);
         $tpl = str_replace('{{websocket_port}}', $wsPort, $tpl);
         $tpl = str_replace('{{random_hash}}', $randomHash, $tpl);

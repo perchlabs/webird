@@ -30,7 +30,7 @@ class ViewBase extends View
         $this->setVars([
             'ENVIRONMENT' => ENVIRONMENT,
             'path'   => $this->getWebBundlePath(),
-            'domain' => $config->site->domain,
+            'domain' => $config->server->domain,
             'link'   => $config->site->link
         ]);
 
@@ -52,10 +52,11 @@ class ViewBase extends View
             case 'dist':
                 $path = '';
                 break;
-            // For development use the node webpack-dev-server to deliver the assets
             case 'dev':
+
+                // Uses the node webpack-dev-server to deliver the bundled assets
                 $webpackPort = $config['dev']['webpackPort'];
-                $domain = $config['site']['domain'];
+                $domain = $config->server->domain;
                 $path = "http://{$domain}:{$webpackPort}/";
                 break;
             default:

@@ -3,6 +3,12 @@ upstream websocketserver-{{random_hash}} {
 }
 
 server {
+  listen      80;
+  server_name {{domains}};
+  return      301 https://$server_name$request_uri;
+}
+
+server {
   set $appPath {{app_path}};
   server_name {{domains}};
 
@@ -59,8 +65,6 @@ server {
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
   }
 
-
-
   location /websocket {
   proxy_pass http://websocketserver-{{random_hash}};
     proxy_redirect off;
@@ -74,7 +78,6 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
 
-    #
     # Bump the timeout's so someting sensible so our connections don't
     # disconnect automatically. We've set it to 12 hours.
     #

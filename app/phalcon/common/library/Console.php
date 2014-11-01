@@ -41,7 +41,7 @@ class Console extends PhalconConsole
      *
      * @param array  $arguments
      */
-    public function handle($arguments)
+    public function handle($arguments = null)
     {
         global $argv;
         $config = $this->getDI()->get('config');

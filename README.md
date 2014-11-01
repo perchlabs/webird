@@ -43,7 +43,6 @@ Node.js is required for development only and is not required once a project has 
 * MariaDB >= 10.0
 * Node.js
 
-
 **Installation Instructions:**
 ```
 # Ubuntu 14.04
@@ -94,19 +93,21 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 ## Development Usage:
 
-1. Configure `./etc/dev.json` for local database password
-2. Create a Webird user with `./dev/webird.php useradd`
-3. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
-4. Visit http://dev.webird.io
+1. Copy `./etc/templates/dev_config.json` to `./etc/dev.json`
+2. Configure `./etc/dev.json` for local database password
+3. Create a Webird user with `./dev/webird.php useradd`
+4. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
+5. Visit http://dev.webird.io
 
 If you see the local host file not configured page then add `127.0.0.1 dev.webird.io` to your `/etc/hosts` file.
 
 ## Distribution Usage:
 
 #### Create dist environment:
-1. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./dist/etc/config.json`.
-2. Create the dist environment: `./dev/webird.php build`
-3. Visit https://dist.webird.io
+1. Copy `./etc/templates/dist_config.json` to `./etc/dist.json`
+2. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./dist/etc/config.json`.
+3. Create the dist environment: `./dev/webird.php build`
+4. Visit https://dist.webird.io
 
 At this point you may run Poedit from any locale file in `./dev/locale` to extract all of the gettext strings from the final `./dist` build.
 

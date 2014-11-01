@@ -10,7 +10,6 @@ use Phalcon\Tag,
     Webird\Forms\ChangePasswordForm,
     Webird\Web\Forms\ForgotPasswordForm;
 
-
 /**
  * SettingsController
  * Provides help to users to confirm their passwords or reset them

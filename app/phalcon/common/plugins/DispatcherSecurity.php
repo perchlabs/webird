@@ -98,7 +98,7 @@ class DispatcherSecurity extends Plugin
         // by canceling anything but the change password action. This redirects to prevent
         // double POSTing from a signin action to the change password action.
         if ($this->auth->doesNeedToChangePassword()) {
-            if ("web:settings.changePassword" != "$module.$controller.$action") {
+            if ("web:settings.changePassword" != "{$module}:{$controller}.{$action}") {
                 $this->getDI()->getResponse()->redirect('settings/changePassword');
                 return false;
             }

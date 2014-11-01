@@ -251,12 +251,17 @@ $di->setShared('url', function() use ($di) {
     $shouldHttps = $config->security->https;
     $usingHsts = ($config->security->hsts > 0);
 
-    $host = $config->site->domains[0];
-    $uri = $config->app->baseUri;
-
     $proto = ($isCurrentlyHttps || $shouldHttps || $usingHsts) ? 'https' : 'http';
 
+    if (empty($config->server->domain)) {
+        $domain = $config->site->domains[0];
+    } else {
+        $domain = $config->server->domain;
+    }
+
+    $uri = $config->app->baseUri;
+
     $url = new Url();
-    $url->setBaseUri("{$proto}://{$host}{$uri}");
+    $url->setBaseUri("{$proto}://{$domain}{$uri}");
     return $url;
 });

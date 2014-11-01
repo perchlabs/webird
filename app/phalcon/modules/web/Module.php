@@ -33,6 +33,7 @@ class Module implements ModuleDefinitionInterface
         $viewsDir = self::getViewsDir();
         $viewFunc =  function() use ($di, $viewsDir) {
             $view = new ViewBase();
+            $view->setDI($di);
             $view->setViewsDir($viewsDir);
             $view->setPartialsDir('../../../common/views/partials/');
             $view->setLayoutsDir('../../../common/views/layouts/');

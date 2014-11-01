@@ -13,7 +13,7 @@
     ],
     "mail": {
       "name": "Webird Development",
-      "email": ""
+      "email": "notification-noreply@webird.io"
     }
   },
   "database": {

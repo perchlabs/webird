@@ -3,9 +3,9 @@ upstream websocketserver-{{random_hash}} {
 }
 
 server {
+  server_name {{domains}}
   listen      80;
-  server_name {{domains}};
-  return      301 https://$server_name$request_uri;
+  return 301 https://$host$request_uri;
 }
 
 server {
@@ -16,7 +16,7 @@ server {
   # You are encouraged to modify the source template and regenerate ##
   ####################################################################
 
-  listen      {{http_port}};
+  listen      {{http_port}} ssl spdy;
 
   root        "${appPath}public";
   index index.php;

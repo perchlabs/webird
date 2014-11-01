@@ -80,7 +80,7 @@ class EmailConfirmations extends Model
         $translate = $this->getDI()->get('translate');
 
         $subjectMsg = sprintf($translate->gettext('Please confirm your email on %s'),
-            $config->site->domain);
+            $config->site->domains[0]);
 
         $message = $this->getDI()
             ->getMailer()

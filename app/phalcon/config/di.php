@@ -253,7 +253,7 @@ $di->setShared('url', function() use ($di) {
 
     $proto = ($isCurrentlyHttps || $shouldHttps || $usingHsts) ? 'https' : 'http';
 
-    if (empty($config->server->domain)) {
+    if ($config->server->domain == '') {
         $domain = $config->site->domains[0];
     } else {
         $domain = $config->server->domain;

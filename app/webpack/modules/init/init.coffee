@@ -12,5 +12,9 @@ module.exports =
     blocked = true
     return _defer
 
-  promise: ->
-    _defer.promise()
+  done: (callback) ->
+    return _defer.promise().done callback
+
+
+  # promise: ->
+  #   _defer.promise()

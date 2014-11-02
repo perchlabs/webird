@@ -2,5 +2,5 @@
 
 init = require 'init'
 
-init.promise().done (message) ->
+init.done ->
   app = require 'angular_app'

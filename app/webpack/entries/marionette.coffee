@@ -3,10 +3,6 @@
 init = require 'init'
 app = require 'marionette_app'
 
-init.promise().done (message) ->
-  app.start()
-
-
 app.addRegions
   helloworldRegion: $ '#helloworld-content'
   consoleRegion:    $ '#console-content'
@@ -23,3 +19,6 @@ app.addInitializer ->
 
   @Console.start
     mainRegion: @consoleRegion
+
+init.done ->
+  app.start()

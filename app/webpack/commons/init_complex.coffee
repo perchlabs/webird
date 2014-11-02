@@ -11,4 +11,5 @@ initBlock = init.getBlockingDeferred()
 
 # requests the locale gettext json file based on the browser locale setting
 locale.init ->
-  initBlock.resolve 'locale loading finished'
+  $(document).ready ->
+    initBlock.resolve 'locale loading finished'

@@ -1,4 +1,5 @@
 'use strict'
+
 feature = require 'browserfeature'
 
 hasAll = feature.hasAllRequired()

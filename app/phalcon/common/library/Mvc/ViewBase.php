@@ -50,7 +50,7 @@ class ViewBase extends View
 
         switch (ENVIRONMENT) {
             case 'dist':
-                $path = '';
+                $path = '/';
                 break;
             case 'dev':
 

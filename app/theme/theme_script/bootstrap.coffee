@@ -1,5 +1,6 @@
 'use strict'
 
+require 'jquery'
 require 'bootstrap/js/transition.js'
 require 'bootstrap/js/alert.js'
 require 'bootstrap/js/button.js'

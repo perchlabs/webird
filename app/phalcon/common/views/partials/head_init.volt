@@ -8,6 +8,6 @@
   <link rel="apple-touch-icon-precomposed" href="{{url('assets/favicon_apple_touch.png')}}">
   <!-- Firefox, Chrome, Safari, IE 11+ and Opera 96x96 pixels -->
   <link rel="icon" href="{{url('assets/favicon.png')}}">
-{% if ENVIRONMENT == 'dev' %}
+{% if ENVIRONMENT == 'dev' and config.dev.webpackLiveReload %}
   {{ javascript_include(['src': 'js/webpack-dev-server.js']) }}
 {% endif %}

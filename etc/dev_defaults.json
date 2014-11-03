@@ -1,6 +1,7 @@
 {
   "dev": {
     "webpackPort": 8091,
+    "webpackLiveReload": true,
     "phpEncode": false,
     "phpEncoders": {
       "ioncube": {

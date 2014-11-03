@@ -4,8 +4,6 @@
   <title>{{_('Webird Public Page')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
-  {{ javascript_include(['src': path~'js/init_complex.js']) }}
-  {{ javascript_include(['src': path~'js/public.js']) }}
 </head>
 
 <body>
@@ -62,6 +60,7 @@
     </footer>
   </div>
 </div>
-
+  {{ javascript_include(['src': path~'js/init_complex.js']) }}
+  {{ javascript_include(['src': path~'js/public.js']) }}
 </body>
 </html>

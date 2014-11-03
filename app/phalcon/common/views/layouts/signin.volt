@@ -4,8 +4,6 @@
   <title>{{_('Signin')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
-  {{ javascript_include(['src': path~'js/init_complex.js']) }}
-  {{ javascript_include(['src': path~'js/signin.js']) }}
 </head>
 <body>
 <div class="container">
@@ -19,5 +17,7 @@
 <div id="onlywithscript" style="display:none;">
   {{ content() }}
 </div>
+  {{ javascript_include(['src': path~'js/init_complex.js']) }}
+  {{ javascript_include(['src': path~'js/signin.js']) }}
 </body>
 </html>

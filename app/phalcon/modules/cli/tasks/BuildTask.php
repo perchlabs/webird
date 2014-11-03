@@ -295,7 +295,7 @@ WEBIRD_ENTRY;
     {
         $devDirEsc = escapeshellarg($this->config->dev->path->devDir);
 
-        echo "Building webpack bundle.  This usually takes 5-30 seconds.\n";
+        echo "Building webpack bundle.  This usually takes 5-30 seconds and up to 60 seconds on a thin VPS slice.\n";
         echo "Remove unnecessary entry points and dependencies in your webpack config to improve the build performance.\n";
         exec("cd $devDirEsc && npm run build", $out, $ret);
         if ($ret != 0) {

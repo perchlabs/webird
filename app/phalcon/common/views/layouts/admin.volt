@@ -4,8 +4,6 @@
   <title>Webird Admin Page</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
-  {{ javascript_include(['src': path~'js/init_complex.js']) }}
-  {{ javascript_include(['src': path~'js/admin.js']) }}
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -47,6 +45,7 @@
 </nav>
 
 {{ content() }}
-
+  {{ javascript_include(['src': path~'js/init_complex.js']) }}
+  {{ javascript_include(['src': path~'js/admin.js']) }}
 </body>
 </html>

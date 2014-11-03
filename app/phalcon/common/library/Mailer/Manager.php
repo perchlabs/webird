@@ -325,7 +325,7 @@ class Manager extends Component
         $di = $this->getDI();
         $config = $di->get('config');
 
-        $view = $di->get('viewSimple');
+        $view = $di->get('template');
 
         return $view;
     }

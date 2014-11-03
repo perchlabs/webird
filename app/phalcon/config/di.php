@@ -144,11 +144,11 @@ $di->set('voltService', $voltService);
 
 
 
-$di->set('viewSimple', function() use ($di, $voltService) {
+$di->set('template', function() use ($di, $voltService) {
     $config = $di->get('config');
 
     $view = new ViewSimple();
-    $view->setViewsDir($config->path->viewsSimpleDir);
+    $view->setViewsDir($config->path->templatesDir);
     $view->registerEngines([
         '.volt' => $voltService
     ]);
@@ -262,6 +262,6 @@ $di->setShared('url', function() use ($di) {
     $uri = $config->app->baseUri;
 
     $url = new Url();
-    $url->setBaseUri($uri);
+    $url->setBaseUri("{$proto}://{$domain}{$uri}");
     return $url;
 });

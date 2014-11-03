@@ -138,9 +138,9 @@ class BuildTask extends TaskBase
         }
 
         // Simple views
-        $viewsDir = "{$this->config->path->viewsSimpleDir}";
+        $viewsDir = "{$this->config->path->templatesDir}";
         $this->compileVoltDir($viewsDir, function() use ($di) {
-            return $di->get('viewSimple');
+            return $di->get('template');
         });
 
         $path->voltCompileDir = $voltCompileDirBak;

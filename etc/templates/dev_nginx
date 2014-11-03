@@ -1,20 +1,23 @@
-upstream websocketserver-{{random_hash}} {
+###################################################################
+# You are encouraged to modify the source template and regenerate #
+###################################################################
+
+upstream websocket-{{random_hash}} {
   server localhost:{{websocket_port}};
+}
+upstream webpack-{{random_hash}} {
+  server localhost:{{webpack_port}};
 }
 
 server {
-  ####################################################################
-  # You are encouraged to modify the source template and regenerate ##
-  ####################################################################
-
   server_name {{domains}};
   listen      {{http_port}};
 
   root        "{{dev_path}}public";
   index index.php;
 
-  access_log  "/var/log/nginx/{{host}}-dev.log";
-  error_log   "/var/log/nginx/{{host}}-dev-error.log" error;
+  access_log  "/var/log/nginx/{{host}}.log";
+  error_log   "/var/log/nginx/{{host}}-error.log" error;
 
   fastcgi_buffer_size 64k;
   fastcgi_buffers 4 64k;
@@ -22,6 +25,13 @@ server {
   location ~ ^/assets/(.+)$ {
     root "{{app_path}}/theme/assets";
     rewrite ^/assets/(.*)$ /$1; break;
+  }
+
+  location ~ ^/(css|js|fonts)/(.+)$ {
+    proxy_pass http://webpack-{{random_hash}};
+    proxy_redirect off;
+    proxy_buffering off;
+    rewrite ^/js/webpack-dev-server.js$ /webpack-dev-server.js break;
   }
 
   # Test for the websocket path
@@ -58,10 +68,8 @@ server {
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
   }
 
-
-
   location /websocket {
-    proxy_pass http://websocketserver-{{random_hash}};
+    proxy_pass http://websocket-{{random_hash}};
     proxy_redirect off;
     proxy_set_header    Host              $host;
     proxy_set_header    X-Real-IP $remote_addr;

@@ -262,6 +262,6 @@ $di->setShared('url', function() use ($di) {
     $uri = $config->app->baseUri;
 
     $url = new Url();
-    $url->setBaseUri("{$proto}://{$domain}{$uri}");
+    $url->setBaseUri($uri);
     return $url;
 });

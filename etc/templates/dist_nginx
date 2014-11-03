@@ -1,4 +1,8 @@
-upstream websocketserver-{{random_hash}} {
+####################################################################
+# You are encouraged to modify the source template and regenerate ##
+####################################################################
+
+upstream websocket-{{random_hash}} {
   server localhost:{{websocket_port}};
 }
 
@@ -12,9 +16,6 @@ server {
   set $appPath {{app_path}};
   server_name {{domains}};
 
-  ####################################################################
-  # You are encouraged to modify the source template and regenerate ##
-  ####################################################################
 
   listen      {{http_port}} ssl spdy;
 
@@ -70,7 +71,7 @@ server {
   }
 
   location /websocket {
-  proxy_pass http://websocketserver-{{random_hash}};
+  proxy_pass http://websocket-{{random_hash}};
     proxy_redirect off;
     proxy_set_header    Host              $host;
     proxy_set_header    X-Real-IP $remote_addr;

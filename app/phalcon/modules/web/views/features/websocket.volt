@@ -3,7 +3,7 @@
 <head>
   <title>{{_('Webird WebSocket Technology Demo')}}</title>
 {{ partial('head_init') }}
-  {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
+  {{ stylesheet_link(['href': 'css/style_bootstrap.css']) }}
 </head>
 <body>
   <div class="container">
@@ -21,6 +21,6 @@
       </div>
     </div>
   </div>
-  {{ javascript_include(['src': path~'js/init_complex.js']) }}
-  {{ javascript_include(['src': path~'js/websocket.js']) }}
+  {{ javascript_include(['src': 'js/init_complex.js']) }}
+  {{ javascript_include(['src': 'js/websocket.js']) }}
 </body>

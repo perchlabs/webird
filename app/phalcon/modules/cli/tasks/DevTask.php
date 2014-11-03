@@ -77,8 +77,9 @@ class DevTask extends TaskBase
         $appDir = $config->path->appDir;
         $devDir = $config->dev->path->devDir;
         $etcDir = $config->dev->path->etcDir;
+        $webpackPort = $config->dev->webpackPort;
         $httpPort = $config->app->httpPort;
-        $wsPort = $config->app->wsPort;
+        $websocketPort = $config->app->wsPort;
         $randomHash = uniqid();
 
         $domainFirst = $config->site->domains[0];
@@ -94,7 +95,8 @@ class DevTask extends TaskBase
         $tpl = str_replace('{{host}}', $domainFirst, $tpl);
         $tpl = str_replace('{{domains}}', $domainStr, $tpl);
         $tpl = str_replace('{{http_port}}', $httpPort, $tpl);
-        $tpl = str_replace('{{websocket_port}}', $wsPort, $tpl);
+        $tpl = str_replace('{{webpack_port}}', $webpackPort, $tpl);
+        $tpl = str_replace('{{websocket_port}}', $websocketPort, $tpl);
         $tpl = str_replace('{{random_hash}}', $randomHash, $tpl);
         $tpl = str_replace('{{app_path}}', $appDir, $tpl);
         $tpl = str_replace('{{dev_path}}', $devDir, $tpl);

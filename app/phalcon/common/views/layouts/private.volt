@@ -3,7 +3,7 @@
 <head>
   <title>Webird Private Page</title>
 {{ partial('head_init') }}
-  {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
+  {{ stylesheet_link(['href': 'css/style_bootstrap.css']) }}
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -45,6 +45,6 @@
 </nav>
 
 {{ content() }}
-  {{ javascript_include(['src': path~'js/init_complex.js']) }}
+  {{ javascript_include(['src': 'js/init_complex.js']) }}
 </body>
 </html>

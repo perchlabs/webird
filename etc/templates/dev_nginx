@@ -26,13 +26,13 @@ server {
 
   # Test for the websocket path
   if ($request_uri = '/websocket') {
-      set $websocketFlag W;
+    set $websocketFlag W;
   }
   # Test if the file does not exist and add in the websocket test.
   # Later for rewrite it will check that the file does not exist and is also not
   # a websocket request
   if (!-e $request_filename) {
-      set $test "${websocketFlag}P";
+    set $test "${websocketFlag}P";
   }
 
   try_files $uri $uri/ @rewrite;

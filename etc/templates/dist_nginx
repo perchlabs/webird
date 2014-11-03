@@ -31,9 +31,15 @@ server {
   fastcgi_buffer_size 64k;
   fastcgi_buffers 4 64k;
 
+  location ~ ^/assets/(.+)$ {
+    expires 168h;
+    add_header Pragma public;
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+  }
+
   # Test for the websocket path
   if ($request_uri = '/websocket') {
-      set $websocketFlag W;
+    set $websocketFlag W;
   }
   # Test if the file does not exist and add in the websocket test.
   # Later for rewrite it will check that the file does not exist and is also

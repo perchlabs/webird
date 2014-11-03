@@ -31,10 +31,8 @@ server {
   fastcgi_buffer_size 64k;
   fastcgi_buffers 4 64k;
 
-  location ~ ^/assets/(.+)$ {
-    expires 168h;
-    add_header Pragma public;
-    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+  location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+    expires 365d;
   }
 
   # Test for the websocket path

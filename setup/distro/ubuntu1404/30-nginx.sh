@@ -14,4 +14,6 @@ else
   [[ $? -ne 0 ]] && exit 1
 fi
 
+# TODO: Configure gzip in /etc/nginx.conf
+
 exit 0

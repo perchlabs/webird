@@ -5,7 +5,6 @@
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': path~'css/style_bootstrap.css']) }}
 </head>
-
 <body>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">

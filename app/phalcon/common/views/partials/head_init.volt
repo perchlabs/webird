@@ -9,7 +9,5 @@
   <!-- Firefox, Chrome, Safari, IE 11+ and Opera 96x96 pixels -->
   <link rel="icon" href="{{path}}assets/favicon.png">
 {% if ENVIRONMENT == 'dev' %}
-  {# FIXME: This is causing forms to double submit in Firefox #}
-  {# https://github.com/webpack/webpack-dev-server/issues/64 #}
-  <!-- {{ javascript_include(['src': path~'webpack-dev-server.js']) }} -->
+  {{ javascript_include(['src': path~'webpack-dev-server.js']) }}
 {% endif %}

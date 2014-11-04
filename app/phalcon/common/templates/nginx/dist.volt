@@ -7,19 +7,16 @@ upstream websocket-{{random_hash}} {
 }
 
 server {
-  server_name {{domains}}
+  server_name{% for domain in domains %} {{ domain }}{% endfor %};
   listen      80;
   return 301 https://$host$request_uri;
 }
 
 server {
-  set $appPath {{app_path}};
-  server_name {{domains}};
-
-
+  server_name{% for domain in domains %} {{domain}}{% endfor %};
   listen      {{http_port}} ssl spdy;
 
-  root        "${appPath}public";
+  root        "{{app_path}}public";
   index index.php;
 
   ssl on;

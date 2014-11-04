@@ -10,7 +10,7 @@ upstream webpack-{{random_hash}} {
 }
 
 server {
-  server_name {{domains}};
+  server_name{% for domain in domains %} {{ domain }}{% endfor %};
   listen      {{http_port}};
 
   root        "{{dev_path}}public";

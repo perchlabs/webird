@@ -189,7 +189,6 @@ class BuildTask extends TaskBase
             if ($fileName == '.' || $fileName == '..')
                 continue;
 
-            // $pathNext = "$path/$fileName";
             $pathNext = "{$path}{$fileName}";
             if (is_dir($pathNext)) {
                 $this->compileVoltDir("$pathNext/", $viewFunc);
@@ -265,7 +264,6 @@ WEBIRD_ENTRY;
         `cp -R $appDir/theme/assets $distDir/public/assets`;
 
         copy("$etcDir/schema.sql", "$distDir/etc/schema.sql");
-        copy("$etcDir/templates/dist_nginx", "$distDir/etc/nginx_template");
         // Move the CLI startup program to the root dist directory
         chmod("$distDir/webird.php", 0775);
 

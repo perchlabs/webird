@@ -48,10 +48,10 @@ Node.js is required for development only and is not required once a project has 
 # Ubuntu 14.04
 
 # System provisioning
-sudo setup/provision-system.sh ubuntu1404
+sudo ./setup/provision-system.sh ubuntu1404
 
 # Local install of npm, bower and composer packages
-setup/install-local-packages.sh
+./setup/install-local-packages.sh
 
 # nginx setup
 sudo ./dev/webird.php nginx > /etc/nginx/sites-available/dev.webird.io

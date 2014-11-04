@@ -13,11 +13,11 @@ Node.js is required for development only and is not required once a project has 
 * Google OAuth2 login
 * PHP CLI utilities for many tasks
 * Manage most third party dependencies with Composer, NPM and Bower
-* Single PHP installation script for installing local dependencies or type the commands manually
-* Single command that starts various development processes across PHP and Node.js
+* Bash provisioning and local installation scripts for configuring system
+* A single PHP command that starts development processes across PHP and Node.js
 * [Webpack](http://webpack.github.io/) (CommonJS) build environment
 * Live reloading (and waiting) CommonJS build environment
-* Mix and match any combination of languages and theming (per file) including; CSS, SCSS, LESS, Stylus, Javascript and Coffeescript
+* Mix any combination of languages and theming (per file) including; CSS, SCSS, LESS, Stylus, Javascript and Coffeescript
 * Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
 * Create a final PHP and Javascript source protected distribution for deployment to the server
 * AngularJS and Backbone/Marionette Webpack examples

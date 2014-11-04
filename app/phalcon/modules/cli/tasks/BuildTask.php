@@ -278,7 +278,7 @@ WEBIRD_ENTRY;
         $configMerged = array_replace_recursive($configDefaults, $configCustom);
         // Write the merged settings to the dist directory
         $jsonConfigMerged = json_encode($configMerged, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        file_put_contents("$distDir/config.json", $jsonConfigMerged);
+        file_put_contents("$distDir/etc/config.json", $jsonConfigMerged);
 
         // $acl = $this->getDI()->get('acl');
         // $acl->saveSerialized("$distDir/cache/acl.serialized.data");

@@ -11,7 +11,7 @@ switch (ENVIRONMENT) {
         $cacheDir = $appDir . 'cache-static/';
         $composerDir = $appDir . 'vendor';
         // Load the configurable json config file
-        $customConfig = new AdapterJson("{$appDir}/config.json");
+        $customConfig = new AdapterJson("{$appDir}/etc/config.json");
         break;
     case 'dev':
         require_once(__DIR__ . '/config_dev.php');

@@ -105,18 +105,12 @@ wpConf =
       path.join bowerRoot, "/angular-ui-router"
       path.join bowerRoot, "/angular-cookies"
       path.join bowerRoot, "/angular-resource"
-      path.join nodeModulesRoot, "/handlebars"
     ]
     loaders: [
       {
         # "Shims" Angular to return itself
         test: /[\/]angular\.js$/
         loader: "exports?angular"
-      }
-      {
-        # "Shims" Handlebars to return itself
-        test: /handlebars\.js$/
-        loader: "exports?Handlebars"
       }
       {
         # Exposes jQuery and $ to the window object.

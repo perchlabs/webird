@@ -6,6 +6,3 @@ locale = require 'locale'
 # require 'bootstrap/dist/js/bootstrap.js'
 
 require 'bootstrap/js/tab'
-
-
-console.log 'blah3'

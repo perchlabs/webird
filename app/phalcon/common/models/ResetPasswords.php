@@ -79,7 +79,7 @@ class ResetPasswords extends Model
         $translate = $this->getDI()->get('translate');
 
         $subjectMsg = sprintf($translate->gettext('Reset your password on %s'),
-            $config->site->domain);
+            $config->site->domains[0]);
 
         $message = $this->getDI()
             ->getMailer()

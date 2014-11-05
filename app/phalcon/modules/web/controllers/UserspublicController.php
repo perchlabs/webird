@@ -106,9 +106,8 @@ class UserspublicController extends BaseController
         if ($this->request->isPost()) {
             if ($form->isValid($this->request->getPost()) !== false) {
                 $user = $resetPassword->user;
-                $user->password = $this->security->hash($this->request->getPost('password'));
+                $user->password = $this->request->getPost('password');
                 $user->mustChangePassword = 'N';
-
                 $resetPassword->reset = 'Y';
                 if ($resetPassword->save()) {
                     // Authenticate the user

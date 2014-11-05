@@ -72,7 +72,7 @@ class DistTask extends TaskBase
             'host'           => $domainFirst,
             'domains'        => $config->site->domains,
             'http_port'      => $httpPort,
-            'websocket_port' => $websocketPort,
+            'websocket_port' => $wsPort,
             'random_hash'    => $randomHash,
             'app_path'       => $appDir,
         ]);

@@ -71,11 +71,6 @@ class SessionController extends BaseController
      */
     public function signinAction()
     {
-        // If the user is already signed in then redirect
-        if ($this->auth->getUser() !== false) {
-          return $this->response->redirect($this->config->app->defaultPath);
-        }
-
         $form = new SigninForm();
         $form->setDI($this->getDI());
         $this->view->form = $form;

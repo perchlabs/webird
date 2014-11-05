@@ -36,7 +36,7 @@ $config = new Config([
         'modulesDir'     => $appDir . 'phalcon/modules/',
         'commonDir'      => $appDir . 'phalcon/common',
         'viewsDir'       => $appDir . 'phalcon/common/views/',
-        'templatesDir' => $appDir . 'phalcon/common/templates/',
+        'templatesDir'   => $appDir . 'templates/',
         // Paths that can change a lot with the environment
         'tmpDir'         => $tmpDir,
         'cacheDir'       => $cacheDir,

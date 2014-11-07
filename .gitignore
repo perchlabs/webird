@@ -1,3 +1,4 @@
+app/locale/*/LC_MESSAGES/messages.mo
 etc/dev.json
 etc/dist.json
 dist/

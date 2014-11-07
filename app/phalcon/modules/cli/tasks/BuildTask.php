@@ -29,6 +29,7 @@ class BuildTask extends TaskBase
         $this->buildPhalconDir();
         $this->makeEntryPoints();
         $this->copyFiles();
+        $this->covertLocaleFile();
         $this->buildWebpack();
 
         exit(0);
@@ -243,7 +244,6 @@ WEBIRD_ENTRY;
 
     private function copyFiles()
     {
-        // configuration directories
         $projectDir = $this->config->dev->path->projectDir;
         $appDir = $this->config->path->appDir;
         $etcDir = $this->config->dev->path->etcDir;
@@ -282,6 +282,38 @@ WEBIRD_ENTRY;
 
         // $acl = $this->getDI()->get('acl');
         // $acl->saveSerialized("$distDir/cache/acl.serialized.data");
+    }
+
+
+
+
+    private function covertLocaleFile()
+    {
+        $appDir = $this->config->path->appDir;
+        $distDir = $this->config->dev->path->distDir;
+        $domains = $this->config->app->localeDomains;
+
+        $dh = opendir($appDir . 'locale');
+        while (($localeName = readdir($dh)) !== false) {
+            if ($localeName == '.' || $localeName == '..')
+                continue;
+
+            $appLocalePath = "$appDir/locale/{$localeName}/LC_MESSAGES";
+            $distLocalePath = "$distDir/locale/{$localeName}/LC_MESSAGES";
+
+            exec("mkdir -p " . escapeshellarg($distLocalePath));
+
+            foreach ($domains as $domain) {
+                $poPathEsc = escapeshellarg("{$appLocalePath}/{$domain}.po");
+                $moPathEsc = escapeshellarg("{$distLocalePath}/{$domain}.mo");
+                $cmd = "msgfmt -c -o $moPathEsc $poPathEsc";
+                exec($cmd, $out, $ret);
+            }
+
+        }
+
+        // close the directory handle
+        closedir($dh);
     }
 
 

@@ -25,7 +25,8 @@ switch (ENVIRONMENT) {
 $config = new Config([
     'app' => [
         'baseUri'           => '/',
-        'defaultPath'       => 'features'
+        'defaultPath'       => 'features',
+        'localeDomains'     => ['messages']
     ],
     'path' => [
         // Typical Phalcon paths

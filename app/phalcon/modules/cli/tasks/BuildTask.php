@@ -257,10 +257,8 @@ WEBIRD_ENTRY;
         $devDirEsc = escapeshellarg($devDir);
         $distDirEsc = escapeshellarg($distDir);
 
-        // Exclude .po files (keep .mo) since webpack reads from the source folder
-        // `rsync -rv --exclude=*.po $appDir/locale $distDir`;
         // Copy the Composer installed libraries
-        // TODO: Consider other ways to install to remove dev dependencies
+        // TODO: Consider standard way to install to remove dev dependencies
         `cp -R $devDir/vendor $distDir/vendor`;
 
         `cp -R $appDir/theme/assets $distDir/public/assets`;

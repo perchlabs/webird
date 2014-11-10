@@ -15,13 +15,11 @@ clearstatcache();
 
 // Create the path to the temporary Volt cache directory
 exec("mkdir -p " . escapeshellarg($cacheDir . 'volt/'));
+exec("mkdir -p " . escapeshellarg($cacheDir . 'locale/'));
 
-// Load the base json config file
-$customConfig = new AdapterJson("{$etcDir}/dev_defaults.json");
-// Load the configurable json config file
-$customConfig2 = new AdapterJson("{$etcDir}/dev.json");
-// Set dev specific paths
-$devConfig = new Config([
+$config = new AdapterJson("{$etcDir}/dev_defaults.json");
+$config2 = new AdapterJson("{$etcDir}/dev.json");
+$config3 = new Config([
     'dev' => [
         'path' => [
             'projectDir' => $projectDir,
@@ -31,7 +29,13 @@ $devConfig = new Config([
         ]
     ]
 ]);
+$config4 = new Config([
+    'locale' => json_decode(file_get_contents("$appDir/locale/config.json"), true)
+]);
 
-// Override the default
-$customConfig->merge($customConfig2);
-$customConfig->merge($devConfig);
+
+$config->merge($config2);
+$config->merge($config3);
+$config->merge($config4);
+
+return $config;

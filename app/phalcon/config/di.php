@@ -7,7 +7,8 @@ use Phalcon\Loader,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Webird\Acl\Acl,
     Webird\DatabaseSessionReader,
-    Webird\Translate\Gettext,
+    Webird\Locale\Locale,
+    Webird\Locale\Gettext,
     Webird\Mailer\Manager as MailManager;
 
 $di->set('loader', function() use ($config) {
@@ -68,7 +69,7 @@ try {
 
     $sessionReader = new DatabaseSessionReader([
         'db'          => $connection,
-        'unique_id'    => $config->session->unique_id,
+        'unique_id'   => $config->session->unique_id,
         'db_table'    => $config->session->db_table,
         'db_id_col'   => $config->session->db_id_col,
         'db_data_col' => $config->session->db_data_col,
@@ -90,7 +91,7 @@ try {
 
 $voltService = function($view, $di) {
     $config = $di->get('config');
-    $voltCompileDir = $config->path->voltCompileDir;
+    $voltCacheDir = $config->path->voltCacheDir;
 
     switch (ENVIRONMENT) {
         case 'dist':
@@ -107,7 +108,7 @@ $voltService = function($view, $di) {
     $volt->setOptions([
         'compileAlways' => $compileAlways,
         'stat' => $stat,
-        'compiledPath' => function($templatePath) use ($view, $voltCompileDir) {
+        'compiledPath' => function($templatePath) use ($view, $voltCacheDir) {
             $config = $view->getDI()->get('config');
             $phalconDir = $config->path->phalconDir;
 
@@ -122,7 +123,7 @@ $voltService = function($view, $di) {
                 throw new \Exception('Error: template fragment has ".." in path.');
             }
 
-            $voltCompiledPath = "{$voltCompileDir}{$templateFrag}.php";
+            $voltCompiledPath = "{$voltCacheDir}{$templateFrag}.php";
             return $voltCompiledPath;
         }
     ]);
@@ -162,6 +163,60 @@ $di->set('template', function() use ($di, $voltService) {
     return $view;
 });
 
+
+
+
+
+
+$di->setShared('locale', function() use ($di) {
+    $config = $di->get('config');
+
+    switch (ENVIRONMENT) {
+        case 'dist':
+            $supported = $config->locale->supported;
+            break;
+        case 'dev':
+            $supported = [];
+            foreach(glob($config->path->localeDir . '/*', GLOB_ONLYDIR) as $locale) {
+                $supported[basename($locale)] = 1;
+            }
+            break;
+    }
+
+    $locale = new Locale($di, $config->locale->default, $supported, $config->locale->map);
+
+    return $locale;
+});
+
+
+
+
+
+$di->setShared('translate', function() use ($di) {
+    $config = $di->get('config');
+    $locale = $di->get('locale');
+
+    switch (ENVIRONMENT) {
+        case 'dist':
+            $compileAlways = false;
+            break;
+        case 'dev':
+            $compileAlways = true;
+            break;
+    }
+
+    $gettext = new Gettext();
+    $gettext->setOptions([
+        'compileAlways'  => $compileAlways,
+        'locale'         => $locale->getBestLocale(),
+        'supported'      => $locale->getSupportedLocales(),
+        'domains'        => $config->locale->domains,
+        'localeDir'      => $config->path->localeDir,
+        'localeCacheDir' => $config->path->localeCacheDir
+    ]);
+
+    return $gettext;
+});
 
 
 
@@ -214,31 +269,6 @@ $di->set('acl', function() use ($di) {
 });
 
 
-
-
-
-
-$di->setShared('translate', function() use ($di) {
-    $config = $di->get('config');
-    // Get the locale from the request headers
-    $locale = $di->get('request')->getBestLanguage();
-
-    // Ensure that the locale region separator is '-' and the region code is in lower case
-    $locale = str_replace('-', '_', $locale);
-    $localeParts = explode('_', $locale);
-    $locale = $localeParts[0];
-    if (count($localeParts) > 1)
-      $locale .= '_' . strtoupper($localeParts[1]);
-
-    $translate = new Gettext([
-        'locale' => $locale,
-        'domains' => [
-            'messages' => $config->path->localeDir
-        ]
-    ]);
-
-    return $translate;
-});
 
 
 

@@ -1,9 +1,20 @@
+# languages
+language-pack-en
+language-pack-de
+language-pack-ru
+language-pack-uk
+# translation
+gettext
+poedit
+potool
+# utilities
 vim
 git
 curl
 gcc
 make
 pkg-config
+# environments
 nginx
 mariadb-server
 mariadb-client
@@ -15,9 +26,6 @@ php5-common
 php5-cli
 php5-fpm
 php5-mysqlnd
-gettext
-poedit
-potool
 # dev libraries
 php5-dev
 libpcre3-dev

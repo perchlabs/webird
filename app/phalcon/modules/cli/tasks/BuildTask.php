@@ -8,7 +8,8 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Webird\Cli\TaskBase,
     Webird\Mvc\ViewBase,
     Webird\Web\Module as WebModule,
-    Webird\Admin\Module as AdminModule;
+    Webird\Admin\Module as AdminModule,
+    Webird\Locale\Compiler as LocaleCompiler;
 
 /**
  * Task for Build
@@ -29,7 +30,7 @@ class BuildTask extends TaskBase
         $this->buildPhalconDir();
         $this->makeEntryPoints();
         $this->copyFiles();
-        $this->covertLocaleFile();
+        $this->compileLocales();
         $this->buildWebpack();
 
         exit(0);
@@ -47,7 +48,7 @@ class BuildTask extends TaskBase
 
         $distDirEsc = escapeshellarg($distDir);
         $phalconAppDirEsc = escapeshellarg($phalconDir);
-        $phalconDistDirEsc = escapeshellarg("$distDir/phalcon");
+        $phalconDistDirEsc = escapeshellarg($distDir . 'phalcon');
 
         if (! isset($config['dev']['phpEncode'])) {
             throw new \Exception('The PHP Encoder value is not set.', 1);
@@ -124,10 +125,10 @@ class BuildTask extends TaskBase
         $path = $this->config->path;
         $dev = $this->config->dev;
 
-        $voltCompileDirBak = $path->voltCompileDir;
-        $voltCompileDirDist = $dev->path->distDir . "cache-static/volt/";
-        $path->voltCompileDir = $voltCompileDirDist;
-        echo "Temporarily changing voltCompileDir to {$voltCompileDirDist}\n";
+        $voltCacheDirBak = $path->voltCacheDir;
+        $voltCacheDirDist = $dev->path->distDir . "cache-static/volt/";
+        $path->voltCacheDir = $voltCacheDirDist;
+        echo "Temporarily changing voltCacheDir to {$voltCacheDirDist}\n";
 
         $di = $this->getDI();
 
@@ -144,8 +145,8 @@ class BuildTask extends TaskBase
             return $di->get('template');
         });
 
-        $path->voltCompileDir = $voltCompileDirBak;
-        echo "Reverting voltCompileDir to original path\n";
+        $path->voltCacheDir = $voltCacheDirBak;
+        echo "Reverting voltCacheDir to original path\n";
     }
 
 
@@ -183,7 +184,7 @@ class BuildTask extends TaskBase
         $config = $this->config;
         $phalconDir = $config->path->phalconDir;
         $distDir = $config->dev->path->distDir;
-        $voltPath = "$distDir/cache/volt";
+        $voltPath = $distDir . '/cache/volt';
 
         $dh = opendir($path);
         while (($fileName = readdir($dh)) !== false) {
@@ -230,7 +231,7 @@ WEBIRD_ENTRY;
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
 define('ENVIRONMENT', 'dist');
-require('../phalcon/bootstrap_webserver.php');
+require(__DIR__ . '/../phalcon/bootstrap_webserver.php');
 WEBIRD_ENTRY;
         file_put_contents("$distDir/public/index.php", $webEntry);
     }
@@ -246,6 +247,7 @@ WEBIRD_ENTRY;
     {
         $projectDir = $this->config->dev->path->projectDir;
         $appDir = $this->config->path->appDir;
+        $localeDir = $this->config->path->localeDir;
         $etcDir = $this->config->dev->path->etcDir;
         $devDir = $this->config->dev->path->devDir;
         $distDir = $this->config->dev->path->distDir;
@@ -256,7 +258,7 @@ WEBIRD_ENTRY;
         $distDirEsc = escapeshellarg($distDir);
 
         // Exclude .po files (keep .mo) since webpack reads from the source folder
-        `rsync -rv --exclude=*.po $appDir/locale $distDir`;
+        // `rsync -rv --exclude=*.po $appDir/locale $distDir`;
         // Copy the Composer installed libraries
         // TODO: Consider other ways to install to remove dev dependencies
         `cp -R $devDir/vendor $distDir/vendor`;
@@ -267,54 +269,48 @@ WEBIRD_ENTRY;
         // Move the CLI startup program to the root dist directory
         chmod("$distDir/webird.php", 0775);
 
-        // TODO: Check for errors here
-        // Read the dist environment defaults
-        $fileDefaults = file_get_contents("$etcDir/dist_defaults.json");
-        $configDefaults = json_decode($fileDefaults, true);
-        // Read the dist environment custom settings
-        $fileCustom = file_get_contents("$etcDir/dist.json");
-        $configCustom = json_decode($fileCustom, true);
+        $config1 = json_decode(file_get_contents("$etcDir/dist_defaults.json"), true);
+        $config2 = json_decode(file_get_contents("$etcDir/dist.json"), true);
+
+        $localeConfig = json_decode(file_get_contents("$localeDir/config.json"), true);
+        $localeConfig['supported'] = $this->getDI()->getLocale()->getSupportedLocales();
+        $config3 = [
+            'locale' => $localeConfig
+        ];
+
         // Merge the custom settings over the defaults
-        $configMerged = array_replace_recursive($configDefaults, $configCustom);
+        $configMerged = array_replace_recursive($config1, $config2, $config3);
+
         // Write the merged settings to the dist directory
         $jsonConfigMerged = json_encode($configMerged, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         file_put_contents("$distDir/etc/config.json", $jsonConfigMerged);
-
-        // $acl = $this->getDI()->get('acl');
-        // $acl->saveSerialized("$distDir/cache/acl.serialized.data");
     }
 
 
 
 
-    private function covertLocaleFile()
+
+
+
+    private function compileLocales()
     {
-        $appDir = $this->config->path->appDir;
+        $supported = $this->getDI()->getLocale()->getSupportedLocales();
+
         $distDir = $this->config->dev->path->distDir;
-        $domains = $this->config->app->localeDomains;
 
-        $dh = opendir($appDir . 'locale');
-        while (($localeName = readdir($dh)) !== false) {
-            if ($localeName == '.' || $localeName == '..')
-                continue;
+        $localeCacheDir = $distDir . 'cache-static/locale/';
 
-            $appLocalePath = "$appDir/locale/{$localeName}/LC_MESSAGES";
-            $distLocalePath = "$distDir/locale/{$localeName}/LC_MESSAGES";
-
-            exec("mkdir -p " . escapeshellarg($distLocalePath));
-
-            foreach ($domains as $domain) {
-                $poPathEsc = escapeshellarg("{$appLocalePath}/{$domain}.po");
-                $moPathEsc = escapeshellarg("{$distLocalePath}/{$domain}.mo");
-                $cmd = "msgfmt -c -o $moPathEsc $poPathEsc";
-                exec($cmd, $out, $ret);
-            }
-
+        foreach ($supported as $locale => $true) {
+            $compiler = new LocaleCompiler();
+            $compiler->compileLocale([
+                'locale'         => $locale,
+                'domains'        => $this->config->locale->domains,
+                'localeDir'      => $this->config->path->localeDir,
+                'localeCacheDir' => $localeCacheDir
+            ]);
         }
-
-        // close the directory handle
-        closedir($dh);
     }
+
 
 
 

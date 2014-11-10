@@ -1,5 +1,8 @@
 <?php
-namespace Webird\Translate;
+namespace Webird\Locale;
+
+use Webird\Locale\Compiler;
+
 
 /**
  * Wrapper class for gettext translations
@@ -25,34 +28,53 @@ class Gettext
      *                       (string) locale
      *                       (array)  domains where keys are domain names
      *
-     * @throws \Phalcon\Translate\Exception
+     * @throws \Webird\Locale\TranslateException
      */
-    public function __construct($options)
+    public function __construct()
+    {
+
+    }
+
+
+    public function setOptions($options)
     {
         if (!is_array($options)) {
-            throw new Exception('Invalid options');
+            throw new \Exception('Invalid options');
         }
-
         if (!isset($options['locale'])) {
-            throw new Exception('Parameter "locale" is required');
+            throw new \Exception('Parameter "locale" is required');
+        }
+        if (strpos($options['locale'], '..') !== false) {
+            throw new \Exception('Locale has dangerous characters');
         }
 
-        if (!isset($options['domains']) || !is_array($options['domains'])) {
-            throw new Exception('"domains" must be specified and it must be an array.');
+        if (!isset($options['domains'])) {
+            throw new \Exception('domains must be specified and it must be an array.');
         }
 
-        putenv("LC_ALL=" . $options['locale']);
-        setlocale(LC_ALL, $options['locale']);
-
-        foreach ($options['domains'] as $domain => $dir) {
-            bindtextdomain($domain, $dir);
-            bind_textdomain_codeset($domain, 'UTF-8');
+        if (isset($options['compileAlways']) && $options['compileAlways'] === true) {
+            $compiler = new Compiler();
+            $compiler->compileLocale([
+                'locale'          => $options['locale'],
+                'domains'         => $options['domains'],
+                'localeDir'       => $options['localeDir'],
+                'localeCacheDir'  => $options['localeCacheDir']
+            ]);
         }
-        // set the first domain as default
-        reset($options['domains']);
-        $this->defaultDomain = key($options['domains']);
-        // save list of domains
-        $this->domains = array_keys($options['domains']);
+
+        $codeset = 'UTF-8';
+
+        putenv('LANG='.$options['locale'].'.'.$codeset);
+        putenv('LANGUAGE='.$options['locale'].'.'.$codeset);
+        setlocale(LC_ALL, $options['locale'].'.'.$codeset);
+
+        foreach ($options['domains'] as $domain) {
+            bindtextdomain($domain, $options['localeCacheDir']);
+            bind_textdomain_codeset($domain, $codeset);
+        }
+
+        $this->domains = $options['domains'];
+        $this->defaultDomain = reset($options['domains']);
 
         textdomain($this->defaultDomain);
     }

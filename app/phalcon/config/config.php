@@ -11,10 +11,10 @@ switch (ENVIRONMENT) {
         $cacheDir = $appDir . 'cache-static/';
         $composerDir = $appDir . 'vendor';
         // Load the configurable json config file
-        $customConfig = new AdapterJson("{$appDir}/etc/config.json");
+        $config = new AdapterJson("{$appDir}/etc/config.json");
         break;
     case 'dev':
-        require_once(__DIR__ . '/config_dev.php');
+        $config = require_once(__DIR__ . '/config_dev.php');
         break;
     default:
         error_log('Invalid environment in configuration.');
@@ -22,26 +22,29 @@ switch (ENVIRONMENT) {
         break;
 }
 
-$config = new Config([
+$config2 = new Config([
     'app' => [
         'baseUri'           => '/',
-        'defaultPath'       => 'features',
-        'localeDomains'     => ['messages']
+        'defaultPath'       => 'features'
+    ],
+    'locale' => [
+        'domains' => ['messages']
     ],
     'path' => [
         // Typical Phalcon paths
         'appDir'         => $appDir,
-        'localeDir'      => $appDir . 'locale/',
         'configDir'      => $appDir . 'phalcon/config/',
         'phalconDir'     => $appDir . 'phalcon/',
         'modulesDir'     => $appDir . 'phalcon/modules/',
         'commonDir'      => $appDir . 'phalcon/common',
         'viewsDir'       => $appDir . 'phalcon/common/views/',
         'templatesDir'   => $appDir . 'phalcon/common/templates/',
-        // Paths that can change a lot with the environment
+        'localeDir'      => $appDir . 'locale/',
+        // Paths that change with ENVIRONMENT
         'tmpDir'         => $tmpDir,
         'cacheDir'       => $cacheDir,
-        'voltCompileDir' => $cacheDir . 'volt/',
+        'voltCacheDir'   => $cacheDir . 'volt/',
+        'localeCacheDir' => $cacheDir . 'locale/',
         // Third party dependency paths
         'composerDir'    => $composerDir
     ],
@@ -70,7 +73,7 @@ $config = new Config([
 ]);
 
 // Merge it into main config
-$config->merge($customConfig);
+$config->merge($config2);
 
 // Configure settings that require more calculation
 $proto = ($config->security->https || $config->security->hsts > 0) ? 'https' : 'http';

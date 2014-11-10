@@ -33,6 +33,7 @@ nodeModulesRoot = path.join devRoot, 'node_modules'
 
 projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex')
 
+
 wpConf =
   cache: true
   context: webpackRoot
@@ -76,6 +77,7 @@ wpConf =
       # Constants to be evaluated at build time.
       THEME_ROOT: JSON.stringify "#{appRoot}/theme"
       LOCALE_ROOT: JSON.stringify "#{appRoot}/locale"
+      LOCALE_CONFIG: fs.readFileSync "#{appRoot}/locale/config.json", 'utf8'
 
     new ExtractTextPlugin 'css/[name].css', allChunks: false
 
@@ -233,7 +235,7 @@ for common, entryList of appConfig.commons
 # Dev Server Build - uses websockets for live reloading
 ############################################################
 gulp.task 'webpack:dev-server', (callback) ->
-  config = JSON.parse fs.readFileSync "#{etcRoot}/dev_defaults.json", 'utf8'
+  config       = JSON.parse fs.readFileSync "#{etcRoot}/dev_defaults.json", 'utf8'
   configCustom = JSON.parse fs.readFileSync "#{etcRoot}/dev.json", 'utf8'
   _.merge config, configCustom
 
@@ -261,7 +263,6 @@ gulp.task 'webpack:dev-server', (callback) ->
 # Distribution build
 ############################################################
 gulp.task 'webpack:build', (callback) ->
-  # wpConf = Object.create wpConf
   # Override temporary output path
   wpConf.output.path = path.join projectRoot, 'dist', 'public'
 

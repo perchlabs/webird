@@ -50,7 +50,7 @@ class EmailConfirmations extends Model
     /**
      * Before create the user assign a password
      */
-    public function beforeValidationOnCreate()
+    protected function beforeValidationOnCreate()
     {
         // Timestamp the confirmaton
         $this->createdAt = time();
@@ -65,7 +65,7 @@ class EmailConfirmations extends Model
     /**
      * Sets the timestamp before update the confirmation
      */
-    public function beforeValidationOnUpdate()
+    protected function beforeValidationOnUpdate()
     {
         // Timestamp the confirmaton
         $this->modifiedAt = time();
@@ -74,7 +74,7 @@ class EmailConfirmations extends Model
     /**
      * Send a confirmation e-mail to the user after create the account
      */
-    public function afterCreate()
+    protected function afterCreate()
     {
         $config = $this->getDI()->get('config');
         $translate = $this->getDI()->get('translate');

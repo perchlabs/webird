@@ -62,7 +62,7 @@ class Users extends Model
     /**
      * Before create the user assign a password
      */
-    public function beforeValidationOnCreate()
+    protected function beforeValidationOnCreate()
     {
         if (empty($this->password)) {
 
@@ -96,7 +96,7 @@ class Users extends Model
     /**
      * Before update the user
      */
-    public function beforeValidationOnUpdate()
+    protected function beforeValidationOnUpdate()
     {
         if ($this->hasChanged('password')) {
             $this->password = $this->getDI()
@@ -108,7 +108,7 @@ class Users extends Model
     /**
      * Before saving
      */
-    public function beforeSave()
+    protected function beforeSave()
     {
         // Ensure that a banned user cannot be accidentally let back in through a password
         // confirmation or another type of activation.
@@ -120,14 +120,14 @@ class Users extends Model
     /**
      * Send a confirmation e-mail to the user if the account is not active
      */
-    public function afterSave()
+    protected function afterSave()
     {
     }
 
     /**
      * Validate that emails are unique across users
      */
-    public function validation()
+    protected function validation()
     {
         $this->validate(new Uniqueness([
             "field" => "email",
@@ -137,7 +137,7 @@ class Users extends Model
         return $this->validationHasFailed() != true;
     }
 
-    public function initialize()
+    protected function initialize()
     {
         $this->keepSnapshots(true);
 

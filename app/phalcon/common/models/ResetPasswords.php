@@ -49,7 +49,7 @@ class ResetPasswords extends Model
     /**
      * Before create the user assign a password
      */
-    public function beforeValidationOnCreate()
+    protected function beforeValidationOnCreate()
     {
         // Timestamp the confirmaton
         $this->createdAt = time();
@@ -64,7 +64,7 @@ class ResetPasswords extends Model
     /**
      * Sets the timestamp before update the confirmation
      */
-    public function beforeValidationOnUpdate()
+    protected function beforeValidationOnUpdate()
     {
         // Timestamp the confirmaton
         $this->modifiedAt = time();
@@ -73,7 +73,7 @@ class ResetPasswords extends Model
     /**
      * Send an e-mail to users allowing him/her to reset his/her password
      */
-    public function afterCreate()
+    protected function afterCreate()
     {
         $config = $this->getDI()->get('config');
         $translate = $this->getDI()->get('translate');

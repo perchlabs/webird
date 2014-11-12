@@ -43,7 +43,7 @@ class PasswordChanges extends Model
     /**
      * Before create the user assign a password
      */
-    public function beforeValidationOnCreate()
+    protected function beforeValidationOnCreate()
     {
         // Timestamp the confirmaton
         $this->createdAt = time();

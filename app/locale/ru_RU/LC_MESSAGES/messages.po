@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
 "POT-Creation-Date: 2014-11-10 22:21+0300\n"
-"PO-Revision-Date: 2014-11-12 14:27+0200\n"
+"PO-Revision-Date: 2014-11-12 16:03+0200\n"
 "Last-Translator: Oksana <astraksia@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -26,7 +26,7 @@ msgstr "Пользователь не найден"
 #: ../../../phalcon/modules/admin/controllers/UsersController.php:110
 #, php-format
 msgid "A confirmation mail has been sent to %s"
-msgstr "Подтверждение отправлено на"
+msgstr "Подтверждение отправлено на %s"
 
 #: ../../../phalcon/modules/admin/controllers/UsersController.php:114
 msgid "User was created successfully. You may add another user."
@@ -181,7 +181,7 @@ msgstr ""
 
 #: ../../../phalcon/modules/admin/forms/UsersForm.php:102
 msgid "Send activation email"
-msgstr ""
+msgstr "Отправить email для активации"
 
 #: ../../../phalcon/modules/admin/forms/UsersForm.php:107
 #: ../../../phalcon/modules/admin/forms/RolesForm.php:52
@@ -199,7 +199,7 @@ msgstr ""
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:78
 msgid "The email was successfully confirmed"
-msgstr ""
+msgstr "email успешно подтвержден"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:96
 msgid "The password reset code is invalid"
@@ -271,7 +271,7 @@ msgstr "да"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:85
 msgid "Accept terms and conditions"
-msgstr ""
+msgstr "Принять пользовательское соглашение"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:88
 msgid "Terms and conditions must be accepted"
@@ -338,12 +338,12 @@ msgstr "У вас нет доступа к ресурсу"
 #: ../../../phalcon/common/models/EmailConfirmations.php:82
 #, php-format
 msgid "Please confirm your email on %s"
-msgstr "Подтвердите ваш email "
+msgstr "Подтвердите ваш email %s"
 
 #: ../../../phalcon/common/models/ResetPasswords.php:81
 #, php-format
 msgid "Reset your password on %s"
-msgstr "Сброс пароля"
+msgstr "Сброс пароля на %s"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:7
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:64

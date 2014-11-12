@@ -9,7 +9,8 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Webird\Mvc\ViewBase,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule,
-    Webird\Locale\Compiler as LocaleCompiler;
+    Webird\Locale\Compiler as LocaleCompiler,
+    Webird\Locale\CompilerException as LocaleCompilerException;
 
 /**
  * Task for Build
@@ -299,13 +300,18 @@ WEBIRD_ENTRY;
         $localeCacheDir = $distDir . 'cache-static/locale/';
 
         foreach ($supported as $locale => $true) {
-            $compiler = new LocaleCompiler();
-            $compiler->compileLocale([
-                'locale'         => $locale,
-                'domains'        => $this->config->locale->domains,
-                'localeDir'      => $this->config->path->localeDir,
-                'localeCacheDir' => $localeCacheDir
-            ]);
+            try {
+                $compiler = new LocaleCompiler();
+                $success = $compiler->compileLocale([
+                    'locale'         => $locale,
+                    'domains'        => $this->config->locale->domains,
+                    'localeDir'      => $this->config->path->localeDir,
+                    'localeCacheDir' => $localeCacheDir
+                ]);
+            } catch (LocaleCompilerException $e) {
+                error_log($e->getMessage());
+                exit(1);
+            }
         }
     }
 

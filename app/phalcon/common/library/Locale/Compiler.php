@@ -1,6 +1,8 @@
 <?php
 namespace Webird\Locale;
 
+use Webird\Locale\CompilerException;
+
 /**
  *
  */
@@ -31,6 +33,9 @@ class Compiler
             $moPathEsc = escapeshellarg("{$cacheMessagesDir}{$domain}.mo");
             $cmd = "msgfmt -c -o $moPathEsc $poPathEsc";
             exec($cmd, $out, $ret);
+            if ($ret != 0) {
+                throw new CompilerException("There was a fatal error with locale " . $locale);
+            }
         }
     }
 

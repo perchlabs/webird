@@ -76,7 +76,7 @@ class Locale extends DIInjectable
         } else if (array_key_exists($language, $this->map)) {
             $locale = $this->map[$language];
         } else {
-            $locale = $this->localeDefault;
+            $locale = $this->default;
         }
 
         $this->locale = $locale;

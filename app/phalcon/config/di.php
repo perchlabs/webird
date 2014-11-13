@@ -5,6 +5,10 @@ use Phalcon\Loader,
     Phalcon\Mvc\View\Engine\Volt,
     Phalcon\Mvc\View\Simple as ViewSimple,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
+    Phalcon\Logger\Multiple as MultipleStreamLogger,
+    Phalcon\Logger\Adapter\File as FileLogger,
+    Webird\Logger\Adapter\Error as ErrorLogger,
+    Webird\Logger\Adapter\Firelogger as Firelogger,
     Webird\Acl\Acl,
     Webird\DatabaseSessionReader,
     Webird\Locale\Locale,
@@ -222,6 +226,30 @@ $di->setShared('translate', function() use ($di) {
 
 
 
+$di->setShared('debug', function() use ($di) {
+    $config = $di->getConfig();
+
+    $logger = new MultipleStreamLogger();
+    switch (ENVIRONMENT) {
+        case 'dev':
+            if ('cli' == php_sapi_name()) {
+                $logger->push(new ErrorLogger());
+            } else {
+                $debugLogFile = str_replace('{{name}}', $config->site->domains[0],
+                    $config->dev->path->debugLog);
+                $fileLogger = new FileLogger($debugLogFile);
+                $fileLogger->getFormatter()->setFormat('%message%');
+                $logger->push($fileLogger);
+
+                $logger->push(new Firelogger());
+            }
+        break;
+    }
+
+    return $logger;
+});
+
+
 /**
  * Mail service
  */
@@ -239,7 +267,6 @@ $di->setShared('mailer', function() use ($di) {
 
 
 
-
 $di->set('crypt', function() use ($di) {
     $config = $di->get('config');
 
@@ -247,8 +274,6 @@ $di->set('crypt', function() use ($di) {
     $crypt->setKey($config->security->cryptKey);
     return $crypt;
 });
-
-
 
 
 

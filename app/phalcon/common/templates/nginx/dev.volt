@@ -45,7 +45,7 @@ server {
     root "{{app_path}}/theme/assets";
     rewrite ^/assets/(.*)$ /$1; break;
   }
-  
+
   location ~ ^/(css|js|fonts)/(.+)$ {
     proxy_pass http://webpack-{{random_hash}};
     proxy_redirect off;

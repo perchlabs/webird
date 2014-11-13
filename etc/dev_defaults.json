@@ -2,6 +2,9 @@
   "dev": {
     "webpackPort": 8091,
     "webpackLiveReload": true,
+    "path": {
+      "debugLog": "/var/log/nginx/{{name}}-debug.log"
+    },
     "phpEncode": false,
     "phpEncoders": {
       "ioncube": {

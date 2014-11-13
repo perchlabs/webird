@@ -115,12 +115,12 @@ At this point you may run Poedit from any locale file in `./dev/locale` to extra
 
 **Warning**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
 
-1. Generate nginx configuration with : `./webird.php nginx` and save (by `>` redirection and enable the output).
+1. Generate nginx configuration with : `./webird.php nginx` (and save with `>` redirection and enable it in nginx).
 2. Import database schema located at `./etc/schema.sql`
 3. Run server processes: `./webird.php`
-4. If something is wrong modify `./config.json` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `dist.json` file and then rebuild the dist environment.
+4. If something is wrong modify `./config.json` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.json` file and then rebuild the dist environment.
 
-The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If custom settings are required it is recommended to first modify the `./etc/template/dist_nginx` file.
+The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the `./etc/template/dist_nginx` file and then rebuild the dist environment.
 
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 
@@ -169,8 +169,9 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── public/
 │   └── index.php (Web entry for dist environment)
 ├── etc/
-├── locale/ (locales in machine readable .mo format)
 ├── cache-static/
+│   ├── locale/ (localization files in machine readable .mo format)
+│   └── volt/ (compiled Volt templates)
 ├── phalcon/
 └── vendor/ (Composer packages)
 ```

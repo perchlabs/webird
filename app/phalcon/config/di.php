@@ -7,6 +7,7 @@ use Phalcon\Loader,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Phalcon\Logger\Multiple as MultipleStreamLogger,
     Phalcon\Logger\Adapter\File as FileLogger,
+    Phalcon\Logger\Adapter\Firephp as FirephpLogger,
     Webird\Logger\Adapter\Error as ErrorLogger,
     Webird\Logger\Adapter\Firelogger as Firelogger,
     Webird\Acl\Acl,
@@ -232,9 +233,8 @@ $di->setShared('debug', function() use ($di) {
     $logger = new MultipleStreamLogger();
     switch (ENVIRONMENT) {
         case 'dev':
-            if ('cli' == php_sapi_name()) {
-                $logger->push(new ErrorLogger());
-            } else {
+            $logger->push(new ErrorLogger());
+            if ('cli' != php_sapi_name()) {
                 $debugLogFile = str_replace('{{name}}', $config->site->domains[0],
                     $config->dev->path->debugLog);
                 $fileLogger = new FileLogger($debugLogFile);
@@ -242,12 +242,14 @@ $di->setShared('debug', function() use ($di) {
                 $logger->push($fileLogger);
 
                 $logger->push(new Firelogger());
+                $logger->push(new FirephpLogger(''));
             }
         break;
     }
 
     return $logger;
 });
+
 
 
 /**

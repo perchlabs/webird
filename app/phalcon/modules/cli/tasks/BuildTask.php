@@ -182,10 +182,6 @@ class BuildTask extends TaskBase
 
     private function compileVoltDir($path, $viewFunc)
     {
-        $config = $this->config;
-        $phalconDir = $config->path->phalconDir;
-        $distDir = $config->dev->path->distDir;
-
         $dh = opendir($path);
         while (($fileName = readdir($dh)) !== false) {
             if ($fileName == '.' || $fileName == '..')
@@ -196,9 +192,7 @@ class BuildTask extends TaskBase
                 $this->compileVoltDir("$pathNext/", $viewFunc);
             } else {
                 $di = $this->getDI();
-
-                $view = $viewFunc();
-                $volt = $di->get('voltService', [$view, $di]);
+                $volt = $di->get('voltService', [$viewFunc(), $di]);
                 $compiler = $volt->getCompiler();
                 $compiler->compile($pathNext);
             }

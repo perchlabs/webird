@@ -185,7 +185,6 @@ class BuildTask extends TaskBase
         $config = $this->config;
         $phalconDir = $config->path->phalconDir;
         $distDir = $config->dev->path->distDir;
-        $voltPath = $distDir . '/cache/volt';
 
         $dh = opendir($path);
         while (($fileName = readdir($dh)) !== false) {

@@ -60,7 +60,7 @@ class Console extends PhalconConsole
             $cmdDef = require("{$config->path->modulesDir}/cli/cmd/{$this->cmd}.php");
         }
 
-        if (ENVIRONMENT == 'dev') {
+        if (DEV_ENV === ENV) {
             if (file_exists("{$config->dev->path->devDir}/cmd_overrides/{$this->cmd}.php")) {
                 $cmdDef = require("{$config->dev->path->devDir}/cmd_overrides/{$this->cmd}.php");
             }
@@ -97,12 +97,12 @@ class Console extends PhalconConsole
         $config = $this->getDI()->get('config');
 
         $appCmdDefs = $this->getCmdDefs($config->path->modulesDir . '/cli/cmd');
-        if (ENVIRONMENT == 'dev') {
+        if (DEV_ENV === ENV) {
             $devCmdDefs = $this->getCmdDefs($config->dev->path->devDir . '/cmd_overrides');
             $appCmdDefs = array_replace($appCmdDefs, $devCmdDefs);
         }
 
-        $cmdList = ['list' => "List available commands for current '" . ENVIRONMENT . "' environment"];
+        $cmdList = ['list' => "List available commands for current '" . ENV . "' environment"];
         foreach ($appCmdDefs as $cmdName => $cmdDef) {
             $cmdList[$cmdName] = $cmdDef[1]['title'];
         }

@@ -20,7 +20,7 @@ exec("mkdir -p " . escapeshellarg($cacheDir . 'locale/'));
 $config = new AdapterJson("{$etcDir}/dev_defaults.json");
 $config2 = new AdapterJson("{$etcDir}/dev.json");
 $config3 = new Config([
-    'dev' => [
+    DEV_ENV => [
         'path' => [
             'projectDir' => $projectDir,
             'etcDir'     => $etcDir,

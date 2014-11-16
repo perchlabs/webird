@@ -134,7 +134,7 @@ class BuildTask extends TaskBase
         $di = $this->getDI();
 
         try {
-            $this->compileVoltTemplateForModule('admin');
+            // $this->compileVoltTemplateForModule('admin');
             $this->compileVoltTemplateForModule('web');
         } catch (\Exception $e) {
             error_log($e->getMessage());
@@ -161,7 +161,6 @@ class BuildTask extends TaskBase
         $di = $this->getDI();
 
         $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
-
         $viewFunc = $moduleClass::getViewFunc($di);
 
         $view = $viewFunc();
@@ -216,7 +215,7 @@ class BuildTask extends TaskBase
         $cliEntry = <<<'WEBIRD_ENTRY'
 #!/usr/bin/env php
 <?php
-define('ENVIRONMENT', 'dist');
+define('ENV', 'dist');
 require(__DIR__ . '/phalcon/bootstrap_cli.php');
 WEBIRD_ENTRY;
         file_put_contents("$distDir/webird.php", $cliEntry);
@@ -224,7 +223,7 @@ WEBIRD_ENTRY;
 
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
-define('ENVIRONMENT', 'dist');
+define('ENV', 'dist');
 require(__DIR__ . '/../phalcon/bootstrap_webserver.php');
 WEBIRD_ENTRY;
         file_put_contents("$distDir/public/index.php", $webEntry);

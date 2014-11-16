@@ -3,14 +3,14 @@ namespace Webird\Web;
 
 use Phalcon\DI,
     Phalcon\Loader,
-    Phalcon\Mvc\ModuleDefinitionInterface as ModuleDefinitionInterface,
-    Webird\Mvc\ViewBase;
+    Webird\Module as WbModule,
+    Webird\DebugPanel;
 
 /**
  * Module for basic web needs
  *
  */
-class Module implements ModuleDefinitionInterface
+class Module extends WbModule
 {
 
     /**
@@ -22,42 +22,17 @@ class Module implements ModuleDefinitionInterface
     }
 
     /**
-     * Returns the module view directory for external operations
-     *
-     * @return string
-     */
-    public static function getViewsDir() { return __DIR__ . '/views/'; }
-
-    public static function getViewFunc($di)
-    {
-        $viewsDir = self::getViewsDir();
-        $viewFunc =  function() use ($di, $viewsDir) {
-            $view = new ViewBase();
-            $view->setDI($di);
-            $view->setViewsDir($viewsDir);
-            $view->setPartialsDir('../../../common/views/partials/');
-            $view->setLayoutsDir('../../../common/views/layouts/');
-            return $view;
-        };
-
-        return $viewFunc;
-    }
-
-    /**
      * {@inheritdoc}
      *
      */
     public function registerAutoloaders()
     {
-        $config = DI::getDefault()->get('config');
-
         $loader = new Loader();
         $loader->registerNamespaces([
             'Webird\Web\Controllers'  => __DIR__ . '/controllers',
             'Webird\Web\Forms'        => __DIR__ . '/forms',
             'Webird\Web'              => __DIR__ . '/library'
         ]);
-
         $loader->register();
     }
 
@@ -70,7 +45,11 @@ class Module implements ModuleDefinitionInterface
     {
         $di->getDispatcher()->setDefaultNamespace('Webird\Web\Controllers');
 
-        $di->set('view', self::getViewFunc($di));
+        $di->setShared('view', self::getViewFunc($di));
+
+        if (DEV_ENV === ENV) {
+            $debugPanel = new DebugPanel($di);
+        }
 
         // //Listen for events produced in the dispatcher using the Security plugin
         // $evManager = $di->getShared('eventsManager');

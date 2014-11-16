@@ -1,18 +1,21 @@
 <?php
-if (! defined('ENVIRONMENT')) {
-  error_log('Error: The application ENVIRONMENT constant is not set.');
+if (! defined('ENV')) {
+  error_log('Error: The application ENV constant is not set.');
   exit(1);
 }
+
+define('DEV_ENV', 'dev');
+define('TEST_ENV', 'test');
+define('DIST_ENV', 'dist');
 
 /*
  * Environment setup
  *
  * Different environments will require different levels of error reporting.
- * By default 'dev' will show errors but 'test' and 'dist' will hide them.
 */
-switch (ENVIRONMENT)
+switch (ENV)
 {
-    case 'dev':
+    case DEV_ENV:
         error_reporting(E_ALL);
         ini_set("display_errors", 1);
         break;
@@ -21,13 +24,13 @@ switch (ENVIRONMENT)
     //     ini_set("log_errors", 1);
     //     error_reporting(E_ALL);
     //     break;
-    case 'dist':
+    case DIST_ENV:
         ini_set("display_errors", 0);
         ini_set("log_errors", 1);
         error_reporting(E_ALL);
         break;
     default:
-        error_log('Error: The application ENVIRONMENT constant is not set correctly.');
+        error_log('Error: The application ENV constant is not set correctly.');
         exit(1);
 }
 
@@ -52,21 +55,10 @@ require ($config->path->configDir . '/di_webserver.php');
 
 // Handle the request and inject DI
 $application = new \Phalcon\Mvc\Application($di);
-
-$classes = $di->get('loader')->getClasses();
 $application->registerModules([
-    'web' => [
-        'className' => 'Webird\Web\Module',
-        'path'      => $classes['Webird\Web\Module']
-    ],
-    'admin' => [
-        'className' => 'Webird\Admin\Module',
-        'path'      => $classes['Webird\Admin\Module']
-    ],
-    'api' => [
-        'className' => 'Webird\Api\Module',
-        'path'      => $classes['Webird\Api\Module']
-    ]
+    'web'   => ['className' => 'Webird\Web\Module'],
+    'admin' => ['className' => 'Webird\Admin\Module'],
+    'api'   => ['className' => 'Webird\Api\Module']
 ]);
 
 try {

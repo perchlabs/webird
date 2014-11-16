@@ -9,10 +9,14 @@ if (php_sapi_name() !== "cli") {
     error_log('Error: The CLI interface is not being called from the command line.');
     exit(1);
 }
-if (! defined('ENVIRONMENT')) {
-    error_log('Error: ENVIRONMENT is not defined');
+if (! defined('ENV')) {
+    error_log('Error: ENV is not defined');
     exit(1);
 }
+
+define('DEV_ENV', 'dev');
+define('TEST_ENV', 'test');
+define('DIST_ENV', 'dist');
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
@@ -37,13 +41,8 @@ $di = DI::getDefault();
 $console = new WebirdConsole($di, 'server', $argv);
 // Inject the console back into the DI to enabled it to handle batch tasks inside of a task
 $di->setShared('console', $console);
-
-$classes = $di->get('loader')->getClasses();
 $console->registerModules([
-    'cli' => [
-        'className' => 'Webird\Cli\Module',
-        'path'      => $classes['Webird\Cli\Module']
-    ]
+    'cli' => ['className' => 'Webird\Cli\Module']
 ]);
 
 try {

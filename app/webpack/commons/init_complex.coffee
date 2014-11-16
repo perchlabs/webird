@@ -1,6 +1,6 @@
 'use strict'
 
-# include bootstrap scripts
+require 'theme_style/bootstrap'
 require 'theme_script/bootstrap'
 
 init = require 'init'
@@ -13,3 +13,7 @@ initBlock = init.getBlockingDeferred()
 locale.init ->
   $(document).ready ->
     initBlock.resolve 'locale loading finished'
+
+    if DEV
+      debugWidget = require 'debug_widget'
+      debugWidget.init()

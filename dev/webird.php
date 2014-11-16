@@ -1,4 +1,4 @@
 #!/usr/bin/env php
 <?php
-define('ENVIRONMENT', 'dev');
+define('ENV', 'dev');
 require(__DIR__ . '/../app/phalcon/bootstrap_cli.php');

@@ -4,7 +4,7 @@ namespace Webird\Api;
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\Mvc\View,
-    Phalcon\Mvc\ModuleDefinitionInterface as ModuleDefinitionInterface,
+    Webird\Module as WbModule,
     Webird\Mvc\ViewBase;
 
 
@@ -12,7 +12,7 @@ use Phalcon\DI,
  * Module for basic web needs
  *
  */
-class Module implements ModuleDefinitionInterface
+class Module extends WbModule
 {
 
     /**
@@ -24,21 +24,11 @@ class Module implements ModuleDefinitionInterface
     }
 
     /**
-     * Returns the module view directory for external operations
-     *
-     * @return string
-     */
-     public static function getViewsDir() { return __DIR__ . '/views/'; }
-
-
-    /**
      * {@inheritdoc}
      *
      */
     public function registerAutoloaders()
     {
-        $config = DI::getDefault()->get('config');
-
         $loader = new Loader();
         $loader->registerNamespaces([
             'Webird\Api\Controllers'  => __DIR__ . '/controllers',
@@ -58,16 +48,7 @@ class Module implements ModuleDefinitionInterface
     {
         $di->getDispatcher()->setDefaultNamespace('Webird\Api\Controllers');
 
-        $viewsDir = self::getViewsDir();
-        $di->set('view', function() use ($di, $viewsDir) {
-            $view = new ViewBase();
-            $view->setDI($di);
-            $view->setViewsDir($viewsDir);
-            $view->setPartialsDir('../../../common/views/partials/');
-            $view->setLayoutsDir('../../../common/views/layouts/');
-
-            return $view;
-        });
+        $di->setShared('view', self::getViewFunc($di));
 
         // //Listen for events produced in the dispatcher using the Security plugin
         // $evManager = $di->getShared('eventsManager');

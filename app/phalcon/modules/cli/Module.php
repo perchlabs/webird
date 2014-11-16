@@ -3,15 +3,14 @@ namespace Webird\Cli;
 
 use Phalcon\DI,
     Phalcon\Loader,
-    Phalcon\Mvc\ModuleDefinitionInterface as ModuleDefinitionInterface,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
-    Webird\Mail\Mail;
+    Webird\Module as WbModule;
 
 /**
- * Module for CLI applications
+ * Module for CLI interface applications
  *
  */
-class Module implements ModuleDefinitionInterface
+class Module extends WbModule
 {
 
     /**
@@ -28,15 +27,11 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerAutoloaders()
     {
-        $config = DI::getDefault()->get('config');
-
         $loader = new Loader();
-
         $loader->registerNamespaces([
             'Webird\Cli\Tasks'    => __DIR__ . '/tasks',
             'Webird\Cli'          => __DIR__ . '/library'
         ]);
-
         $loader->register();
     }
 

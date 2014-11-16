@@ -28,9 +28,11 @@ class ViewBase extends View
         ]);
 
         $this->setVars([
-            'ENVIRONMENT' => ENVIRONMENT,
-            'domain' => $config->server->domain,
-            'link'   => $config->site->link
+            'DEV'     => (DEV_ENV === ENV),
+            'TEST'    => (TEST_ENV === ENV),
+            'DIST'    => (DIST_ENV === ENV),
+            'domain'  => $config->server->domain,
+            'link'    => $config->site->link
         ]);
 
         return parent::render($controllerName, $actionName, $params);

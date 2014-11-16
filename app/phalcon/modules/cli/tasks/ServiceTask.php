@@ -53,7 +53,7 @@ class ServiceTask extends TaskBase
             $wsPort
         );
 
-        echo "websocket listening on port $wsPort in " . ENVIRONMENT . " mode\n";
+        echo "websocket listening on port $wsPort in " . ENV . " mode\n";
 
         $ioServer->run();
     }

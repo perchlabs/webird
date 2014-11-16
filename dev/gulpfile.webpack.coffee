@@ -56,16 +56,16 @@ wpConf =
     modulesDirectories: [appModulesRoot, 'node_modules', 'bower_components']
 
     alias:
-      underscore: 'lodash'
-      handlebars: 'handlebars/dist/handlebars'
-      Backbone:   'backbone'
-      Marionette: 'backbone.marionette'
-      jade:       'jade/lib/runtime'
+      underscore:  'lodash'
+      handlebars:  'handlebars/dist/handlebars'
+      Backbone:    'backbone'
+      Marionette:  'backbone.marionette'
+      highlight:   'highlight.js/lib/highlight'
 
     extensions: [
       ""
       ".js", ".coffee"
-      ".html", ".jade", ".hbs"
+      ".html", ".hbs"
       ".css", ".scss", ".less", ".styl"
     ]
 
@@ -75,6 +75,7 @@ wpConf =
   plugins: [
     new DefinePlugin
       # Constants to be evaluated at build time.
+      VERSION: JSON.stringify require("#{devRoot}/package.json").version
       THEME_ROOT: JSON.stringify "#{appRoot}/theme"
       LOCALE_ROOT: JSON.stringify "#{appRoot}/locale"
       LOCALE_CONFIG: fs.readFileSync "#{appRoot}/locale/config.json", 'utf8'
@@ -93,8 +94,6 @@ wpConf =
     new ResolverPlugin [
       new ResolverPlugin.DirectoryDescriptionFilePlugin "bower.json", ["main"]
     ], ["normal", "loader"]
-
-    new webpack.IgnorePlugin /jade/
   ]
   module:
     # Saves substantial time on inital build by not parsing libaries.
@@ -141,10 +140,6 @@ wpConf =
         loader: "html"
       }
       {
-        test: /\.jade$/
-        loader: "jade"
-      }
-      {
         test: /\.hbs$/
         loader: "html"
       }
@@ -168,6 +163,10 @@ wpConf =
         test: /\.styl$/
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!stylus-loader")
         # loader: "style!css!stylus"
+      }
+      {
+        test: /\.(png|jpg|gif)$/
+        loader: 'url?prefix=img/&limit=8192'
       }
       # Fonts.  These are built into the output.path/fonts/ directory
       {
@@ -208,9 +207,12 @@ getEntryNames = (filepath) ->
 
 commons = getEntryNames "#{webpackRoot}/commons"
 entries = getEntryNames "#{webpackRoot}/entries"
-if (_.intersection commons, entries).length > 0
+collisions = _.intersection commons, entries
+if collisions.length > 0
+  crashes = collisions.join ','
   console.log 'Error: commons and entries may not share the same name'
-  return
+  console.log "#{crashes} has collided."
+  process.exit 1
 
 entryMap = {}
 for i, common of commons
@@ -243,6 +245,10 @@ gulp.task 'webpack:dev-server', (callback) ->
 
   wpConf.devtool = 'source-map'
   wpConf.debug = true
+  # wpConf.lazy = true
+  # wpConf.quite = true
+  # wpConf.noInfo = true
+  wpConf.plugins.push new DefinePlugin DEV: true
   wpConf.output.publicPath = "http://#{config.site.domains[0]}/"
 
 
@@ -263,6 +269,9 @@ gulp.task 'webpack:dev-server', (callback) ->
 # Distribution build
 ############################################################
 gulp.task 'webpack:build', (callback) ->
+
+  wpConf.plugins.push new DefinePlugin DEV: false
+
   # Override temporary output path
   wpConf.output.path = path.join projectRoot, 'dist', 'public'
 
@@ -285,13 +294,13 @@ gulp.task 'webpack:build', (callback) ->
 #
 # Use this to review the files in the temporary folder
 ############################################################
-devWpConf = Object.create wpConf
-devWpConf.devtool = "sourcemap"
-devWpConf.debug = true
-# create a single instance of the compiler to allow caching
-devCompiler = webpack devWpConf
 gulp.task "webpack:dev-build", (callback) ->
-  # run webpack
+  devWpConf = Object.create wpConf
+  devWpConf.devtool = "sourcemap"
+  devWpConf.debug = true
+  devWpConf.plugins.push new DefinePlugin DEV: true
+
+  devCompiler = webpack devWpConf
   devCompiler.run (err, stats) ->
     throw new gutil.PluginError("webpack:build-dev", err)  if err
     gutil.log "[webpack:build-dev]", stats.toString(colors: true)

@@ -3,7 +3,7 @@
 <head>
   <title>{{_('Signin')}}</title>
 {{ partial('head_init') }}
-  {{ stylesheet_link(['href': 'css/style_bootstrap.css']) }}
+  {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
 <body>
 <div class="container">
@@ -19,5 +19,6 @@
 </div>
   {{ javascript_include(['src': 'js/init_complex.js']) }}
   {{ javascript_include(['src': 'js/signin.js']) }}
+  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
 </body>
 </html>

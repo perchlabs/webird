@@ -9,6 +9,18 @@ if (!isset($compiler)) {
     throw \Exception('The compiler must be set in the current scope to have it configured');
 }
 
+$compiler->addFunction('round', 'round');
+$compiler->addFunction('number_format', 'number_format');
+
+$compiler->addFunction('print_r', function($val) {
+    return 'print_r(' . $val . ', true)';
+});
+
+$compiler->addFunction('varexport', function($val) {
+    return 'var_export(' . $val . ', true)';
+});
+
+
 // Support angular since '{{' and '}}' conflict between Volt and Angular
 $compiler->addFunction('ng', function($input) {
     return '"{{".' . $input . '."}}"';

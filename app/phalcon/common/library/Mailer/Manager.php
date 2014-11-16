@@ -322,11 +322,7 @@ class Manager extends Component
      */
     protected function getView()
     {
-        $di = $this->getDI();
-        $config = $di->get('config');
-
-        $view = $di->get('template');
-
+        $view = $this->getDI()->get('template');
         return $view;
     }
 }

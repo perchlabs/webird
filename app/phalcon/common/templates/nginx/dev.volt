@@ -41,16 +41,16 @@ server {
     proxy_send_timeout    43200000;
   }
 
-  location ~ ^/assets/(.+)$ {
-    root "{{app_path}}/theme/assets";
-    rewrite ^/assets/(.*)$ /$1; break;
-  }
-
   location ~ ^/(css|js|fonts)/(.+)$ {
     proxy_pass http://webpack-{{random_hash}};
     proxy_redirect off;
     proxy_buffering off;
     rewrite ^/js/webpack-dev-server.js$ /webpack-dev-server.js break;
+  }
+
+  location ~ ^/assets/(.+)$ {
+    root "{{app_path}}/theme/assets";
+    rewrite ^/assets/(.*)$ /$1; break;
   }
 
   try_files $uri $uri/ @rewrite;

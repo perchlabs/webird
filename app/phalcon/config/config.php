@@ -4,8 +4,8 @@ use Phalcon\Config,
 
 $tmpDir = '/tmp/webird-' .  md5(__DIR__) . '-' . posix_geteuid() . '/';
 
-switch (ENVIRONMENT) {
-    case 'dist':
+switch (ENV) {
+    case DIST_ENV:
         // At this point the compliled application is running in its portable directory
         $appDir = realpath(__DIR__ . '/../..') . '/';
         $cacheDir = $appDir . 'cache-static/';
@@ -13,7 +13,7 @@ switch (ENVIRONMENT) {
         // Load the configurable json config file
         $config = new AdapterJson("{$appDir}/etc/config.json");
         break;
-    case 'dev':
+    case DEV_ENV:
         $config = require_once(__DIR__ . '/config_dev.php');
         break;
     default:
@@ -24,8 +24,9 @@ switch (ENVIRONMENT) {
 
 $config2 = new Config([
     'app' => [
-        'baseUri'           => '/',
-        'defaultPath'       => 'features'
+        'baseUri'        => '/',
+        'defaultPath'    => 'features',
+        'modules'        => ['cli', 'web', 'api', 'admin']
     ],
     'locale' => [
         'domains' => ['messages']
@@ -40,7 +41,7 @@ $config2 = new Config([
         'viewsDir'       => $appDir . 'phalcon/common/views/',
         'templatesDir'   => $appDir . 'phalcon/common/templates/',
         'localeDir'      => $appDir . 'locale/',
-        // Paths that change with ENVIRONMENT
+        // Paths that change with ENV
         'tmpDir'         => $tmpDir,
         'cacheDir'       => $cacheDir,
         'voltCacheDir'   => $cacheDir . 'volt/',

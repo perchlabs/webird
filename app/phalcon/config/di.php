@@ -30,19 +30,20 @@ $di->set('loader', function() use ($config) {
         'Webird\Plugins'      => "$commonDir/plugins",
         'Webird'              => "$commonDir/library",
     ]);
+    $loader->register();
 
-    $loader->registerClasses([
-        'Webird\Web\Module'   => "$modulesDir/web/Module.php",
-        'Webird\Admin\Module' => "$modulesDir/admin/Module.php",
-        'Webird\Api\Module'   => "$modulesDir/api/Module.php",
-        'Webird\Cli\Module'   => "$modulesDir/cli/Module.php"
-    ], true);
-
+    $classes = [];
+    foreach ($config->app->modules as $moduleName) {
+        $class = 'Webird\\' . ucfirst($moduleName) . '\\Module';
+        $path  =  \Webird\Module::moduleNameToDir($moduleName) . 'Module.php';
+        $classes[$class] = $path;
+    }
+    $loader->registerClasses($classes, true);
     $loader->register();
 
     return $loader;
 });
-$di->get('loader')->register();
+$di->get('loader');
 
 
 
@@ -98,12 +99,12 @@ $voltService = function($view, $di) {
     $config = $di->get('config');
     $voltCacheDir = $config->path->voltCacheDir;
 
-    switch (ENVIRONMENT) {
-        case 'dist':
+    switch (ENV) {
+        case DIST_ENV:
             $compileAlways = false;
             $stat = false;
             break;
-        case 'dev':
+        case DEV_ENV:
             $compileAlways = true;
             $stat = true;
             break;
@@ -176,11 +177,11 @@ $di->set('template', function() use ($di, $voltService) {
 $di->setShared('locale', function() use ($di) {
     $config = $di->get('config');
 
-    switch (ENVIRONMENT) {
-        case 'dist':
+    switch (ENV) {
+        case DIST_ENV:
             $supported = $config->locale->supported;
             break;
-        case 'dev':
+        case DEV_ENV:
             $supported = [];
             foreach(glob($config->path->localeDir . '/*', GLOB_ONLYDIR) as $locale) {
                 $supported[basename($locale)] = 1;
@@ -201,11 +202,11 @@ $di->setShared('translate', function() use ($di) {
     $config = $di->get('config');
     $locale = $di->get('locale');
 
-    switch (ENVIRONMENT) {
-        case 'dist':
+    switch (ENV) {
+        case DIST_ENV:
             $compileAlways = false;
             break;
-        case 'dev':
+        case DEV_ENV:
             $compileAlways = true;
             break;
     }
@@ -231,8 +232,8 @@ $di->setShared('debug', function() use ($di) {
     $config = $di->getConfig();
 
     $logger = new MultipleStreamLogger();
-    switch (ENVIRONMENT) {
-        case 'dev':
+    switch (ENV) {
+        case DEV_ENV:
             $logger->push(new ErrorLogger());
             if ('cli' != php_sapi_name()) {
                 $debugLogFile = str_replace('{{name}}', $config->site->domains[0],

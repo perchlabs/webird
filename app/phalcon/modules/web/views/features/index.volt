@@ -20,11 +20,16 @@
       {{ link_to('features/marionette', this.translate.gettext('Marionette'), 'class':'btn btn-primary') }}
     </div>
   </div>
-
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{_('Technologies')}}</h3>
-      {{ link_to('features/websocket', this.translate.gettext('Ratchet WebSocket'), 'class':'btn btn-primary') }}
+      {{ link_to('features/websocket', this.translate.gettext('WebSocket'), 'class':'btn btn-primary') }}
+    </div>
+  </div>
+  <div class="row top7">
+    <div class="col-md-6">
+      <h3>{{_('Tools')}}</h3>
+      <a href="javascript:(void)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ this.translate.gettext('Debug Panel') | escape }}</a>
     </div>
   </div>
 </div>

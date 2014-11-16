@@ -1,8 +1,10 @@
 {{ content() }}
 
 <div class="jumbotron">
-  <h1>{{_("Welcome!")}}</h1>
-  <p class="lead">{{_("This technology is built with Phalcon and Webpack.")}}</p>
+  <div class="container">
+    <h1>{{_("Welcome!")}}</h1>
+    <p class="lead">{{_("This technology is built with Phalcon and Webpack.")}}</p>
+  </div>
 </div>
 
 <div class="container">

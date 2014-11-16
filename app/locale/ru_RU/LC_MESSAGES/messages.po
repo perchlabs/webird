@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
-"POT-Creation-Date: 2014-11-10 22:21+0300\n"
-"PO-Revision-Date: 2014-11-12 16:03+0200\n"
-"Last-Translator: Oksana <astraksia@gmail.com>\n"
+"POT-Creation-Date: 2014-11-16 22:24+0300\n"
+"PO-Revision-Date: 2014-11-16 22:27+0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
-"X-Poedit-KeywordsList: gettext;gettext_noop;ngettext:1,2;t:1,2;n\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;ngettext:1,2;t;n:1,2\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11) ? 0 : ((n%10>=2 && n"
@@ -168,16 +168,16 @@ msgstr "Да"
 #: ../../../phalcon/modules/admin/forms/RolesForm.php:47
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:25
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: ../../../phalcon/modules/admin/forms/UsersForm.php:95
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:26
 msgid "Banned"
-msgstr ""
+msgstr "Забанен"
 
 #: ../../../phalcon/modules/admin/forms/UsersForm.php:100
 msgid "Add text to send confirmation email."
-msgstr ""
+msgstr "Добавьте текст для отправки email подтверждения"
 
 #: ../../../phalcon/modules/admin/forms/UsersForm.php:102
 msgid "Send activation email"
@@ -191,11 +191,11 @@ msgstr "Сохранить"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:42
 msgid "The confirmation code was not valid."
-msgstr ""
+msgstr "Код подтверждения недействителен"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:50
 msgid "You've already confirmed your email. Proceed to signin"
-msgstr ""
+msgstr "Вы уже подтвердили свой email. Вы можете войти на сайт"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:78
 msgid "The email was successfully confirmed"
@@ -203,23 +203,23 @@ msgstr "email успешно подтвержден"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:96
 msgid "The password reset code is invalid"
-msgstr ""
+msgstr "Код сброса пароля недействителен"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:145
 msgid "There is no account associated with this email"
-msgstr ""
+msgstr "Данный email не связан ни с одним аккаунтом"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:150
 msgid "An email has been sent!"
-msgstr ""
+msgstr "Email сообщение отправлено!"
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:151
 msgid "Please check your inbox for a reset password message"
-msgstr ""
+msgstr "На вашу почту оптравлено сообщение с инструкцией сброса пароля"
 
 #: ../../../phalcon/modules/web/controllers/SettingsController.php:39
 msgid "You must be signed in to change the password"
-msgstr ""
+msgstr "Для смены пароля вам необходимо войти на сайт"
 
 #: ../../../phalcon/modules/web/controllers/SettingsController.php:61
 msgid "Your password was successfully changed"
@@ -252,7 +252,7 @@ msgstr "Пароль слишком короткий. Пароль должен 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:65
 #: ../../../phalcon/common/forms/ChangePasswordForm.php:35
 msgid "Password doesn't match confirmation"
-msgstr ""
+msgstr "Пароль не соответствует"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:73
 #: ../../../phalcon/common/forms/ChangePasswordForm.php:43
@@ -275,16 +275,16 @@ msgstr "Принять пользовательское соглашение"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:88
 msgid "Terms and conditions must be accepted"
-msgstr ""
+msgstr "Вам необходимо принять пользовательское соглашение"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:96
 #: ../../../phalcon/modules/web/forms/SigninForm.php:60
 msgid "CSRF validation failed"
-msgstr ""
+msgstr "Проверка CSRF не удалась"
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:101
 msgid "Sign Up"
-msgstr ""
+msgstr "Зарегистрироваться"
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:45
 #: ../../../phalcon/common/forms/ChangePasswordForm.php:28
@@ -297,35 +297,35 @@ msgstr "Запомнить меня"
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:66
 msgid "Go"
-msgstr ""
+msgstr "Вперед"
 
 #: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:37
 msgid "send"
-msgstr ""
+msgstr "Отправить"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:65
 #: ../../../phalcon/common/library/Auth/Auth.php:105
 #: ../../../phalcon/common/library/Auth/Auth.php:112
 #: ../../../phalcon/common/library/Auth/Auth.php:118
 msgid "OAuth signin error"
-msgstr ""
+msgstr "Ошибка входа OAuth"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:125
 #: ../../../phalcon/common/library/Auth/Auth.php:133
 msgid "Oauth authentication failed"
-msgstr ""
+msgstr "Сбой аутентификации Oauth"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:136
 msgid "The email could not be verified."
-msgstr ""
+msgstr "Невозможно подтвердить email"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:145
 msgid "This email is not registered in the system."
-msgstr ""
+msgstr "Данный email в системе не зарегистрирован"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:186
 msgid "Invalid oauth provider"
-msgstr ""
+msgstr "Неверный oauth провайдер"
 
 #: ../../../phalcon/common/plugins/DispatcherSecurity.php:83
 msgid "You don't have access to the restricted resource"
@@ -374,23 +374,27 @@ msgstr "Удалить"
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:22
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:79
 msgid "There are no users assigned to this role"
-msgstr ""
+msgstr "Ни один пользователь не назначен на эту роль"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%index%%index.volt.php:6
 msgid "Admin Utilities"
-msgstr ""
+msgstr "Ресурсы администратора"
 
+# make plural
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%index%%index.volt.php:12
+#, fuzzy
 msgid "User Management"
 msgstr "Управление пользователями"
 
+# Make Role plural
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%index%%index.volt.php:12
+#, fuzzy
 msgid "Role Management"
-msgstr ""
+msgstr "Управление ролью"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%index%%index.volt.php:12
 msgid "Permissions Management"
-msgstr ""
+msgstr "Управление допусками"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%index.volt.php:5
 msgid "Create User"
@@ -408,42 +412,42 @@ msgstr "Поиск"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%permissions%%index.volt.php:5
 msgid "Role Permissions"
-msgstr ""
+msgstr "Допуски ролей"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:6
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:93
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:118
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:6
 msgid "IP Address"
-msgstr ""
+msgstr "IP Адрес"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:7
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:94
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:119
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:7
 msgid "User Agent"
-msgstr ""
+msgstr "Агент пользователя"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:18
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:105
 msgid "User does not have successfull signins"
-msgstr ""
+msgstr "У пользователя нет успешных входов"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:11
 msgid "Webird Features"
-msgstr ""
+msgstr "Кoмпоненты Webird"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:12
 msgid "This Phalcon and Webpack framework with the following features;"
-msgstr ""
+msgstr "Данные Phalcon и  Webpack структуируются со следующими компонентами"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:18
 msgid "Frameworks"
-msgstr ""
+msgstr "Инфраструктура"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:19
 msgid "Angular"
-msgstr ""
+msgstr "Угловой"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:20
 msgid "Marionette"
@@ -455,19 +459,20 @@ msgstr "Технологии"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:27
 msgid "Ratchet WebSocket"
-msgstr ""
+msgstr "Ratchet WebSocket"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%websocket.volt.php:4
+#, fuzzy
 msgid "Webird WebSocket Technology Demo"
-msgstr ""
+msgstr "Webird WebSocket Technology Demo"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%websocket.volt.php:12
 msgid "Websocket Feature"
-msgstr ""
+msgstr "Компоненты Websocket"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%websocket.volt.php:14
 msgid "Phalcon, Webpack and Ratchet integration example:"
-msgstr ""
+msgstr "Примеры интеграции Phalcon, Webpack и Ratche"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:6
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:7
@@ -483,7 +488,7 @@ msgstr "Подписи"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:15
 msgid "Password Changes"
-msgstr ""
+msgstr "Смена пароля"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:16
 msgid "Reset Passwords"
@@ -520,16 +525,16 @@ msgstr "Изменить пароль"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%settings%%changePassword.volt.php:10
 msgid "You are required to change your password at this time"
-msgstr ""
+msgstr "Вам необходимо сменить пароль в этот раз"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%marionette.volt.php:4
 msgid "Webird Marionette Technology Demo"
-msgstr ""
+msgstr "Webird Marionette Technology Demo"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%private.volt.php:24
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%admin.volt.php:24
 msgid "Features"
-msgstr ""
+msgstr "Компоненты"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%private.volt.php:24
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%admin.volt.php:24
@@ -567,7 +572,7 @@ msgstr "Последняя"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:55
 msgid "No roles are recorded"
-msgstr ""
+msgstr "Нет записанных ролей"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%create.volt.php:11
 msgid "Create a User"
@@ -575,11 +580,11 @@ msgstr "Создать пользователя"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%create.volt.php:52
 msgid "* The email can be sent at a later time"
-msgstr ""
+msgstr "Email можно отправить позже"
 
 #: ../../../../dist/cache-static/volt/common%%templates%%email%%emailConfirmation.volt.php:6
 msgid "You are Almost There! Just Confirm Your Email"
-msgstr ""
+msgstr "Осталось совсем немного! Проверьте свой email"
 
 #: ../../../../dist/cache-static/volt/common%%templates%%email%%emailConfirmation.volt.php:8
 msgid ""
@@ -595,31 +600,33 @@ msgstr "Подтвердить"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:4
 msgid "Webird Public Page"
-msgstr ""
+msgstr "Страница Webird "
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:14
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Переключение навигации"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:24
 msgid "About"
-msgstr ""
+msgstr "О проетке"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:33
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:35
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%signin.volt.php:4
 msgid "Signin"
-msgstr ""
+msgstr "Войти"
 
 #: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:6
 msgid "Reset Your Password for account on"
-msgstr ""
+msgstr "Сбросить пароль для аккаунта"
 
 #: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:8
 msgid ""
 "To reset the password for this account, click on the button below. If you "
 "don't want to reset your password, please disregard this email."
 msgstr ""
+"Для сброса пароля нажмите на кнопку ниже . Если вы не желаете сбросить "
+"пароль, то проигнорируйте данное сообщение"
 
 #: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:12
 msgid "Reset"
@@ -643,7 +650,7 @@ msgstr "Приватность"
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%angular.volt.php:4
 msgid "Webird Angular Technology Demo"
-msgstr ""
+msgstr "Демо Webird Angular Technology "
 
 #: ../../../../dist/cache-static/volt/common%%views%%partials%%noscript.volt.php:3
 msgid "Your javascript is disabled."
@@ -651,11 +658,11 @@ msgstr "JavaScript отключен"
 
 #: ../../../../dist/cache-static/volt/common%%views%%partials%%noscript.volt.php:5
 msgid "This website requires javascript to function properly."
-msgstr ""
+msgstr "Для правильного отображения сайта требуется JavaScript "
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%about%%index.volt.php:4
 msgid "About this Demo"
-msgstr ""
+msgstr "О данном демо"
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%userspublic.volt.php:4
 msgid "Simple Task"
@@ -667,7 +674,7 @@ msgstr "Создать пользователя"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:66
 msgid "No users are recorded"
-msgstr ""
+msgstr "Нет записанных пользователей"
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:9
 msgid "Create Role"
@@ -703,11 +710,16 @@ msgstr "Модуль"
 
 #: ../../../webpack/modules/marionette_module.console/partials/content.hbs:4
 msgid "The counter reads"
-msgstr ""
+msgstr "The counter reads"
 
+# Please add plural forms.
 #: ../../../webpack/modules/marionette_module.console/partials/content.hbs:4
+#, fuzzy
 msgid "click"
-msgstr "клик"
+msgid_plural "clicks"
+msgstr[0] "клик"
+msgstr[1] "клик"
+msgstr[2] "клик"
 
 #: ../../../webpack/modules/marionette_module.helloworld/partials/header.hbs:1
 msgid "Hello World Module"

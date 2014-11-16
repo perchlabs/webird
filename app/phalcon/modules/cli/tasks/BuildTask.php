@@ -134,7 +134,7 @@ class BuildTask extends TaskBase
         $di = $this->getDI();
 
         try {
-            // $this->compileVoltTemplateForModule('admin');
+            $this->compileVoltTemplateForModule('admin');
             $this->compileVoltTemplateForModule('web');
         } catch (\Exception $e) {
             error_log($e->getMessage());

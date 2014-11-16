@@ -166,8 +166,10 @@ class DebugPanel extends DIInjectable
 		public function getRequestPanel()
 		{
 				$session = [];
-				foreach ($_SESSION as $key => $value) {
-						$session[$key] = var_export($value, true);
+				if (isset($_SESSION)) {
+					foreach ($_SESSION as $key => $value) {
+							$session[$key] = var_export($value, true);
+					}
 				}
 
 				$view = $this->getView();
@@ -184,8 +186,13 @@ class DebugPanel extends DIInjectable
 
 		public function getDbPanel()
 		{
+				$dbProfiles = $this->getProfiler()->getProfiles();
+				if (!isset($dbProfiles)) {
+						$dbProfiles = [];
+				}
+
 				$profiles = [];
-				foreach ($this->getProfiler()->getProfiles() as $profile) {
+				foreach ($dbProfiles as $profile) {
 						$profiles[] = [
 								'time' => $profile->getTotalElapsedSeconds(),
 								'sql'  => $profile->getSQLStatement(),

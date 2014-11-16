@@ -109,7 +109,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 3. Create the dist environment: `./dev/webird.php build`
 4. Visit https://dist.webird.io
 
-At this point you may run Poedit from any locale file in `./dev/locale` to extract all of the gettext strings from the final `./dist` build.
+At this point you may use Poedit to open any .po file in `./app/locale`.  Click *Update* to extract all of the gettext strings from the final `./dist` build.
 
 #### Configure final dist environment:
 

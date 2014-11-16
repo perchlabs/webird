@@ -44,8 +44,6 @@ openActivePanel = ->
   if activePanel isnt false then openPanel activePanel
 
 
-
-
 togglePanel = (name) ->
   if name is getActivePanel()
     closeActivePanel()
@@ -53,22 +51,20 @@ togglePanel = (name) ->
     openPanel name
 
 
-
-
-
 setOpen = ->
   localStorage.setItem 'wbdebug_isOpen', '1'
   return
+
 
 setClosed = ->
   localStorage.setItem 'wbdebug_isOpen', '0'
   return
 
+
 open = ->
   $("#wbdebug-toolbar").css('visibility', 'visible')
   setOpen()
   openActivePanel()
-
   return
 
 

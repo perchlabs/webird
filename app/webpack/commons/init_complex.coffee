@@ -15,5 +15,5 @@ locale.init ->
     initBlock.resolve 'locale loading finished'
 
     if DEV
-      debugWidget = require 'debug_widget'
+      debugWidget = require 'debug_panel'
       debugWidget.init()

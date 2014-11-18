@@ -2,10 +2,7 @@
 namespace Webird;
 
 use Phalcon\Db\Profiler as Profiler,
-		Phalcon\DI\Injectable as DIInjectable,
-		Phalcon\Escaper as Escaper,
-		Phalcon\Mvc\Url as URL,
-		Phalcon\Mvc\View as View;
+		Phalcon\DI\Injectable as DIInjectable;
 
 class DebugPanel extends DIInjectable
 {
@@ -208,7 +205,6 @@ class DebugPanel extends DIInjectable
 
 				$view = $this->getView();
 				$view->render("debug_panel/panels/db", [
-						// 'profiles'  => $this->getProfiler()->getProfiles(),
 					  'profiles'  => $profiles,
 						'dbs'       => $dbs
 				]);
@@ -225,9 +221,11 @@ class DebugPanel extends DIInjectable
 		}
 
 
-		public static function object_to_array($d) {
-        if (is_object($d))
+		public static function object_to_array($d)
+		{
+        if (is_object($d)) {
             $d = get_object_vars($d);
+				}
 
         return is_array($d) ? array_map(__METHOD__, $d) : $d;
     }

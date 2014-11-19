@@ -14,7 +14,3 @@ module.exports =
 
   done: (callback) ->
     return _defer.promise().done callback
-
-
-  # promise: ->
-  #   _defer.promise()

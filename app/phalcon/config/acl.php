@@ -37,20 +37,7 @@ $public = [
     ]
 ];
 
-
-// $actionDescriptions = [
-//     'index' => $translate->gettext('Access'),
-//     'search' => $translate->gettext('Search'),
-//     'create' => $translate->gettext('Create'),
-//     'edit' => $translate->gettext('Edit'),
-//     'delete' => $translate->gettext('Delete'),
-//     'changePassword' => $translate->gettext('Change password')
-// ];
-
-$actionDescriptions = [];
-
 return [
     'complete' => $complete,
-    'public' => $public,
-    'actionDescriptions' => $actionDescriptions
+    'public' => $public
 ];

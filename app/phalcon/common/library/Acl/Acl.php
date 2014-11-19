@@ -53,7 +53,6 @@ class Acl extends Component
     {
         $this->specComplete = $this->parseRawResources($aclData['complete']);
         $this->specPublic = $this->parseRawResources($aclData['public']);
-        // $this->actionDescriptions = $aclData['actionDescriptions'];
         $this->actionDescriptions = [];
     }
 
@@ -188,8 +187,7 @@ class Acl extends Component
      */
     public function getActionDescription($action)
     {
-        return $action;
-        // return (isset($this->actionDescriptions[$action])) ? $this->actionDescriptions[$action] : $action;
+        return (isset($this->actionDescriptions[$action])) ? $this->actionDescriptions[$action] : $action;
     }
 
     /**

@@ -57,7 +57,7 @@ class SigninForm extends Form
         $csrf = new Hidden('csrf');
         $csrf->addValidator(new Identical([
             'value' => $this->security->getSessionToken(),
-            'message' => $t->gettext('CSRF validation failed')
+            'message' => $t->gettext('Security token is invalid.')
         ]));
         $this->add($csrf);
 

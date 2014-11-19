@@ -77,7 +77,7 @@ class SessionController extends BaseController
 
         try {
             if ($this->request->isPost()) {
-                if ($form->isValid($this->request->getPost()) !== false) {
+                if ($form->isValid($this->request->getPost())) {
                     $this->auth->check([
                         'email' => $this->request->getPost('email'),
                         'password' => $this->request->getPost('password'),
@@ -85,6 +85,10 @@ class SessionController extends BaseController
                     ]);
 
                     return $this->response->redirect($this->config->app->defaultPath);
+                } else {
+                    foreach($form->getMessages() as $message) {
+                        $this->flash->error($message);                      
+                    }
                 }
             } else {
                 if ($this->auth->hasRememberMe()) {

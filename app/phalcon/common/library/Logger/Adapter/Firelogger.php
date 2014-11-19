@@ -182,7 +182,6 @@ class Firelogger extends Adapter implements AdapterInterface
     {
         if (!$this->isTransaction || empty($this->logs)) {
             $this->isTransaction = false;
-
             return;
         }
 

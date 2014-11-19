@@ -69,7 +69,6 @@ $di->setShared('db', function() use ($di) {
 
 
 $di->set('sessionReader', function() use ($di) {
-try {
     $config = $di->get('config');
     $connection = $di->get('db');
 
@@ -82,11 +81,6 @@ try {
         'db_time_col' => $config->session->db_time_col,
         'uniqueId'    => $config->session->unique_id
     ]);
-
-} catch (\Exception $e) {
-    echo $e->getMessage() . "\n";
-}
-
     return $sessionReader;
 });
 
@@ -190,7 +184,6 @@ $di->setShared('locale', function() use ($di) {
     }
 
     $locale = new Locale($di, $config->locale->default, $supported, $config->locale->map);
-
     return $locale;
 });
 
@@ -247,7 +240,6 @@ $di->setShared('debug', function() use ($di) {
             }
         break;
     }
-
     return $logger;
 });
 

@@ -1,7 +1,7 @@
 'use strict'
-
+# system
 Jed = require 'jed'
-
+# constants
 localeDefault = LOCALE_CONFIG.default
 map = LOCALE_CONFIG.map
 

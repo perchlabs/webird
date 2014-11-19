@@ -3,7 +3,7 @@
 Marionette = require 'Marionette'
 
 module.exports = Marionette.ItemView.extend
-  template: require './partials/content'
+  template: require '../partials/content'
 
   events:
     'click [data-action="decrement"]': 'decrementCounter'

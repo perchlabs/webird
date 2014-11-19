@@ -1,24 +1,27 @@
 'use strict'
-
+# app
 init = require 'init'
-app = require 'marionette_app'
+App  = require 'marionette_app'
 
-app.addRegions
-  helloworldRegion: $ '#helloworld-content'
-  consoleRegion:    $ '#console-content'
+app = new App
 
-# Here we are going to name annonymous Marionette modules. This works better for commonjs
-# as otherwise the module is being named twice. The annonymous Marionette module is
-# delivered as a commonjs dependency.
+# We are going to name annonymous Marionette modules. This works better for
+# commonjs as otherwise the module is being named twice. The annonymous Marionette
+# module is delivered as a commonjs dependency.
+
 app.module 'Helloworld', require('marionette_module.helloworld')
 app.module 'Console', require('marionette_module.console')
 
 app.addInitializer ->
+  app.addRegions
+    helloworldRegion: $ '#helloworld-content'
+    consoleRegion:    $ '#console-content'
+
   @Helloworld.start
-    mainRegion: @helloworldRegion
+    region: @helloworldRegion
 
   @Console.start
-    mainRegion: @consoleRegion
+    region: @consoleRegion
 
 init.done ->
   app.start()

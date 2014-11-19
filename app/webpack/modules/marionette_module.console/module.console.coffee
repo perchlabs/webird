@@ -1,28 +1,20 @@
 'use strict'
-
+# system
+Marionette = require 'Marionette'
+# app
 globalCh = require 'globalCh'
+# local
+Layout = require './Layout'
 
-ConsoleController = require './ConsoleController'
+module.exports = Marionette.Module.extend
+  startWithParent: false
 
-
-# Note: The outer module is for commonjs and the module parameter is the Marionette.Module object
-module.exports = (module, app) ->
-# You can use any other following styles to access the current Marionette module. The one that accesses the module
-# parameter is the most efficient because the parameter can be minimized to a single character
-# ex;
-#  @.startWithParent = false
-#  this.startWithParent = false
-#  module.startWithParent = false
-
-  module.startWithParent = false
-
-
-  module.addInitializer (options) ->
-    @ctrl = new ConsoleController
-      mainRegion: options.mainRegion
+  onStart: (options) ->
+    @layout = new Layout()
     .listenTo globalCh, 'counter:change', (counterChange) ->
       @counterChange counterChange
 
+    options.region.show @layout
 
-  module.on 'start', (options) ->
-    @ctrl.show()
+
+  onStop: (options) ->

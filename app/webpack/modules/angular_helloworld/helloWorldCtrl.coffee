@@ -1,5 +1,5 @@
 'use strict'
-
+# local
 helloService = require('./helloWorldService')
 
 module.exports = ['$scope', 'helloWorldService', ($scope, helloService) ->

@@ -1,11 +1,11 @@
 'use strict'
-
+# system
 $ = require 'jquery'
 mousetrap = require 'mousetrap'
 Highlight = require 'highlight'
-
-require './style.less'
 require 'highlight.js/styles/github'
+# local
+require './style.less'
 
 highlight = new Highlight()
 highlight.registerLanguage('sql', require('highlight.js/lib/languages/sql'))

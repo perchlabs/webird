@@ -1,6 +1,7 @@
 'use strict'
-
+# system
 Handlebars = require 'handlebars'
+# app
 locale = require 'locale'
 
 

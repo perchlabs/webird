@@ -1,5 +1,5 @@
 'use strict'
-
+# system
 angular = require('angular')
 require('angular-ui-router')
 require('angular-cookies')
@@ -16,7 +16,7 @@ app = angular.module 'app', [
   .constant('VERSION', VERSION)
 
 # Delay the bootstrapping until window has loaded
-angular.element(document).ready -> 
+angular.element(document).ready ->
   angular.bootstrap(document, ['app'])
 
 # Export the module out of this code block

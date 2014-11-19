@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
-"POT-Creation-Date: 2014-11-10 22:20+0300\n"
-"PO-Revision-Date: 2014-11-10 22:20+0300\n"
+"POT-Creation-Date: 2014-11-19 22:16+0300\n"
+"PO-Revision-Date: 2014-11-19 22:16+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: German\n"
@@ -277,7 +277,6 @@ msgid "Terms and conditions must be accepted"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:96
-#: ../../../phalcon/modules/web/forms/SigninForm.php:60
 msgid "CSRF validation failed"
 msgstr ""
 
@@ -292,6 +291,10 @@ msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:53
 msgid "Remember me"
+msgstr ""
+
+#: ../../../phalcon/modules/web/forms/SigninForm.php:60
+msgid "Security token is invalid."
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:66
@@ -448,12 +451,20 @@ msgstr ""
 msgid "Marionette"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:26
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:25
 msgid "Technologies"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:27
-msgid "Ratchet WebSocket"
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:26
+msgid "WebSocket"
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:31
+msgid "Tools"
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%index.volt.php:32
+msgid "Debug Panel"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%features%%websocket.volt.php:4
@@ -678,19 +689,19 @@ msgstr ""
 msgid "List Users"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:4
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:5
 msgid "Welcome!"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:5
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:6
 msgid "This technology is built with Phalcon and Webpack."
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:11
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:13
 msgid "Awesome Section"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:16
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:18
 msgid "Important Stuff"
 msgstr ""
 

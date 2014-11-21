@@ -12,3 +12,4 @@
   {{ javascript_include(['src': 'js/marionette.js']) }}
   {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
 </body>
+</html>

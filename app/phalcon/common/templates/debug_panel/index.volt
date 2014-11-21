@@ -1,3 +1,4 @@
+<!--DEBUG_PANEL_START-->
 <div id="wbdebug-container" style="display: none">
 	<a id="wbdebug-icon"></a>
 	<div id="wbdebug-toolbar">
@@ -67,3 +68,4 @@
 
 	</div>
 </div>
+<!--DEBUG_PANEL_END-->

@@ -32,4 +32,5 @@
       <a href="javascript:(void)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ this.translate.gettext('Debug Panel') | escape }}</a>
     </div>
   </div>
+  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
 </div>

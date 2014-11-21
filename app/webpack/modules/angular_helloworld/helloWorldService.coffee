@@ -1,7 +1,6 @@
 'use strict'
 
 module.exports = ['$http', ($http) ->
-  console.log 'service'
 
   query = ->
     $http

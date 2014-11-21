@@ -160,11 +160,6 @@ wpConf =
         # loader: "style!css!sass"
       }
       {
-        test: /\.styl$/
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!stylus-loader")
-        # loader: "style!css!stylus"
-      }
-      {
         test: /\.(png|jpg|gif)$/
         loader: 'url?prefix=img/&limit=8192'
       }

@@ -73,13 +73,10 @@ class DispatcherSecurity extends Plugin
             return true;
         }
 
-        // Get the current identity
-        $identity = $this->auth->getIdentity();
-
         try {
             // If there is no identity available the resource is downgraded until finally it
             // redirects to the index/index of the default module
-            if (!is_array($identity)) {
+            if (!$this->auth->hasIdentity()) {
                 $this->flash->notice($translate->gettext("You don't have access to the restricted resource"));
                 if ($this->acl->isPublic($module, $controller, 'index')) {
                     return $this->stopAndForwardModuleSafe($module, $controller, 'index', $dispatcher);
@@ -105,13 +102,14 @@ class DispatcherSecurity extends Plugin
         }
 
         try {
+            $role = $this->auth->getRole();
             // Check if the user has permission and attempts to downgrade the resource
             // until it finally gives up and redirects to the index/index of the default module
-            if (!$this->acl->isAllowed($identity['role'], $module, $controller, $action)) {
+            if (!$this->acl->isAllowed($role, $module, $controller, $action)) {
                 $this->flash->notice($translate->gettext('You do not have access to the resource'));
-                if ($this->acl->isAllowed($identity['role'], $module, $controller, 'index')) {
+                if ($this->acl->isAllowed($role, $module, $controller, 'index')) {
                     return $this->stopAndForwardModuleSafe($module, $controller, 'index', $dispatcher);
-                } else if ($this->acl->isAllowed($identity['role'], $module, $controller, 'index')) {
+                } else if ($this->acl->isAllowed($role, $module, $controller, 'index')) {
                     return $this->stopAndForwardModuleSafe($module, 'index', 'index', $dispatcher);
                 } else {
                     return $this->stopAndForwardModuleSafe($moduleDefault, 'index', 'index', $dispatcher);

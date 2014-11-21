@@ -36,7 +36,6 @@
           <td>
             {{ user.active == 'Y' ? _('Yes') : _('No') }}
             {% if user.active == 'N' and user.banned != 'Y' %}
-              <br>HERE
             {% endif %}
           </td>
           <td>{{ user.banned == 'Y' ? _('Yes') : _('No') }}</td>

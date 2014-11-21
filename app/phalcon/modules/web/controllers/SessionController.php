@@ -87,7 +87,7 @@ class SessionController extends BaseController
                     return $this->response->redirect($this->config->app->defaultPath);
                 } else {
                     foreach($form->getMessages() as $message) {
-                        $this->flash->error($message);                      
+                        $this->flash->error($message);
                     }
                 }
             } else {
@@ -110,10 +110,6 @@ class SessionController extends BaseController
      */
     public function signinOauthAction()
     {
-        // $form = new SigninForm();
-        // $form->setDI($this->getDI());
-        // $this->view->form = $form;
-
         $provider = $this->dispatcher->getParam('provider');
         $code = $this->request->get('code');
         if (! is_string($code)) {

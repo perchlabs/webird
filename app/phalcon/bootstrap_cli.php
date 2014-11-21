@@ -17,6 +17,7 @@ if (! defined('ENV')) {
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
 define('DIST_ENV', 'dist');
+define('DEV', (ENV === DEV_ENV));
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
@@ -45,6 +46,9 @@ $console->registerModules([
     'cli' => ['className' => 'Webird\Cli\Module']
 ]);
 
+if (DEV) {
+    class_alias('\Webird\Debug', '\Dbg', true);
+}
 try {
     $console->handle([
         'module' => 'cli'

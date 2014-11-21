@@ -25,4 +25,11 @@ class Debug
             ->get('debug')
             ->warning($message);
     }
+
+    public static function export($message)
+    {
+        DI::getDefault()
+            ->get('debug')
+            ->log(var_export($message, true));
+    }
 }

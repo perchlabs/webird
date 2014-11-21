@@ -7,6 +7,7 @@ if (! defined('ENV')) {
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
 define('DIST_ENV', 'dist');
+define('DEV', (ENV === DEV_ENV));
 
 /*
  * Environment setup
@@ -53,6 +54,10 @@ require_once($config->path->composerDir . '/autoload.php');
 
 require ($config->path->configDir . '/di.php');
 require ($config->path->configDir . '/di_webserver.php');
+
+if (DEV) {
+    class_alias('\Webird\Debug', '\Dbg', true);
+}
 
 // Handle the request and inject DI
 $application = new \Phalcon\Mvc\Application($di);

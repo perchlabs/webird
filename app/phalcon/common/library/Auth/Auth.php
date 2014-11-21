@@ -217,9 +217,9 @@ class Auth extends Component
         }
 
         $this->session->set('auth-identity', [
-            'id' => $user->id,
-            'name' => $user->name,
-            'role' => $user->role->name
+            'id'    => $user->id,
+            'email' => $user->email,
+            'role'  => $user->role->name
         ]);
 
         if ($user->mustChangePassword == 'Y') {
@@ -373,24 +373,48 @@ class Auth extends Component
     }
 
     /**
-     * Returns the current identity
+     * Return if an identity is available
      *
      * @return array
      */
-    public function getIdentity()
+    public function hasIdentity()
     {
-        return $this->session->get('auth-identity');
+        $identity = $this->session->get('auth-identity');
+        $hasIdentity = is_array($identity);
+        return $hasIdentity;
     }
 
     /**
-     * Returns the current identity
+     * Returns the id of user
      *
      * @return string
      */
-    public function getName()
+    public function getId()
     {
         $identity = $this->session->get('auth-identity');
-        return $identity['name'];
+        return $identity['id'];
+    }
+
+    /**
+     * Returns the email of user
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        $identity = $this->session->get('auth-identity');
+        return $identity['email'];
+    }
+
+    /**
+     * Returns the role name of user
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        $identity = $this->session->get('auth-identity');
+        return $identity['role'];
     }
 
     /**

@@ -2,7 +2,8 @@
 namespace Webird\Models;
 
 use Phalcon\Mvc\Model,
-    Phalcon\Mvc\Model\Validator\Uniqueness;
+    Phalcon\Mvc\Model\Validator\Uniqueness,
+    Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
 
 /**
  * Webird\Models\Users

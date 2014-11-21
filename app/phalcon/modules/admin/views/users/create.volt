@@ -9,9 +9,7 @@
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
         <h2>{{_('Create a User')}}</h2>
-        <div class="text-warning">
-          {{ content() }}
-        </div>
+        {{ content() }}
       </div>
     </div>
 

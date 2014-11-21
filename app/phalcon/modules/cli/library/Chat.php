@@ -81,8 +81,6 @@ class Chat extends DIInjectable implements MessageComponentInterface
     public function onMessage(ConnectionInterface $from, $msg) {
         $numRecv = $this->clients->count() - 1;
 
-        // echo $from->Session->getName() . "\n";
-
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
 

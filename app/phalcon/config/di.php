@@ -3,18 +3,20 @@ use Phalcon\Loader,
     Phalcon\Mvc\Url,
     Phalcon\Crypt,
     Phalcon\Mvc\View\Engine\Volt,
-    Phalcon\Mvc\View\Simple as ViewSimple,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Phalcon\Logger\Multiple as MultipleStreamLogger,
     Phalcon\Logger\Adapter\File as FileLogger,
     Phalcon\Logger\Adapter\Firephp as FirephpLogger,
-    Webird\Logger\Adapter\Error as ErrorLogger,
-    Webird\Logger\Adapter\Firelogger as Firelogger,
+    Webird\Module,
+    Webird\Mvc\View\Simple as ViewSimple,
     Webird\Acl\Acl,
     Webird\DatabaseSessionReader,
     Webird\Locale\Locale,
     Webird\Locale\Gettext,
-    Webird\Mailer\Manager as MailManager;
+    Webird\Mailer\Manager as MailManager,
+    Webird\Logger\Adapter\Error as ErrorLogger,
+    Webird\Logger\Adapter\Firelogger as Firelogger;
+
 
 $di->set('loader', function() use ($config) {
     $commonDir = $config->path->commonDir;
@@ -24,7 +26,6 @@ $di->set('loader', function() use ($config) {
     $loader->setExtensions(['php']);
 
     $loader->registerNamespaces([
-        'Webird\Controllers'  => "$commonDir/controllers",
         'Webird\Models'       => "$commonDir/models",
         'Webird\Forms'        => "$commonDir/forms",
         'Webird\Plugins'      => "$commonDir/plugins",
@@ -35,7 +36,7 @@ $di->set('loader', function() use ($config) {
     $classes = [];
     foreach ($config->app->modules as $moduleName) {
         $class = 'Webird\\' . ucfirst($moduleName) . '\\Module';
-        $path  =  \Webird\Module::moduleNameToDir($moduleName) . 'Module.php';
+        $path  = Module::moduleNameToDir($moduleName) . 'Module.php';
         $classes[$class] = $path;
     }
     $loader->registerClasses($classes, true);
@@ -44,7 +45,6 @@ $di->set('loader', function() use ($config) {
     return $loader;
 });
 $di->get('loader');
-
 
 
 
@@ -116,6 +116,7 @@ $voltService = function($view, $di) {
             $templateFrag = str_replace($phalconDir, '', $templatePath);
             // Allows modules to share the compiled layouts and partials paths
             $templateFrag = preg_replace('/^modules\/[a-z]+\/views\/..\/..\/..\//', '', $templateFrag);
+
             // Replace '/' with a safe '%%'
             $templateFrag = str_replace('/', '%%', $templateFrag);
 
@@ -145,20 +146,17 @@ $di->set('voltService', $voltService);
 
 
 
-$di->set('template', function() use ($di, $voltService) {
+$di->set('viewSimple', function() use ($di, $voltService) {
     $config = $di->get('config');
 
     $view = new ViewSimple();
-    $view->setViewsDir($config->path->templatesDir);
+    $view->setDI($di);
+
     $view->registerEngines([
         '.volt' => $voltService
     ]);
 
-    // TODO: Move this into a base class
-    $view->setVars([
-        'domain' => $config->site->domains[0],
-        'link'   => $config->site->link
-    ]);
+    $view->setViewsDir($config->path->viewsSimpleDir);
 
     return $view;
 });

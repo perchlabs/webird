@@ -4,7 +4,7 @@ namespace Webird\Admin\Controllers;
 use Phalcon\Tag,
     Phalcon\Mvc\Model\Criteria,
     Phalcon\Paginator\Adapter\Model as Paginator,
-    Webird\Controllers\BaseController,
+    Webird\Mvc\Controller,
     Webird\Models\Roles,
     Webird\Admin\Forms\RolesForm;
 
@@ -12,7 +12,7 @@ use Phalcon\Tag,
  * Webird\Controllers\RolesController
  * CRUD to manage roles
  */
-class RolesController extends BaseController
+class RolesController extends Controller
 {
 
     /**

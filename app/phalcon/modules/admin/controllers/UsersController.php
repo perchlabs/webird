@@ -4,8 +4,7 @@ namespace Webird\Admin\Controllers;
 use Phalcon\Tag,
     Phalcon\Mvc\Model\Criteria,
     Phalcon\Paginator\Adapter\Model as Paginator,
-    Webird\Controllers\BaseController,
-    Webird\Forms\ChangePasswordForm,
+    Webird\Mvc\Controller,
     Webird\Admin\Forms\UsersForm,
     Webird\Models\Users,
     Webird\Models\EmailConfirmations,
@@ -15,7 +14,7 @@ use Phalcon\Tag,
  * Webird\Controllers\UsersController
  * CRUD to manage users
  */
-class UsersController extends BaseController
+class UsersController extends Controller
 {
 
     /**

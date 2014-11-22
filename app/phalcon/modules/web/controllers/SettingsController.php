@@ -2,19 +2,19 @@
 namespace Webird\Web\Controllers;
 
 use Phalcon\Tag,
-    Webird\Controllers\BaseController,
+    Webird\Mvc\Controller,
     Webird\Models\Users,
     Webird\Models\EmailConfirmations,
     Webird\Models\ResetPasswords,
     Webird\Models\PasswordChanges,
-    Webird\Forms\ChangePasswordForm,
+    Webird\Web\Forms\ChangePasswordForm,
     Webird\Web\Forms\ForgotPasswordForm;
 
 /**
  * SettingsController
  * Provides help to users to confirm their passwords or reset them
  */
-class SettingsController extends BaseController
+class SettingsController extends Controller
 {
 
     public function initialize()

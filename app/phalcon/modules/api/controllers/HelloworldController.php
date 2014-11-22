@@ -2,12 +2,12 @@
 namespace Webird\Api\Controllers;
 
 use Phalcon\Http\Response as Response,
-  Webird\Controllers\BaseController;
+  Webird\Mvc\Controller;
 
 /**
  * Display Helloworld Api data.
  */
-class HelloworldController extends BaseController
+class HelloworldController extends Controller
 {
     public function initialize()
     {

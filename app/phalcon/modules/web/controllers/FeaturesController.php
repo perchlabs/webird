@@ -4,11 +4,11 @@ namespace Webird\Web\Controllers;
 use ZMQ,
     ZMQContext as ZMQContext,
 
-    Webird\Controllers\BaseController;
+    Webird\Mvc\Controller;
 /**
  * Controller for the Framework examples
  */
-class FeaturesController extends BaseController
+class FeaturesController extends Controller
 {
     /**
      * Default action. Set the public layout (layouts/public.volt)

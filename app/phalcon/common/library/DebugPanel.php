@@ -244,7 +244,7 @@ class DebugPanel extends DIInjectable
 
 		protected function getView()
 		{
-				$view = $this->getDI()->get('template');
+				$view = $this->getDI()->get('viewSimple');
 				return $view;
 		}
 

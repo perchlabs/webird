@@ -1,7 +1,7 @@
 <?php
 namespace Webird\Web\Controllers;
 
-use Webird\Controllers\BaseController,
+use Webird\Mvc\Controller,
     Webird\Auth\AuthException,
     Webird\Auth\AuthMustChangePasswordException,
     Webird\Auth\AuthRememberMeException,
@@ -13,7 +13,7 @@ use Webird\Controllers\BaseController,
 /**
  * Controller used handle non-authenticated session actions like signin/signout, user signup, and forgotten passwords
  */
-class SessionController extends BaseController
+class SessionController extends Controller
 {
 
     /**

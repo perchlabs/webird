@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Web\Controllers;
 
-use Webird\Controllers\BaseController;
+use Webird\Mvc\Controller;
 
 /**
  * Display the "About" page.
  */
-class AboutController extends BaseController
+class AboutController extends Controller
 {
 
     /**

@@ -3,7 +3,7 @@ namespace Webird;
 
 use Phalcon\DI,
     Phalcon\Mvc\ModuleDefinitionInterface,
-    Webird\Mvc\ViewBase;
+    Webird\Mvc\View;
 
 /**
  * Module
@@ -24,12 +24,18 @@ abstract class Module implements ModuleDefinitionInterface
     public static function getViewFunc($di)
     {
         $viewsDir = self::getViewsDir();
-        $viewFunc =  function() use ($di, $viewsDir) {
-            $view = new ViewBase();
+        $viewFunc = function() use ($di, $viewsDir) {
+            $view = new View();
             $view->setDI($di);
+
+            $view->registerEngines([
+                '.volt' => 'voltService'
+            ]);
+
             $view->setViewsDir($viewsDir);
             $view->setPartialsDir('../../../common/views/partials/');
             $view->setLayoutsDir('../../../common/views/layouts/');
+
             return $view;
         };
 
@@ -43,7 +49,6 @@ abstract class Module implements ModuleDefinitionInterface
         $classParts = explode('\\', $moduleClass);
         $moduleName = lcfirst($classParts[1]);
         $moduleDir = self::moduleNameToDir($moduleName);
-
         return $moduleDir;
     }
 
@@ -51,7 +56,6 @@ abstract class Module implements ModuleDefinitionInterface
     {
         $config = DI::getDefault()->getConfig();
         $moduleDir = $config->path->phalconDir . "modules/{$moduleName}/";
-
         return $moduleDir;
     }
 

@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Web\Controllers;
 
-use Webird\Controllers\BaseController;
+use Webird\Mvc\Controller;
 
 /**
  * Display the default index page.
  */
-class IndexController extends BaseController
+class IndexController extends Controller
 {
     /**
      * Default action. Set the public layout (layouts/public.volt)

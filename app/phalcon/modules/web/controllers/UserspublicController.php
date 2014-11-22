@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Web\Controllers;
 
-use Webird\Controllers\BaseController,
+use Webird\Mvc\Controller,
     Webird\Auth\AuthMustChangePasswordException,
     Webird\Models\Users,
     Webird\Models\EmailConfirmations,
     Webird\Models\ResetPasswords,
-    Webird\Forms\ChangePasswordForm,
+    Webird\Web\Forms\ChangePasswordForm,
     Webird\Web\Forms\ForgotPasswordForm;
 
 
@@ -14,7 +14,7 @@ use Webird\Controllers\BaseController,
  * UserspublicController
  * Provides help to users to confirm their passwords or reset them
  */
-class UserspublicController extends BaseController
+class UserspublicController extends Controller
 {
 
     public function initialize()

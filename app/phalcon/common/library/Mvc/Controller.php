@@ -1,13 +1,13 @@
 <?php
-namespace Webird\Controllers;
+namespace Webird\Mvc;
 
-use Phalcon\Mvc\Controller;
+use Phalcon\Mvc\Controller as PhController;
 
 /**
- * BaseController
+ * Controller
  * This is the base controller for all controllers in the application
  */
-class BaseController extends Controller
+class Controller extends PhController
 {
     /**
      * Initialize

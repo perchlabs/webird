@@ -3,9 +3,9 @@ namespace Webird\Controllers;
 
 use Phalcon\Mvc\Controller,
     Phalcon\Http\Response as Response,
-    Webird\Controllers\BaseController;
+    Webird\Mvc\Controller;
 
-class RESTController extends BaseController
+class RESTController extends Controller
 {
     protected $statusCode;
     protected $headers;

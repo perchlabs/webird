@@ -67,8 +67,8 @@ class DistTask extends TaskBase
 
         $domainFirst = $config->site->domains[0];
 
-        $template = $this->di->get('template');
-        $tpl = $template->render('nginx/dist', [
+        $view = $this->di->get('viewSimple');
+        $tpl = $view->render('nginx/dist', [
             'host'           => $domainFirst,
             'domains'        => $config->site->domains,
             'http_port'      => $httpPort,

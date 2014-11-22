@@ -5,7 +5,7 @@ use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\Mvc\View,
     Webird\Module as WbModule,
-    Webird\Mvc\ViewBase;
+    Webird\Mvc\View;
 
 
 /**

@@ -6,7 +6,6 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
     Webird\Cli\TaskBase,
-    Webird\Mvc\ViewBase,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule,
     Webird\Locale\Compiler as LocaleCompiler,
@@ -124,10 +123,10 @@ class BuildTask extends TaskBase
     private function compileVoltTemplates()
     {
         $path = $this->config->path;
-        $dev = $this->config->dev;
+        $devPath = $this->config->dev->path;
 
         $voltCacheDirBak = $path->voltCacheDir;
-        $voltCacheDirDist = $dev->path->distDir . "cache-static/volt/";
+        $voltCacheDirDist = $devPath->distDir . "cache-static/volt/";
         $path->voltCacheDir = $voltCacheDirDist;
         echo "Temporarily changing voltCacheDir to {$voltCacheDirDist}\n";
 
@@ -141,9 +140,8 @@ class BuildTask extends TaskBase
         }
 
         // Simple views
-        $viewsDir = "{$this->config->path->templatesDir}";
-        $this->compileVoltDir($viewsDir, function() use ($di) {
-            return $di->get('template');
+        $this->compileVoltDir($path->viewsSimpleDir, function() use ($di) {
+            return $di->get('viewSimple');
         });
 
         $path->voltCacheDir = $voltCacheDirBak;

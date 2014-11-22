@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Web\Controllers;
 
-use Webird\Controllers\BaseController;
+use Webird\Mvc\Controller;
 
 /**
  * Display the terms and conditions page.
  */
-class TermsController extends BaseController
+class TermsController extends Controller
 {
 
     /**

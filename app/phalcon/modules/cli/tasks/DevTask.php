@@ -6,7 +6,6 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
     Webird\Cli\TaskBase,
-    Webird\Mvc\ViewBase,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule;
 
@@ -84,8 +83,8 @@ class DevTask extends TaskBase
 
         $domainFirst = $config->site->domains[0];
 
-        $template = $this->di->get('template');
-        $tpl = $template->render('nginx/dev', [
+        $view = $this->di->get('viewSimple');
+        $tpl = $view->render('nginx/dev', [
             'host'           => $domainFirst,
             'domains'        => $config->site->domains,
             'http_port'      => $httpPort,

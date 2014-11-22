@@ -307,8 +307,6 @@ class Manager extends Component
      */
     protected function renderView($viewPath, $params, $viewsDir = null)
     {
-        $config = $this->getDI()->get('config');
-
         $view = $this->getView();
         $content = $view->render("email/$viewPath", $params);
 
@@ -322,7 +320,7 @@ class Manager extends Component
      */
     protected function getView()
     {
-        $view = $this->getDI()->get('template');
+        $view = $this->getDI()->get('viewSimple');
         return $view;
     }
 }

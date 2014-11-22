@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Forms;
+namespace Webird\Web\Forms;
 
 use Phalcon\Forms\Form,
     Phalcon\Forms\Element\Password,

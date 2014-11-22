@@ -37,9 +37,8 @@ $config2 = new Config([
         'configDir'      => $appDir . 'phalcon/config/',
         'phalconDir'     => $appDir . 'phalcon/',
         'modulesDir'     => $appDir . 'phalcon/modules/',
-        'commonDir'      => $appDir . 'phalcon/common',
-        'viewsDir'       => $appDir . 'phalcon/common/views/',
-        'templatesDir'   => $appDir . 'phalcon/common/templates/',
+        'commonDir'      => $appDir . 'phalcon/common/',
+        'viewsSimpleDir' => $appDir . 'phalcon/common/views/simple/',
         'localeDir'      => $appDir . 'locale/',
         // Paths that change with ENV
         'tmpDir'         => $tmpDir,

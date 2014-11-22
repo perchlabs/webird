@@ -1,8 +1,8 @@
 -- MySQL dump 10.15  Distrib 10.0.14-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: webird
+-- Host: localhost    Database: webird_copy
 -- ------------------------------------------------------
--- Server version	10.0.14-MariaDB-1~trusty
+-- Server version	10.0.14-MariaDB-1~trusty-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,59 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `audit`
+--
+
+DROP TABLE IF EXISTS `audit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `audit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usersId` int(10) NOT NULL,
+  `model_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `ipaddress` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `type` char(1) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `audit`
+--
+
+LOCK TABLES `audit` WRITE;
+/*!40000 ALTER TABLE `audit` DISABLE KEYS */;
+/*!40000 ALTER TABLE `audit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `audit_detail`
+--
+
+DROP TABLE IF EXISTS `audit_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `audit_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `audit_id` int(11) NOT NULL,
+  `field_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `old_value` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `new_value` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `audit_detail`
+--
+
+LOCK TABLES `audit_detail` WRITE;
+/*!40000 ALTER TABLE `audit_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `audit_detail` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `email_confirmations`
@@ -191,7 +244,7 @@ CREATE TABLE `roles` (
   `active` char(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `active` (`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +253,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrators','Y'),(2,'Users','Y'),(3,'Read-Only','Y');
+INSERT INTO `roles` VALUES (1,'Administrators','Y'),(2,'Users','Y'),(3,'Read-Only','Y'),(4,'Test','Y');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,4 +349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-29 22:47:53
+-- Dump completed on 2014-11-22  2:18:47

@@ -159,6 +159,7 @@ class DispatcherSecurity extends Plugin
             $path = implode('/', $pathArr);
 
             $this->response->redirect($path);
+            $dispatcher->getActiveController()->view->disable();
         }
 
         return false;

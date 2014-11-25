@@ -365,10 +365,10 @@ class Auth extends Component
     public function checkUserFlags(Users $user)
     {
         if ($user->banned != 'N') {
-            throw new AuthException('The user is disabled');
+            throw new AuthBannedUserException('The user is disabled');
         }
         if ($user->active != 'Y') {
-            throw new AuthException('The user is inactive');
+            throw new AuthInactiveUserException('The user is inactive');
         }
     }
 

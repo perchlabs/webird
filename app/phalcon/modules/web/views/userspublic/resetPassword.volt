@@ -2,10 +2,15 @@
   {{ form(null, 'class': 'form-horizontal', 'autocomplete': 'off', 'role': 'form') }}
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
-        <h2>{{_('Reset Password')}}</h2>
         <div class="text-warning">
           {{ content() }}
         </div>
+        <h2>{{_('Reset Password')}}</h2>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-4">
+        {{email}}
       </div>
     </div>
     <div class="form-group">

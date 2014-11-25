@@ -1,6 +1,6 @@
 <?php
 namespace Webird\Auth;
 
-class AuthMustChangePasswordException extends \Exception
+class AuthMustChangePasswordException extends AuthException
 {
 }

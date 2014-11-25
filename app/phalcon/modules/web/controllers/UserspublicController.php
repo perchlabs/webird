@@ -7,7 +7,9 @@ use Webird\Mvc\Controller,
     Webird\Models\EmailConfirmations,
     Webird\Models\ResetPasswords,
     Webird\Web\Forms\ChangePasswordForm,
-    Webird\Web\Forms\ForgotPasswordForm;
+    Webird\Web\Forms\ForgotPasswordForm,
+    Webird\Auth\AuthInactiveUserException;
+
 
 
 /**
@@ -33,13 +35,19 @@ class UserspublicController extends Controller
     public function confirmEmailAction()
     {
         $code = $this->dispatcher->getParam('code');
-
         $t = $this->translate;
 
         $confirmation = EmailConfirmations::findFirstByCode($code);
-
         if (!$confirmation) {
             $this->flash->error($t->gettext('The confirmation code was not valid.'));
+            return $this->dispatcher->forward([
+                'controller' => 'index',
+                'action' => 'notification'
+            ]);
+        }
+
+        if ($confirmation->user->isBanned()) {
+            $this->flash->error($t->gettext('User is banned'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
                 'action' => 'notification'
@@ -80,15 +88,15 @@ class UserspublicController extends Controller
         } catch (AuthMustChangePasswordException $e) {
             return $this->response->redirect('settings/changePassword');
         }
-
     }
-
 
     /**
      * Resets the users password if a password reset exists in the database.
      */
     public function resetPasswordAction()
     {
+        $t = $this->translate;
+
         $code = $this->dispatcher->getParam('code');
 
         $resetPassword = ResetPasswords::findFirstByCode($code);
@@ -100,35 +108,54 @@ class UserspublicController extends Controller
             ]);
         }
 
+        $user = $resetPassword->user;
+        if (!$user->isActive()) {
+            $this->flash->error($t->gettext('User is inactive'));
+            $this->flash->notice($t->gettext('Activate the user first before changing password.'));
+            return $this->dispatcher->forward([
+                'controller' => 'index',
+                'action' => 'notification'
+            ]);
+        } else if ($user->isBanned()) {
+            $this->flash->error($t->gettext('User is banned'));
+            return $this->dispatcher->forward([
+                'controller' => 'index',
+                'action' => 'notification'
+            ]);
+        }
+
         $form = new ChangePasswordForm();
         $form->setDI($this->getDI());
+        $this->view->form = $form;
+        $this->view->setVar('email', $user->email);
 
         if ($this->request->isPost()) {
             if ($form->isValid($this->request->getPost()) !== false) {
-                $user = $resetPassword->user;
                 $user->password = $this->request->getPost('password');
                 $user->mustChangePassword = 'N';
                 $resetPassword->reset = 'Y';
-                if ($resetPassword->save()) {
-                    // Authenticate the user
-                    $this->auth->clearNeedToChangePassword();
-                    $this->auth->authUserById($resetPassword->usersId, 'pw_reset');
-                    return $this->response->redirect($this->config->app->defaultPath);
-                } else {
-                    foreach ($resetPassword->getMessages() as $message) {
-                        $this->flash->error($message);
+                try {
+                    if ($resetPassword->save()) {
+                        // Authenticate the user
+                        $this->auth->clearNeedToChangePassword();
+                        $this->auth->authUserById($resetPassword->usersId, 'pw_reset');
+                        return $this->response->redirect($this->config->app->defaultPath);
+                    } else {
+                        foreach ($resetPassword->getMessages() as $message) {
+                            $this->flash->error($message);
+                        }
+                        return $this->dispatcher->forward([
+                            'controller' => 'index',
+                            'action' => 'notification'
+                        ]);
                     }
-                    return $this->dispatcher->forward([
-                        'controller' => 'index',
-                        'action' => 'notification'
-                    ]);
+                } catch (AuthException $e) {
+                    $this->flash->error($e->getMessage());
                 }
             }
         }
 
-        $this->view->form = $form;
     }
-
 
     /**
      * Shows the forgot password form
@@ -142,13 +169,13 @@ class UserspublicController extends Controller
             if ($form->isValid($this->request->getPost()) !== false) {
                 $user = Users::findFirstByEmail($this->request->getPost('email'));
                 if (!$user) {
-                    $this->flash->success($this->translate->gettext('There is no account associated with this email'));
+                    $this->flash->success($this->translate->gettext('There is no account associated with this email.'));
                 } else {
                     $resetPassword = new ResetPasswords();
                     $resetPassword->usersId = $user->id;
                     if ($resetPassword->save()) {
                         $this->flash->success($this->translate->gettext('An email has been sent!'));
-                        $this->flash->success($this->translate->gettext('Please check your inbox for a reset password message'));
+                        $this->flash->success($this->translate->gettext('Please check your inbox for a reset password message.'));
                         return $this->dispatcher->forward([
                             'controller' => 'index',
                             'action' => 'notification'

@@ -60,6 +60,16 @@ class Users extends Model
      */
     public $active;
 
+    public function isActive()
+    {
+        return $this->active === 'Y';
+    }
+
+    public function isBanned()
+    {
+        return $this->banned !== 'N';
+    }
+
     /**
      * Before create the user assign a password
      */

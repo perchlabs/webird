@@ -1,6 +1,6 @@
 
+<!-- security token: {{security.getToken()}} -->
 <div class="container">
-
   {{ form('class': 'form-horizontal', 'role': 'form') }}
 
     <div class="form-group text-left">
@@ -19,8 +19,8 @@
       <div class="col-md-4 col-md-offset-4">
         <p>
           with:
-          {{ link_to("signin/redirectoauth/google/nonce", "Google") }}
-      <!--      {{ link_to("signin/redirectoauth/microsoft/nonce", "Microsoft") }}-->
+          {{ link_to('signin/redirectoauth/google/'~security.getSessionToken(), "Google") }}
+      <!--      {{ link_to('signin/redirectoauth/microsoft/'~security.getSessionToken(), "Microsoft") }}-->
         </p>
       </div>
     </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    {{ form.render('csrf', ['value': security.getToken()]) }}
+    {{ form.render('csrf', ['value': security.getSessionToken()]) }}
 
   </form>
 

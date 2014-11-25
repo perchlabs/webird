@@ -134,8 +134,13 @@ class SessionController extends Controller
     {
         $provider = $this->dispatcher->getParam('provider');
         $nonce = $this->dispatcher->getParam('nonce');
-        if ($nonce != 'nonce') {
-            error_log('nonce is not set correctly');
+
+        if ($nonce !== $this->security->getSessionToken()) {
+            $this->flash->error($this->translate->gettext('Security token is invalid.'));
+            return $this->dispatcher->forward([
+                'controller' => 'session',
+                'action' => 'signin'
+            ]);
         }
 
         $authUrl = $this->auth->getRedirectOauthUrl($provider);

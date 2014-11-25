@@ -22,9 +22,17 @@ class UserTask extends TaskBase
 
     public function createAction(array $params)
     {
-        $this->ensureArgumentCount($params, 3);
-        list($email, $name, $roleRef) = $params['args'];
+        $this->ensureArgumentCount($params, 2);
+        list($emailRaw, $roleRef) = $params['args'];
         $opts = $params['opts'];
+
+        $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
+        if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
+            throw new ArgumentValidationException('Email must be in form: display <address>', 1);
+        }
+
+        $name = $emailParts[0]['display'];
+        $email = $emailParts[0]['address'];
 
         // Validate the email
         if (($email = filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {

@@ -1,4 +1,5 @@
 # You must add -alpha or -beta if the package is not yet stable
+mailparse
 zmq-beta
 libevent-beta
 msgpack-beta

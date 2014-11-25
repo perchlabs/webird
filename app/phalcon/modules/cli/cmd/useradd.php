@@ -2,7 +2,7 @@
 return ['user::create', [
     'title' => 'Add a user with a permission role.',
     'args' => [
-        'required' => ['email', 'name', 'role'],
+        'required' => ['email', 'role'],
         'optional' => []
     ],
     'opts' => [

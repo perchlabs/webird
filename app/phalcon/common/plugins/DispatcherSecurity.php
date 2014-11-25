@@ -159,7 +159,10 @@ class DispatcherSecurity extends Plugin
             $path = implode('/', $pathArr);
 
             $this->response->redirect($path);
-            $dispatcher->getActiveController()->view->disable();
+            $this->response->send();
+            exit();
+            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3073
+            // $dispatcher->getActiveController()->view->disable();
         }
 
         return false;

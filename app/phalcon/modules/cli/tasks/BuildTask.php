@@ -294,8 +294,8 @@ WEBIRD_ENTRY;
         chdir($distDir);
 
         exec("composer --no-dev install", $out, $ret);
-        exec("npm install --production", $out, $ret);
-        exec("bower install --production", $out, $ret);
+        exec("skipclean=1 && npm install --production", $out, $ret);
+        exec("bower install --production --allow-root --config.interactive=false", $out, $ret);
 
         chdir($cwd);
     }

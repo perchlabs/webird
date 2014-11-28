@@ -30,6 +30,7 @@ class BuildTask extends TaskBase
         $this->buildPhalconDir();
         $this->makeEntryPoints();
         $this->copyFiles();
+        $this->installPackages();
         $this->compileLocales();
         $this->buildWebpack();
 
@@ -248,9 +249,13 @@ WEBIRD_ENTRY;
         $devDirEsc = escapeshellarg($devDir);
         $distDirEsc = escapeshellarg($distDir);
 
-        // Copy the Composer installed libraries
-        // TODO: Consider standard way to install to remove dev dependencies
-        `cp -R $devDir/vendor $distDir/vendor`;
+        // Copy Composer configuration
+        copy("$devDir/composer.json", "$distDir/composer.json");
+        copy("$devDir/composer.lock", "$distDir/composer.lock");
+        // Copy Npm/Nodejs configuration
+        copy("$devDir/package.json", "$distDir/package.json");
+        // Copy Bower configuration
+        copy("$devDir/bower.json", "$distDir/bower.json");
 
         `cp -R $appDir/theme/assets $distDir/public/assets`;
 
@@ -275,6 +280,25 @@ WEBIRD_ENTRY;
         file_put_contents("$distDir/etc/config.json", $jsonConfigMerged);
     }
 
+
+
+
+
+
+
+    private function installPackages()
+    {
+        $distDir = $this->config->dev->path->distDir;
+
+        $cwd = getcwd();
+        chdir($distDir);
+
+        exec("composer --no-dev install", $out, $ret);
+        exec("npm install --production", $out, $ret);
+        exec("bower install --production", $out, $ret);
+
+        chdir($cwd);
+    }
 
 
 

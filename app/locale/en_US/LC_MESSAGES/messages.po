@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
-"POT-Creation-Date: 2014-11-19 22:16+0300\n"
-"PO-Revision-Date: 2014-11-19 22:16+0300\n"
+"POT-Creation-Date: 2014-11-29 00:44+0300\n"
+"PO-Revision-Date: 2014-11-29 00:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: English\n"
@@ -18,29 +18,29 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../webpack\n"
 "X-Poedit-SearchPath-2: ../../../../dist/cache-static/volt\n"
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:62
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:61
 msgid "The search did not find any users"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:110
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:109
 #, php-format
 msgid "A confirmation mail has been sent to %s"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:114
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:113
 msgid "User was created successfully. You may add another user."
 msgstr ""
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:133
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:176
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:132
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:175
 msgid "User was not found"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:159
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:158
 msgid "User was updated successfully"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/controllers/UsersController.php:185
+#: ../../../phalcon/modules/admin/controllers/UsersController.php:184
 msgid "User was deleted"
 msgstr ""
 
@@ -73,9 +73,9 @@ msgstr ""
 #: ../../../phalcon/modules/admin/forms/RolesForm.php:29
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:5
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:5
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:92
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:117
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:144
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:98
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:123
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:150
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:23
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:5
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:5
@@ -138,11 +138,11 @@ msgstr ""
 #: ../../../phalcon/modules/admin/forms/RolesForm.php:45
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:16
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:17
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:154
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:160
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:33
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:15
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:37
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:42
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:41
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:73
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:74
 msgid "No"
@@ -153,11 +153,11 @@ msgstr ""
 #: ../../../phalcon/modules/admin/forms/RolesForm.php:44
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:16
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:17
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:154
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:160
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:33
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:15
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:37
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:42
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:41
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:73
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:74
 msgid "Yes"
@@ -188,32 +188,50 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: ../../../phalcon/modules/web/controllers/SessionController.php:139
+#: ../../../phalcon/modules/web/forms/SigninForm.php:60
+msgid "Security token is invalid."
+msgstr ""
+
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:42
 msgid "The confirmation code was not valid."
 msgstr ""
 
 #: ../../../phalcon/modules/web/controllers/UserspublicController.php:50
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:120
+msgid "User is banned"
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:58
 msgid "You've already confirmed your email. Proceed to signin"
 msgstr ""
 
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:78
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:86
 msgid "The email was successfully confirmed"
 msgstr ""
 
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:96
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:104
 msgid "The password reset code is invalid"
 msgstr ""
 
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:145
-msgid "There is no account associated with this email"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:113
+msgid "User is inactive"
 msgstr ""
 
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:150
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:114
+msgid "Activate the user first before changing password."
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:172
+msgid "There is no account associated with this email."
+msgstr ""
+
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:177
 msgid "An email has been sent!"
 msgstr ""
 
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:151
-msgid "Please check your inbox for a reset password message"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:178
+msgid "Please check your inbox for a reset password message."
 msgstr ""
 
 #: ../../../phalcon/modules/web/controllers/SettingsController.php:39
@@ -233,8 +251,8 @@ msgid "E-Mail"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:55
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:25
 #: ../../../phalcon/modules/web/forms/SigninForm.php:42
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:25
 msgid "Password"
 msgstr ""
 
@@ -243,23 +261,23 @@ msgid "The password is required"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:62
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:32
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:32
 #, php-format
 msgid "Password is too short. Minimum %d characters"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:65
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:35
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:35
 msgid "Password doesn't match confirmation"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:73
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:43
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:43
 msgid "Confirm Password"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:76
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:46
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:46
 msgid "The confirmation password is required"
 msgstr ""
 
@@ -284,17 +302,13 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:28
 #: ../../../phalcon/modules/web/forms/SigninForm.php:45
-#: ../../../phalcon/common/forms/ChangePasswordForm.php:28
 msgid "Password is required"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:53
 msgid "Remember me"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SigninForm.php:60
-msgid "Security token is invalid."
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SigninForm.php:66
@@ -329,11 +343,11 @@ msgstr ""
 msgid "Invalid oauth provider"
 msgstr ""
 
-#: ../../../phalcon/common/plugins/DispatcherSecurity.php:83
+#: ../../../phalcon/common/plugins/DispatcherSecurity.php:80
 msgid "You don't have access to the restricted resource"
 msgstr ""
 
-#: ../../../phalcon/common/plugins/DispatcherSecurity.php:111
+#: ../../../phalcon/common/plugins/DispatcherSecurity.php:109
 msgid "You do not have access to the resource"
 msgstr ""
 
@@ -359,16 +373,16 @@ msgid "Active?"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:18
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:13
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:19
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:34
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:44
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:43
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:75
 msgid "Edit"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit%%tab_pane_users.volt.php:19
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:35
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:45
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:44
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%edit.volt.php:76
 msgid "Delete"
 msgstr ""
@@ -413,21 +427,21 @@ msgid "Role Permissions"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:6
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:93
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:118
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:99
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:124
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:6
 msgid "IP Address"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:7
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:94
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:119
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:100
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:125
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:7
 msgid "User Agent"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_successful_signins.volt.php:18
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:105
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:111
 msgid "User does not have successfull signins"
 msgstr ""
 
@@ -487,36 +501,36 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:14
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:20
 msgid "Signins"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:15
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:21
 msgid "Password Changes"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:16
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:22
 msgid "Reset Passwords"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:120
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:145
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:126
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:151
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:8
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:6
 msgid "Date"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:132
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:138
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_password_changes.volt.php:20
 msgid "User has not changed his/her password"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:146
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:152
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:7
 msgid "Reset?"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:157
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit.volt.php:163
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%edit%%tab_pane_reset_passwords.volt.php:18
 msgid "User has not requested reset his/her password"
 msgstr ""
@@ -546,8 +560,8 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%userspublic%%resetPassword.volt.php:5
-#: ../../../../dist/cache-static/volt/modules%%web%%views%%userspublic%%resetPassword.volt.php:31
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%userspublic%%resetPassword.volt.php:8
+#: ../../../../dist/cache-static/volt/modules%%web%%views%%userspublic%%resetPassword.volt.php:36
 msgid "Reset Password"
 msgstr ""
 
@@ -556,22 +570,22 @@ msgid "Create roles"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:43
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:54
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:53
 msgid "First"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:44
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:55
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:54
 msgid "Previous"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:45
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:56
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:55
 msgid "Next"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%admin%%views%%roles%%search.volt.php:46
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:57
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:56
 msgid "Last"
 msgstr ""
 
@@ -583,22 +597,8 @@ msgstr ""
 msgid "Create a User"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%create.volt.php:52
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%create.volt.php:50
 msgid "* The email can be sent at a later time"
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%emailConfirmation.volt.php:6
-msgid "You are Almost There! Just Confirm Your Email"
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%emailConfirmation.volt.php:8
-msgid ""
-"You've successfully created a Webird account. To activate it, please click "
-"below to verify your email address."
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%emailConfirmation.volt.php:15
-msgid "Confirm"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:4
@@ -617,20 +617,6 @@ msgstr ""
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%public.volt.php:35
 #: ../../../../dist/cache-static/volt/common%%views%%layouts%%signin.volt.php:4
 msgid "Signin"
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:6
-msgid "Reset Your Password for account on"
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:8
-msgid ""
-"To reset the password for this account, click on the button below. If you "
-"don't want to reset your password, please disregard this email."
-msgstr ""
-
-#: ../../../../dist/cache-static/volt/common%%templates%%email%%resetPassword.volt.php:12
-msgid "Reset"
 msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%userspublic%%forgotPassword.volt.php:7
@@ -661,6 +647,20 @@ msgstr ""
 msgid "This website requires javascript to function properly."
 msgstr ""
 
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%emailConfirmation.volt.php:6
+msgid "You are Almost There! Just Confirm Your Email"
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%emailConfirmation.volt.php:8
+msgid ""
+"You've successfully created a Webird account. To activate it, please click "
+"below to verify your email address."
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%emailConfirmation.volt.php:15
+msgid "Confirm"
+msgstr ""
+
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%about%%index.volt.php:4
 msgid "About this Demo"
 msgstr ""
@@ -673,7 +673,7 @@ msgstr ""
 msgid "Create user"
 msgstr ""
 
-#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:66
+#: ../../../../dist/cache-static/volt/modules%%admin%%views%%users%%search.volt.php:65
 msgid "No users are recorded"
 msgstr ""
 
@@ -703,6 +703,20 @@ msgstr ""
 
 #: ../../../../dist/cache-static/volt/modules%%web%%views%%index%%index.volt.php:18
 msgid "Important Stuff"
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%resetPassword.volt.php:6
+msgid "Reset Your Password for account on"
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%resetPassword.volt.php:8
+msgid ""
+"To reset the password for this account, click on the button below. If you "
+"don't want to reset your password, please disregard this email."
+msgstr ""
+
+#: ../../../../dist/cache-static/volt/common%%views%%simple%%email%%resetPassword.volt.php:12
+msgid "Reset"
 msgstr ""
 
 #: ../../../webpack/modules/marionette_module.console/partials/content.hbs:1

@@ -32,3 +32,4 @@ libpcre3-dev
 libzmq3
 libzmq3-dev
 libevent-dev
+libyaml-dev

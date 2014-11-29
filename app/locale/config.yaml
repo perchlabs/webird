@@ -1,0 +1,7 @@
+---
+default: en_US
+map:
+  en: en_US
+  ru: ru_RU
+  de: de_DE
+...

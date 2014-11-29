@@ -1,6 +1,5 @@
 <?php
-use Phalcon\Config,
-    Phalcon\Config\Adapter\Json as AdapterJson;
+use Phalcon\Config;
 
 $projectDir = realpath(__DIR__ . '/../../..') . '/';
 $appDir = $projectDir . 'app/';
@@ -17,8 +16,8 @@ clearstatcache();
 exec("mkdir -p " . escapeshellarg($cacheDir . 'volt/'));
 exec("mkdir -p " . escapeshellarg($cacheDir . 'locale/'));
 
-$config = new AdapterJson("{$etcDir}/dev_defaults.json");
-$config2 = new AdapterJson("{$etcDir}/dev.json");
+$config = new Config(yaml_parse_file("{$etcDir}/dev_defaults.yaml"));
+$config2 = new Config(yaml_parse_file("{$etcDir}/dev.yaml"));
 $config3 = new Config([
     DEV_ENV => [
         'path' => [
@@ -30,7 +29,7 @@ $config3 = new Config([
     ]
 ]);
 $config4 = new Config([
-    'locale' => json_decode(file_get_contents("$appDir/locale/config.json"), true)
+    'locale' => yaml_parse_file("$appDir/locale/config.yaml")
 ]);
 
 

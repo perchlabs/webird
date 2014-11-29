@@ -2,6 +2,7 @@
 
 path = require 'path'
 fs = require 'fs'
+yaml = require 'js-yaml'
 crypto = require 'crypto'
 # Gulp
 gulp = require 'gulp'
@@ -66,7 +67,7 @@ wpConf =
       ""
       ".js", ".coffee"
       ".html", ".hbs"
-      ".css", ".scss", ".less", ".styl"
+      ".css", ".scss", ".less"
     ]
 
   resolveLoader:
@@ -78,7 +79,7 @@ wpConf =
       VERSION: JSON.stringify require("#{devRoot}/package.json").version
       THEME_ROOT: JSON.stringify "#{appRoot}/theme"
       LOCALE_ROOT: JSON.stringify "#{appRoot}/locale"
-      LOCALE_CONFIG: fs.readFileSync "#{appRoot}/locale/config.json", 'utf8'
+      LOCALE_CONFIG: JSON.stringify yaml.load(fs.readFileSync "#{appRoot}/locale/config.yaml", 'utf8')
 
     new ExtractTextPlugin 'css/[name].css', allChunks: false
 
@@ -128,6 +129,11 @@ wpConf =
         # Json Loader
         test: /\.json$/
         loader: "json"
+      }
+      {
+        # YAML Loader
+        test: /\.yaml$/
+        loader: "json!yaml"
       }
       {
         # PO translation messages Loader
@@ -232,8 +238,8 @@ for common, entryList of appConfig.commons
 # Dev Server Build - uses websockets for live reloading
 ############################################################
 gulp.task 'webpack:dev-server', (callback) ->
-  config       = JSON.parse fs.readFileSync "#{etcRoot}/dev_defaults.json", 'utf8'
-  configCustom = JSON.parse fs.readFileSync "#{etcRoot}/dev.json", 'utf8'
+  config       = yaml.load fs.readFileSync "#{etcRoot}/dev_defaults.yaml", 'utf8'
+  configCustom = yaml.load fs.readFileSync "#{etcRoot}/dev.yaml", 'utf8'
   _.merge config, configCustom
 
   webpackPort = config.dev.webpackPort

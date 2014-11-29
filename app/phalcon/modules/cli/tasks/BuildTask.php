@@ -30,6 +30,7 @@ class BuildTask extends TaskBase
         $this->buildPhalconDir();
         $this->makeEntryPoints();
         $this->copyFiles();
+        $this->buildConf();
         $this->installPackages();
         $this->compileLocales();
         $this->buildWebpack();
@@ -239,7 +240,6 @@ WEBIRD_ENTRY;
     {
         $projectDir = $this->config->dev->path->projectDir;
         $appDir = $this->config->path->appDir;
-        $localeDir = $this->config->path->localeDir;
         $etcDir = $this->config->dev->path->etcDir;
         $devDir = $this->config->dev->path->devDir;
         $distDir = $this->config->dev->path->distDir;
@@ -262,11 +262,23 @@ WEBIRD_ENTRY;
         copy("$etcDir/schema.sql", "$distDir/etc/schema.sql");
         // Move the CLI startup program to the root dist directory
         chmod("$distDir/webird.php", 0775);
+    }
 
-        $config1 = json_decode(file_get_contents("$etcDir/dist_defaults.json"), true);
-        $config2 = json_decode(file_get_contents("$etcDir/dist.json"), true);
 
-        $localeConfig = json_decode(file_get_contents("$localeDir/config.json"), true);
+
+
+
+    private function buildConf()
+    {
+        $etcDir = $this->config->dev->path->etcDir;
+        $localeDir = $this->config->path->localeDir;
+        $devDir = $this->config->dev->path->devDir;
+        $distDir = $this->config->dev->path->distDir;
+
+        $config1 = yaml_parse_file("$etcDir/dist_defaults.yaml");
+        $config2 = yaml_parse_file("$etcDir/dist.yaml");
+
+        $localeConfig = yaml_parse_file("$localeDir/config.yaml");
         $localeConfig['supported'] = $this->getDI()->getLocale()->getSupportedLocales();
         $config3 = [
             'locale' => $localeConfig
@@ -276,10 +288,8 @@ WEBIRD_ENTRY;
         $configMerged = array_replace_recursive($config1, $config2, $config3);
 
         // Write the merged settings to the dist directory
-        $jsonConfigMerged = json_encode($configMerged, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        file_put_contents("$distDir/etc/config.json", $jsonConfigMerged);
+        yaml_emit_file("$distDir/etc/config.yaml", $configMerged);
     }
-
 
 
 

@@ -1,6 +1,5 @@
 <?php
-use Phalcon\Config,
-    Phalcon\Config\Adapter\Json as AdapterJson;
+use Phalcon\Config;
 
 $tmpDir = '/tmp/webird-' .  md5(__DIR__) . '-' . posix_geteuid() . '/';
 
@@ -11,7 +10,7 @@ switch (ENV) {
         $cacheDir = $appDir . 'cache-static/';
         $composerDir = $appDir . 'vendor';
         // Load the configurable json config file
-        $config = new AdapterJson("{$appDir}/etc/config.json");
+        $config = new Config(yaml_parse_file("{$appDir}/etc/config.yaml"));
         break;
     case DEV_ENV:
         $config = require_once(__DIR__ . '/config_dev.php');

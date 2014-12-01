@@ -1,9 +1,11 @@
 'use strict'
 # system
 Jed = require 'jed'
-# constants
-localeDefault = LOCALE_CONFIG.default
-map = LOCALE_CONFIG.map
+# configuration
+localeConfig = require "#{LOCALE_ROOT}/config"
+
+localeDefault = localeConfig.default
+map = localeConfig.map
 
 langRaw = window.navigator.userLanguage || window.navigator.language
 langParts = langRaw.replace('-', '_').split('_')

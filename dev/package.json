@@ -1,15 +1,15 @@
 {
   "name": "webird",
-  "version": "0.5.0-alpha2",
+  "version": "0.5.0-alpha3",
   "dependencies": {},
   "devDependencies": {
+    "coffee-script": "~1.8.0",
     "gulp": "~3.8.10",
     "gulp-util": "~3.0.1",
     "js-yaml": "~3.2.3",
     "webpack": "~1.4.13",
     "webpack-dev-server": "~1.6.5",
     "extract-text-webpack-plugin": "~0.3.4",
-    "coffee-script": "~1.8.0",
     "coffee-loader": "~0.7.2",
     "bundle-loader": "~0.5.2",
     "json-loader": "~0.5.1",

@@ -64,10 +64,11 @@ wpConf =
       highlight:   'highlight.js/lib/highlight'
 
     extensions: [
-      ""
-      ".js", ".coffee"
-      ".html", ".hbs"
-      ".css", ".scss", ".less"
+      ''
+      '.js', '.coffee'
+      '.html', '.hbs'
+      '.css', '.scss', '.less'
+      '.json', '.yaml'
     ]
 
   resolveLoader:

@@ -3,7 +3,7 @@
   "description": "Webird Phalcon/Webpack Framework",
   "version": "0.5.0-alpha3",
   "require": {
-    "php": ">=5.5",
+    "php": ">=5.4",
     "ext-phalcon": ">=1.3.2",
     "ext-gettext": ">=0.0.0",
     "ext-zmq": ">=1.1.2",

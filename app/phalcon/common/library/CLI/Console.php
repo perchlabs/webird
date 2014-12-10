@@ -1,15 +1,17 @@
 <?php
 namespace Webird\CLI;
 
-use Phalcon\CLI\Console as PhalconConsole;
+use Phalcon\CLI\Console as PhalconConsole,
+    Webird\CLI\Exception\ArgumentValidationException,
+    Webird\CLI\Exception\PrintHelpException;
 
 /**
  * Console class for all CLI applications
  */
 class Console extends PhalconConsole
 {
-    private $progPath;
-
+    private $progPath,
+            $cmd;
 
     /**
      * Constructor
@@ -31,39 +33,37 @@ class Console extends PhalconConsole
         $config = $this->getDI()->getConfig();
 
         $this->progPath = array_shift($arguments['params']);
+        $this->cmd = array_shift($arguments['params']);
 
-        if (isset($arguments['params'][0])) {
-            $cmd = $arguments['params'][0];
-        } else {
+        if (is_null($this->cmd)) {
             if (!isset($arguments['defaultCmd'])) {
                 throw new \Exception('The Console was not given a command', 1);
             }
-            $cmd = $arguments['defaultCmd'];
+            $this->cmd = $arguments['defaultCmd'];
         }
-        $cmd = (isset($arguments['params'][0])) ? $arguments['params'][0] : $arguments['defaultCmd'];
 
-        if (in_array($cmd, ['help', '--help', '-h'])) {
+        if (in_array($this->cmd, ['help', '--help', '-h'])) {
             $this->printCmdList();
             exit(0);
         }
 
-        if (strpos($cmd, '.') !== false || strpos($cmd, '/') !== false) {
+        if (strpos($this->cmd, '.') !== false || strpos($this->cmd, '/') !== false) {
             throw new \Exception('Invalid command name', 1);
         }
 
         // All environments
-        $cmdArr = require("{$config->path->modulesDir}/cli/cmd.php");
+        $cmdArr = require("{$config->path->modulesDir}/{$arguments['module']}/cmd.php");
 
         if (DEV_ENV === ENV) {
             $devCmdArr = require("{$config->dev->path->devDir}/cmd_overrides.php");
             $cmdArr = array_replace($cmdArr, $devCmdArr);
         }
 
-        if (!array_key_exists($cmd, $cmdArr)) {
+        if (!array_key_exists($this->cmd, $cmdArr)) {
             throw new \Exception('The command description does not exist', 1);
         }
 
-        $taskParts = explode('::', $cmdArr[$cmd]);
+        $taskParts = explode('::', $cmdArr[$this->cmd]);
         $task = $taskParts[0];
         $action = (isset($taskParts[1])) ? $taskParts[1] : 'main';
         try {
@@ -74,9 +74,9 @@ class Console extends PhalconConsole
                 'params' => $arguments['params']
             ]);
         } catch (ArgumentValidationException $e) {
-            printHelpRecommend($e->getMessage());
+            $this->printHelpRecommend($e->getMessage());
             exit(1);
-        } catch (ArgumentPrintHelpException $e) {
+        } catch (PrintHelpException $e) {
             if ($e->getCode() == 1) {
                 $this->printHelpRecommend($e->getMessage());
             } else {

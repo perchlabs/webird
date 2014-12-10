@@ -7,7 +7,7 @@ use Phalcon\CLI\Task As PhalconTask,
     GetOptionKit\Exception\RequireValueException,
     GetOptionKit\Exception\InvalidOptionException,
     Webird\CLI\Exception\ArgumentValidationException,
-    Webird\CLI\Exception\ArgumentPrintHelpException;
+    Webird\CLI\Exception\PrintHelpException;
 
 
 // TODO, FIXME: Review if webUser, webGroup variables are still needed
@@ -39,6 +39,7 @@ abstract class Task extends PhalconTask
         }
     }
 
+    /**
      * Get the system user of the user of the current process
      *
      * @return string
@@ -129,24 +130,24 @@ abstract class Task extends PhalconTask
             exit(1);
         }
 
+        if (isset($argv[0]) && in_array($argv[0], ['--help', '-h'])) {
+            throw new PrintHelpException($cmdDef, $specs);
+        }
+
         // Use the options definition to parse the program arguments
         try {
             $result = $parser->parse($argv);
         } catch (RequireValueException $e) {
-            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+            throw new PrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
         } catch (InvalidOptionException $e) {
-            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+            throw new PrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
         } catch (\Exception $e) {
-            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+            throw new PrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
         }
 
-        // Print the help if that option was selected
-        if ($result->has('help')) {
-            throw new ArgumentPrintHelpException($cmdDef, $specs);
-        }
         // Ensure that the required arguments are supplied
         if (count($result->arguments) < count($cmdDef['args']['required'])) {
-            throw new ArgumentPrintHelpException($cmdDef, $specs, 'missing operand', 1);
+            throw new PrintHelpException($cmdDef, $specs, 'missing operand', 1);
         }
 
         // Clean arguments

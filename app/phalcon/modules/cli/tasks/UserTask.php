@@ -6,7 +6,7 @@ use Webird\Models\Users,
     Webird\Models\PasswordChanges,
     Webird\Models\EmailConfirmations,
     Webird\CLI\Task,
-    Webird\Cli\Exception\ArgumentValidationException;
+    Webird\CLI\Exception\ArgumentValidationException;
 
 /**
  * Task for user functions
@@ -38,6 +38,7 @@ class UserTask extends Task
         $opts = $params['opts'];
 
         $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
+error_log(var_export($emailParts, true));
         if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
             throw new ArgumentValidationException('Email must be in form: display <address>', 1);
         }
@@ -107,8 +108,7 @@ class UserTask extends Task
                 'required' => ['user'],
                 'optional' => []
             ],
-                'opts' => []
-            ]
+            'opts' => []
         ]);
         list($userRef) = $params['args'];
 
@@ -143,7 +143,7 @@ class UserTask extends Task
                 'b|banned:'               => 'Set user banned status. A banned user is also deactivated',
                 'm|must-change-password:' => 'Set must change password status'
             ]
-        ]); 
+        ]);
 
         list($userRef) = $params['args'];
         $opts = $params['opts'];
@@ -203,8 +203,7 @@ class UserTask extends Task
                 'required' => ['user', 'new_password'],
                 'optional' => []
             ],
-                'opts' => []
-            ]
+            'opts' => []
         ]);
         list($userRef, $password) = $params['args'];
 

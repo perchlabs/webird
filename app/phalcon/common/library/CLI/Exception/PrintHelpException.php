@@ -3,7 +3,7 @@ namespace Webird\CLI\Exception;
 
 use Exception;
 
-class ArgumentPrintHelpException extends Exception
+class PrintHelpException extends Exception
 {
     private $cmdDef,
             $specs;

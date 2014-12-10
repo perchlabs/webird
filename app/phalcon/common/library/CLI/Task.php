@@ -2,7 +2,13 @@
 namespace Webird\Cli;
 
 use Phalcon\CLI\Task As PhalconTask,
-    Webird\Cli\Exception\ArgumentValidationException;
+    GetOptionKit\OptionCollection,
+    GetOptionKit\OptionParser,
+    GetOptionKit\Exception\RequireValueException,
+    GetOptionKit\Exception\InvalidOptionException,
+    Webird\CLI\Exception\ArgumentValidationException,
+    Webird\CLI\Exception\ArgumentPrintHelpException;
+
 
 // TODO, FIXME: Review if webUser, webGroup variables are still needed
 
@@ -10,7 +16,7 @@ use Phalcon\CLI\Task As PhalconTask,
  * Task Base for \Webird\Console applications
  *
  */
-abstract class TaskBase extends PhalconTask
+abstract class Task extends PhalconTask
 {
     /**
      * Converts command like 'yes', 'y', 'true', 'no', 'n' and 'false' to boolean
@@ -98,6 +104,84 @@ abstract class TaskBase extends PhalconTask
 
         return $groupFound;
     }
+
+
+
+
+    /**
+    * Configures the parameters to be sent to each Task action
+    *
+    *  option configuration
+    *  --------------------------------------------------------
+    *  o|option         flag option (with boolean value true)
+    *  option:          option requires a value
+    *  option+          option with multiple values
+    *  option?          option with optional values
+    *  option:=string   option with type constraint of string
+    *  option:=number   option with type constraint of number
+    *  option:=file     option with type constraint of file
+    *  option:=date     option with type constraint of date
+    *  option:=boolean  option with type constraint of boolean
+    *  o                single character only option
+    *  option           long option name
+    *
+    * @param  array  $cmdDef
+    * @return array
+    */
+    protected function parseArgs($argv, $cmdDef)
+    {
+        // Configure the command line definition
+        $specs = new OptionCollection();
+        foreach ($cmdDef['opts'] as $option => $help) {
+            $specs->add($option, $help);
+        }
+        // Every program will have an auto-generated help
+        $specs->add('h|help', 'display this help and exit');
+
+        // Assign the command definition
+        try {
+            $parser = new OptionParser($specs);
+        } catch (\Exception $e) {
+            error_log("$cmd: The program has misconfigured options.");
+            exit(1);
+        }
+
+        // Use the options definition to parse the program arguments
+        try {
+            $result = $parser->parse($argv);
+        } catch (RequireValueException $e) {
+            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+        } catch (InvalidOptionException $e) {
+            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+        } catch (\Exception $e) {
+            throw new ArgumentPrintHelpException($cmdDef, $specs, $e->getMessage(), 1);
+        }
+
+        // Print the help if that option was selected
+        if ($result->has('help')) {
+            throw new ArgumentPrintHelpException($cmdDef, $specs);
+        }
+        // Ensure that the required arguments are supplied
+        if (count($result->arguments) < count($cmdDef['args']['required'])) {
+            throw new ArgumentPrintHelpException($cmdDef, $specs, 'missing operand', 1);
+        }
+
+        // Clean arguments
+        $args = array_map(function($arg) { return $arg->arg; }, $result->arguments);
+        // Clean options
+        $opts = array_map(function($opt) { return $opt->value; }, $result->keys);
+        // The final result to be used in Tasks
+        $params = [
+            'args' => $args,
+            'opts' => $opts
+        ];
+
+        return $params;
+    }
+
+
+
+
 
     // /**
     //  * Checks if the system web user can read the current users files

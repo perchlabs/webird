@@ -5,7 +5,7 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
-    Webird\Cli\TaskBase,
+    Webird\CLI\Task,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule;
 
@@ -13,7 +13,7 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
  * Task for Build
  *
  */
-class DevTask extends TaskBase
+class DevTask extends Task
 {
 
     public function mainAction(array $params)
@@ -23,8 +23,26 @@ class DevTask extends TaskBase
 
 
 
-    public function serverAction(array $params)
+    public function serverAction($argv)
     {
+        $config = $this->di->getConfig();
+
+        $help = <<<HELPMSG
+* PHP Ratchet websocket server on port {$config->app->wsPort}
+* ZMQ server on port {$config->app->zmqPort}
+* Node.js/Gulp Webpack build environment server on port {$config->dev->webpackPort}
+HELPMSG;
+
+        $params = $this->parseArgs($argv, [
+            'title' => "Start the dev (development) server processes",
+            'help' => $help,
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+            'opts' => []
+        ]);
+
         $devDir = $this->config->dev->path->devDir;
         $cmdWebirdEsc = escapeshellcmd("$devDir/webird.php");
         $devDirEsc = escapeshellarg($devDir);
@@ -59,8 +77,17 @@ class DevTask extends TaskBase
 
 
 
-    public function nginxAction(array $params)
+    public function nginxAction($argv)
     {
+        $params = $this->parseArgs($argv, [
+            'title' => 'Generate a dev (development) nginx configuration',
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+            'opts' => []
+        ]);
+
         $nginxConf = $this->getNginxConfig();
         echo $nginxConf;
     }

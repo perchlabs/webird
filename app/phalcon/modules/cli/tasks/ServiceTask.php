@@ -10,14 +10,14 @@ use ZMQ,
     Ratchet\WebSocket\WsServer,
     Ratchet\Session\SessionProvider,
     Symfony\Component\HttpFoundation\Session\Storage\Handler,
-    Webird\Cli\TaskBase,
+    Webird\CLI\Task,
     Webird\Cli\Chat;
 
 /**
  * Task for websocket
  *
  */
-class ServiceTask extends TaskBase
+class ServiceTask extends Task
 {
     public function mainAction(array $params)
     {
@@ -26,8 +26,22 @@ class ServiceTask extends TaskBase
 
 
 
-    public function websocketListenAction(array $params)
+    public function websocketListenAction($argv)
     {
+        $config = $this->di->getConfig();
+
+        $params = $this->parseArgs($argv, [
+            'title' => 'Start the websocket listener (start this through the server command).',
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+            'opts' => [
+                'p|wsport:'    => "websockets listen on port (default is {$config->app->wsPort}).",
+                'z|zmqport:' => "zmq listen on port (default is {$config->app->zmqPort})."
+            ]
+        ]);
+
         // $this->ensureRunningAsWebUser();
         $opts = $params['opts'];
         $config = $this->config;

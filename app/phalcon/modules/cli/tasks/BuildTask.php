@@ -5,9 +5,9 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
-    Webird\Cli\TaskBase,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule,
+    Webird\CLI\Task,
     Webird\Locale\Compiler as LocaleCompiler,
     Webird\Locale\CompilerException as LocaleCompilerException;
 
@@ -15,11 +15,20 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
  * Task for Build
  *
  */
-class BuildTask extends TaskBase
+class BuildTask extends Task
 {
 
-    public function mainAction(array $params)
+    public function mainAction($argv)
     {
+        $params = $this->parseArgs($argv, [
+            'title' => 'Build dist (distribution/production) system',
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+            'opts' => []
+        ]);
+
         $this->cleanDirectoryStructure();
         $this->buildDirectoryStructure();
 

@@ -2,7 +2,7 @@
 use Phalcon\DI\FactoryDefault\CLI as DI,
     Phalcon\PhalconDebug,
     Phalcon\Exception As PhalconException,
-    Webird\Console as WebirdConsole,
+    Webird\CLI\Console as WebirdConsole,
     Webird\Cli\Exception\ArgumentValidationException;
 
 if (php_sapi_name() !== "cli") {
@@ -37,9 +37,8 @@ require_once($config->path->composerDir . '/autoload.php');
 // Configure essential services
 require($config->path->configDir . '/di.php');
 
-
 $di = DI::getDefault();
-$console = new WebirdConsole($di, 'server', $argv);
+$console = new WebirdConsole($di);
 // Inject the console back into the DI to enabled it to handle batch tasks inside of a task
 $di->setShared('console', $console);
 $console->registerModules([
@@ -51,7 +50,9 @@ if (DEV) {
 }
 try {
     $console->handle([
-        'module' => 'cli'
+        'module'     => 'cli',
+        'defaultCmd' => 'server',
+        'params'     => $argv
     ]);
 }
 catch (PhalconException $e) {

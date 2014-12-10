@@ -1,13 +1,13 @@
 <?php
 namespace Webird\Cli\Tasks;
 
-use Webird\Cli\TaskBase;
+use Webird\CLI\Task;
 
 /**
  * Task for maintanance and cleaning
  *
  */
-class CleanTask extends TaskBase
+class CleanTask extends Task
 {
     public function mainAction(array $params)
     {

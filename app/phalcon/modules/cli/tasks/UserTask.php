@@ -5,14 +5,14 @@ use Webird\Models\Users,
     Webird\Models\Roles,
     Webird\Models\PasswordChanges,
     Webird\Models\EmailConfirmations,
-    Webird\Cli\TaskBase,
+    Webird\CLI\Task,
     Webird\Cli\Exception\ArgumentValidationException;
 
 /**
  * Task for user functions
  *
  */
-class UserTask extends TaskBase
+class UserTask extends Task
 {
     public function mainAction() {
          echo "The default action inside of the ", CURRENT_TASK, " task is not configured\n";
@@ -20,9 +20,20 @@ class UserTask extends TaskBase
 
 
 
-    public function createAction(array $params)
+    public function createAction($argv)
     {
-        $this->ensureArgumentCount($params, 2);
+        $params = $this->parseArgs($argv, [
+            'title' => 'Add a user with a permission role.',
+            'args' => [
+                'required' => ['email', 'role'],
+                'optional' => []
+            ],
+            'opts' => [
+                'p|password:' => 'set user password (otherwise it will need to be on first login).',
+                'a|activate' => 'activate',
+                'E|send-email?' => 'send email confirmation with optional message'
+            ]
+        ]);
         list($emailRaw, $roleRef) = $params['args'];
         $opts = $params['opts'];
 
@@ -71,7 +82,6 @@ class UserTask extends TaskBase
         if (!$user->save()) {
             $message = implode("\n", $user->getMessages());
             throw new \Exception("$message", 1);
-        } else {
         }
 
         if ($sendEmail) {
@@ -89,9 +99,17 @@ class UserTask extends TaskBase
 
 
 
-    public function deleteAction(array $params)
+    public function deleteAction($argv)
     {
-        $this->ensureArgumentCount($params, 1);
+        $params = $this->parseArgs($argv, [
+            'title' => 'Delete a user by email or primary key.',
+            'args' => [
+                'required' => ['user'],
+                'optional' => []
+            ],
+                'opts' => []
+            ]
+        ]);
         list($userRef) = $params['args'];
 
         if (($user = $this->getUserByUniqueRef($userRef)) === false) {
@@ -111,9 +129,22 @@ class UserTask extends TaskBase
 
 
 
-    public function statusAction(array $params)
+    public function statusAction($argv)
     {
-        $this->ensureArgumentCount($params, 1);
+        $params = $this->parseArgs($argv, [
+            'title' => 'Modify or view status for a user by email or primary key.',
+            'args' => [
+                'required' => ['user'],
+                'optional' => []
+            ],
+            'opts' => [
+                'r|role'                  => 'Set user permission role',
+                'a|active:'               => 'Set user active status',
+                'b|banned:'               => 'Set user banned status. A banned user is also deactivated',
+                'm|must-change-password:' => 'Set must change password status'
+            ]
+        ]); 
+
         list($userRef) = $params['args'];
         $opts = $params['opts'];
 
@@ -164,9 +195,17 @@ class UserTask extends TaskBase
 
 
 
-    public function passwordAction(array $params)
+    public function passwordAction($argv)
     {
-        $this->ensureArgumentCount($params, 2);
+        $params = $this->parseArgs($argv, [
+            'title' => 'Change the password of an existing user by email or primary key.',
+            'args' => [
+                'required' => ['user', 'new_password'],
+                'optional' => []
+            ],
+                'opts' => []
+            ]
+        ]);
         list($userRef, $password) = $params['args'];
 
         $passwordMinLength = $this->config->security->passwordMinLength;

@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Cli\Exception;
+namespace Webird\CLI\Exception;
 
 use Exception;
 

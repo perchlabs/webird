@@ -3,13 +3,13 @@ namespace Webird\Cli\Tasks;
 
 use React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
-    Webird\Cli\TaskBase;
+    Webird\CLI\Task;
 
 /**
  *
  *
  */
-class DistTask extends TaskBase
+class DistTask extends Task
 {
 
     public function mainAction(array $params)
@@ -19,8 +19,28 @@ class DistTask extends TaskBase
 
 
 
-    public function serverAction(array $params)
+    public function serverAction($argv)
     {
+        $config = $this->getConfig();
+
+        $help = <<<HELPMSG
+* PHP Ratchet websocket server on port {$config->app->wsPort}
+* ZMQ server on port {$config->app->zmqPort}
+HELPMSG;
+
+        $params = $this->parseArgs($argv, [
+            'title' => 'Start the dist (distribution/production) server processes.',
+            'help' => $help,
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+            'opts' => [
+                'w|wsport:'    => "websockets listen on port (default is {$config->app->wsPort}).",
+                'z|zmqport:' => "zmq listen on port (default is {$config->app->zmqPort})."
+            ]
+        ]);
+
         $appDir = $this->config->path->appDir;
         $cmdWebirdEsc = escapeshellcmd("$appDir/webird.php");
 
@@ -45,8 +65,18 @@ class DistTask extends TaskBase
 
 
 
-    public function nginxAction(array $params)
+    public function nginxAction($argv)
     {
+        $params = $this->parseArgs($argv, [
+            'title' => 'Generate a dist (distribution/production) nginx configuration',
+            'args' => [
+                'required' => [],
+                'optional' => []
+            ],
+                'opts' => []
+            ]
+        ]);
+
         $nginxConf = $this->getNginxConfig();
         echo $nginxConf;
     }

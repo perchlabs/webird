@@ -110,31 +110,6 @@ class Console extends PhalconConsole
         echo implode(', ', $cmdList) . "\n";
     }
 
-
-
-
-
-
-
-    private function getCmdDefs($path)
-    {
-        $config = $this->getDI()->get('config');
-
-        $cmdArr = [];
-        $dh = opendir($path);
-        while (($fileName = readdir($dh)) !== false) {
-            if ($fileName == '.' || $fileName == '..')
-                continue;
-
-            $fullPath = realpath("$path/$fileName");
-            $cmdName = str_replace('.php', '', $fileName);
-            $cmdArr[$cmdName] = require($fullPath);
-        }
-        closedir($dh);
-
-        return $cmdArr;
-    }
-
     /**
      * Print an error message message with a recommendation to access help
      *

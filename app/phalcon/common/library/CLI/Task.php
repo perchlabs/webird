@@ -39,20 +39,6 @@ abstract class Task extends PhalconTask
         }
     }
 
-    /**
-     * Ensures that the required number of CLI arguments are included
-     *
-     * @param  array   $params
-     * @param  int     $requiredArgCount
-     */
-    protected function ensureArgumentCount($params, $requiredArgCount)
-    {
-        if (count($params['args']) < $requiredArgCount) {
-            throw new \Exception("Invalid number of requirement arguments.", 1);
-        }
-    }
-
-    /**
      * Get the system user of the user of the current process
      *
      * @return string
@@ -104,9 +90,6 @@ abstract class Task extends PhalconTask
 
         return $groupFound;
     }
-
-
-
 
     /**
     * Configures the parameters to be sent to each Task action

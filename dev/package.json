@@ -1,6 +1,6 @@
 {
   "name": "webird",
-  "version": "0.5.0-alpha3",
+  "version": "0.5.0-alpha4",
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.8.0",

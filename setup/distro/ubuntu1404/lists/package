@@ -14,6 +14,7 @@ curl
 gcc
 make
 pkg-config
+re2c
 # environments
 nginx
 mariadb-server

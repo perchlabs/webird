@@ -38,7 +38,6 @@ class UserTask extends Task
         $opts = $params['opts'];
 
         $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
-error_log(var_export($emailParts, true));
         if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
             throw new ArgumentValidationException('Email must be in form: display <address>', 1);
         }

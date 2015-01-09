@@ -68,7 +68,7 @@ wpConf =
       '.js', '.coffee'
       '.html', '.hbs'
       '.css', '.scss', '.less'
-      '.json', '.yaml'
+      '.json', '.yml', '.yaml'
     ]
 
   resolveLoader:
@@ -133,7 +133,7 @@ wpConf =
       }
       {
         # YAML Loader
-        test: /\.yaml$/
+        test: /\.(yaml|yml)$/
         loader: "json!yaml"
       }
       {

@@ -14,7 +14,6 @@
   </div>
 </div>
 {{ content() }}
-</div>
 {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
 </body>
 </html>

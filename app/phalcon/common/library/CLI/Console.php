@@ -79,10 +79,11 @@ class Console extends PhalconConsole
         } catch (PrintHelpException $e) {
             if ($e->getCode() == 1) {
                 $this->printHelpRecommend($e->getMessage());
+                exit(1);
             } else {
                 $this->printHelp($e->getCmdDef(), $e->getSpecs());
+                exit(0);
             }
-            exit(1);
         }
     }
 

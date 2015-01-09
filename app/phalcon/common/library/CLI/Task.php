@@ -75,13 +75,11 @@ abstract class Task extends PhalconTask
     {
         $userNameEsc = escapeshellarg($userName);
         $cmd = "groups $userNameEsc";
-        // echo "$cmd\n";
         exec($cmd, $output, $ret);
         if ($ret !== 0) {
             error_log('Unable to determine the groups this user belongs to.');
             exit(1);
         }
-        // echo $output[0] . "\n";
 
         $parts = explode(':', $output[0]);
         $parts = trim($parts[1]);
@@ -280,6 +278,5 @@ abstract class Task extends PhalconTask
 
         return true;
     }
-
 
 }

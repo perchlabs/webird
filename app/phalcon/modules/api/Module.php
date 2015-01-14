@@ -3,7 +3,6 @@ namespace Webird\Api;
 
 use Phalcon\DI,
     Phalcon\Loader,
-    Phalcon\Mvc\View,
     Webird\Module as WbModule,
     Webird\Mvc\View;
 

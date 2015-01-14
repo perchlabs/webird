@@ -1,3 +1,3 @@
 <?php
 define('ENV', 'dev');
-require('../../app/phalcon/bootstrap_webserver.php');
+require('../../app/phalcon/bootstrap_web.php');

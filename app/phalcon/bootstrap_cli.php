@@ -35,7 +35,7 @@ if (!file_exists($config->path->tmpDir)) {
 // Setup composer autoloading so that it doesn't need to be specified in each Module
 require_once($config->path->composerDir . '/autoload.php');
 // Configure essential services
-require($config->path->configDir . '/di.php');
+require($config->path->configDir . '/services.php');
 
 $di = DI::getDefault();
 $console = new WebirdConsole($di);

@@ -52,8 +52,8 @@ if (!file_exists($config->path->tmpDir)) {
 // Setup composer autoloading so that it doesn't need to be specified in each Module
 require_once($config->path->composerDir . '/autoload.php');
 
-require ($config->path->configDir . '/di.php');
-require ($config->path->configDir . '/di_webserver.php');
+require ($config->path->configDir . '/services.php');
+require ($config->path->configDir . '/services_web.php');
 
 if (DEV) {
     class_alias('\Webird\Debug', '\Dbg', true);

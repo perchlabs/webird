@@ -233,7 +233,7 @@ WEBIRD_ENTRY;
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
 define('ENV', 'dist');
-require(__DIR__ . '/../phalcon/bootstrap_webserver.php');
+require(__DIR__ . '/../phalcon/bootstrap_web.php');
 WEBIRD_ENTRY;
         file_put_contents("$distDir/public/index.php", $webEntry);
     }

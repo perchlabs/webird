@@ -29,7 +29,7 @@
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{_('Tools')}}</h3>
-      <a href="javascript:(void)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ this.translate.gettext('Debug Panel') | escape }}</a>
+      <a href="javascript:void(0)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ this.translate.gettext('Debug Panel') | escape }}</a>
     </div>
   </div>
   {% if DEV %}<!--DEBUG_PANEL-->{% endif %}

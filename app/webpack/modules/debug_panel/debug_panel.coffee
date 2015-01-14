@@ -2,12 +2,11 @@
 # system
 $ = require 'jquery'
 mousetrap = require 'mousetrap'
-Highlight = require 'highlight'
+highlight = require 'highlight'
 require 'highlight.js/styles/github'
 # local
 require './style.less'
 
-highlight = new Highlight()
 highlight.registerLanguage('sql', require('highlight.js/lib/languages/sql'))
 highlight.registerLanguage('php', require('highlight.js/lib/languages/php'))
 highlight.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))

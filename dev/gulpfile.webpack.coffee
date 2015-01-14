@@ -57,11 +57,11 @@ wpConf =
     modulesDirectories: [appModulesRoot, 'node_modules', 'bower_components']
 
     alias:
-      underscore:  'lodash'
-      handlebars:  'handlebars/dist/handlebars'
-      Backbone:    'backbone'
-      Marionette:  'backbone.marionette'
-      highlight:   'highlight.js/lib/highlight'
+      underscore: 'lodash'
+      handlebars: 'handlebars/dist/handlebars'
+      Backbone:   'backbone'
+      Marionette: 'backbone.marionette'
+      highlight:  'highlight.js/lib/highlight'
 
     extensions: [
       ''
@@ -139,7 +139,7 @@ wpConf =
       {
         # PO translation messages Loader
         test: /\.po$/
-        loader: "json!po"
+        loader: "json!po?format=jed"
       }
       {
         # HTML Loaders

@@ -37,9 +37,6 @@ module.exports =
 
     waitForLangChunk (messages) ->
       console.log messages
-      i18n = new Jed
-        domain: 'messages'
-        locale_data:
-          messages: messages
+      i18n = new Jed messages
 
       loadApp()

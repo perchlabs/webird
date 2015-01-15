@@ -16,8 +16,8 @@ clearstatcache();
 exec("mkdir -p " . escapeshellarg($cacheDir . 'volt/'));
 exec("mkdir -p " . escapeshellarg($cacheDir . 'locale/'));
 
-$config = new Config(yaml_parse_file("{$etcDir}/dev_defaults.yaml"));
-$config2 = new Config(yaml_parse_file("{$etcDir}/dev.yaml"));
+$config = new Config(yaml_parse_file("{$etcDir}/dev_defaults.yml"));
+$config2 = new Config(yaml_parse_file("{$etcDir}/dev.yml"));
 $config3 = new Config([
     DEV_ENV => [
         'path' => [
@@ -29,7 +29,7 @@ $config3 = new Config([
     ]
 ]);
 $config4 = new Config([
-    'locale' => yaml_parse_file("$appDir/locale/config.yaml")
+    'locale' => yaml_parse_file("$appDir/locale/config.yml")
 ]);
 
 

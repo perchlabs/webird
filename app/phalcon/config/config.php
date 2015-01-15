@@ -10,7 +10,7 @@ switch (ENV) {
         $cacheDir = $appDir . 'cache-static/';
         $composerDir = $appDir . 'vendor';
         // Load the configurable json config file
-        $config = new Config(yaml_parse_file("{$appDir}/etc/config.yaml"));
+        $config = new Config(yaml_parse_file("{$appDir}/etc/config.yml"));
         break;
     case DEV_ENV:
         $config = require_once(__DIR__ . '/config_dev.php');

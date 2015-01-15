@@ -1,6 +1,6 @@
 app/locale/*/LC_MESSAGES/messages.mo
-etc/dev.yaml
-etc/dist.yaml
+etc/dev.yml
+etc/dist.yml
 dist/
 dev/node_modules/
 dev/bower_components/

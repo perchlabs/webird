@@ -91,8 +91,8 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 ## Development Usage:
 
-1. Copy `./etc/templates/dev_config.yaml` to `./etc/dev.yaml`
-2. Configure `./etc/dev.yaml` for local database password
+1. Copy `./etc/templates/dev_config.yml` to `./etc/dev.yml`
+2. Configure `./etc/dev.yml` for local database password
 3. Create a Webird user with `./dev/webird.php useradd`
 4. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
 5. Visit http://dev.webird.io
@@ -102,8 +102,8 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 ## Distribution Usage:
 
 #### Create dist environment:
-1. Copy `./etc/templates/dist_config.yaml` to `./etc/dist.yaml`
-2. Configure `./etc/dist.yaml` to override settings from `./etc/dist_defaults.yaml`.  These two files will be merged to form `./dist/etc/config.yaml`.
+1. Copy `./etc/templates/dist_config.yml` to `./etc/dist.yml`
+2. Configure `./etc/dist.yml` to override settings from `./etc/dist_defaults.yml`.  These two files will be merged to form `./dist/etc/config.yml`.
 3. Create the dist environment: `./dev/webird.php build`
 4. Visit https://dist.webird.io
 
@@ -114,7 +114,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 1. Generate nginx configuration with : `./webird.php nginx` (and save with `>` redirection and enable it in nginx).
 2. Import database schema located at `./etc/schema.sql`
 3. Run server processes: `./webird.php`
-4. If something is wrong modify `./config.yaml` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.yaml` file and then rebuild the dist environment.
+4. If something is wrong modify `./config.yml` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.yml` file and then rebuild the dist environment.
 
 The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the `./etc/template/dist_nginx` file and then rebuild the dist environment.
 
@@ -133,7 +133,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   ├── config/
 │   └── modules/
 └── webpack
-    ├── config.litcoffee (you can make this .json, .yaml, .js or .coffee)
+    ├── config.litcoffee (you can make this .json, .yml, .js or .coffee)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
     └── modules (custom commonjs modules)

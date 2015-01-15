@@ -21,7 +21,7 @@ class DistTask extends Task
 
     public function serverAction($argv)
     {
-        $config = $this->getConfig();
+        $config = $this->config;
 
         $help = <<<HELPMSG
 * PHP Ratchet websocket server on port {$config->app->wsPort}
@@ -73,8 +73,7 @@ HELPMSG;
                 'required' => [],
                 'optional' => []
             ],
-                'opts' => []
-            ]
+            'opts' => []
         ]);
 
         $nginxConf = $this->getNginxConfig();

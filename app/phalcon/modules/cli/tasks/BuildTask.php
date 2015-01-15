@@ -284,10 +284,10 @@ WEBIRD_ENTRY;
         $devDir = $this->config->dev->path->devDir;
         $distDir = $this->config->dev->path->distDir;
 
-        $config1 = yaml_parse_file("$etcDir/dist_defaults.yaml");
-        $config2 = yaml_parse_file("$etcDir/dist.yaml");
+        $config1 = yaml_parse_file("$etcDir/dist_defaults.yml");
+        $config2 = yaml_parse_file("$etcDir/dist.yml");
 
-        $localeConfig = yaml_parse_file("$localeDir/config.yaml");
+        $localeConfig = yaml_parse_file("$localeDir/config.yml");
         $localeConfig['supported'] = $this->getDI()->getLocale()->getSupportedLocales();
         $config3 = [
             'locale' => $localeConfig
@@ -297,7 +297,7 @@ WEBIRD_ENTRY;
         $configMerged = array_replace_recursive($config1, $config2, $config3);
 
         // Write the merged settings to the dist directory
-        yaml_emit_file("$distDir/etc/config.yaml", $configMerged);
+        yaml_emit_file("$distDir/etc/config.yml", $configMerged);
     }
 
 

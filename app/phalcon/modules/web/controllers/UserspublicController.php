@@ -55,7 +55,7 @@ class UserspublicController extends Controller
         }
 
         if ($confirmation->confirmed != 'N') {
-            $this->flash->notice($t->gettext("You've already confirmed your email. Proceed to signin"));
+            $this->flash->notice($t->gettext("You have already confirmed your email. Proceed to signin"));
             return $this->dispatcher->forward([
                 'controller' => 'session',
                 'action' => 'signin'

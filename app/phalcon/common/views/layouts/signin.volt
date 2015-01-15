@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{_('Signin')}}</title>
+  <title>{{t('Signin')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>

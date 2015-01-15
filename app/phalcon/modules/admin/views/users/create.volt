@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-1">
-      {{ link_to("admin/users", '&larr; ' ~ _('Go Back'), "class": "btn btn-link pull-left") }}
+      {{ link_to("admin/users", '&larr; ' ~ t('Go Back'), "class": "btn btn-link pull-left") }}
     </div>
   </div>
 
   {{ form(null, 'class': 'form-horizontal', 'autocomplete': 'off', 'role': 'form') }}
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
-        <h2>{{_('Create a User')}}</h2>
+        <h2>{{t('Create a User')}}</h2>
         {{ content() }}
       </div>
     </div>
@@ -47,7 +47,7 @@
       <label for="active" class="col-md-2 col-md-offset-2 text-right control-label">{{form.label('emailActivationMsg')}}</label>
       <div class="col-md-4">
         {{ form.render("emailActivationMsg", ['class':'form-control']) }}
-        <p class="text-warning">{{_('* The email can be sent at a later time')}}</p>
+        <p class="text-warning">{{t('* The email can be sent at a later time')}}</p>
       </div>
     </div>
 

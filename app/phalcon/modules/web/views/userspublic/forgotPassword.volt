@@ -4,7 +4,7 @@
 
     <div class="form-group text-left">
       <div class="col-md-4 col-md-offset-4">
-        <h2>{{_('Forgot Password?')}}</h2>
+        <h2>{{t('Forgot Password?')}}</h2>
       </div>
     </div>
 

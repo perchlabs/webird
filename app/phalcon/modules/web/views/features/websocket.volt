@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{_('Webird WebSocket Technology Demo')}}</title>
+  <title>{{t('Webird WebSocket Technology Demo')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
@@ -9,9 +9,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>{{_('Websocket Feature')}}</h1>
+        <h1>{{t('Websocket Feature')}}</h1>
         <p>
-          {{_('Phalcon, Webpack and Ratchet integration example:')}}
+          {{t('Phalcon, Webpack and Ratchet integration example:')}}
         <p>
       </div>
     </div>

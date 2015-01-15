@@ -68,27 +68,25 @@ mysql --user=root --password=DB_ROOT_PW webird < ./etc/schema.sql
 ```
 
 ### Poedit Localization editor:
-In order to modify the localization messages you will need to configure the [Poedit](http://poedit.net/) GNU gettext frontend.
-
-The advantage to using gettext is that it supports a wide variety of languages, multiple plural forms and it can extract the translation strings from many types of source code and templates.
-
-The Phalcon Volt templates will compile to phtml format with extension `.volt.php`. Recent versions of `xgettext` are able to parse this by default.
-However to allow Handlebar templates Poedit must be configured to use the Node.js/npm globally installed `xgettext-template` program.
-To configure Poedit for Handlebar templates you may view the directions on the [xgettext-template](https://github.com/gmarty/xgettext) page or follow the instructions below:
+In order to modify the localization messages you will need to configure the [Poedit](http://poedit.net/) GNU gettext frontend since it does not come with the tools necessary to parse Nunjucks and Volt templates.  The provision script will have installed a nodejs script called xgettext-template.
 
 ##### Poedit Configuration Instructions:
 Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
-![Poedit parser configuration](http://gmarty.github.io/xgettext/Poedit.png)
-
-* Language: `Handlebars`
-* List of extensions...: `*.hbs`
-* Parser Command: `xgettext-template --force-po -o %o %C %K %F`
-* An item in keywords list: `-k %k`
-* An item in input files list: `%f`
-* Source code charset: `--from-code=%c`
-
-**Note**: In order to use the Poedit Update feature to extract gettext translation messages you must first build a `dist` environment.  If you fail to first build the `dist` environment then many strings will show up in the *Obsolete Strings* tab.  If this happens then just hit cancel, but don't worry because regardless the old string translations will be preserved within the .po file.  This is currently required since there is no xgettext Volt/Twig parser and so the compiled Volt templates must be accessed for these strings.
+* **Nunjucks**
+  * Language: `Nunjucks`
+  * List of extensions...: `*.nunj`
+  * Parser Command: `xgettext-template -L Swig --force-po -o %o %C %K %F`
+  * An item in keywords list: `-k %k`
+  * An item in input files list: `%f`
+  * Source code charset: `--from-code=%c`
+* **Volt**
+  * Language: `Volt`
+  * List of extensions...: `*.volt`
+  * Parser Command: `xgettext-template -L Volt --force-po -o %o %C %K %F`
+  * An item in keywords list: `-k %k`
+  * An item in input files list: `%f`
+  * Source code charset: `--from-code=%c`
 
 
 ## Development Usage:

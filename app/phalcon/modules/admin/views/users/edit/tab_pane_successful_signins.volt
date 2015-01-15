@@ -2,9 +2,9 @@
   <table class="table table-bordered table-striped" align="center">
     <thead>
       <tr>
-        <th>{{_('Id')}}</th>
-        <th>{{_('IP Address')}}</th>
-        <th>{{_('User Agent')}}</th>
+        <th>{{t('Id')}}</th>
+        <th>{{t('IP Address')}}</th>
+        <th>{{t('User Agent')}}</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
         <td>{{ signin.userAgent }}</td>
       </tr>
     {% else %}
-        <tr><td colspan="3" align="center">{{_('User does not have successfull signins')}}</td></tr>
+        <tr><td colspan="3" align="center">{{t('User does not have successfull signins')}}</td></tr>
     {% endfor %}
     </tbody>
   </table>

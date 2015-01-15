@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2>{{_('Role Permissions')}}</h2>
+      <h2>{{t('Role Permissions')}}</h2>
       <div class="text-warning">
         {{ content() }}
       </div>
@@ -19,7 +19,7 @@
 
     <div class="form-group">
       <div class="col-md-6 col-md-offset-3">
-        {{ submit_button(_('Search'), 'name': 'search', 'class': 'btn btn-primary') }}
+        {{ submit_button(t('Search'), 'name': 'search', 'class': 'btn btn-primary') }}
       </div>
     </div>
 
@@ -54,7 +54,7 @@
     {% if request.isPost() and role %}
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4 text-center">
-        {{ submit_button(_('Save'), "name": "save", "class": "btn btn-success") }}
+        {{ submit_button(t('Save'), "name": "save", "class": "btn btn-success") }}
       </div>
     </div>
     {% endif %}

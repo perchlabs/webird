@@ -1,9 +1,8 @@
-
 <div class="container">
 
   <div class="row">
     <div class="col-md-1">
-      {{ link_to("admin/users", '&larr; ' ~ _('Go Back'), "class": "btn btn-link pull-left") }}
+      {{ link_to("admin/users", '&larr; ' ~ t('Go Back'), "class": "btn btn-link pull-left") }}
     </div>
   </div>
 
@@ -16,10 +15,10 @@
   <div class="row top17">
     <div class="col-md-6 col-md-offset-3">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#edit" data-toggle="tab">{{_('Edit')}}</a></li>
-        <li><a href="#signins" data-toggle="tab">{{_('Signins')}}</a></li>
-        <li><a href="#pwchanges" data-toggle="tab">{{_('Password Changes')}}</a></li>
-        <li><a href="#pwresets" data-toggle="tab">{{_('Reset Passwords')}}</a></li>
+        <li class="active"><a href="#edit" data-toggle="tab">{{t('Edit')}}</a></li>
+        <li><a href="#signins" data-toggle="tab">{{t('Signins')}}</a></li>
+        <li><a href="#pwchanges" data-toggle="tab">{{t('Password Changes')}}</a></li>
+        <li><a href="#pwresets" data-toggle="tab">{{t('Reset Passwords')}}</a></li>
       </ul>
     </div>
 

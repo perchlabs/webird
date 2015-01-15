@@ -1,13 +1,14 @@
 'use strict'
 # system
 Marionette = require 'Marionette'
-Handlebars = require 'handlebars'
 # local
 require './shim_backbone.radio'
+template = require 'template'
 
 # Configure Marionette.Renderer to use Marionette instead of underscore templates
-Marionette.Renderer.render = (source, data) ->
-  template = Handlebars.compile source
-  html = template data
+Marionette.Renderer.render = (src, data) ->
+  tpl = template.factory src
+  html = tpl.render(data)
+  return html
 
 module.exports = Marionette.Application

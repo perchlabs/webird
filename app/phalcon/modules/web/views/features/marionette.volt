@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{_('Webird Marionette Technology Demo')}}</title>
+  <title>{{t('Webird Marionette Technology Demo')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>

@@ -5,7 +5,7 @@
         <div class="text-warning">
           {{ content() }}
         </div>
-        <h2>{{_('Reset Password')}}</h2>
+        <h2>{{t('Reset Password')}}</h2>
       </div>
     </div>
     <div class="form-group">
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4 text-center">
-        {{ submit_button(_('Reset Password'), "class": "btn btn-primary") }}
+        {{ submit_button(t('Reset Password'), "class": "btn btn-primary") }}
       </div>
     </div>
   </form>

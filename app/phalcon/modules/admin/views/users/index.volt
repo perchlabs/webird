@@ -1,15 +1,14 @@
-
 <div class="container">
   <div class="row pull-right">
     <div class="col-sm-1 text-right">
-      {{ link_to("admin/users/create", "<i class='glyphicon glyphicon-plus-sign'></i> " ~ _('Create User'), "class": "btn btn-primary pull-right") }}
+      {{ link_to("admin/users/create", "<i class='glyphicon glyphicon-plus-sign'></i> " ~ t('Create User'), "class": "btn btn-primary pull-right") }}
     </div>
   </div>
 
   {{ form('admin/users/search', 'class': 'form-horizontal', 'autocomplete': 'off', 'role': 'form') }}
     <div class="form-group text-left">
       <div class="col-md-4 col-md-offset-4">
-        <h2>{{_('Search users')}}</h2>
+        <h2>{{t('Search users')}}</h2>
         <div class="text-warning">
           {{ content() }}
         </div>
@@ -46,7 +45,7 @@
 
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
-        <p class="text-center">{{ submit_button(_('Search'), "class": "btn btn-primary") }}</p>
+        <p class="text-center">{{ submit_button(t('Search'), "class": "btn btn-primary") }}</p>
       </div>
     </div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{_('Webird Public Page')}}</title>
+  <title>{{t('Webird Public Page')}}</title>
 {{ partial('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
@@ -11,7 +11,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-content">
-        <span class="sr-only">{{_('Toggle navigation')}}</span>
+        <span class="sr-only">{{t('Toggle navigation')}}</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbar-content">
       <ul class="nav navbar-nav">
         {%- set menus = [
-          'about': this.translate.gettext('About')
+          'about': this.translate.t('About')
         ] -%}
 
         {%- for key, value in menus %}
@@ -37,9 +37,9 @@
 
       <ul class="nav navbar-nav navbar-right">
         {% if 'signin' == dispatcher.getActionName() %}
-        <li class="active">{{ link_to('signin', _('Signin')) }}</li>
+        <li class="active">{{ link_to('signin', t('Signin')) }}</li>
         {% else %}
-        <li>{{ link_to('signin', _('Signin')) }}</li>
+        <li>{{ link_to('signin', t('Signin')) }}</li>
         {% endif %}
       </ul>
 

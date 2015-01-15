@@ -66,7 +66,7 @@ wpConf =
     extensions: [
       ''
       '.js', '.coffee'
-      '.html', '.hbs'
+      '.html', '.nunj'
       '.css', '.scss', '.less'
       '.json', '.yml', '.yaml'
     ]
@@ -147,8 +147,8 @@ wpConf =
         loader: "html"
       }
       {
-        test: /\.hbs$/
-        loader: "html"
+        test: /\.nunj$/
+        loader: "nunjucks"
       }
       # Style Loaders, style! inlines the css into the bundle files
       {

@@ -92,6 +92,18 @@ class Gettext
     }
 
     /**
+    * Accesses the gettext function for a message in singular form
+    *
+    * @param  string $message
+    * @return string
+    */
+    public function t($message)
+    {
+      $translation = gettext($message);
+      return $translation;
+    }
+
+    /**
      * Access the ngettext function for a message with a plural form
      *
      * @param  string  $msgid1
@@ -103,6 +115,20 @@ class Gettext
     {
         $translation = ngettext($msgid1, $msgid2, $n);
         return $translation;
+    }
+
+    /**
+    * Access the ngettext function for a message with a plural form
+    *
+    * @param  string  $msgid1
+    * @param  string  $msgid2
+    * @param  integer $n
+    * @return string
+    */
+    public function n($msgid1, $msgid2, $n)
+    {
+      $translation = ngettext($msgid1, $msgid2, $n);
+      return $translation;
     }
 
     /**

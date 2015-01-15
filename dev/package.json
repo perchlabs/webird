@@ -15,6 +15,7 @@
     "json-loader": "~0.5.1",
     "yaml-loader": "~0.1.0",
     "po-loader": "~0.2.1",
+    "nunjucks-loader": "~0.1.0",
     "style-loader": "~0.8.2",
     "less-loader": "~2.0.0",
     "sass-loader": "~0.3.1",
@@ -26,13 +27,13 @@
     "url-loader": "~0.5.5",
     "expose-loader": "~0.6.0",
     "lodash": "~2.4.1",
-    "handlebars": "~2.0.0",
     "backbone": "~1.1.2",
     "backbone.marionette": "~2.3.0",
     "backbone.radio": "~0.8.4",
     "backbone.babysitter": "~0.1.5",
     "mousetrap": "1.4.6",
-    "highlight.js": "~8.4.0"
+    "highlight.js": "~8.4.0",
+    "nunjucks": "~1.1.0"
   },
   "scripts": {
     "dev": "gulp webpack:dev-server",

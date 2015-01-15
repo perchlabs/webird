@@ -14,11 +14,12 @@ module.exports = new class
       appcache:   -> !!window.applicationCache
       geolocator: -> 'geolocation' in navigator
       history:    -> !!(window.history and history.pushState)
+      intl:        -> window.Intl and typeof window.Intl is 'object'
 
     @support = (feature) ->
       @cache[feature] = @test[feature]() if @cache[feature] is undefined
       @cache[feature]
-      
+
     @hasAllRequired = ->
       for feature in @requiredFeatures
         return false if not @support(feature)
@@ -28,4 +29,3 @@ module.exports = new class
 #      for feature in featureArr
 #        return false if not @support(feature)
 #      true
-

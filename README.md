@@ -107,8 +107,6 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 3. Create the dist environment: `./dev/webird.php build`
 4. Visit https://dist.webird.io
 
-At this point you may use Poedit to open any .po file in `./app/locale`.  Click *Update* to extract all of the gettext strings from the final `./dist` build.
-
 #### Configure final dist environment:
 
 **Warning**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
@@ -123,8 +121,6 @@ The nginx configuration must be rebuilt if the distribution environment director
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 
 ## Project Structure:
-
-#### `./app`:
 
 ```
 ./app
@@ -143,7 +139,6 @@ The nginx configuration must be rebuilt if the distribution environment director
     └── modules (custom commonjs modules)
 ```
 
-#### `./dev`:
 ```
 ./dev
 ├── webird.php (CLI entry for dev environment)
@@ -160,7 +155,6 @@ The nginx configuration must be rebuilt if the distribution environment director
 └── vendor/
 ```
 
-#### `./dist`:
 ```
 ./dist
 ├── webird.php (CLI entry for dist environment)
@@ -174,7 +168,6 @@ The nginx configuration must be rebuilt if the distribution environment director
 └── vendor/ (Composer packages)
 ```
 
-#### `./setup`:
 ```
 ./setup
 ├── provision-system.sh (takes a parameter $distro to provision system)
@@ -187,7 +180,7 @@ Compare the `./app` directory to a built `./dist` directory to notice the differ
 
 You may also view the build system routine at `app/phalcon/modules/cli/tasks/DevTask.php`
 
-**Note**: The `./dist` directory does not contain any Node.js/Webpack related code and everything is in a finalized, optimized and protected form.  If Ion Cube has been enabled then the build process will use it to protect the PHP code.
+**Note**: The `./dist` directory contains only optimized and uglified JS resources and if Ion Cube has been enabled then the build process will use it to protect the PHP code.
 
 ### TODO and the WAITING:
 * At the moment only basic websocket support is supported since [Ratchet](http://socketo.me/) does not support the [WAMP](http://wamp.ws/) v2 protocol and newer Javascript libraries such as [Autobahn|JS](http://autobahn.ws/js/) are now WAMP v2 only and the older v1 versions don't play nice with the CommonJS module system.  Ratchet development stalled out with the WAMP v2 feature, but there is hope since the [Thruway](https://github.com/voryx/Thruway) team is building upon the Ratchet code base and is hard at work to suport a WAMP v2 protocol.  There is much colloborative and blessings between the two projects so this looks positive.

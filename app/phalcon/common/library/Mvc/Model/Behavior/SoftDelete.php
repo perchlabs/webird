@@ -77,7 +77,7 @@ class SoftDelete extends Behavior implements BehaviorInterface
             }
 
             // Force the event to fire since the delete operation is being skipped over
-            if (is_callable([$model, 'afterSofDelete'])) {
+            if (is_callable([$model, 'afterSoftDelete'])) {
                 $model->afterSoftDelete();
             }
         }

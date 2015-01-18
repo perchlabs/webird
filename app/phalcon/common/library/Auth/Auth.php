@@ -27,7 +27,7 @@ class Auth extends Component
     {
         // Check if the user exist
         $user = Users::findFirstByEmail($credentials['email']);
-        if ($user == false) {
+        if (!$user || $user->isDeleted()) {
             $this->registerUserThrottling(0);
             throw new AuthException('Wrong email/password combination');
         }
@@ -364,10 +364,13 @@ class Auth extends Component
      */
     public function checkUserFlags(Users $user)
     {
-        if ($user->banned != 'N') {
+        if ($user->isDeleted()) {
+            throw new AuthDeletedUserException('The user is disabled');
+        }
+        if ($user->isBanned()) {
             throw new AuthBannedUserException('The user is disabled');
         }
-        if ($user->active != 'Y') {
+        if (!$user->isActive()) {
             throw new AuthInactiveUserException('The user is inactive');
         }
     }

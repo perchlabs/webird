@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.14-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.15-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: webird_copy
+-- Host: localhost    Database: webird
 -- ------------------------------------------------------
--- Server version	10.0.14-MariaDB-1~trusty-log
+-- Server version	10.0.15-MariaDB-1~trusty-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `audit` (
   `type` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,7 +324,8 @@ CREATE TABLE `users` (
   `mustChangePassword` char(1) DEFAULT NULL,
   `rolesId` int(10) unsigned NOT NULL,
   `banned` char(1) NOT NULL,
-  `active` char(1) DEFAULT NULL,
+  `active` varchar(1) NOT NULL,
+  `deleted` varchar(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `emailUnique` (`email`),
   KEY `profilesId` (`rolesId`)
@@ -349,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-22  2:18:47
+-- Dump completed on 2015-01-18  2:47:03

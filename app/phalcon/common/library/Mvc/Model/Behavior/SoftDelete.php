@@ -4,27 +4,14 @@ namespace Webird\Mvc\Model\Behavior;
 use Phalcon\Mvc\Model\Behavior,
     Phalcon\Mvc\Model\BehaviorInterface,
     Phalcon\Mvc\ModelInterface,
-    Phalcon\Mvc\Model\Message;
+    Phalcon\Mvc\Model\Message,
+    Phalcon\Mvc\Model\Relation;
 
 /**
  * Webird\Mvc\Model\Behavior\SoftDelete
  */
 class SoftDelete extends Behavior implements BehaviorInterface
 {
-
-    /**
-     * Class constructor.
-     *
-     * @param array $options
-     */
-    public function __construct($options = [])
-    {
-        if (!array_key_exists('cascadeDelete', $options)) {
-            $options['cascadeDelete'] = false;
-        }
-
-        parent::__construct($options);
-    }
 
     /**
      *  {@inheritdoc}
@@ -47,10 +34,7 @@ class SoftDelete extends Behavior implements BehaviorInterface
                 return false;
             }
 
-            // Force the event to fire since the delete operation is being skipped over
-            if (is_callable([$model, 'beforeSoftDelete'])) {
-                $model->beforeSoftDelete();
-            }
+            $this->fireEvent($model, 'beforeSoftDelete');
 
             $updateModel = clone $model;
             $updateModel->writeAttribute($field, $value);
@@ -64,22 +48,50 @@ class SoftDelete extends Behavior implements BehaviorInterface
 
             $model->writeAttribute($field, $value);
 
-            if ($options['cascadeDelete']) {
-                $modelsManager = $model->getModelsManager();
-                $hasManyRelations = $modelsManager->getHasMany($model);
-                foreach ($hasManyRelations as $relation) {
-                    $alias = $relation->getOptions()['alias'];
-                    $relatedModels = $model->{"get{$alias}"}();
-                    foreach ($relatedModels as $relModel) {
-                        $relModel->delete();
-                    }
-                }
+            if (isset($options['cascade']) && $options['cascade'] === true) {
+                $this->cascadeDelete($model);
             }
 
-            // Force the event to fire since the delete operation is being skipped over
-            if (is_callable([$model, 'afterSoftDelete'])) {
-                $model->afterSoftDelete();
+            $this->fireEvent($model, 'afterSoftDelete');
+        }
+    }
+
+
+
+
+    private function cascadeDelete($model)
+    {
+        $modelsManager = $model->getModelsManager();
+
+        $hasManyRelations = $modelsManager->getHasMany($model);
+        foreach ($hasManyRelations as $relation) {
+            $relOptions = $relation->getOptions();
+
+            $foreignKey = $relOptions['foreignKey'];
+            if (isset($foreignKey['action']) && $foreignKey['action'] === Relation::ACTION_CASCADE) {
+                $alias = $relOptions['alias'];
+                $relatedModels = $model->{"get{$alias}"}();
+                foreach ($relatedModels as $relModel) {
+                    $relModel->delete();
+                }
             }
         }
     }
+
+
+
+
+    private function fireEvent($model, $eventName)
+    {
+        $options = $this->getOptions();
+
+        // Force the event to fire since the delete operation is being skipped over
+        if (isset($options[$eventName])) {
+            $options->$eventName();
+        } else if (method_exists($model, $eventName)) {
+            $model->{$eventName}();
+        }
+    }
+
+
 }

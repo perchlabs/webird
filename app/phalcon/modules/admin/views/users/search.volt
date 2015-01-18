@@ -28,20 +28,20 @@
         </thead>
 {% endif %}
       <tbody>
-        <tr>
+        {% if user.isDeleted() %}<tr class="danger">{% else %}<tr>{% endif %}
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role.name }}</td>
-          <td>
-            {{ user.active == 'Y' ? t('Yes') : t('No') }}
-            {% if user.active == 'N' and user.banned != 'Y' %}
-            {% endif %}
-          </td>
-          <td>{{ user.banned == 'Y' ? t('Yes') : t('No') }}</td>
+          <td>{{ user.isActive() ? t('Yes') : t('No') }}</td>
+          <td>{{ user.isBanned() ? t('Yes') : t('No') }}</td>
           <td colspan="2">
             {{ link_to("admin/users/edit/" ~ user.id, '<i class="glyphicon glyphicon-pencil"></i> ' ~ t('Edit'), "class": "btn btn-default") }}
-            {{ link_to("admin/users/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> ' ~ t('Delete'), "class": "btn btn-default") }}
+            {% if user.isDeleted() %}
+              <span class="btn btn-default disabled" role="button">{{t('Delete')}}</span>
+            {% else %}
+              {{ link_to("admin/users/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> ' ~ t('Delete'), "class": "btn btn-default") }}
+            {% endif %}
           </td>
         </tr>
       </tbody>

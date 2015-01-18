@@ -1,7 +1,7 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Mvc\Model;
+use Webird\Mvc\Model;
 
 /**
  * ResetPasswords

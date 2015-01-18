@@ -1,8 +1,8 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Mvc\Model,
-    Phalcon\Mvc\Model\Validator\Uniqueness,
+use Phalcon\Mvc\Model\Validator\Uniqueness,
+    Webird\Mvc\Model,
     Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
 
 /**
@@ -70,6 +70,11 @@ class Users extends Model
         return $this->banned !== 'N';
     }
 
+    public function isDeleted()
+    {
+        return $this->deleted !== 'N';
+    }
+
     /**
      * Before create the user assign a password
      */
@@ -94,7 +99,6 @@ class Users extends Model
             ->getSecurity()
             ->hash($newPassword);
 
-
         // The account must be confirmed via e-mail unless specifically activated
         if ($this->active !== 'Y') {
             $this->active = 'N';
@@ -102,6 +106,8 @@ class Users extends Model
 
         // The account is not banned by default
         $this->banned = 'N';
+
+        $this->deleted = 'N';
     }
 
     /**
@@ -123,16 +129,9 @@ class Users extends Model
     {
         // Ensure that a banned user cannot be accidentally let back in through a password
         // confirmation or another type of activation.
-        if ($this->banned == 'Y') {
+        if ($this->isBanned()) {
             $this->active = 'N';
         }
-    }
-
-    /**
-     * Send a confirmation e-mail to the user if the account is not active
-     */
-    protected function afterSave()
-    {
     }
 
     /**
@@ -151,6 +150,12 @@ class Users extends Model
     protected function initialize()
     {
         $this->keepSnapshots(true);
+
+        $this->addSoftDeleteBehavior([
+            'field'   => 'deleted',
+            'value'   => 'Y',
+            'cascade' => true
+        ]);
 
         $this->belongsTo('rolesId', 'Webird\Models\Roles', 'id', [
             'alias' => 'role',

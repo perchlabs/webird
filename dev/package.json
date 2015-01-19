@@ -7,7 +7,7 @@
     "gulp": "~3.8.10",
     "gulp-util": "~3.0.2",
     "js-yaml": "~3.2.5",
-    "webpack": "~1.4.15",
+    "webpack": "~1.5.1",
     "webpack-dev-server": "~1.7.0",
     "extract-text-webpack-plugin": "~0.3.8",
     "coffee-loader": "~0.7.2",

@@ -93,5 +93,4 @@ class SoftDelete extends Behavior implements BehaviorInterface
         }
     }
 
-
 }

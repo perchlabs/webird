@@ -8,7 +8,7 @@ switch (ENV) {
         // At this point the compliled application is running in its portable directory
         $appDir = realpath(__DIR__ . '/../..') . '/';
         $cacheDir = $appDir . 'cache-static/';
-        $composerDir = $appDir . 'vendor';
+        $composerDir = $appDir . 'vendor/';
         // Load the configurable json config file
         $config = new Config(yaml_parse_file("{$appDir}/etc/config.yml"));
         break;

@@ -173,7 +173,7 @@ wpConf =
       # Fonts.  These are built into the output.path/fonts/ directory
       {
         test: /\.(woff|woff2)$/
-        loader: "url?name=fonts/[hash].[ext]&limit=10000&minetype=application/font-woff"
+        loader: "url?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
       }
       {
         test: /\.ttf$/

@@ -116,7 +116,6 @@ $voltService = function($view, $di) {
             $templateFrag = str_replace($phalconDir, '', $templatePath);
             // Allows modules to share the compiled layouts and partials paths
             $templateFrag = preg_replace('/^modules\/[a-z]+\/views\/..\/..\/..\//', '', $templateFrag);
-
             // Replace '/' with a safe '%%'
             $templateFrag = str_replace('/', '%%', $templateFrag);
 
@@ -279,7 +278,6 @@ $di->set('crypt', function() use ($di) {
 $di->set('acl', function() use ($di) {
     $configDir = $di->getConfig()->path->configDir;
 
-    $translate = $di->get('translate');
     $aclData = require("$configDir/acl.php");
     $acl = new Acl($aclData);
 

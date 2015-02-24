@@ -173,8 +173,6 @@ class DatabaseSession extends Adapter implements AdapterInterface
             $session_id = $this->getId();
         }
 
-        error_log($session_id);
-
         $this->isDestroyed = true;
         $options = $this->getOptions();
         $result = $options['db']->execute(

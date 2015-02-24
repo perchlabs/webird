@@ -201,8 +201,12 @@ getEntryNames = (filepath) ->
     .filter (filename) ->
       filename[0] isnt '#'
     .map (filename) ->
-      ext = path.extname filename
-      entryName = filename.substr 0, filename.length - ext.length
+      if fs.lstatSync("#{filepath}/#{filename}").isDirectory()
+        entryName = filename
+      else
+        ext = path.extname filename
+        entryName = filename.substr 0, filename.length - ext.length
+      return entryName
     .value()
   return baseNames
 

@@ -3,7 +3,6 @@ namespace Webird;
 
 use Phalcon\Db;
 
-
 /**
  * Read-only session access
  *

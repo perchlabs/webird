@@ -62,6 +62,9 @@ $di->setShared('router', function() use ($di) {
 
     $router = new Router();
 
+    //Remove trailing slashes automatically
+    $router->removeExtraSlashes(true);
+
     if (! isset($_GET['_url'])) {
        $router->setUriSource(Router::URI_SOURCE_SERVER_REQUEST_URI);
     }

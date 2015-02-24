@@ -27,10 +27,10 @@ class DispatcherSecurity extends Plugin
             // is HTTPS currently active.
             // HTTP_X_FORWARDED_PROTO checks for reverse proxies that that communicate with the server using HTTP
             $isCurrentlyHttps = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
-              || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'));
+                || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'));
 
             // At this point HTTPS is required and it redirects to HTTPS if the current connection is not secure
-            if (! ($isCurrentlyHttps)) {
+            if (!$isCurrentlyHttps) {
                 // Create a new URL. The URL service will be set to generate HTTPS by these same configuration options
                 $secureUrl = $this->url->get($_SERVER["REQUEST_URI"], true);
                 // Redirect the client to the HTTPS protocol version of this page
@@ -158,11 +158,15 @@ class DispatcherSecurity extends Plugin
             }
             $path = implode('/', $pathArr);
 
+            // Fixed in Phalcon 2.0
+            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3073
+            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3108
+            if ($this->getDI()->has('view')) {
+                $this->getDI()->getShared('view')->disable();
+            }
+
             $this->response->redirect($path);
             $this->response->send();
-            exit();
-            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3073
-            // $dispatcher->getActiveController()->view->disable();
         }
 
         return false;

@@ -116,7 +116,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 3. Run server processes: `./webird.php`
 4. If something is wrong modify `./config.yml` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.yml` file and then rebuild the dist environment.
 
-The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the `./etc/template/dist_nginx` file and then rebuild the dist environment.
+The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
 
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 

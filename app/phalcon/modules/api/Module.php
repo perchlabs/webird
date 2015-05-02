@@ -3,6 +3,7 @@ namespace Webird\Api;
 
 use Phalcon\DI,
     Phalcon\Loader,
+    Phalcon\DiInterface,
     Webird\Module as WbModule,
     Webird\Mvc\View;
 
@@ -26,7 +27,7 @@ class Module extends WbModule
      * {@inheritdoc}
      *
      */
-    public function registerAutoloaders()
+    public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
         $loader->registerNamespaces([
@@ -43,7 +44,7 @@ class Module extends WbModule
      *
      * @param \Phalcon\DI  $di
      */
-    public function registerServices($di)
+    public function registerServices(DiInterface $di = null)
     {
         $di->getDispatcher()->setDefaultNamespace('Webird\Api\Controllers');
 

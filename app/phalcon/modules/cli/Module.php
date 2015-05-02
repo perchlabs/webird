@@ -3,6 +3,7 @@ namespace Webird\Cli;
 
 use Phalcon\DI,
     Phalcon\Loader,
+    Phalcon\DiInterface,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Webird\Module as WbModule;
 
@@ -25,7 +26,7 @@ class Module extends WbModule
      * {@inheritdoc}
      *
      */
-    public function registerAutoloaders()
+    public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
         $loader->registerNamespaces([
@@ -40,7 +41,7 @@ class Module extends WbModule
      *
      * @param \Phalcon\DI  $di
      */
-    public function registerServices($di)
+    public function registerServices(DiInterface $di = null)
     {
 
     }

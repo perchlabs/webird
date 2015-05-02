@@ -54,7 +54,7 @@ sudo ./setup/provision-system.sh ubuntu1404
 ./setup/install-local-packages.sh
 
 # nginx setup
-sudo ./dev/webird.php nginx > /etc/nginx/sites-available/dev.webird.io
+./dev/webird.php nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
 service nginx restart
 

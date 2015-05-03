@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Mvc\Model\Behavior;
 
-use Phalcon\Mvc\Model\Behavior,
+use Phalcon\Mvc\ModelInterface,
+    Phalcon\Mvc\Model\Behavior,
     Phalcon\Mvc\Model\BehaviorInterface,
-    Phalcon\Mvc\ModelInterface,
     Phalcon\Mvc\Model\Message,
     Phalcon\Mvc\Model\Relation;
 
@@ -19,7 +19,7 @@ class SoftDelete extends Behavior implements BehaviorInterface
      * @param string                      $eventType
      * @param \Phalcon\Mvc\ModelInterface $model
      */
-    public function notify($eventType, $model)
+    public function notify($eventType, ModelInterface $model)
     {
         if ($eventType == 'beforeDelete') {
             $options = $this->getOptions();
@@ -59,7 +59,7 @@ class SoftDelete extends Behavior implements BehaviorInterface
 
 
 
-    private function cascadeDelete($model)
+    private function cascadeDelete(ModelInterface $model)
     {
         $modelsManager = $model->getModelsManager();
 
@@ -81,7 +81,7 @@ class SoftDelete extends Behavior implements BehaviorInterface
 
 
 
-    private function fireEvent($model, $eventName)
+    private function fireEvent(ModelInterface $model, $eventName)
     {
         $options = $this->getOptions();
 

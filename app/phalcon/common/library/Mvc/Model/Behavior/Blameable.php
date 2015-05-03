@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Mvc\Model\Behavior;
 
-use Phalcon\Mvc\Model\Behavior,
+use Phalcon\Mvc\ModelInterface,
+    Phalcon\Mvc\Model\Behavior,
     Phalcon\Mvc\Model\BehaviorInterface,
-    Phalcon\Mvc\ModelInterface,
     Webird\Models\Audit,
     Webird\Models\AuditDetail;
 
@@ -29,7 +29,7 @@ class Blameable extends Behavior implements BehaviorInterface
      * @param string                      $eventType
      * @param \Phalcon\Mvc\ModelInterface $model
      */
-    public function notify($eventType, $model)
+    public function notify($eventType, ModelInterface $model)
     {
         //Fires 'logAfterUpdate' if the event is 'afterCreate'
         if ($eventType == 'afterCreate') {

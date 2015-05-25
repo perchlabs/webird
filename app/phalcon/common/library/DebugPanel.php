@@ -16,7 +16,7 @@ class DebugPanel extends DIInjectable
 
     public function __construct($di)
     {
-    		$eventsManager = $di->get('eventsManager');
+        $eventsManager = $di->get('eventsManager');
 
         $serviceNames = [
             'db'       => ['db'],
@@ -132,7 +132,7 @@ class DebugPanel extends DIInjectable
             'server'   => $this->getServerPanel(),
             'request'  => $this->getRequestPanel(),
             'database' => $this->getDbPanel(),
-            'views'		 => $this->getViewsPanel(),
+            'views'     => $this->getViewsPanel(),
             'config'   => $this->getConfigPanel()
         ];
 
@@ -173,9 +173,9 @@ class DebugPanel extends DIInjectable
         $view->render("debug_panel/panels/request", [
             'SESSION' => $session,
             'COOKIE'  => $_COOKIE,
-            'GET'			=> $_GET,
+            'GET'      => $_GET,
             'POST'    => $_POST,
-            'FILES'		=> $_FILES
+            'FILES'    => $_FILES
         ]);
         return $view;
     }

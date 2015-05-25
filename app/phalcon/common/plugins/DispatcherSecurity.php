@@ -158,13 +158,6 @@ class DispatcherSecurity extends Plugin
             }
             $path = implode('/', $pathArr);
 
-            // Fixed in Phalcon 2.0
-            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3073
-            // Phalcon Issue: https://github.com/phalcon/cphalcon/issues/3108
-            if ($this->getDI()->has('view')) {
-                $this->getDI()->getShared('view')->disable();
-            }
-
             $this->response->redirect($path);
             $this->response->send();
         }

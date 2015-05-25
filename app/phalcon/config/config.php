@@ -76,6 +76,6 @@ $config->merge($config2);
 
 // Configure settings that require more calculation
 $proto = ($config->security->https || $config->security->hsts > 0) ? 'https' : 'http';
-$config->site->link = "{$proto}://" . $config->site->domains[0] . $config->app->baseUri;
+$config->site->link = "{$proto}://" . $config->site->domain[0] . $config->app->baseUri;
 
 return $config;

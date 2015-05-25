@@ -16,6 +16,8 @@ class DebugPanel extends DIInjectable
 
 		public function __construct($di)
 		{
+error_log('HERE');
+
 				$eventsManager = $di->get('eventsManager');
 
 				$serviceNames = [

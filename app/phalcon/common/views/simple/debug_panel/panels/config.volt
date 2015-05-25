@@ -39,7 +39,7 @@
 		<tbody>
 			<tr><td>
 				<pre><code class='php'>{{ print_r(config) }}</code></pre>
-			</td><tr>
+			</td></tr>
 		</tbody>
 	</table>
 </div>

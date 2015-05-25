@@ -5,6 +5,33 @@ use Phalcon\Mvc\Router as PhRouter;
 
 class Router extends PhRouter
 {
+
+    /**
+     *
+     */
+    private $defaultModule;
+
+    /**
+     *
+     */
+    public function getDefaultModule()
+    {
+        return $this->defaultModule;
+    }
+
+    public function setDefaultModule($moduleName)
+    /**
+     *
+     */
+    {
+        parent::setDefaultModule($moduleName);
+        $this->addStdModule($moduleName);
+        $this->defaultModule = $moduleName;
+    }
+
+    /**
+     *
+     */
     public function addStdModule($moduleName)
     {
         $this->add("/$moduleName", [

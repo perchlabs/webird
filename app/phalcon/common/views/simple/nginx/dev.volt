@@ -5,6 +5,9 @@
 upstream websocket-{{random_hash}} {
   server localhost:{{websocket_port}};
 }
+
+## I'm unable to get weppack proxy passthru working and so localhost:port must be used.
+## This means that testing HTTPS with HSTS and XSS protection is currently not available in dev mode
 upstream webpack-{{random_hash}} {
   server localhost:{{webpack_port}};
 }
@@ -61,8 +64,8 @@ server {
 
   location ~ \.php {
     fastcgi_index  /index.php;
-#    fastcgi_pass unix:/var/run/php5-fpm.sock;
-    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+#    fastcgi_pass 127.0.0.1:9000;
 
     include fastcgi_params;
     fastcgi_split_path_info       ^(.+\.php)(/.+)$;

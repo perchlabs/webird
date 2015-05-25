@@ -53,18 +53,26 @@ sudo ./setup/provision-system.sh ubuntu1404
 # Local install of npm, bower and composer packages
 ./setup/install-local-packages.sh
 
-# nginx setup
-./dev/webird.php nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
-sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
-service nginx restart
-
-# /etc/hosts setup
-sudo echo "\n127.0.0.1       dev.webird.io" > /etc/hosts
-
 # mariadb setup
 # set DB_ROOT_PW to
 mysqladmin --user=root --password=DB_ROOT_PW create webird
 mysql --user=root --password=DB_ROOT_PW webird < ./etc/schema.sql
+
+# Development setting configuration
+cp ./etc/templates/dev_config.yml ./etc/dev.yml
+# configure setting for local database password. (default is root:root)
+vi ./etc/dev.yml
+# Create a Webird user
+# Change the email and password
+./dev/webird.php useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
+
+# nginx setup
+./dev/webird.php nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
+sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
+sudo service nginx restart
+
+# /etc/hosts setup
+echo -e "\n127.0.0.1 dev.webird.io" | sudo tee -a /etc/hosts
 ```
 
 ### Poedit Localization editor:
@@ -91,9 +99,6 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 ## Development Usage:
 
-1. Copy `./etc/templates/dev_config.yml` to `./etc/dev.yml`
-2. Configure `./etc/dev.yml` for local database password
-3. Create a Webird user with `./dev/webird.php useradd`
 4. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
 5. Visit http://dev.webird.io
 

@@ -99,9 +99,8 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 
 ## Development Usage:
-
-4. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
-5. Visit http://dev.webird.io
+1. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
+2. Visit http://dev.webird.io
 
 If you see the local host file not configured page then add `127.0.0.1 dev.webird.io` to your `/etc/hosts` file.
 

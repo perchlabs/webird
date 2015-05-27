@@ -19,10 +19,10 @@ class Router extends PhRouter
         return $this->defaultModule;
     }
 
-    public function setDefaultModule($moduleName)
     /**
      *
      */
+    public function setDefaultModule($moduleName)
     {
         parent::setDefaultModule($moduleName);
         $this->addStdModule($moduleName);

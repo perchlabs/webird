@@ -17,7 +17,9 @@ use Phalcon\Loader,
     Webird\Logger\Adapter\Error as ErrorLogger,
     Webird\Logger\Adapter\Firelogger as Firelogger;
 
-
+/**
+ *
+ */
 $di->set('loader', function() use ($config) {
     $commonDir = $config->path->commonDir;
     $modulesDir = $config->path->modulesDir;
@@ -46,10 +48,9 @@ $di->set('loader', function() use ($config) {
 });
 $di->get('loader');
 
-
-
-
-
+/**
+ *
+ */
 $di->setShared('db', function() use ($di) {
     $config = $di->get('config');
 
@@ -62,12 +63,9 @@ $di->setShared('db', function() use ($di) {
     ]);
 });
 
-
-
-
-
-
-
+/**
+ *
+ */
 $di->set('sessionReader', function() use ($di) {
     $config = $di->get('config');
     $connection = $di->get('db');
@@ -84,11 +82,9 @@ $di->set('sessionReader', function() use ($di) {
     return $sessionReader;
 });
 
-
-
-
-
-
+/**
+ *
+ */
 $voltService = function($view, $di) {
     $config = $di->get('config');
     $voltCacheDir = $config->path->voltCacheDir;
@@ -115,7 +111,9 @@ $voltService = function($view, $di) {
             // This makes the phalcon view path into a portable fragment
             $templateFrag = str_replace($phalconDir, '', $templatePath);
             // Allows modules to share the compiled layouts and partials paths
-            $templateFrag = preg_replace('/^modules\/[a-z]+\/views\/..\/..\/..\//', '', $templateFrag);
+            $templateFrag = preg_replace('/^modules\/[a-z]+\/views\/(_partials|_layouts)\/..\/..\/..\/..\//', '', $templateFrag);
+            // Allows modules to share the compiled layouts and partials paths
+            $templateFrag = preg_replace('/modules\/[a-z]+\/views\/..\/..\/..\//', '', $templateFrag);
             // Replace '/' with a safe '%%'
             $templateFrag = str_replace('/', '%%', $templateFrag);
 
@@ -134,17 +132,14 @@ $voltService = function($view, $di) {
     return $volt;
 };
 
-
-
-
-
-
+/**
+ *
+ */
 $di->set('voltService', $voltService);
 
-
-
-
-
+/**
+ *
+ */
 $di->set('viewSimple', function() use ($di, $voltService) {
     $config = $di->get('config');
 
@@ -160,11 +155,9 @@ $di->set('viewSimple', function() use ($di, $voltService) {
     return $view;
 });
 
-
-
-
-
-
+/**
+ *
+ */
 $di->setShared('locale', function() use ($di) {
     $config = $di->get('config');
 
@@ -184,10 +177,9 @@ $di->setShared('locale', function() use ($di) {
     return $locale;
 });
 
-
-
-
-
+/**
+ *
+ */
 $di->setShared('translate', function() use ($di) {
     $config = $di->get('config');
     $locale = $di->get('locale');
@@ -214,10 +206,9 @@ $di->setShared('translate', function() use ($di) {
     return $gettext;
 });
 
-
-
-
-
+/**
+ *
+ */
 $di->setShared('debug', function() use ($di) {
     $config = $di->getConfig();
 
@@ -240,8 +231,6 @@ $di->setShared('debug', function() use ($di) {
     return $logger;
 });
 
-
-
 /**
  * Mail service
  */
@@ -254,11 +243,9 @@ $di->setShared('mailer', function() use ($di) {
     return $mailManager;
 });
 
-
-
-
-
-
+/**
+ *
+ */
 $di->set('crypt', function() use ($di) {
     $config = $di->get('config');
 
@@ -266,11 +253,6 @@ $di->set('crypt', function() use ($di) {
     $crypt->setKey($config->security->cryptKey);
     return $crypt;
 });
-
-
-
-
-
 
 /**
  * Access Control List
@@ -284,12 +266,9 @@ $di->set('acl', function() use ($di) {
     return $acl;
 });
 
-
-
-
-
-
-
+/**
+ *
+ */
 $di->setShared('url', function() use ($di) {
     $config = $di->get('config');
 

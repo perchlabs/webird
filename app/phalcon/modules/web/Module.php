@@ -49,7 +49,6 @@ class Module extends WbModule
         $di->setShared('view', self::getViewFunc($di));
 
         if (DEV_ENV === ENV) {
-error_log('debug panel');
             $debugPanel = new DebugPanel($di);
         }
 

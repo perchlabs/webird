@@ -21,20 +21,22 @@ abstract class Module implements ModuleDefinitionInterface
         return self::classNameToDir(get_called_class()) . 'views/';
     }
 
+    /**
+     *
+     */
     public static function getViewFunc($di)
     {
         $viewsDir = self::getViewsDir();
         $viewFunc = function() use ($di, $viewsDir) {
             $view = new View();
             $view->setDI($di);
+            $view->setViewsDir($viewsDir);
+            $view->setLayoutsDir('_layouts/');
+            $view->setPartialsDir('_partials/');
 
             $view->registerEngines([
                 '.volt' => 'voltService'
             ]);
-
-            $view->setViewsDir($viewsDir);
-            $view->setPartialsDir('../../../common/views/partials/');
-            $view->setLayoutsDir('../../../common/views/layouts/');
 
             return $view;
         };
@@ -42,8 +44,9 @@ abstract class Module implements ModuleDefinitionInterface
         return $viewFunc;
     }
 
-
-
+    /**
+     *
+     */
     public static function classNameToDir($moduleClass)
     {
         $classParts = explode('\\', $moduleClass);
@@ -52,6 +55,9 @@ abstract class Module implements ModuleDefinitionInterface
         return $moduleDir;
     }
 
+    /**
+     *
+     */
     public static function moduleNameToDir($moduleName)
     {
         $config = DI::getDefault()->getConfig();

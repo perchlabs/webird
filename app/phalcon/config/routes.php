@@ -22,9 +22,6 @@ $router->add('/signin/oauth/([a-z]+)/:params', [
 ]);
 $router->add('/signin', 'session::signin');
 
-
-
-
 $router->add('/forgot-password', 'userspublic::forgotPassword');
 $router->add('/confirm/{code}', 'userspublic::confirmEmail');
 $router->add('/reset-password/{code}', 'userspublic::resetPassword');

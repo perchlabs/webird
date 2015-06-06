@@ -29,7 +29,7 @@
     <div class="col-md-6">
       <h3>{{t('Tools')}}</h3>
       {% if DEV %}
-        <a href="javascript:void(0)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ this.translate.t('Debug Panel') | escape }}</a>
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ t('Debug Panel') | escape }}</a>
       {% else %}
         Debug Panel is not available in dist environment
       {% endif %}

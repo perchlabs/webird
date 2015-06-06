@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>{{t('Webird Angular Technology Demo')}}</title>
-{{ partial('head_init') }}
+{{ common('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
 <body>

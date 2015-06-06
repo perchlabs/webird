@@ -10,8 +10,6 @@ use Webird\Mvc\Controller,
     Webird\Web\Forms\ForgotPasswordForm,
     Webird\Auth\AuthInactiveUserException;
 
-
-
 /**
  * UserspublicController
  * Provides help to users to confirm their passwords or reset them

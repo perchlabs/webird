@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>{{t('Signin')}}</title>
-{{ partial('head_init') }}
+{{ common('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
 <body>
@@ -13,7 +13,7 @@
     </div>
   </div>
 </div>
-{{ partial('noscript') }}
+{{ common('noscript') }}
 <div id="onlywithscript" style="display:none;">
   {{ content() }}
 </div>

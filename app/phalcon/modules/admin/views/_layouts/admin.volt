@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webird Private Page</title>
-{{ partial('head_init') }}
+  <title>Webird Admin Page</title>
+{{ common('head_init') }}
   {{ stylesheet_link(['href': 'css/init_complex.css']) }}
 </head>
 <body>
@@ -45,7 +45,8 @@
 </nav>
 
 {{ content() }}
-  {{ javascript_include(['src': 'js/init_complex.js']) }}
   {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {{ javascript_include(['src': 'js/init_complex.js']) }}
+  {{ javascript_include(['src': 'js/admin.js']) }}
 </body>
 </html>

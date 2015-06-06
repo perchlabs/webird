@@ -18,6 +18,9 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
 class BuildTask extends Task
 {
 
+    /**
+     *
+     */
     public function mainAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -35,7 +38,6 @@ class BuildTask extends Task
         // Build Volt templates first so that the locale messages can be
         // extracted in case of an error
         $this->compileVoltTemplates();
-
         $this->buildPhalconDir();
         $this->makeEntryPoints();
         $this->copyFiles();
@@ -47,10 +49,9 @@ class BuildTask extends Task
         exit(0);
     }
 
-
-
-
-
+    /**
+     *
+     */
     private function buildPhalconDir()
     {
         $config = $this->config;
@@ -84,10 +85,9 @@ class BuildTask extends Task
         }
     }
 
-
-
-
-
+    /**
+     *
+     */
     private function cleanDirectoryStructure()
     {
         $projectDir = $this->config->dev->path->projectDir;
@@ -107,11 +107,9 @@ class BuildTask extends Task
         }
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     private function buildDirectoryStructure()
     {
         $appDir = $this->config->path->appDir;
@@ -125,12 +123,9 @@ class BuildTask extends Task
         mkdir($distDir . 'cache-static/volt/');
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     private function compileVoltTemplates()
     {
         $path = $this->config->path;
@@ -155,16 +150,22 @@ class BuildTask extends Task
             return $di->get('viewSimple');
         });
 
+        // Common partial views
+        // This is a bit hacky but it works.  We are treating the common partials as Simple to compile them.
+        // We are simply changing the directory to look into and on the view itself
+        $this->compileVoltDir($path->viewsCommonDir . 'partials/', function() use ($di) {
+            $simpleView = $di->get('viewSimple');
+            $simpleView->setViewsDir($di->getConfig()->path->viewsCommonDir . 'partials/');
+            return $simpleView;
+        });
+
         $path->voltCacheDir = $voltCacheDirBak;
         echo "Reverting voltCacheDir to original path\n";
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     private function compileVoltTemplateForModule($moduleName)
     {
         $di = $this->getDI();
@@ -178,22 +179,18 @@ class BuildTask extends Task
         $viewsPartialsDir = $viewsDir . $view->getPartialsDir();
 
         $this->compileVoltDir($viewsDir, $viewFunc);
-        $this->compileVoltDir($viewsPartialsDir, $viewFunc);
-        $this->compileVoltDir($viewsLayoutsDir, $viewFunc);
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     private function compileVoltDir($path, $viewFunc)
     {
         $dh = opendir($path);
         while (($fileName = readdir($dh)) !== false) {
-            if ($fileName == '.' || $fileName == '..')
+            if ($fileName == '.' || $fileName == '..') {
                 continue;
+            }
 
             $pathNext = "{$path}{$fileName}";
             if (is_dir($pathNext)) {
@@ -210,13 +207,9 @@ class BuildTask extends Task
         closedir($dh);
     }
 
-
-
-
-
-
-
-
+    /**
+     *
+     */
     private function makeEntryPoints()
     {
         $distDir = $this->config->dev->path->distDir;
@@ -238,13 +231,9 @@ WEBIRD_ENTRY;
         file_put_contents("$distDir/public/index.php", $webEntry);
     }
 
-
-
-
-
-
-
-
+    /**
+     *
+     */
     private function copyFiles()
     {
         $projectDir = $this->config->dev->path->projectDir;
@@ -273,10 +262,9 @@ WEBIRD_ENTRY;
         chmod("$distDir/webird.php", 0775);
     }
 
-
-
-
-
+    /**
+     *
+     */
     private function buildConf()
     {
         $etcDir = $this->config->dev->path->etcDir;
@@ -300,11 +288,9 @@ WEBIRD_ENTRY;
         yaml_emit_file("$distDir/etc/config.yml", $configMerged);
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     private function installPackages()
     {
         $distDir = $this->config->dev->path->distDir;
@@ -319,11 +305,9 @@ WEBIRD_ENTRY;
         chdir($cwd);
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     private function compileLocales()
     {
         $supported = $this->getDI()->getLocale()->getSupportedLocales();
@@ -348,12 +332,9 @@ WEBIRD_ENTRY;
         }
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     private function buildWebpack()
     {
         $devDirEsc = escapeshellarg($this->config->dev->path->devDir);

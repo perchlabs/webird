@@ -8,10 +8,10 @@
     "ext-gettext": ">=0.0.0",
     "ext-zmq": ">=1.1.2",
     "ext-libevent": ">=0.1.0",
-    "react/react": "0.4.*",
+    "react/react": ">=0.4.0",
     "cboden/ratchet": "0.3.*",
-    "corneltek/getoptionkit": "2.0.*",
-    "swiftmailer/swiftmailer" : "5.0.*",
+    "corneltek/getoptionkit": "2.2.*",
+    "swiftmailer/swiftmailer" : "5.4.*",
     "lusitanian/oauth": "~0.3.5"
   },
   "authors" : [ {

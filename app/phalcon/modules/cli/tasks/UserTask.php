@@ -14,12 +14,16 @@ use Webird\Models\Users,
  */
 class UserTask extends Task
 {
+    /**
+     *
+     */
     public function mainAction() {
          echo "The default action inside of the ", CURRENT_TASK, " task is not configured\n";
     }
 
-
-
+    /**
+     *
+     */
     public function createAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -96,9 +100,9 @@ class UserTask extends Task
         }
     }
 
-
-
-
+    /**
+     *
+     */
     public function deleteAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -122,12 +126,9 @@ class UserTask extends Task
         }
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     public function statusAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -189,11 +190,9 @@ class UserTask extends Task
         }
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     public function passwordAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -225,14 +224,9 @@ class UserTask extends Task
         }
     }
 
-
-
-
-
-
-
-
-
+    /**
+     *
+     */
     private function getUserByUniqueRef($userRef)
     {
         if (ctype_digit($userRef)) {
@@ -247,13 +241,9 @@ class UserTask extends Task
         return $user;
     }
 
-
-
-
-
-
-
-
+    /**
+     *
+     */
     private function getRoleByUniqueRef($roleRef)
     {
         // Allow the role to be specified as a primary key or by the exact name
@@ -274,6 +264,5 @@ class UserTask extends Task
 
         return $role;
     }
-
 
 }

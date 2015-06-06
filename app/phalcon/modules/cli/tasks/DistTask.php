@@ -7,18 +7,20 @@ use React\EventLoop\Factory as EventLoopFactory,
 
 /**
  *
- *
  */
 class DistTask extends Task
 {
 
+    /**
+     *
+     */
     public function mainAction(array $params)
     {
     }
 
-
-
-
+    /**
+     *
+     */
     public function serverAction($argv)
     {
         $config = $this->config;
@@ -60,11 +62,9 @@ HELPMSG;
         $loop->run();
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     public function nginxAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -80,12 +80,9 @@ HELPMSG;
         echo $nginxConf;
     }
 
-
-
-
-
-
-
+    /**
+     *
+     */
     private function getNginxConfig()
     {
         $config = $this->config;
@@ -108,6 +105,5 @@ HELPMSG;
 
         return $tpl;
     }
-
 
 }

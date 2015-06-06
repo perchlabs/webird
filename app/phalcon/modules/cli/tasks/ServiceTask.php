@@ -19,13 +19,17 @@ use ZMQ,
  */
 class ServiceTask extends Task
 {
+    /**
+     *
+     */
     public function mainAction(array $params)
     {
         echo "The default action inside of the ", CURRENT_TASK, " task is not configured\n";
     }
 
-
-
+    /**
+     *
+     */
     public function websocketListenAction($argv)
     {
         $config = $this->di->getConfig();
@@ -71,6 +75,5 @@ class ServiceTask extends Task
 
         $ioServer->run();
     }
-
 
 }

@@ -16,13 +16,16 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
 class DevTask extends Task
 {
 
+    /**
+     *
+     */
     public function mainAction(array $params)
     {
     }
 
-
-
-
+    /**
+     *
+     */
     public function serverAction($argv)
     {
         $config = $this->di->getConfig();
@@ -62,8 +65,9 @@ HELPMSG;
         $loop->run();
     }
 
-
-
+    /**
+     *
+     */
     private function addProcOutputListener($proc)
     {
         $proc->stdout->on('data', function($output) {
@@ -74,9 +78,9 @@ HELPMSG;
         });
     }
 
-
-
-
+    /**
+     *
+     */
     public function nginxAction($argv)
     {
         $params = $this->parseArgs($argv, [
@@ -92,11 +96,9 @@ HELPMSG;
         echo $nginxConf;
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     private function getNginxConfig()
     {
         $config = $this->config;

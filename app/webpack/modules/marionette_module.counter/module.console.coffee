@@ -3,18 +3,20 @@
 Marionette = require 'Marionette'
 # app
 globalCh = require 'globalCh'
-# local
-Layout = require './Layout'
 
 module.exports = Marionette.Module.extend
   startWithParent: false
 
   onStart: (options) ->
-    @layout = new Layout()
-    .listenTo globalCh, 'counter:change', (counterChange) ->
-      @counterChange counterChange
+    @counter = 0
 
-    options.region.show @layout
+    @listenTo globalCh, 'counter:change', (changeAmount) ->
+
+
+      @counter += changeAmount
+      globalCh.trigger 'counter:value', @counter
+
+
 
 
   onStop: (options) ->

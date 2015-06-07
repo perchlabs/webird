@@ -5,7 +5,9 @@ You may change this configuration file type to; litcoffee, js, coffee or json
 Attach entry points to a common code file.
 
     commons =
-      init_complex: ['admin', 'public', 'angular', 'marionette', 'websocket']
+      init_complex: ['admin', 'public', 'angular', 'websocket']
+      marionette: ['app.marionette.example']
+
 
 ## Constants
 These constants are available in your Webpack CommonJS code and are evaluated at

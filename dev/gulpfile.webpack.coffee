@@ -139,7 +139,7 @@ wpConf =
       {
         # PO translation messages Loader
         test: /\.po$/
-        loader: "json!po?format=jed"
+        loader: "json!po?format=jed1.x"
       }
       {
         # HTML Loaders
@@ -278,15 +278,13 @@ gulp.task 'webpack:dev-server', (callback) ->
 # Distribution build
 ############################################################
 gulp.task 'webpack:build', (callback) ->
-
-  wpConf.plugins.push new DefinePlugin DEV: false
-
   # Override temporary output path
   wpConf.output.path = path.join projectRoot, 'dist', 'public'
 
+  definePlugin = new DefinePlugin DEV: false
   dedupePlugin = new webpack.optimize.DedupePlugin()
   uglifyPlugin = new webpack.optimize.UglifyJsPlugin()
-  wpConf.plugins = wpConf.plugins.concat dedupePlugin, uglifyPlugin
+  wpConf.plugins.concat definePlugin dedupePlugin, uglifyPlugin
 
   # run webpack
   webpack wpConf, (err, stats) ->

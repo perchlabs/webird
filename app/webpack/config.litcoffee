@@ -11,7 +11,7 @@ Attach entry points to a common code file.
 
 ## Constants
 These constants are available in your Webpack CommonJS code and are evaluated at
-build time. Anything that can be evaluated as true as (value === value) will
+build time. Anything that can be evaluated as false as (value !== value) will
 be removed from the final build by the optimizer/uglifier.
 
     constants =

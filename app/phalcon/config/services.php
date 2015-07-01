@@ -1,5 +1,6 @@
 <?php
 use Phalcon\Loader,
+    Phalcon\Mvc\Model,
     Phalcon\Mvc\Url,
     Phalcon\Crypt,
     Phalcon\Mvc\View\Engine\Volt,
@@ -16,6 +17,14 @@ use Phalcon\Loader,
     Webird\Mailer\Manager as MailManager,
     Webird\Logger\Adapter\Error as ErrorLogger,
     Webird\Logger\Adapter\Firelogger as Firelogger;
+
+/**
+ *
+ */
+Model::setup([
+    'phqlLiterals'       => true,
+    'notNullValidations' => false
+]);
 
 /**
  *

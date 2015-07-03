@@ -26,6 +26,7 @@ Node.js is required for development only and is not required once a project has 
 #### Key components of Webird:
 * [nginx](http://nginx.org/)
 * [Phalcon](http://phalconphp.com/en/)
+* [Babel](https://babeljs.io/) - Javascript ES2015 to ES5
 * [Coffeescript](http://coffeescript.org/)
 * [Composer](https://getcomposer.org/) - PHP package manager
 * [npm](https://www.npmjs.org/) - Node.js package manager
@@ -143,7 +144,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   ├── config/
 │   └── modules/
 └── webpack
-    ├── config.litcoffee (you can make this .json, .yml, .js or .coffee)
+    ├── config.json (you can make this .json, .yml, .js or .coffee)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
     └── modules (custom commonjs modules)
@@ -158,8 +159,8 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── packages.json (npm configuration)
 ├── bower.json (Bower configuration)
 ├── vendor.json (Composer configuration)
-├── gulpfile.coffee (Gulp streaming build system configuration)
-├── gulpfile.webpack.coffee (Webpack configuration)
+├── gulpfile.js (Gulp streaming build system configuration)
+├── gulpfile.webpack.js (Webpack configuration)
 ├── node_modules/
 ├── bower_components/
 └── vendor/

@@ -28,32 +28,33 @@ var bowerRoot = path.join(devRoot, 'bower_components');
 var nodeModulesRoot = path.join(devRoot, 'node_modules');
 var projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-var appConfig = require(webpackRoot + "/config");
-
-var entries = getEntryNames(webpackRoot + "/entries");
-var commons = getEntryNames(webpackRoot + "/commons");
-assertWithoutCollissions(entries, commons);
+var appConfig = require(`${webpackRoot}/config`);
 
 /**
  *
  */
 var entryMap = {};
-for (let i in commons) {
-    let common = commons[i];
-    entryMap[common] = "./commons/" + common;
+for (let common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
+    entryMap[`commons/${common}`] = `./commons/${common}`;
 }
-for (let i in entries) {
-    let entry = entries[i];
-    entryMap[entry] = "./entries/" + entry;
+for (let entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
+    entryMap[`entries/${entry}`] = `./entries/${entry}`;
 }
 
 /**
  *
  */
 var commonsChunkPluginArr = [];
-for (let common in appConfig.commons) {
-    let entryList = appConfig.commons[common];
-    commonsChunkPluginArr.push(new CommonsChunkPlugin(common, 'js/[name].js', entryList));
+for (let commonName in appConfig.commons) {
+    let entryArrPath = appConfig.commons[commonName].map(function(entryName) {
+        return `entries/${entryName}`;
+    });
+
+    commonsChunkPluginArr.push(new CommonsChunkPlugin({
+        name    : `commons/${commonName}`,
+        filename: 'js/[name].js',
+        chunks  : entryArrPath
+    }));
 }
 
 /**
@@ -64,10 +65,10 @@ var wpConf = {
     context: webpackRoot,
     entry: entryMap,
     output: {
-        path: "/tmp/webird-" + projectRootHash + "-webpack",
-        publicPath: '/',
-        filename: 'js/[name].js',
-        chunkFilename: 'js/chunk/[id].js',
+        path              : "/tmp/webird-" + projectRootHash + "-webpack",
+        publicPath        : '/',
+        filename          : 'js/[name].js',
+        chunkFilename     : 'js/chunk/[id].js',
         namedChunkFilename: 'js/[name].js'
     },
     resolve: {
@@ -178,7 +179,7 @@ var wpConf = {
 /**
  *
  */
-function getEntryNames(filepath) {
+function getNamesFromDirectory(filepath) {
     let files = fs.readdirSync(filepath);
     let baseNames = _.chain(files).filter(function(filename) {
         return filename[0] !== '#';
@@ -194,19 +195,6 @@ function getEntryNames(filepath) {
     }).value();
     return baseNames;
 };
-
-/**
- *
- */
-function assertWithoutCollissions(entries, commons) {
-    let collisions = _.intersection(commons, entries);
-    if (collisions.length > 0) {
-        let crashes = collisions.join(',');
-        console.log('Error: commons and entries may not share the same name');
-        console.log(crashes + " has collided.");
-        process.exit(1);
-    }
-}
 
 gulp.task('webpack:dev-server', function(callback) {
     let config = yaml.load(fs.readFileSync(etcRoot + "/dev_defaults.yml", 'utf8'));

@@ -3,7 +3,7 @@
 <head>
   <title>{{t('Webird WebSocket Technology Demo')}}</title>
 {{ common('head_init') }}
-  {{ stylesheet_link(['href': 'css/init_complex.css']) }}
+  {{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}
 </head>
 <body>
   <div class="container">
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  {{ javascript_include(['src': 'js/init_complex.js']) }}
-  {{ javascript_include(['src': 'js/websocket.js']) }}
+  {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
+  {{ javascript_include(['src': 'js/entries/websocket.js']) }}
   {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
 </body>

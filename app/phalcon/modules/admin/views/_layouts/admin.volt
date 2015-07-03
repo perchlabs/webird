@@ -3,7 +3,7 @@
 <head>
   <title>Webird Admin Page</title>
 {{ common('head_init') }}
-  {{ stylesheet_link(['href': 'css/init_complex.css']) }}
+  {{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -46,7 +46,7 @@
 
 {{ content() }}
   {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
-  {{ javascript_include(['src': 'js/init_complex.js']) }}
-  {{ javascript_include(['src': 'js/admin.js']) }}
+  {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
+  {{ javascript_include(['src': 'js/entries/admin.js']) }}
 </body>
 </html>

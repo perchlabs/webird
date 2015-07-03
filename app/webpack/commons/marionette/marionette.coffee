@@ -2,13 +2,12 @@
 # system
 Marionette = require 'backbone.marionette'
 Radio      = require 'backbone.radio'
+# app
+init     = require 'init'
+locale   = require 'locale'
+template = require 'template'
 # local
 require './backbone.radio_shim'
-
-# app
-init = require 'init'
-locale = require 'locale'
-template = require 'template'
 
 $.ajaxSetup
   cache: false

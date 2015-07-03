@@ -1,12 +1,14 @@
 'use strict'
 # system
-Marionette = require 'Marionette'
+Marionette = require 'backbone.marionette'
+Radio      = require 'backbone.radio'
+# local
+require './backbone.radio_shim'
+
 # app
 init = require 'init'
 locale = require 'locale'
 template = require 'template'
-# local
-require './backbone.radio_shim'
 
 $.ajaxSetup
   cache: false

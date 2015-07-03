@@ -1,0 +1,9 @@
+{
+  "commons": {
+    "init_complex": ["admin", "public", "angular", "websocket"],
+    "marionette": ["app.marionette.example"]
+  },
+  "constants": {
+    "HELLO_WORLD_CONSTANT": "Hello World"
+  }
+}

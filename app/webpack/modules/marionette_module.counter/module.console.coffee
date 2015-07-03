@@ -1,6 +1,6 @@
 'use strict'
 # system
-Marionette = require 'Marionette'
+Marionette = require 'backbone.marionette'
 # app
 globalCh = require 'globalCh'
 

@@ -1,7 +1,7 @@
 'use strict'
 # system
-Backbone    = require 'Backbone'
-Marionette  = require 'Marionette'
+Backbone    = require 'backbone'
+Marionette  = require 'backbone.marionette'
 # app
 globalCh = require 'globalCh'
 # local

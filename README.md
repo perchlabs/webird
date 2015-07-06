@@ -17,7 +17,8 @@ Node.js is required for development only and is not required once a project has 
 * A single PHP command that starts development processes across PHP and Node.js
 * [Webpack](http://webpack.github.io/) (CommonJS) build environment
 * Live reloading (and waiting) CommonJS build environment
-* Mix any combination of languages and theming (per file) including; CSS, SCSS, LESS, Javascript and Coffeescript
+* Program in Javascript ES5, Javascript ES2015 ([Babel](https://babeljs.io/)) or Coffeescript
+* Theme with CSS ([PostCSS](https://github.com/postcss/postcss)), SCSS or LESS
 * Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
 * Create a final PHP and Javascript source protected distribution for deployment to the server
 * AngularJS and Backbone/Marionette Webpack examples

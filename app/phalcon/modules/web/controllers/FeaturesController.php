@@ -3,8 +3,8 @@ namespace Webird\Web\Controllers;
 
 use ZMQ,
     ZMQContext as ZMQContext,
-
     Webird\Mvc\Controller;
+
 /**
  * Controller for the Framework examples
  */
@@ -33,10 +33,10 @@ class FeaturesController extends Controller
         $zmqPort = $this->config->app->zmqPort;
 
         $data = [
-          'category' => 'kittensCategory',
-          'title'    => 'big_title',
-          'article'  => 'good',
-          'when'     => time()
+            'category' => 'kittensCategory',
+            'title'    => 'big_title',
+            'article'  => 'good',
+            'when'     => time()
         ];
 
         $context = new ZMQContext();
@@ -46,8 +46,6 @@ class FeaturesController extends Controller
         $socket->send(json_encode($data));
     }
 
-
-
     /**
      * Ratchet and Webpack integration example
      */
@@ -55,4 +53,12 @@ class FeaturesController extends Controller
     {
 
     }
+
+    /**
+     * Postcss processing example
+     */
+    public function postcssAction()
+    {
+    }
+
 }

@@ -1,0 +1,24 @@
+@custom-media --size1 (width >= 400px) and (width <= 600px);
+@custom-media --size2 (width >= 601px) and (width <= 800px);
+
+@import 'style_import_test.css';
+
+#content {
+    width: 200px;
+    color: color(red alpha(-10%));
+}
+
+
+@media (--size1) {
+  #content {
+    width: 250px;
+    background-color: blue;
+  }
+}
+
+@media (--size2) {
+  #content {
+    width: 300px;
+    background-color: green;
+  }
+}

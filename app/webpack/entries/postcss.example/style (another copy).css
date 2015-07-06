@@ -1,0 +1,25 @@
+/*@use autoprefixer(browsers: ['last 2 versions']);
+/*@custom-media --size1 (min-width: 400px, max-width: 599px);
+@custom-media --size2 (min-width: 600px, max-width: 799px);*/*/
+
+/*@import 'style_import_test.css';*/
+
+#content {
+    width: 200px;
+    background-color: yellow;
+}
+
+
+/*@media (min-width: 400px, max-width: 599px) {
+  #content {
+    width: 250px;
+    background-color: blue;
+  }
+}
+
+@media (min-width: 600px, max-width: 799px) {
+  #content {
+    width: 300px;
+    background-color: yellow;
+  }
+}*/

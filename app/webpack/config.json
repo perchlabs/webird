@@ -3,6 +3,13 @@
     "init_complex": ["admin", "public", "angular", "websocket"],
     "marionette": ["app.marionette.example"]
   },
+  "browsers": [
+    "last 5 Chrome versions",
+    "last 5 Firefox versions",
+    "Explorer > 9",
+    "iOS >= 6",
+    "> 2% in US"
+  ],
   "constants": {
     "HELLO_WORLD_CONSTANT": "Hello World"
   }

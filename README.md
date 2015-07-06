@@ -29,6 +29,7 @@ Node.js is required for development only and is not required once a project has 
 * [Phalcon](http://phalconphp.com/en/)
 * [Babel](https://babeljs.io/) - Javascript ES2015 to ES5
 * [Coffeescript](http://coffeescript.org/)
+* [PostCSS](https://github.com/postcss/postcss)
 * [Composer](https://getcomposer.org/) - PHP package manager
 * [npm](https://www.npmjs.org/) - Node.js package manager
 * [Bower](http://bower.io/) - Node.js based package manager specifically for front end resources
@@ -44,7 +45,7 @@ Node.js is required for development only and is not required once a project has 
 * PHP >= 5.4
 * Phalcon >= 2.0.1
 * MariaDB >= 10.0
-* Node.js
+* Node.js >= 0.12.0
 
 **Installation Instructions:**
 ```

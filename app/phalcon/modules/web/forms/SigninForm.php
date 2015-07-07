@@ -53,14 +53,6 @@ class SigninForm extends Form
         $remember->setLabel($t->gettext('Remember me'));
         $this->add($remember);
 
-        // CSRF
-        $csrf = new Hidden('csrf');
-        $csrf->addValidator(new Identical([
-            'value' => $this->security->getSessionToken(),
-            'message' => $t->gettext('Security token is invalid.')
-        ]));
-        $this->add($csrf);
-
         // Submit
         $submit = new Submit('submit', [
             'value' => $t->gettext('Go')

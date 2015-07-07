@@ -2,11 +2,11 @@
 
 $complete = [
     'cli' => [
-        'chat' => ['open']
+        'chat'        => ['open']
     ],
     'api' => [
-        'users'      => ['list', 'count'],
-        'helloworld' => ['index']
+        'users'       => ['list', 'count'],
+        'helloworld'  => ['index']
     ],
     'web' => [
         'index'       => ['index', 'notification'],

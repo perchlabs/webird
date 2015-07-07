@@ -219,7 +219,7 @@ class Acl extends Component
         }
 
         // Register roles
-        $roles = Roles::find('active = "Y"');
+        $roles = Roles::find('active = :active:');
         foreach ($roles as $role) {
             $acl->addRole(new AclRole($role->name));
         }

@@ -1,10 +1,10 @@
 {
   "name": "webird/framework",
   "description": "Webird Phalcon/Webpack Framework",
-  "version": "0.5.0-alpha4",
+  "version": "0.7.0",
   "require": {
     "php": ">=5.4",
-    "ext-phalcon": ">=2.0.1",
+    "ext-phalcon": ">=2.0.4",
     "ext-gettext": ">=0.0.0",
     "ext-zmq": ">=1.1.2",
     "ext-libevent": ">=0.1.0",

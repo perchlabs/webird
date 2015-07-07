@@ -1,4 +1,3 @@
-
 <!-- security token: {{security.getToken()}} -->
 <div class="container">
   {{ form('class': 'form-horizontal', 'role': 'form') }}
@@ -56,8 +55,7 @@
       </div>
     </div>
 
-    {{ form.render('csrf', ['value': security.getSessionToken()]) }}
-
+    <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}"/>
   </form>
 
   <div class="row">

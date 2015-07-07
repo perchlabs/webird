@@ -77,18 +77,23 @@ class SessionController extends Controller
 
         try {
             if ($this->request->isPost()) {
-                if ($form->isValid($this->request->getPost())) {
-                    $this->auth->check([
-                        'email' => $this->request->getPost('email'),
-                        'password' => $this->request->getPost('password'),
-                        'remember' => $this->request->getPost('remember')
-                    ]);
+                if ($this->security->checkToken()) {
+                    if ($form->isValid($this->request->getPost())) {
+                        $this->auth->check([
+                            'email'    => $this->request->getPost('email'),
+                            'password' => $this->request->getPost('password'),
+                            'remember' => $this->request->getPost('remember')
+                        ]);
 
-                    return $this->response->redirect($this->config->app->defaultPath);
-                } else {
-                    foreach($form->getMessages() as $message) {
-                        $this->flash->error($message);
+                        // Authentication is successful, redirect to default path.
+                        return $this->response->redirect($this->config->app->defaultPath);
+                    } else {
+                        foreach($form->getMessages() as $message) {
+                            $this->flash->error($message);
+                        }
                     }
+                } else {
+                    $this->flash->error($this->translate->gettext('Security token is invalid.'));
                 }
             } else {
                 if ($this->auth->hasRememberMe()) {
@@ -139,7 +144,7 @@ class SessionController extends Controller
             $this->flash->error($this->translate->gettext('Security token is invalid.'));
             return $this->dispatcher->forward([
                 'controller' => 'session',
-                'action' => 'signin'
+                'action'     => 'signin'
             ]);
         }
 

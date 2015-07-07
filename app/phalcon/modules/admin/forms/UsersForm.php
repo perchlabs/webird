@@ -62,7 +62,11 @@ class UsersForm extends Form
         $this->add($email);
 
         // rolesId field
-        $role = new Select('rolesId', Roles::find('active = "Y"'), [
+        $roles = Roles::find([
+            'active = :active:',
+            'bind' => ['active' => 'Y']
+        ]);
+        $role = new Select('rolesId', $roles, [
             'using' => [
                 'id',
                 'name'

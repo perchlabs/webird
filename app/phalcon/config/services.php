@@ -22,7 +22,7 @@ use Phalcon\Loader,
  *
  */
 Model::setup([
-    'phqlLiterals'       => true,
+    'phqlLiterals'       => false,
     'notNullValidations' => false
 ]);
 

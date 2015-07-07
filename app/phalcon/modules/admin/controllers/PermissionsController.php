@@ -70,6 +70,9 @@ class PermissionsController extends Controller
         }
 
         // Pass all the active roles
-        $this->view->roles = Roles::find('active = "Y"');
+        $this->view->roles = Roles::find([
+            'active = :active:',
+            'bind' => ['active' => 'Y']
+        ]);
     }
 }

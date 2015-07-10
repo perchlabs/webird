@@ -247,7 +247,6 @@ gulp.task('webpack:build', function(callback) {
     wpConf.output.path = path.join(projectRoot, 'dist', 'public');
     wpConf.plugins.concat([
         new DefinePlugin({DEV: false}),
-        new DedupePlugin(),
         new UglifyJsPlugin()
     ]);
 

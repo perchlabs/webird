@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <input type="hidden" name="{{ security.getSessionTokenKey() }}" value="{{ security.getSessionToken() }}"/>
+    <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getSessionToken() }}"/>
   </form>
 
   <div class="row">

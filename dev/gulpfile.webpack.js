@@ -147,7 +147,10 @@ var wpConf = {
                 loader: "html"
             }, {
                 test: /\.nunj$/,
-                loader: "nunjucks"
+                loader: "nunjucks",
+                query: {
+                  config: `${devRoot}/nunjucks.config.js`
+                }
             }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")

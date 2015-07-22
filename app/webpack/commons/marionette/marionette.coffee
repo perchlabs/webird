@@ -5,7 +5,6 @@ Radio      = require 'backbone.radio'
 # app
 init     = require 'init'
 locale   = require 'locale'
-template = require 'template'
 # local
 require './backbone.radio_shim'
 
@@ -16,14 +15,7 @@ $.ajaxSetup
 # TODO: Wating for nunjucks-loader to be fixed:
 # Issue: https://github.com/at0g/nunjucks-loader/issues/3
 # # Configure Marionette.Renderer to use Marionette instead of underscore templates
-# Marionette.Renderer.render = (tpl, data) ->
-#   html = tpl.render(data)
-#   return html
-
-
-# Configure Marionette.Renderer to use Marionette instead of underscore templates
-Marionette.Renderer.render = (src, data) ->
-  tpl = template.factory src
+Marionette.Renderer.render = (tpl, data) ->
   html = tpl.render(data)
   return html
 

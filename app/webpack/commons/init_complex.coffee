@@ -4,7 +4,6 @@ require 'theme_style/bootstrap'
 require 'theme_script/bootstrap'
 
 init = require 'init'
-template = require 'template'
 locale = require 'locale'
 
 initBlock = init.getBlockingDeferred()

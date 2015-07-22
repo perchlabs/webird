@@ -30,7 +30,7 @@ var bowerRoot = path.join(devRoot, 'bower_components');
 var nodeModulesRoot = path.join(devRoot, 'node_modules');
 var projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-var appConfig = require(`${webpackRoot}/config`);
+var appConfig = yaml.load(fs.readFileSync(webpackRoot + "/config.yml", 'utf8'));
 
 /**
  *

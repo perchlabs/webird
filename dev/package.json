@@ -4,7 +4,10 @@
   "dependencies": {},
   "devDependencies": {
     "babel-core": "~5.8.3",
+    "babel-runtime": "~5.8.3",
     "coffee-script": "~1.9.3",
+    "fetch-polyfill": "0.8.1",
+    "bluebird": "2.9.33",
     "gulp": "~3.9.0",
     "gulp-util": "~3.0.6",
     "js-yaml": "~3.3.1",

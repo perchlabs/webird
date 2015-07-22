@@ -2,5 +2,5 @@
 
 init = require 'init'
 
-init.done ->
+init().then ->
   app = require 'angular_app'

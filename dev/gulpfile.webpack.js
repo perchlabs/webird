@@ -94,9 +94,9 @@ var wpConf = {
     plugins: [
         new DefinePlugin({
             VERSION: JSON.stringify(require(devRoot + "/package.json").version),
-            THEME_ROOT: JSON.stringify(appRoot + "/theme"),
+            WEBPACK_ROOT: JSON.stringify(webpackRoot),
             LOCALE_ROOT: JSON.stringify(appRoot + "/locale"),
-            LOCALE_CONFIG: JSON.stringify(yaml.load(fs.readFileSync(appRoot + "/locale/config.yml", 'utf8')))
+            THEME_ROOT: JSON.stringify(appRoot + "/theme"),
         }),
         new ExtractTextPlugin('css/[name].css', { allChunks: false}),
         new ProvidePlugin({

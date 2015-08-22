@@ -129,7 +129,12 @@ var wpConf = {
             }, {
                 test: /\.js?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel'
+                loader: 'babel',
+                query: {
+                    optional: ['runtime'],
+                    stage: 0,
+                    cacheDirectory: '/tmp'
+                }
             }, {
                 test: /\.coffee$/,
                 loader: "coffee"

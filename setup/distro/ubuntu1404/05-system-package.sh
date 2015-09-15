@@ -8,7 +8,7 @@ apt-get install -y software-properties-common
 
 # MariaDB Ubuntu PPA
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
-add-apt-repository 'deb http://ftp.cc.uoc.gr/mirrors/mariadb/repo/10.0/ubuntu trusty main'
+add-apt-repository 'deb http://mariadb.mirror.nucleus.be//repo/10.1/ubuntu trusty main'
 
 # Nginx Stable Ubuntu PPA
 add-apt-repository ppa:nginx/stable

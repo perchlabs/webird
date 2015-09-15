@@ -37,7 +37,7 @@ Node.js is required for development only and is not required once a project has 
 * [Webpack](http://webpack.github.io/) - CommonJS build environment
 * [Ratchet](http://socketo.me/) - PHP websockets
 * [gettext](http://www.gnu.org/software/gettext/gettext.html) - Translations
-* [MariaDB 10.0](https://mariadb.org/) - MySQL fork
+* [MariaDB](https://mariadb.org/) - MySQL fork
 * [Docker](https://www.docker.com/) - Docker container for easy deployment
 * [Ion Cube](http://www.ioncube.com/) - optional PHP source protection
 

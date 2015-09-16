@@ -2,8 +2,7 @@
 # Dockerfile to build Webird container images
 ############################################################
 
-FROM ubuntu:14.04.1
-# FROM trusty-updated
+FROM ubuntu:14.04.3
 MAINTAINER David Schissler
 
 ADD . /opt/webird

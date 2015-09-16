@@ -3,5 +3,5 @@
 // Setup bluebird Promise polyfill for Babel
 require('babel-runtime/core-js/promise')['default'] = require('bluebird');
 
-// https://github.com/github/fetch
-require('fetch-polyfill');
+// Setup fetch API polyfill
+require('whatwg-fetch');

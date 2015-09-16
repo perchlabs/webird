@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.20-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.21-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: webird_git
 -- ------------------------------------------------------
--- Server version	10.0.20-MariaDB-1~trusty-log
+-- Server version	10.0.21-MariaDB-1~trusty-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -163,7 +163,7 @@ CREATE TABLE `permissions` (
   `action` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `profilesId` (`rolesId`)
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=312 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `permissions` (
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (226,3,'web','settings','changePassword'),(259,1,'cli','chat','open'),(260,1,'api','users','list'),(261,1,'api','users','count'),(262,1,'api','helloworld','index'),(263,1,'web','settings','changePassword'),(264,1,'web','features','index'),(265,1,'web','features','angular'),(266,1,'web','features','marionette'),(267,1,'web','features','websocket'),(268,1,'web','features','postcss'),(269,1,'admin','index','index'),(270,1,'admin','roles','index'),(271,1,'admin','roles','search'),(272,1,'admin','roles','edit'),(273,1,'admin','roles','create'),(274,1,'admin','roles','delete'),(275,1,'admin','permissions','index'),(276,1,'admin','users','index'),(277,1,'admin','users','search'),(278,1,'admin','users','create'),(279,1,'admin','users','edit'),(280,1,'admin','users','delete'),(281,2,'api','users','list'),(282,2,'api','users','count'),(283,2,'web','settings','changePassword'),(284,2,'web','features','index'),(285,2,'web','features','angular'),(286,2,'web','features','marionette'),(287,2,'web','features','websocket'),(288,2,'web','features','postcss');
+INSERT INTO `permissions` VALUES (226,3,'web','settings','changePassword'),(281,2,'api','users','list'),(282,2,'api','users','count'),(283,2,'web','settings','changePassword'),(284,2,'web','features','index'),(285,2,'web','features','angular'),(286,2,'web','features','marionette'),(287,2,'web','features','websocket'),(288,2,'web','features','postcss'),(289,1,'cli','chat','open'),(290,1,'api','users','list'),(291,1,'api','users','count'),(292,1,'api','helloworld','index'),(293,1,'web','settings','changePassword'),(294,1,'web','features','index'),(295,1,'web','features','angular'),(296,1,'web','features','marionette'),(297,1,'web','features','websocket'),(298,1,'web','features','postcss'),(299,1,'web','features','fetch'),(300,1,'admin','index','index'),(301,1,'admin','roles','index'),(302,1,'admin','roles','search'),(303,1,'admin','roles','edit'),(304,1,'admin','roles','create'),(305,1,'admin','roles','delete'),(306,1,'admin','permissions','index'),(307,1,'admin','users','index'),(308,1,'admin','users','search'),(309,1,'admin','users','create'),(310,1,'admin','users','edit'),(311,1,'admin','users','delete');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-06 19:35:22
+-- Dump completed on 2015-09-17  0:13:22

@@ -24,6 +24,7 @@
       <h3>{{t('Technologies')}}</h3>
       {{ link_to('features/websocket', this.translate.t('WebSocket'), 'class':'btn btn-primary') }}
       {{ link_to('features/postcss', this.translate.t('PostCSS'), 'class':'btn btn-primary') }}
+      {{ link_to('features/fetch', this.translate.t('Fetch API with async/await'), 'class':'btn btn-primary') }}
     </div>
   </div>
   <div class="row top7">

@@ -16,7 +16,7 @@ $complete = [
         'privacy'     => ['index'],
         'terms'       => ['terms'],
         'settings'    => ['changePassword'],
-        'features'    => ['index', 'angular', 'marionette', 'websocket', 'postcss']
+        'features'    => ['index', 'angular', 'marionette', 'websocket', 'postcss', 'fetch']
     ],
     'admin' => [
         'index'       => ['index'],

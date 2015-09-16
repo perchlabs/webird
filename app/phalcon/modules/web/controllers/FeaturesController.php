@@ -55,6 +55,27 @@ class FeaturesController extends Controller
     }
 
     /**
+     * Fetch API example
+     */
+    public function fetchAction()
+    {
+        $api = $this->dispatcher->getParam(0);
+        if (isset($api) && $api == 'api') {
+            $response = $this->getDI()->getResponse();
+            $data = [
+                'this_is_data' => 'here_it_is'
+            ];
+            $json = json_encode($data, JSON_PRETTY_PRINT);
+
+            $response->setHeader('Content-Type', 'application/json');
+            $response->setContent($json);
+            $response->send();
+
+            $this->view->disable();
+        }
+    }
+
+    /**
      * Postcss processing example
      */
     public function postcssAction()

@@ -19,9 +19,6 @@ re2c
 nginx
 mariadb-server
 mariadb-client
-nodejs
-nodejs-legacy
-npm
 php-pear
 php5-common
 php5-cli

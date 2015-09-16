@@ -51,5 +51,8 @@
     "dev": "gulp webpack:dev-server",
     "build": "gulp webpack:build",
     "dev-build": "gulp webpack:dev-build"
+  },
+  "engines": {
+    "node": ">=4.0"
   }
 }

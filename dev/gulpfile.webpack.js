@@ -154,7 +154,9 @@ var wpConf = {
                 test: /\.nunj$/,
                 loader: "nunjucks",
                 query: {
-                  config: `${devRoot}/nunjucks.config.js`
+                  config: `${devRoot}/nunjucks.config.js`,
+                  // // Don't show the 'Cannot configure nunjucks environment before precompile' warning
+                  // quiet: true
                 }
             }, {
                 test: /\.css$/,

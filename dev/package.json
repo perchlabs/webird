@@ -53,6 +53,6 @@
     "dev-build": "gulp webpack:dev-build"
   },
   "engines": {
-    "node": ">=4.0"
+    "node": ">=5.0"
   }
 }

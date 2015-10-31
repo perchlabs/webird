@@ -4,15 +4,17 @@
 
 cd $TEMPDIR
 
+NODE_VERSION=5.0.0
+
 # Download nodejs source
-wget https://nodejs.org/dist/latest/node-v4.0.0.tar.gz
+wget https://nodejs.org/dist/latest/node-v${NODE_VERSION}.tar.gz
 [[ $? -ne 0 ]] && exit $?
 # Extract source
-tar -xf node-v4.0.0.tar.gz
+tar -xf node-v${NODE_VERSION}.tar.gz
 [[ $? -ne 0 ]] && exit $?
 
 # Compile source
-cd node-v4.0.0
+cd node-v${NODE_VERSION}
 [[ $? -ne 0 ]] && exit $?
 ./configure
 [[ $? -ne 0 ]] && exit $?

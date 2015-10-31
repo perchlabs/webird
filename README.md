@@ -18,7 +18,7 @@ Node.js is required for development only and is not required once a project has 
 * A single PHP command that starts development processes across PHP and Node.js
 * [Webpack](http://webpack.github.io/) (CommonJS) build environment
 * Live reloading (and waiting) CommonJS build environment
-* Program in Javascript ES5, Javascript ES2015 ([Babel](https://babeljs.io/)) or Coffeescript
+* Program in Javascript ES5, Javascript ES2016 ([Babel](https://babeljs.io/)) or Coffeescript
 * Theme with CSS ([PostCSS](https://github.com/postcss/postcss)), SCSS or LESS
 * Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
 * Create a final PHP and Javascript source protected distribution for deployment to the server
@@ -28,7 +28,7 @@ Node.js is required for development only and is not required once a project has 
 #### Key components of Webird:
 * [nginx](http://nginx.org/)
 * [Phalcon](http://phalconphp.com/en/)
-* [Babel](https://babeljs.io/) - Javascript ES2015 to ES5
+* [Babel](https://babeljs.io/) - Javascript ES2016 to ES5
 * [Coffeescript](http://coffeescript.org/)
 * [PostCSS](https://github.com/postcss/postcss)
 * [Composer](https://getcomposer.org/) - PHP package manager

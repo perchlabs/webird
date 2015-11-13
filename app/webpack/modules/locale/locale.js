@@ -42,6 +42,6 @@ function initExecutor(resolve, reject) {
 }
 
 function getLangLoader(locale) {
-  let bundleLoader = require(`bundle!${LOCALE_ROOT}/${locale}/LC_MESSAGES/messages.po`);
+  let bundleLoader = require(`bundle!${LOCALE_ROOT}/${locale}/LC_MESSAGES/webpack.po`);
   return bundleLoader;
 };

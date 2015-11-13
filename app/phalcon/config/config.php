@@ -28,7 +28,7 @@ $config2 = new Config([
         'modules'        => ['cli', 'web', 'api', 'admin']
     ],
     'locale' => [
-        'domains' => ['messages']
+        'domains' => ['phalcon']
     ],
     'path' => [
         // Typical Phalcon paths

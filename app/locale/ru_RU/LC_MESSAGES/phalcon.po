@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
-"POT-Creation-Date: 2015-11-13 12:04+0300\n"
-"PO-Revision-Date: 2015-11-13 12:04+0300\n"
+"POT-Creation-Date: 2015-11-13 17:42+0300\n"
+"PO-Revision-Date: 2015-11-13 17:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ../../../phalcon\n"
-"X-Poedit-SearchPath-1: ../../../webpack\n"
 
 #: ../../../phalcon/common/library/Auth/Auth.php:65
 #: ../../../phalcon/common/library/Auth/Auth.php:105
@@ -340,27 +339,6 @@ msgstr "Для смены пароля вам необходимо войти н
 msgid "Your password was successfully changed"
 msgstr "Ваш пароль был успешно изменен"
 
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:6
-#, fuzzy
-msgid ""
-"The counter change buttons will post a message to the global channel for the "
-"Counter module."
-msgstr ""
-"Кнопки изменения счетчика отправят сообщение на мировой канал,  ждущий "
-"сигнал от модуля консоли"
-
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:9
-msgid "Decrement"
-msgstr "Уменьшение"
-
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:10
-msgid "Increment"
-msgstr "Увеличение"
-
-#: ../../../webpack/entries/app.marionette.example/partials/websocket.nunj:5
-msgid "Connect"
-msgstr ""
-
 #: ../../../phalcon/common/views/partials/noscript.volt:3
 msgid "Your javascript is disabled."
 msgstr "JavaScript отключен"
@@ -474,10 +452,6 @@ msgstr "Последняя"
 msgid "No users are recorded"
 msgstr "Нет записанных пользователей"
 
-#: ../../../phalcon/modules/admin/views/users/index.volt:11
-msgid "Search users"
-msgstr "Найти пользователей"
-
 #: ../../../phalcon/modules/admin/views/users/changePassword.volt:6
 #: ../../../phalcon/modules/web/views/settings/changePassword.volt:5
 msgid "Change Password"
@@ -490,6 +464,10 @@ msgstr "Создать пользователя"
 #: ../../../phalcon/modules/admin/views/users/create.volt:50
 msgid "* The email can be sent at a later time"
 msgstr "Email можно отправить позже"
+
+#: ../../../phalcon/modules/admin/views/users/index.volt:11
+msgid "Search users"
+msgstr "Найти пользователей"
 
 #: ../../../phalcon/modules/admin/views/users/edit.volt:19
 msgid "Signins"
@@ -748,30 +726,3 @@ msgstr "Забыли пароль?"
 #, fuzzy
 msgid "Forgot my password"
 msgstr "Забыли пароль?"
-
-#~ msgid "Module"
-#~ msgstr "Модуль"
-
-#~ msgid "The counter reads"
-#~ msgstr "The counter reads"
-
-#~ msgid "click"
-#~ msgid_plural "clicks"
-#~ msgstr[0] "клик"
-#~ msgstr[1] "клик"
-#~ msgstr[2] "клик"
-
-#~ msgid "Hello World Module"
-#~ msgstr "Модуль приветствия"
-
-#~ msgid "Create user"
-#~ msgstr "Создать пользователя"
-
-#~ msgid "Search"
-#~ msgstr "Поиск"
-
-#~ msgid "Debug Panel"
-#~ msgstr "Панель Отладка"
-
-#~ msgid "Simple Task"
-#~ msgstr "Простые задачи"

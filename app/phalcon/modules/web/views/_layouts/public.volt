@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbar-content">
       <ul class="nav navbar-nav">
         {%- set menus = [
-          'about': this.translate.t('About')
+          'about': t('About')
         ] -%}
 
         {%- for key, value in menus %}

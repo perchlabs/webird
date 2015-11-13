@@ -11,9 +11,9 @@
     <div class="col-md-4">
     <ul class="list-group">
     {%- set utilities = [
-      'admin/users': this.translate.t('User Management'),
-      'admin/roles': this.translate.t('Role Management'),
-      'admin/permissions': this.translate.t('Permissions Management')
+      'admin/users': t('User Management'),
+      'admin/roles': t('Role Management'),
+      'admin/permissions': t('Permissions Management')
     ] -%}
     {%- for key, value in utilities %}
       <li class="list-group-item">{{ link_to(key, value) }}</li>

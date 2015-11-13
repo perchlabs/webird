@@ -91,14 +91,14 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 * **Nunjucks**
   * Language: `Nunjucks`
   * List of extensions...: `*.nunj`
-  * Parser Command: `xgettext-template -L Swig --force-po -o %o %C %K %F`
+  * Parser Command: `xgettext-webird -L Swig --force-po -o %o %C %K %F`
   * An item in keywords list: `-k %k`
   * An item in input files list: `%f`
   * Source code charset: `--from-code=%c`
 * **Volt**
   * Language: `Volt`
   * List of extensions...: `*.volt`
-  * Parser Command: `xgettext-template -L Volt --force-po -o %o %C %K %F`
+  * Parser Command: `xgettext-webird -L Volt --force-po -o %o %C %K %F`
   * An item in keywords list: `-k %k`
   * An item in input files list: `%f`
   * Source code charset: `--from-code=%c`

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Webird\n"
-"POT-Creation-Date: 2015-01-14 16:21-0800\n"
-"PO-Revision-Date: 2015-01-14 16:21-0800\n"
+"POT-Creation-Date: 2015-11-13 12:04+0300\n"
+"PO-Revision-Date: 2015-11-13 12:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: Ukrainian\n"
@@ -17,6 +17,143 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ../../../phalcon\n"
 "X-Poedit-SearchPath-1: ../../../webpack\n"
+
+#: ../../../phalcon/common/library/Auth/Auth.php:65
+#: ../../../phalcon/common/library/Auth/Auth.php:105
+#: ../../../phalcon/common/library/Auth/Auth.php:112
+#: ../../../phalcon/common/library/Auth/Auth.php:118
+msgid "OAuth signin error"
+msgstr ""
+
+#: ../../../phalcon/common/library/Auth/Auth.php:125
+#: ../../../phalcon/common/library/Auth/Auth.php:133
+msgid "Oauth authentication failed"
+msgstr ""
+
+#: ../../../phalcon/common/library/Auth/Auth.php:136
+msgid "The email could not be verified."
+msgstr ""
+
+#: ../../../phalcon/common/library/Auth/Auth.php:145
+msgid "This email is not registered in the system."
+msgstr ""
+
+#: ../../../phalcon/common/library/Auth/Auth.php:186
+msgid "Invalid oauth provider"
+msgstr ""
+
+#: ../../../phalcon/common/plugins/DispatcherSecurity.php:80
+msgid "You don't have access to the restricted resource"
+msgstr ""
+
+#: ../../../phalcon/common/plugins/DispatcherSecurity.php:109
+msgid "You do not have access to the resource"
+msgstr ""
+
+#: ../../../phalcon/common/models/EmailConfirmations.php:82
+#, php-format
+msgid "Please confirm your email on %s"
+msgstr ""
+
+#: ../../../phalcon/common/models/ResetPasswords.php:81
+#, php-format
+msgid "Reset your password on %s"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:34
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:29
+#: ../../../phalcon/modules/admin/views/users/search.volt:21
+#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_reset_passwords.volt:5
+#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_successful_signins.volt:5
+#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_password_changes.volt:5
+#: ../../../phalcon/modules/admin/views/roles/search.volt:23
+#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:5
+msgid "Id"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:39
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:41
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:33
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:35
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:32
+#: ../../../phalcon/modules/admin/views/users/search.volt:22
+#: ../../../phalcon/modules/admin/views/roles/search.volt:24
+#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:6
+msgid "Name"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:44
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:38
+msgid "Name is required"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:51
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:53
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:24
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:26
+#: ../../../phalcon/modules/web/forms/SigninForm.php:28
+#: ../../../phalcon/modules/admin/views/users/search.volt:23
+msgid "Email"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:56
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:29
+#: ../../../phalcon/modules/web/forms/SigninForm.php:32
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:45
+msgid "Email is required"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:59
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:32
+#: ../../../phalcon/modules/web/forms/SigninForm.php:35
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:48
+msgid "Email is not valid"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:78
+#: ../../../phalcon/modules/admin/views/users/search.volt:24
+msgid "Role"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:81
+msgid "The user role must be set."
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:88
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:97
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:45
+msgid "No"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:89
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:96
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:44
+msgid "Yes"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:91
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:47
+#: ../../../phalcon/modules/admin/views/users/search.volt:25
+msgid "Active"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:99
+#: ../../../phalcon/modules/admin/views/users/search.volt:26
+msgid "Banned"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:104
+msgid "Add text to send confirmation email."
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:106
+msgid "Send activation email"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/forms/UsersForm.php:111
+#: ../../../phalcon/modules/admin/forms/RolesForm.php:52
+msgid "Save"
+msgstr ""
 
 #: ../../../phalcon/modules/admin/controllers/UsersController.php:61
 msgid "The search did not find any users"
@@ -69,166 +206,53 @@ msgstr ""
 msgid "Role was deleted"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:34
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:29
-#: ../../../phalcon/modules/admin/views/users/search.volt:21
-#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_reset_passwords.volt:5
-#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_successful_signins.volt:5
-#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_password_changes.volt:5
-#: ../../../phalcon/modules/admin/views/roles/search.volt:23
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:5
-msgid "Id"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:25
+#: ../../../phalcon/modules/web/forms/SigninForm.php:42
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:55
+msgid "Password"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:39
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:41
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:33
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:35
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:32
-#: ../../../phalcon/modules/admin/views/users/search.volt:22
-#: ../../../phalcon/modules/admin/views/roles/search.volt:24
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:6
-msgid "Name"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:28
+#: ../../../phalcon/modules/web/forms/SigninForm.php:45
+msgid "Password is required"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:44
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:38
-msgid "Name is required"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:32
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:62
+#, php-format
+msgid "Password is too short. Minimum %d characters"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:51
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:53
-#: ../../../phalcon/modules/web/forms/SigninForm.php:28
-#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:24
-#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:26
-#: ../../../phalcon/modules/admin/views/users/search.volt:23
-msgid "Email"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:35
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:65
+msgid "Password doesn't match confirmation"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:56
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:45
-#: ../../../phalcon/modules/web/forms/SigninForm.php:32
-#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:29
-msgid "Email is required"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:43
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:73
+msgid "Confirm Password"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:59
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:48
-#: ../../../phalcon/modules/web/forms/SigninForm.php:35
-#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:32
-msgid "Email is not valid"
+#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:46
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:76
+msgid "The confirmation password is required"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:74
-#: ../../../phalcon/modules/admin/views/users/search.volt:24
-msgid "Role"
+#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:37
+msgid "send"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:77
-msgid "The user role must be set."
+#: ../../../phalcon/modules/web/forms/SigninForm.php:51
+#: ../../../phalcon/modules/web/forms/SignUpForm.php:83
+msgid "yes"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:84
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:93
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:45
-#: ../../../phalcon/modules/admin/views/users/search.volt:37
-#: ../../../phalcon/modules/admin/views/users/search.volt:41
-#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_reset_passwords.volt:15
-#: ../../../phalcon/modules/admin/views/roles/search.volt:33
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:16
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:17
-msgid "No"
+#: ../../../phalcon/modules/web/forms/SigninForm.php:53
+msgid "Remember me"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:85
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:92
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:44
-#: ../../../phalcon/modules/admin/views/users/search.volt:37
-#: ../../../phalcon/modules/admin/views/users/search.volt:41
-#: ../../../phalcon/modules/admin/views/users/edit/tab_pane_reset_passwords.volt:15
-#: ../../../phalcon/modules/admin/views/roles/search.volt:33
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:16
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:17
-msgid "Yes"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:87
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:47
-#: ../../../phalcon/modules/admin/views/users/search.volt:25
-msgid "Active"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:95
-#: ../../../phalcon/modules/admin/views/users/search.volt:26
-msgid "Banned"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:100
-msgid "Add text to send confirmation email."
-msgstr ""
-
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:102
-msgid "Send activation email"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/forms/UsersForm.php:107
-#: ../../../phalcon/modules/admin/forms/RolesForm.php:52
-#: ../../../phalcon/modules/admin/views/permissions/index.volt:57
-msgid "Save"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/SessionController.php:139
-#: ../../../phalcon/modules/web/forms/SigninForm.php:60
-msgid "Security token is invalid."
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:42
-msgid "The confirmation code was not valid."
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:50
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:120
-msgid "User is banned"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:58
-msgid "You have already confirmed your email. Proceed to signin"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:86
-msgid "The email was successfully confirmed"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:104
-msgid "The password reset code is invalid"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:113
-msgid "User is inactive"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:114
-msgid "Activate the user first before changing password."
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:172
-msgid "There is no account associated with this email."
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:177
-msgid "An email has been sent!"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/UserspublicController.php:178
-msgid "Please check your inbox for a reset password message."
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/SettingsController.php:39
-msgid "You must be signed in to change the password"
-msgstr ""
-
-#: ../../../phalcon/modules/web/controllers/SettingsController.php:61
-msgid "Your password was successfully changed"
+#: ../../../phalcon/modules/web/forms/SigninForm.php:58
+msgid "Go"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:35
@@ -239,40 +263,8 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:55
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:25
-#: ../../../phalcon/modules/web/forms/SigninForm.php:42
-msgid "Password"
-msgstr ""
-
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:58
 msgid "The password is required"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:62
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:32
-#, php-format
-msgid "Password is too short. Minimum %d characters"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:65
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:35
-msgid "Password doesn't match confirmation"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:73
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:43
-msgid "Confirm Password"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:76
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:46
-msgid "The confirmation password is required"
-msgstr ""
-
-#: ../../../phalcon/modules/web/forms/SignUpForm.php:83
-#: ../../../phalcon/modules/web/forms/SigninForm.php:51
-msgid "yes"
 msgstr ""
 
 #: ../../../phalcon/modules/web/forms/SignUpForm.php:85
@@ -291,103 +283,191 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: ../../../phalcon/modules/web/forms/ChangePasswordForm.php:28
-#: ../../../phalcon/modules/web/forms/SigninForm.php:45
-msgid "Password is required"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:40
+msgid "The confirmation code was not valid."
 msgstr ""
 
-#: ../../../phalcon/modules/web/forms/SigninForm.php:53
-msgid "Remember me"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:48
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:118
+msgid "User is banned"
 msgstr ""
 
-#: ../../../phalcon/modules/web/forms/SigninForm.php:66
-msgid "Go"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:56
+msgid "You have already confirmed your email. Proceed to signin"
 msgstr ""
 
-#: ../../../phalcon/modules/web/forms/ForgotPasswordForm.php:37
-msgid "send"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:84
+msgid "The email was successfully confirmed"
 msgstr ""
 
-#: ../../../phalcon/common/library/Auth/Auth.php:65
-#: ../../../phalcon/common/library/Auth/Auth.php:105
-#: ../../../phalcon/common/library/Auth/Auth.php:112
-#: ../../../phalcon/common/library/Auth/Auth.php:118
-msgid "OAuth signin error"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:102
+msgid "The password reset code is invalid"
 msgstr ""
 
-#: ../../../phalcon/common/library/Auth/Auth.php:125
-#: ../../../phalcon/common/library/Auth/Auth.php:133
-msgid "Oauth authentication failed"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:111
+msgid "User is inactive"
 msgstr ""
 
-#: ../../../phalcon/common/library/Auth/Auth.php:136
-msgid "The email could not be verified."
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:112
+msgid "Activate the user first before changing password."
 msgstr ""
 
-#: ../../../phalcon/common/library/Auth/Auth.php:145
-msgid "This email is not registered in the system."
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:170
+msgid "There is no account associated with this email."
 msgstr ""
 
-#: ../../../phalcon/common/library/Auth/Auth.php:186
-msgid "Invalid oauth provider"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:175
+msgid "An email has been sent!"
 msgstr ""
 
-#: ../../../phalcon/common/plugins/DispatcherSecurity.php:80
-msgid "You don't have access to the restricted resource"
+#: ../../../phalcon/modules/web/controllers/UserspublicController.php:176
+msgid "Please check your inbox for a reset password message."
 msgstr ""
 
-#: ../../../phalcon/common/plugins/DispatcherSecurity.php:109
-msgid "You do not have access to the resource"
+#: ../../../phalcon/modules/web/controllers/SessionController.php:96
+#: ../../../phalcon/modules/web/controllers/SessionController.php:144
+msgid "Security token is invalid."
 msgstr ""
 
-#: ../../../phalcon/common/models/EmailConfirmations.php:82
-#, php-format
-msgid "Please confirm your email on %s"
+#: ../../../phalcon/modules/web/controllers/SettingsController.php:39
+msgid "You must be signed in to change the password"
 msgstr ""
 
-#: ../../../phalcon/common/models/ResetPasswords.php:81
-#, php-format
-msgid "Reset your password on %s"
+#: ../../../phalcon/modules/web/controllers/SettingsController.php:61
+msgid "Your password was successfully changed"
 msgstr ""
 
-#: ../../../webpack/modules/marionette_module.console/partials/content.nunj:1
-msgid "Module"
-msgstr ""
-
-#: ../../../webpack/modules/marionette_module.console/partials/content.nunj:4
-msgid "The counter reads"
-msgstr ""
-
-#: ../../../webpack/modules/marionette_module.console/partials/content.nunj:4
-msgid "click"
-msgid_plural "clicks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../../../webpack/modules/marionette_module.helloworld/partials/content.nunj:4
+#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:6
 msgid ""
-"The counter change buttons will post a message to the global channel that is "
-"listening to the Console Module."
+"The counter change buttons will post a message to the global channel for the "
+"Counter module."
 msgstr ""
 
-#: ../../../webpack/modules/marionette_module.helloworld/partials/content.nunj:7
+#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:9
 msgid "Decrement"
 msgstr ""
 
-#: ../../../webpack/modules/marionette_module.helloworld/partials/content.nunj:8
+#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:10
 msgid "Increment"
 msgstr ""
 
-#: ../../../webpack/modules/marionette_module.helloworld/partials/header.nunj:1
-msgid "Hello World Module"
+#: ../../../webpack/entries/app.marionette.example/partials/websocket.nunj:5
+msgid "Connect"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/users/create.volt:4
+#: ../../../phalcon/common/views/partials/noscript.volt:3
+msgid "Your javascript is disabled."
+msgstr ""
+
+#: ../../../phalcon/common/views/partials/noscript.volt:5
+msgid "This website requires javascript to function properly."
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/resetPassword.volt:6
+msgid "Reset Your Password for account on"
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/resetPassword.volt:8
+msgid ""
+"To reset the password for this account, click on the button below. If you do "
+"not want to reset your password, please disregard this email."
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/resetPassword.volt:12
+msgid "Reset"
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:6
+msgid "You are Almost There! Just Confirm Your Email"
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:8
+msgid ""
+"You have successfully created a Webird account. To activate it, please click "
+"below to verify your email address."
+msgstr ""
+
+#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:15
+msgid "Confirm"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/_layouts/admin.volt:40
+msgid "Signout"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/_layouts/admin.volt:4
+#: ../../../phalcon/modules/web/views/_layouts/private.volt:4
+msgid "Features"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/_layouts/admin.volt:5
+#: ../../../phalcon/modules/web/views/_layouts/private.volt:5
+msgid "Admin"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/permissions/index.volt:5
+msgid "Role Permissions"
+msgstr ""
+
 #: ../../../phalcon/modules/admin/views/users/search.volt:6
+#: ../../../phalcon/modules/admin/views/users/create.volt:4
 #: ../../../phalcon/modules/admin/views/users/edit.volt:5
 #: ../../../phalcon/modules/admin/views/roles/search.volt:7
+#: ../../../phalcon/modules/admin/views/roles/create.volt:5
 #: ../../../phalcon/modules/admin/views/roles/edit.volt:6
 msgid "Go Back"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:9
+#: ../../../phalcon/modules/admin/views/users/index.volt:4
+msgid "Create User"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:39
+#: ../../../phalcon/modules/admin/views/users/edit.volt:18
+#: ../../../phalcon/modules/admin/views/roles/search.volt:35
+#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:19
+msgid "Edit"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:41
+#: ../../../phalcon/modules/admin/views/users/search.volt:43
+#: ../../../phalcon/modules/admin/views/roles/search.volt:38
+#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:22
+msgid "Delete"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:53
+#: ../../../phalcon/modules/admin/views/roles/search.volt:47
+msgid "First"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:54
+#: ../../../phalcon/modules/admin/views/roles/search.volt:48
+msgid "Previous"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:55
+#: ../../../phalcon/modules/admin/views/roles/search.volt:49
+msgid "Next"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:56
+#: ../../../phalcon/modules/admin/views/roles/search.volt:50
+msgid "Last"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/search.volt:65
+msgid "No users are recorded"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/index.volt:11
+msgid "Search users"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/users/changePassword.volt:6
+#: ../../../phalcon/modules/web/views/settings/changePassword.volt:5
+msgid "Change Password"
 msgstr ""
 
 #: ../../../phalcon/modules/admin/views/users/create.volt:11
@@ -396,47 +476,6 @@ msgstr ""
 
 #: ../../../phalcon/modules/admin/views/users/create.volt:50
 msgid "* The email can be sent at a later time"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:9
-msgid "Create user"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:43
-#: ../../../phalcon/modules/admin/views/users/edit.volt:18
-#: ../../../phalcon/modules/admin/views/roles/search.volt:34
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:18
-msgid "Edit"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:44
-#: ../../../phalcon/modules/admin/views/roles/search.volt:35
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:19
-msgid "Delete"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:53
-#: ../../../phalcon/modules/admin/views/roles/search.volt:43
-msgid "First"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:54
-#: ../../../phalcon/modules/admin/views/roles/search.volt:44
-msgid "Previous"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:55
-#: ../../../phalcon/modules/admin/views/roles/search.volt:45
-msgid "Next"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:56
-#: ../../../phalcon/modules/admin/views/roles/search.volt:46
-msgid "Last"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/search.volt:65
-msgid "No users are recorded"
 msgstr ""
 
 #: ../../../phalcon/modules/admin/views/users/edit.volt:19
@@ -449,27 +488,6 @@ msgstr ""
 
 #: ../../../phalcon/modules/admin/views/users/edit.volt:21
 msgid "Reset Passwords"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/changePassword.volt:6
-#: ../../../phalcon/modules/admin/views/users/changePassword.volt:29
-#: ../../../phalcon/modules/web/views/settings/changePassword.volt:5
-#: ../../../phalcon/modules/web/views/settings/changePassword.volt:34
-msgid "Change Password"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/index.volt:4
-msgid "Create User"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/index.volt:11
-msgid "Search users"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/users/index.volt:48
-#: ../../../phalcon/modules/admin/views/roles/index.volt:35
-#: ../../../phalcon/modules/admin/views/permissions/index.volt:22
-msgid "Search"
 msgstr ""
 
 #: ../../../phalcon/modules/admin/views/users/edit/tab_pane_reset_passwords.volt:6
@@ -503,6 +521,22 @@ msgstr ""
 msgid "User has not changed his/her password"
 msgstr ""
 
+#: ../../../phalcon/modules/admin/views/index/index.volt:6
+msgid "Admin Utilities"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/index/index.volt:4
+msgid "User Management"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/index/index.volt:5
+msgid "Role Management"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/index/index.volt:7
+msgid "Permissions Management"
+msgstr ""
+
 #: ../../../phalcon/modules/admin/views/roles/search.volt:10
 msgid "Create roles"
 msgstr ""
@@ -512,8 +546,16 @@ msgstr ""
 msgid "Active?"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/roles/search.volt:55
+#: ../../../phalcon/modules/admin/views/roles/search.volt:59
 msgid "No roles are recorded"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/roles/index.volt:5
+msgid "Create Roles"
+msgstr ""
+
+#: ../../../phalcon/modules/admin/views/roles/index.volt:12
+msgid "Search roles"
 msgstr ""
 
 #: ../../../phalcon/modules/admin/views/roles/edit.volt:9
@@ -528,60 +570,45 @@ msgstr ""
 msgid "List Users"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/roles/index.volt:5
-msgid "Create Roles"
-msgstr ""
-
-#: ../../../phalcon/modules/admin/views/roles/index.volt:12
-msgid "Search roles"
-msgstr ""
-
 #: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:7
 msgid "Banned?"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:22
+#: ../../../phalcon/modules/admin/views/roles/edit/tab_pane_users.volt:26
 msgid "There are no users assigned to this role"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/index/index.volt:6
-msgid "Admin Utilities"
+#: ../../../phalcon/modules/web/views/_layouts/signin.volt:4
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:39
+msgid "Signin"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/index/index.volt:14
-msgid "User Management"
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:4
+msgid "Webird Public Page"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/index/index.volt:15
-msgid "Role Management"
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:14
+msgid "Toggle navigation"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/index/index.volt:16
-msgid "Permissions Management"
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:51
+msgid "Privacy Policy"
 msgstr ""
 
-#: ../../../phalcon/modules/admin/views/permissions/index.volt:5
-msgid "Role Permissions"
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:52
+msgid "Terms"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/features/marionette.volt:4
-msgid "Webird Marionette Technology Demo"
+#: ../../../phalcon/modules/web/views/_layouts/public.volt:4
+msgid "About"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/settings/changePassword.volt:10
+msgid "You are required to change your password at this time"
 msgstr ""
 
 #: ../../../phalcon/modules/web/views/features/angular.volt:4
 msgid "Webird Angular Technology Demo"
-msgstr ""
-
-#: ../../../phalcon/modules/web/views/features/websocket.volt:4
-msgid "Webird WebSocket Technology Demo"
-msgstr ""
-
-#: ../../../phalcon/modules/web/views/features/websocket.volt:12
-msgid "Websocket Feature"
-msgstr ""
-
-#: ../../../phalcon/modules/web/views/features/websocket.volt:14
-msgid "Phalcon, Webpack and Ratchet integration example:"
 msgstr ""
 
 #: ../../../phalcon/modules/web/views/features/index.volt:10
@@ -609,28 +636,59 @@ msgid "Technologies"
 msgstr ""
 
 #: ../../../phalcon/modules/web/views/features/index.volt:25
-msgid "WebSocket"
+msgid "Websocket"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/features/index.volt:30
+#: ../../../phalcon/modules/web/views/features/index.volt:26
+msgid "PostCSS"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/index.volt:27
+msgid "Fetch API with async/await"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/index.volt:32
 msgid "Tools"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/features/index.volt:31
-msgid "Debug Panel"
+#: ../../../phalcon/modules/web/views/features/postcss.volt:4
+msgid "Webird PostCSS Technology Demo"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/userspublic/forgotPassword.volt:7
-msgid "Forgot Password?"
+#: ../../../phalcon/modules/web/views/features/postcss.volt:9
+msgid "PostCSS Feature"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/userspublic/resetPassword.volt:8
-#: ../../../phalcon/modules/web/views/userspublic/resetPassword.volt:36
-msgid "Reset Password"
+#: ../../../phalcon/modules/web/views/features/postcss.volt:10
+msgid "Phalcon, Webpack and PostCSS integration example:"
 msgstr ""
 
-#: ../../../phalcon/modules/web/views/settings/changePassword.volt:10
-msgid "You are required to change your password at this time"
+#: ../../../phalcon/modules/web/views/features/websocket.volt:4
+msgid "Webird WebSocket Technology Demo"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/websocket.volt:12
+msgid "Websocket Feature"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/websocket.volt:14
+msgid "Phalcon, Webpack and Ratchet integration example:"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/marionette.volt:4
+msgid "Webird Marionette Technology Demo"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/fetch.volt:4
+msgid "Webird Fetch API Technology Demo"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/fetch.volt:8
+msgid "Fetch API Feature"
+msgstr ""
+
+#: ../../../phalcon/modules/web/views/features/fetch.volt:9
+msgid "Phalcon, Webpack and Fetch API with async/await integration example:"
 msgstr ""
 
 #: ../../../phalcon/modules/web/views/index/index.volt:5
@@ -657,70 +715,14 @@ msgstr ""
 msgid "About this Demo"
 msgstr ""
 
-#: ../../../phalcon/common/views/partials/noscript.volt:3
-msgid "Your javascript is disabled."
+#: ../../../phalcon/modules/web/views/userspublic/resetPassword.volt:8
+msgid "Reset Password"
 msgstr ""
 
-#: ../../../phalcon/common/views/partials/noscript.volt:5
-msgid "This website requires javascript to function properly."
+#: ../../../phalcon/modules/web/views/userspublic/forgotPassword.volt:7
+msgid "Forgot Password?"
 msgstr ""
 
-#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:6
-msgid "You are Almost There! Just Confirm Your Email"
-msgstr ""
-
-#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:8
-msgid ""
-"You have successfully created a Webird account. To activate it, please click "
-"below to verify your email address."
-msgstr ""
-
-#: ../../../phalcon/common/views/simple/email/emailConfirmation.volt:15
-msgid "Confirm"
-msgstr ""
-
-#: ../../../phalcon/common/views/simple/email/resetPassword.volt:6
-msgid "Reset Your Password for account on"
-msgstr ""
-
-#: ../../../phalcon/common/views/simple/email/resetPassword.volt:8
-msgid ""
-"To reset the password for this account, click on the button below. If you do "
-"not want to reset your password, please disregard this email."
-msgstr ""
-
-#: ../../../phalcon/common/views/simple/email/resetPassword.volt:12
-msgid "Reset"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/signin.volt:4
-#: ../../../phalcon/common/views/layouts/public.volt:40
-#: ../../../phalcon/common/views/layouts/public.volt:42
-msgid "Signin"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/public.volt:4
-msgid "Webird Public Page"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/public.volt:14
-msgid "Toggle navigation"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/public.volt:26
-msgid "About"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/admin.volt:26
-#: ../../../phalcon/common/views/layouts/private.volt:26
-msgid "Features"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/admin.volt:27
-#: ../../../phalcon/common/views/layouts/private.volt:27
-msgid "Admin"
-msgstr ""
-
-#: ../../../phalcon/common/views/layouts/userspublic.volt:4
-msgid "Simple Task"
+#: ../../../phalcon/modules/web/views/session/signin.volt:62
+msgid "Forgot my password"
 msgstr ""

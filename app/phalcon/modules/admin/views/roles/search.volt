@@ -4,10 +4,10 @@
 
   <div class="row">
     <div class="col-md-1 text-left">
-      {{ link_to("admin/roles", '&larr; ' ~ t('Go Back'), "class": "btn btn-link") }}
+      <a href="{{ url('admin/roles') }}" class="btn btn-link">&larr; {{ t('Go Back') }}</a>
     </div>
     <div class="col-md-1 col-md-offset-10 text-right">
-      {{ link_to("admin/roles/create", t('Create roles'), "class": "btn btn-primary") }}
+      <a href="{{ url('admin/roles/create') }}" class="btn btn-primary">{{ t('Create roles') }}</a>
     </div>
   </div>
 
@@ -31,8 +31,12 @@
               <td>{{ role.id }}</td>
               <td>{{ role.name }}</td>
               <td>{{ role.active == 'Y' ? t('Yes') : t('No') }}</td>
-              <td width="12%">{{ link_to("admin/roles/edit/" ~ role.id, '<i class="glyphicon glyphicon-pencil"></i> ' ~ t('Edit'), "class": "btn btn-default") }}</td>
-              <td width="12%">{{ link_to("admin/roles/delete/" ~ role.id, '<i class="glyphicon glyphicon-remove"></i> ' ~ t('Delete'), "class": "btn btn-default") }}</td>
+              <td width="12%">
+                <a href="{{ url('admin/roles/edit/' ~ role.id) }}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> {{ t('Edit') }}</a>
+              </td>
+              <td width="12%">
+                <a href="{{ url('admin/roles/delete/' ~ role.id) }}" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i> {{ t('Delete') }}</a>
+              </td>
             </tr>
           </tbody>
         {% if loop.last %}
@@ -40,10 +44,10 @@
             <tr>
               <td colspan="10" align="right">
                 <div class="btn-group">
-                {{ link_to("admin/roles/search", '<i class="glyphicon glyphicon-fast-backward"></i> ' ~ t('First'), "class": "btn btn-default") }}
-                  {{ link_to("admin/roles/search?page=" ~ page.before, '<i class="glyphicon glyphicon-step-backward"></i> ' ~ t('Previous'), "class": "btn btn-default") }}
-                  {{ link_to("admin/roles/search?page=" ~ page.next, '<i class="glyphicon glyphicon-step-forward"></i> ' ~ t('Next'), "class": "btn btn-default") }}
-                  {{ link_to("admin/roles/search?page=" ~ page.last, '<i class="glyphicon glyphicon-fast-forward"></i> ' ~ t('Last'), "class": "btn btn-default") }}
+                  <a href="{{ url('admin/roles/search') }}" class="btn btn-default"><i class="glyphicon glyphicon-fast-backward"></i> {{ t('First') }}</a>
+                  <a href="{{ url('admin/roles/search?page=' ~ page.before) }}" class="btn btn-default"><i class="glyphicon glyphicon-step-backward"></i> {{ t('Previous') }}</a>
+                  <a href="{{ url('admin/roles/search?page=' ~ page.next) }}" class="btn btn-default"><i class="glyphicon glyphicon-step-forward"></i> {{ t('Next') }}</a>
+                  <a href="{{ url('admin/roles/search?page=' ~ page.last) }}" class="btn btn-default"><i class="glyphicon glyphicon-fast-forward"></i> {{ t('Last') }}</a>
                   <span class="help-inline">{{ page.current }}/{{ page.total_pages }}</span>
                 </div>
               </td>

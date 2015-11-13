@@ -15,16 +15,16 @@
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{t('Frameworks')}}</h3>
-      {{ link_to('features/angular', this.translate.t('Angular'), 'class':'btn btn-primary') }}
-      {{ link_to('features/marionette', this.translate.t('Marionette'), 'class':'btn btn-primary') }}
+      <a href="{{ url('features/angular') }}" class="btn btn-primary">{{ t('Angular') }}</a>
+      <a href="{{ url('features/marionette') }}" class="btn btn-primary">{{ t('Marionette') }}</a>
     </div>
   </div>
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{t('Technologies')}}</h3>
-      {{ link_to('features/websocket', this.translate.t('WebSocket'), 'class':'btn btn-primary') }}
-      {{ link_to('features/postcss', this.translate.t('PostCSS'), 'class':'btn btn-primary') }}
-      {{ link_to('features/fetch', this.translate.t('Fetch API with async/await'), 'class':'btn btn-primary') }}
+      <a href="{{ url('features/websocket') }}" class="btn btn-primary">{{ t('Websocket') }}</a>
+      <a href="{{ url('features/postcss') }}" class="btn btn-primary">{{ t('PostCSS') }}</a>
+      <a href="{{ url('features/fetch') }}" class="btn btn-primary">{{ t('Fetch API with async/await') }}</a>
     </div>
   </div>
   <div class="row top7">

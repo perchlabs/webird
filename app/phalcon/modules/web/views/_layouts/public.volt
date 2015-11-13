@@ -16,7 +16,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{ link_to(null, 'class': 'navbar-brand', 'Webird') }}
+      <a href="{{ url(null) }}" class="navbar-brand">Webird</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,13 +36,8 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        {% if 'signin' == dispatcher.getActionName() %}
-        <li class="active">{{ link_to('signin', t('Signin')) }}</li>
-        {% else %}
-        <li>{{ link_to('signin', t('Signin')) }}</li>
-        {% endif %}
+        <li><a href="{{ url('signin') }}">{{ t('Signin') }}</a></li>
       </ul>
-
     </div>
   </div><!-- /.container-fluid -->
 </nav>
@@ -53,8 +48,8 @@
   <div class="col-md-12 text-center">
     <footer class="top15">
         Webird
-        {{ link_to("privacy", "Privacy Policy") }}
-        {{ link_to("terms", "Terms") }}
+        <a href="{{ url('privacy') }}">{{ t('Privacy Policy') }}</a>
+        <a href="{{ url('terms') }}">{{ t('Terms') }}</a>
     © 2014 Webird Team.
     </footer>
   </div>

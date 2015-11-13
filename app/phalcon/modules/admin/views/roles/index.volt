@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-1 pull-right">
-      {{ link_to("admin/roles/create", '<i class="glyphicon glyphicon-plus-sign"></i> ' ~ t('Create Roles'), "class": "btn btn-primary text-right") }}
+      <a href="{{ url('admin/roles/create') }}" class="btn btn-primary text-right"><i class="glyphicon glyphicon-plus-sign"></i> {{t('Create Roles')}}</a>
     </div>
   </div>
 

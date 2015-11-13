@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-1">
-      {{ link_to("admin/users", '&larr; ' ~ t('Go Back'), "class": "btn btn-link pull-left") }}
+      <a href="{{ url('admin/users') }}" class="btn btn-link pull-left">&larr; {{ t('Go Back') }}</a>
     </div>
   </div>
 

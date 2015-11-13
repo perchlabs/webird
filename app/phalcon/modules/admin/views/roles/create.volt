@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-1 text-left">
-      {{ link_to("admin/roles", "&larr; Go Back", "class": "btn btn-link") }}
+      <a href="{{ url('admin/roles') }}" class="btn btn-link">&larr; {{ t('Go Back') }}</a>
     </div>
   </div>
 

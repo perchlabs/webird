@@ -3,10 +3,10 @@
 
   <div class="row">
     <div class="col-sm-1 pull-left">
-      {{ link_to("admin/roles", '&larr; ' ~ t('Go Back'), "class": "btn btn-link text-left") }}
+      <a href="{{ url('admin/roles') }}" class="btn btn-link text-left">&larr; {{ t('Go Back') }}</a>
     </div>
     <div class="col-sm-1 pull-right">
-      {{ link_to("admin/roles/create", '<i class="glyphicon glyphicon-plus-sign"></i> ' ~ t('Create Role'), "class": "btn btn-primary text-right") }}
+      <a href="{{ url('admin/roles/create') }}" class="btn btn-primary text-right"><i class="glyphicon glyphicon-plus-sign"></i> {{ t('Create Role') }}</a>
     </div>
   </div>
 

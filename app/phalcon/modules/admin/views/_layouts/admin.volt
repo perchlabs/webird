@@ -16,7 +16,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{ link_to(null, 'class': 'navbar-brand', 'Webird') }}
+      <a href="{{ url(null) }}" class="navbar-brand">Webird</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +37,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li>{{link_to('session/signout', 'Signout')}}</li>
+        <li><a href="{{ url('session/signout') }}">{{ t('Signout') }}</a></li>
       </ul>
     </div>
 

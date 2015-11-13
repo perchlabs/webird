@@ -17,9 +17,8 @@
     <div class="form-group text-center">
       <div class="col-md-4 col-md-offset-4">
         <p>
-          with:
-          {{ link_to('signin/redirectoauth/google/'~security.getSessionToken(), "Google") }}
-      <!--      {{ link_to('signin/redirectoauth/microsoft/'~security.getSessionToken(), "Microsoft") }}-->
+          <a href="{{ url('signin/redirectoauth/google/') ~ security.getSessionToken() }}">Google</a>
+          {#<a href="{{ url('signin/redirectoauth/microsoft/') ~ security.getSessionToken() }}">Microsoft</a>#}
         </p>
       </div>
     </div>
@@ -60,7 +59,7 @@
 
   <div class="row">
     <div class="col-md-4 col-md-offset-4 text-center">
-      {{ link_to("forgot-password", "Forgot my password") }}
+      <a href="{{ url('forgot-password') }}">{{ t('Forgot my password') }}</a>
     </div>
   </div>
 

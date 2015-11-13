@@ -3,10 +3,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-1 text-left">
-      {{ link_to("admin/users/index", "&larr; " ~ t('Go Back'), "class": "btn btn-link") }}
+      <a href="{{ url('admin/users/index') }}" class="btn btn-link">&larr; {{ t('Go Back') }}</a>
     </div>
     <div class="col-md-1 col-md-offset-10 text-right">
-      {{ link_to("admin/users/create", t('Create user'), "class": "btn btn-primary") }}
+      <a href="{{ url('admin/users/create') }}" class="btn btn-primary">{{ t('Create User') }}</a>
     </div>
   </div>
 
@@ -36,11 +36,11 @@
           <td>{{ user.isActive() ? t('Yes') : t('No') }}</td>
           <td>{{ user.isBanned() ? t('Yes') : t('No') }}</td>
           <td colspan="2">
-            {{ link_to("admin/users/edit/" ~ user.id, '<i class="glyphicon glyphicon-pencil"></i> ' ~ t('Edit'), "class": "btn btn-default") }}
+            <a href="{{ url('admin/users/edit/' ~ user.id) }}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> {{ t('Edit') }}</a>
             {% if user.isDeleted() %}
               <span class="btn btn-default disabled" role="button">{{t('Delete')}}</span>
             {% else %}
-              {{ link_to("admin/users/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> ' ~ t('Delete'), "class": "btn btn-default") }}
+              <a href="{{ url('admin/users/delete/' ~ user.id) }}" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i> {{ t('Delete') }}</a>
             {% endif %}
           </td>
         </tr>
@@ -50,10 +50,10 @@
         <tr>
           <td colspan="10">
             <div class="btn-group pull-right">
-              {{ link_to("admin/users/search", '<i class="glyphicon glyphicon-fast-backward"></i> ' ~ t('First'), "class": "btn btn-default") }}
-              {{ link_to("admin/users/search?page=" ~ page.before, '<i class="glyphicon glyphicon-step-backward"></i> ' ~ t('Previous'), "class": "btn btn-default") }}
-              {{ link_to("admin/users/search?page=" ~ page.next, '<i class="glyphicon glyphicon-step-forward"></i> ' ~ t('Next'), "class": "btn btn-default") }}
-              {{ link_to("admin/users/search?page=" ~ page.last, '<i class="glyphicon glyphicon-fast-forward"></i> ' ~ t('Last'), "class": "btn btn-default") }}
+              <a href="{{ url('admin/users/search') }}" class="btn btn-default"><i class="glyphicon glyphicon-fast-backward"></i> {{ t('First')}}</a>
+              <a href="{{ url('admin/users/search?page=' ~ page.before) }}" class="btn btn-default"><i class="glyphicon glyphicon-step-backward"></i> {{ t('Previous')}}</a>
+              <a href="{{ url('admin/users/search?page=' ~ page.next) }}" class="btn btn-default"><i class="glyphicon glyphicon-step-forward"></i> {{ t('Next')}}</a>
+              <a href="{{ url('admin/users/search?page=' ~ page.last) }}" class="btn btn-default"><i class="glyphicon glyphicon-fast-forward"></i> {{ t('Last')}}</a>
               {{ page.current }}/{{ page.total_pages }}
             </div>
           </td>

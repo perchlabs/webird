@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row pull-right">
     <div class="col-sm-1 text-right">
-      {{ link_to("admin/users/create", "<i class='glyphicon glyphicon-plus-sign'></i> " ~ t('Create User'), "class": "btn btn-primary pull-right") }}
+      <a href="{{ url('admin/users/create') }}" class="btn btn-primary pull-right"><i class='glyphicon glyphicon-plus-sign'></i> {{ t('Create User') }}</a>
     </div>
   </div>
 

@@ -15,8 +15,6 @@ var DefinePlugin = require('webpack/lib/DefinePlugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-// PostCSS
-var cssnextPlugin = require('cssnext');
 
 var projectRoot = path.resolve('..');
 var etcRoot = path.join(projectRoot, 'etc');
@@ -186,21 +184,27 @@ var wpConf = {
             }
         ]
     },
-    postcss: function() {
-        // Add more PostCSS plugins from the list: https://github.com/postcss/postcss
-        // Be careful about the plugin order
-        return [
-            cssnextPlugin({
-                // Defined in './app/webpack/config'
-                browsers: appConfig.browsers,
-                import: {
-                    // Setup watches on these files
-                    onImport: function (files) {
-                        files.forEach(this.addDependency);
-                    }.bind(this)
-                }
-            })
-        ];
+    postcss: function (webpack) {
+      return [
+        require("postcss-import")({
+          addDependencyTo: webpack,
+          path: [themeRoot, appModulesRoot, nodeModulesRoot]
+        }),
+        require("postcss-url")(),
+        require("postcss-cssnext")({
+          // Defined in './app/webpack/config'
+          browsers: appConfig.browsers,
+          import: {
+            path: [themeRoot],
+            // Setup watches on these files
+            onImport: function(files) {
+              files.forEach(this.addDependency);
+            }.bind(this)
+          }
+        }),
+        require("postcss-browser-reporter")(),
+        require("postcss-reporter")(),
+      ]
     }
 };
 

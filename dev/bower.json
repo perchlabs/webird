@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "devDependencies": {
     "bootstrap": "~3.3.5",
-    "jquery": "3.0.0-alpha1",
+    "jquery": "2.1.4",
     "angular": "1.4.5",
     "angular-resource": "1.4.5",
     "angular-ui-router": "~0.2.15",

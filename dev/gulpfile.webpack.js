@@ -1,39 +1,39 @@
 'use strict';
-var _ = require('lodash');
-var path = require('path');
-var fs = require('fs');
-var yaml = require('js-yaml');
-var crypto = require('crypto');
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ResolverPlugin = require('webpack/lib/ResolverPlugin');
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
-var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+let _ = require('lodash');
+let path = require('path');
+let fs = require('fs');
+let yaml = require('js-yaml');
+let crypto = require('crypto');
+let gulp = require('gulp');
+let gutil = require('gulp-util');
+let webpack = require('webpack');
+let WebpackDevServer = require('webpack-dev-server');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let ResolverPlugin = require('webpack/lib/ResolverPlugin');
+let ProvidePlugin = require('webpack/lib/ProvidePlugin');
+let DefinePlugin = require('webpack/lib/DefinePlugin');
+let CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+let DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+let UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-var projectRoot = path.resolve('..');
-var etcRoot = path.join(projectRoot, 'etc');
-var appRoot = path.join(projectRoot, 'app');
-var devRoot = path.join(projectRoot, 'dev');
-var distRoot = path.join(projectRoot, 'dist');
-var webpackRoot = path.join(appRoot, 'webpack');
-var appModulesRoot = path.join(webpackRoot, 'modules');
-var themeRoot = path.join(appRoot, 'theme');
-var bowerRoot = path.join(devRoot, 'bower_components');
-var nodeModulesRoot = path.join(devRoot, 'node_modules');
-var projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
+let projectRoot = path.resolve('..');
+let etcRoot = path.join(projectRoot, 'etc');
+let appRoot = path.join(projectRoot, 'app');
+let devRoot = path.join(projectRoot, 'dev');
+let distRoot = path.join(projectRoot, 'dist');
+let webpackRoot = path.join(appRoot, 'webpack');
+let appModulesRoot = path.join(webpackRoot, 'modules');
+let themeRoot = path.join(appRoot, 'theme');
+let bowerRoot = path.join(devRoot, 'bower_components');
+let nodeModulesRoot = path.join(devRoot, 'node_modules');
+let projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-var appConfig = yaml.load(fs.readFileSync(webpackRoot + "/config.yml", 'utf8'));
+let appConfig = yaml.load(fs.readFileSync(webpackRoot + "/config.yml", 'utf8'));
 
 /**
  *
  */
-var entryMap = {};
+let entryMap = {};
 for (let common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
     entryMap[`commons/${common}`] = `./commons/${common}`;
 }
@@ -44,7 +44,7 @@ for (let entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
 /**
  *
  */
-var commonsChunkPluginArr = [];
+let commonsChunkPluginArr = [];
 for (let commonName in appConfig.commons) {
     let entryArrPath = appConfig.commons[commonName].map(function(entryName) {
         return `entries/${entryName}`;
@@ -59,7 +59,7 @@ for (let commonName in appConfig.commons) {
 /**
  *
  */
-var wpConf = {
+let wpConf = {
     cache: true,
     context: webpackRoot,
     entry: entryMap,

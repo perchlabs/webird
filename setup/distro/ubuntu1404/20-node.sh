@@ -4,7 +4,7 @@
 
 cd $TEMPDIR
 
-NODE_VERSION=5.0.0
+NODE_VERSION=5.5.0
 
 # Download nodejs source
 wget https://nodejs.org/dist/latest/node-v${NODE_VERSION}.tar.gz

@@ -7,7 +7,7 @@ cd $TEMPDIR
 NODE_VERSION=5.5.0
 
 # Download nodejs source
-wget https://nodejs.org/dist/latest/node-v${NODE_VERSION}.tar.gz
+wget https://nodejs.org/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.gz
 [[ $? -ne 0 ]] && exit $?
 # Extract source
 tar -xf node-v${NODE_VERSION}.tar.gz

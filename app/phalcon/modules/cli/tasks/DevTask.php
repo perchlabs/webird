@@ -110,12 +110,13 @@ HELPMSG;
         $websocketPort = $config->app->wsPort;
         $randomHash = uniqid();
 
-        $domainFirst = $config->site->domain[0];
+        $domainFirst = $config->site->domains[0];
+        $domains = $config->site->domains->toArray();
 
         $view = $this->di->get('viewSimple');
         $tpl = $view->render('nginx/dev', [
             'host'           => $domainFirst,
-            'domains'        => $config->site->domain,
+            'domains'        => $domains,
             'http_port'      => $httpPort,
             'webpack_port'   => $webpackPort,
             'websocket_port' => $websocketPort,

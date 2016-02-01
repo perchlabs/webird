@@ -237,7 +237,7 @@ gulp.task('webpack:dev-server', function(callback) {
   wpConf.devtool = 'source-map';
   wpConf.debug = true;
   wpConf.plugins.push(new DefinePlugin({DEV: true}));
-  wpConf.output.publicPath = "http://" + config.site.domain[0] + "/";
+  wpConf.output.publicPath = "http://" + config.site.domains[0] + "/";
 
   let devServer = new WebpackDevServer(webpack(wpConf), {
     contentBase: devRoot,

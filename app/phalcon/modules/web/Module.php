@@ -46,7 +46,7 @@ class Module extends WbModule
     {
         $di->getDispatcher()->setDefaultNamespace('Webird\Web\Controllers');
 
-        $di->setShared('view', self::getViewFunc($di));
+        $di->setShared('view', $this->getViewFunc($di));
 
         if (DEV_ENV === ENV) {
             $debugPanel = new DebugPanel($di);

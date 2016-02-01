@@ -5,7 +5,7 @@ app:
   webUser: www-data
   webGroup: www-data
 site:
-  domain:
+  domains:
   - dev.webird.io
   - www.dev.webird.io
   mail:

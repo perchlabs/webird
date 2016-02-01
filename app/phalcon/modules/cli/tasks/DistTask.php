@@ -92,11 +92,12 @@ HELPMSG;
         $randomHash = uniqid();
 
         $domainFirst = $config->site->domains[0];
+        $domains = $config->site->domains->toArray();
 
         $view = $this->di->get('viewSimple');
         $tpl = $view->render('nginx/dist', [
             'host'           => $domainFirst,
-            'domains'        => $config->site->domains,
+            'domains'        => $domains,
             'http_port'      => $httpPort,
             'websocket_port' => $wsPort,
             'random_hash'    => $randomHash,

@@ -3,7 +3,7 @@ app:
   webUser: www-data
   webGroup: www-data
 site:
-  domain:
+  domains:
   - dist.webird.io
   - www.dist.webird.io
   mail:

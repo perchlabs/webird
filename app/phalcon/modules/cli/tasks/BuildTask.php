@@ -171,9 +171,10 @@ class BuildTask extends Task
         $di = $this->getDI();
 
         $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
-        $viewFunc = $moduleClass::getViewFunc($di);
+        $module = new $moduleClass();
+        $viewFunc = $module->getViewFunc($di);
 
-        $view = $viewFunc();
+        $view = $viewFunc($di);
         $viewsDir = $view->getViewsDir();
         $viewsLayoutsDir = $viewsDir . $view->getLayoutsDir();
         $viewsPartialsDir = $viewsDir . $view->getPartialsDir();
@@ -197,7 +198,7 @@ class BuildTask extends Task
                 $this->compileVoltDir("$pathNext/", $viewFunc);
             } else {
                 $di = $this->getDI();
-                $volt = $di->get('voltService', [$viewFunc(), $di]);
+                $volt = $di->get('voltService', [$viewFunc($di), $di]);
                 $compiler = $volt->getCompiler();
                 $compiler->compile($pathNext);
             }

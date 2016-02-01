@@ -12,22 +12,12 @@ use Phalcon\DI,
 abstract class Module implements ModuleDefinitionInterface
 {
     /**
-     * Returns the module view directory for external operations
-     *
-     * @return string
-     */
-    public static function getViewsDir()
+    *
+    */
+    public function getViewFunc($di)
     {
-        return self::classNameToDir(get_called_class()) . 'views/';
-    }
-
-    /**
-     *
-     */
-    public static function getViewFunc($di)
-    {
-        $viewsDir = self::getViewsDir();
-        $viewFunc = function() use ($di, $viewsDir) {
+        $viewsDir = $this->getViewsDir();
+        return function() use ($di, $viewsDir) {
             $view = new View();
             $view->setDI($di);
             $view->setViewsDir($viewsDir);
@@ -37,17 +27,24 @@ abstract class Module implements ModuleDefinitionInterface
             $view->registerEngines([
                 '.volt' => 'voltService'
             ]);
-
             return $view;
         };
+    }
 
-        return $viewFunc;
+    /**
+     * Returns the module view directory for external operations
+     *
+     * @return string
+     */
+    protected function getViewsDir()
+    {
+        return $this->classNameToDir(get_called_class()) . 'views/';
     }
 
     /**
      *
      */
-    public static function classNameToDir($moduleClass)
+    protected function classNameToDir($moduleClass)
     {
         $classParts = explode('\\', $moduleClass);
         $moduleName = lcfirst($classParts[1]);

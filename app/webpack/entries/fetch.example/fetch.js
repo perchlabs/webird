@@ -2,13 +2,13 @@
 
 getData()
   .then(function(data) {
-    console.log('API data');
-    console.log(data);
+    console.log('API data')
+    console.log(data)
   })
   .catch(function(e) {
-    console.log('Fetch Exception');
-    console.log(e);
-  });
+    console.log('Fetch Exception')
+    console.log(e)
+  })
 
 async function getData() {
   let response = await fetch('/features/fetch/api', {
@@ -16,16 +16,16 @@ async function getData() {
     'credentials': 'include',
     'same-origin': true,
     'no-cors': true
-  });
+  })
   if (response.status !== 200) {
-    throw 'Invalid status.';
+    throw 'Invalid status.'
   }
   if (response.headers.get('Content-Type') !== 'application/json') {
-    throw 'Invalid content type.';
+    throw 'Invalid content type.'
   }
 
-  let json = await response.text();
-  let data = JSON.parse(json);
+  let json = await response.text()
+  let data = JSON.parse(json)
 
-  return data;
+  return data
 }

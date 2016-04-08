@@ -1,14 +1,29 @@
-'use strict';
-import Marionette from 'backbone.marionette';
-import globalCh from 'globalCh';
+import Marionette from 'backbone.marionette'
+import globalCh from 'globalCh'
+import template from '../partials/websocket'
 
-var Parent = Marionette.ItemView;
-module.exports = Parent.extend({
-  template: require('../partials/websocket'),
+/**
+ *
+ */
+let Parent = Marionette.ItemView
+export default Parent.extend({
+
+  /**
+   *
+   */
+  template,
+
+  /**
+   *
+   */
   events: {
     'click [data-action="websocket-connect"]': 'connect'
   },
-  connect: function() {
-    globalCh.trigger('websocket:connect');
+
+  /**
+   *
+   */
+  connect() {
+    globalCh.trigger('websocket:connect')
   }
-});
+})

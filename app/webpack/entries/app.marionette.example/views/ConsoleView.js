@@ -1,16 +1,32 @@
-'use strict';
-import Marionette from 'backbone.marionette';
-import globalCh from 'globalCh';
+'use strict'
+import Marionette from 'backbone.marionette'
+import globalCh from 'globalCh'
+import template from '../partials/console'
 
-var Parent = Marionette.ItemView;
-module.exports = Parent.extend({
-  template: require('../partials/console'),
-  initialize: function(options) {
+/**
+ *
+ */
+let Parent = Marionette.ItemView
+export default Parent.extend({
+
+  /**
+   *
+   */
+  template,
+
+  /**
+   *
+   */
+  initialize(options) {
     this.listenTo(globalCh, 'websocket:message', (message) => {
-        this.log(message);
-    });
+      this.log(message)
+    })
   },
-  log: function(message) {
-    $('#console-log').append("<p>" + message + "</p>");
+
+  /**
+   *
+   */
+  log(message) {
+    $('#console-log').append("<p>" + message + "</p>")
   }
-});
+})

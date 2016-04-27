@@ -22,6 +22,9 @@ class EmailConfirmations extends Model
      */
     public $usersId;
 
+    /**
+     *
+     */
     public $code;
 
     /**
@@ -36,8 +39,10 @@ class EmailConfirmations extends Model
      */
     public $modifiedAt;
 
+    /**
+     *
+     */
     public $confirmed;
-
 
     /**
      * An extra message to include in an email.  This variable is skipped for the DB
@@ -45,7 +50,6 @@ class EmailConfirmations extends Model
      * @var string
      */
     public $extraMsg;
-
 
     /**
      * Before create the user assign a password
@@ -94,6 +98,9 @@ class EmailConfirmations extends Model
         $message->send();
     }
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

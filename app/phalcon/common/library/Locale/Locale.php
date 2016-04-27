@@ -8,11 +8,22 @@ use Phalcon\DI\Injectable as DIInjectable;
  */
 class Locale extends DIInjectable
 {
-    private $locale,
-            $default,
-            $map,
-            $supported;
+    /**
+     *
+     */
+    private $locale;
 
+    /**
+     *
+     */
+    private $default
+
+    private $map;
+
+    /**
+     *
+     */
+    private $supported;
 
     /**
      * Class constructor.
@@ -26,29 +37,33 @@ class Locale extends DIInjectable
         $this->map = $map;
     }
 
+    /**
+     *
+     */
     public function getSupportedLocales()
     {
         return $this->supported;
     }
 
-
-
+    /**
+     *
+     */
     public function isLocaleSupported($locale)
     {
         $supported = $this->getSupportedLocales();
         return (array_key_exists($locale, $supported));
     }
 
-
-
+    /**
+     *
+     */
     public function getMap($language)
     {
-
-
     }
 
-
-
+    /**
+     *
+     */
     public function getBestLocale()
     {
         if (isset($this->locale)) {
@@ -83,6 +98,5 @@ class Locale extends DIInjectable
 
         return $this->locale;
     }
-
 
 }

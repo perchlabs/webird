@@ -5,6 +5,9 @@ use Phalcon\Mvc\Controller,
     Phalcon\Http\Response as Response,
     Webird\Mvc\Controller;
 
+/**
+ *
+ */
 class RESTController extends Controller
 {
     protected $statusCode;
@@ -56,21 +59,33 @@ class RESTController extends Controller
         $this->statusCode = $code;
     }
 
+    /**
+     *
+     */
     public function setHeaders($key, $value)
     {
         $this->headers[$key] = $value;
     }
 
+    /**
+     *
+     */
     public function setPayload($payload)
     {
         $this->payload = $payload;
     }
 
+    /**
+     *
+     */
     public function setFormat($format)
     {
         $this->format = $format;
     }
 
+    /**
+     *
+     */
     protected function getModelFromController()
     {
         $parts = explode('\\', get_called_class());
@@ -83,7 +98,9 @@ class RESTController extends Controller
         return $modelFullName;
     }
 
-    // Override this
+    /**
+     * Override this
+     */
     protected function resultsToArray($modelArr)
     {
         $results = [];
@@ -96,6 +113,9 @@ class RESTController extends Controller
         return $results;
     }
 
+    /**
+     *
+     */
     protected function getResultset()
     {
         $class = $this->getModelFromController();
@@ -103,6 +123,9 @@ class RESTController extends Controller
         return $this->resultsToArray($data);
     }
 
+    /**
+     *
+     */
     protected function initResponse()
     {
         $this->statusCode = 200;
@@ -112,6 +135,9 @@ class RESTController extends Controller
         $this->payload    = '';
     }
 
+    /**
+     *
+     */
     protected function render()
     {
         $format      = $this->getFormat();
@@ -154,7 +180,9 @@ class RESTController extends Controller
         return $response;
     }
 
-
+    /**
+     *
+     */
     public function listAction()
     {
         $results = $this->getResultset();
@@ -164,7 +192,9 @@ class RESTController extends Controller
         return $this->render();
     }
 
-
+    /**
+     *
+     */
     public function countAction()
     {
         $modelName = $this->getModelFromController();
@@ -176,6 +206,9 @@ class RESTController extends Controller
         return $this->render();
     }
 
+    /**
+     *
+     */
     protected function getResponseDescription($code)
     {
         $codes = [
@@ -239,87 +272,6 @@ class RESTController extends Controller
 
         return $result;
     }
-
-
-
-
-    // public function getAction($field, $value)
-    // {
-    //     // implement some functionality to get the class name
-    //     // and the method from the get_called_class()
-    //     $class  = controllerToModel(get_called_class());
-    //     $node   = controllerToClass(get_called_class());
-    //     $method = 'fetchBy' . ucfirst($field);
-    //     $node   = strtolower($node);
-    //
-    //     $data = $class::$method($value);
-    //
-    //     return $data;
-    // }
-
-    // public function postAction()
-    // {
-    //     if ($this->request->isPost()) {
-    //
-    //         $payload = $_POST;
-    //         $class   = controllerToModel(get_called_class());
-    //
-    //         $object = new $class();
-    //
-    //         foreach ($payload as $field => $value) {
-    //             $object->$field = $value;
-    //         }
-    //
-    //         $status = $object->save();
-    //
-    //         $data           = [];
-    //         $data['status'] = $status;
-    //
-    //         if (!$status) {
-    //
-    //             $data['errno'] = -1;
-    //
-    //             foreach ($object->getMessages() as $message) {
-    //                 $data['error'][] = $message;
-    //             }
-    //         }
-    //
-    //         // @todo Check for errors here
-    //         return $data;
-    //     }
-    // }
-
-    // public function putAction()
-    // {
-    //     if ($this->request->isPost()) {
-    //
-    //         $payload = $_POST;
-    //         $class   = controllerToModel(get_called_class());
-    //
-    //         $object = new $class();
-    //
-    //         foreach ($payload as $field => $value) {
-    //             $object->$field = $value;
-    //         }
-    //
-    //         $status = $object->save();
-    //
-    //         $data           = [];
-    //         $data['status'] = $status;
-    //
-    //         if (!$status) {
-    //
-    //             $data['errno'] = -1;
-    //
-    //             foreach ($object->getMessages() as $message) {
-    //                 $data['error'][] = $message;
-    //             }
-    //         }
-    //
-    //         // @todo Check for errors here
-    //         return $data;
-    //     }
-    // }
 
 
 }

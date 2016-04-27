@@ -92,7 +92,9 @@ class ResetPasswords extends Model
         $message->send();
     }
 
-
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

@@ -3,4 +3,9 @@ namespace Webird\CLI\Exception;
 
 use Exception;
 
-class ArgumentValidationException extends Exception { }
+/**
+ *
+ */
+class ArgumentValidationException extends Exception
+{
+}

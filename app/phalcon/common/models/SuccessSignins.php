@@ -40,6 +40,9 @@ class SuccessSignins extends Model
      */
     public $userAgent;
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

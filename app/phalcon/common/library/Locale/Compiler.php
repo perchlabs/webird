@@ -17,6 +17,9 @@ class Compiler
     {
     }
 
+    /**
+     *
+     */
     public function compileLocale($options)
     {
         $locale =  $options['locale'];

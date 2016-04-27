@@ -34,6 +34,9 @@ class FailedSignins extends Model
      */
     public $attempted;
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

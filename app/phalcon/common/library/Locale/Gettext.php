@@ -3,7 +3,6 @@ namespace Webird\Locale;
 
 use Webird\Locale\Compiler;
 
-
 /**
  * Wrapper class for gettext translations
  */
@@ -20,7 +19,6 @@ class Gettext
      */
     protected $defaultDomain;
 
-
     /**
      * Class constructor.
      *
@@ -32,9 +30,7 @@ class Gettext
      */
     public function __construct()
     {
-
     }
-
 
     public function setOptions($options)
     {

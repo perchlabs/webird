@@ -4,16 +4,44 @@ namespace Webird;
 use Phalcon\Db\Profiler as Profiler,
     Phalcon\DI\Injectable as DIInjectable;
 
+/**
+ *
+ */
 class DebugPanel extends DIInjectable
 {
+    /**
+     *
+     */
     private $startTime,
-            $endTime,
-            $queryCount;
 
-    protected $profiler,
-              $viewsRendered,
-              $serviceNames;
+    /**
+     *
+     */
+    private $endTime
 
+    /**
+     *
+     */
+    private $queryCount;
+
+    /**
+     *
+     */
+    protected $profiler;
+
+    /**
+     *
+     */
+    private $viewsRendered,
+
+    /**
+     *
+     */
+    private $serviceNames;
+
+    /**
+     *
+     */
     public function __construct($di)
     {
         $eventsManager = $di->get('eventsManager');
@@ -25,7 +53,7 @@ class DebugPanel extends DIInjectable
         ];
 
         $this->queryCount = 0;
-         $this->viewsRendered = [];
+        $this->viewsRendered = [];
         $this->serviceNames = [];
 
         $this->startTime = microtime(true);
@@ -47,11 +75,17 @@ class DebugPanel extends DIInjectable
         $this->serviceNames = $serviceNames;
     }
 
+    /**
+     *
+     */
     public function getServices($event)
     {
         return $this->serviceNames[$event];
     }
 
+    /**
+     *
+     */
     public function beforeQuery($event, $connection)
     {
         $this->profiler->startProfile(
@@ -61,6 +95,9 @@ class DebugPanel extends DIInjectable
         );
     }
 
+    /**
+     *
+     */
     public function afterQuery($event, $connection)
     {
         $this->profiler->stopProfile();
@@ -113,6 +150,9 @@ class DebugPanel extends DIInjectable
         ];
     }
 
+    /**
+     *
+     */
     public function afterRender($event, $view, $viewFile)
     {
         $this->endTime = microtime(true);
@@ -126,6 +166,9 @@ class DebugPanel extends DIInjectable
         }
     }
 
+    /**
+     *
+     */
     public function renderPanel()
     {
         $panels = [
@@ -148,7 +191,9 @@ class DebugPanel extends DIInjectable
         return $content;
     }
 
-
+    /**
+     *
+     */
     public function getServerPanel()
     {
         $view = $this->getView();
@@ -159,7 +204,9 @@ class DebugPanel extends DIInjectable
         return $view;
     }
 
-
+    /**
+     *
+     */
     public function getRequestPanel()
     {
         $session = [];
@@ -180,7 +227,9 @@ class DebugPanel extends DIInjectable
         return $view;
     }
 
-
+    /**
+     *
+     */
     public function getDbPanel()
     {
         $dbProfiles = $this->getProfiler()->getProfiles();
@@ -211,6 +260,9 @@ class DebugPanel extends DIInjectable
         return $view;
     }
 
+    /**
+     *
+     */
     public function getViewsPanel()
     {
         $view = $this->getView();
@@ -220,7 +272,9 @@ class DebugPanel extends DIInjectable
         return $view;
     }
 
-
+    /**
+     *
+     */
     public static function object_to_array($d)
     {
         if (is_object($d)) {
@@ -230,7 +284,9 @@ class DebugPanel extends DIInjectable
         return is_array($d) ? array_map(__METHOD__, $d) : $d;
     }
 
-
+    /**
+     *
+     */
     public function getConfigPanel()
     {
         $config = $this->getDI()->getConfig();
@@ -242,32 +298,50 @@ class DebugPanel extends DIInjectable
         return $view;
     }
 
+    /**
+     *
+     */
     protected function getView()
     {
         $view = $this->getDI()->get('viewSimple');
         return $view;
     }
 
+    /**
+     *
+     */
     public function getStartTime()
     {
         return $this->startTime;
     }
 
+    /**
+     *
+     */
     public function getEndTime()
     {
         return $this->endTime;
     }
 
+    /**
+     *
+     */
     public function getRenderedViews()
     {
         return $this->viewsRendered;
     }
 
+    /**
+     *
+     */
     public function getQueryCount()
     {
         return $this->queryCount;
     }
 
+    /**
+     *
+     */
     public function getProfiler()
     {
         return $this->profiler;

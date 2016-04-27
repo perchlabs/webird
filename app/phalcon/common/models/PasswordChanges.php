@@ -49,6 +49,9 @@ class PasswordChanges extends Model
         $this->createdAt = time();
     }
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

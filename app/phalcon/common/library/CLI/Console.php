@@ -10,8 +10,15 @@ use Phalcon\CLI\Console as PhalconConsole,
  */
 class Console extends PhalconConsole
 {
-    private $progPath,
-            $cmd;
+    /**
+     *
+     */
+    private $progPath;
+
+    /**
+     *
+     */
+    private $cmd;
 
     /**
      * Constructor
@@ -87,11 +94,9 @@ class Console extends PhalconConsole
         }
     }
 
-
-
-
-
-
+    /**
+     *
+     */
     private function printCmdList()
     {
         $config = $this->getDI()->get('config');

@@ -56,9 +56,9 @@ class SoftDelete extends Behavior implements BehaviorInterface
         }
     }
 
-
-
-
+    /**
+     *
+     */
     private function cascadeDelete(ModelInterface $model)
     {
         $modelsManager = $model->getModelsManager();
@@ -78,9 +78,9 @@ class SoftDelete extends Behavior implements BehaviorInterface
         }
     }
 
-
-
-
+    /**
+     *
+     */
     private function fireEvent(ModelInterface $model, $eventName)
     {
         $options = $this->getOptions();

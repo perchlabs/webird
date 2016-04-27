@@ -3,8 +3,14 @@ namespace Webird;
 
 use Phalcon\DI;
 
+/**
+ *
+ */
 class Debug
 {
+    /**
+     *
+     */
     public static function log($message)
     {
         DI::getDefault()
@@ -12,6 +18,9 @@ class Debug
             ->log($message);
     }
 
+    /**
+     *
+     */
     public static function debug($message)
     {
         DI::getDefault()
@@ -19,6 +28,9 @@ class Debug
             ->debug($message);
     }
 
+    /**
+     *
+     */
     public static function warning($message)
     {
         DI::getDefault()
@@ -26,6 +38,9 @@ class Debug
             ->warning($message);
     }
 
+    /**
+     *
+     */
     public static function export($message)
     {
         DI::getDefault()

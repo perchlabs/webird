@@ -3,9 +3,15 @@ namespace Webird\Models;
 
 use Webird\Mvc\Model;
 
+/**
+ *
+ */
 class Audit extends Model
 {
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [

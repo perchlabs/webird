@@ -102,7 +102,6 @@ class Permissions extends Model
         return $this->validate($validator);
     }
 
-
     /**
      *
      */

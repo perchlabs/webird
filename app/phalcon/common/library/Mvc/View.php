@@ -18,6 +18,9 @@ class View extends PhView
         parent::__construct($options);
     }
 
+    /**
+     *
+     */
     public function render($controllerName, $actionName, $params = null)
     {
         $config = $this->getDI()->get('config');

@@ -18,6 +18,9 @@ class Simple extends PhViewSimple
         parent::__construct($options);
     }
 
+    /**
+     *
+     */
     public function render($path, $params = null)
     {
         $config = $this->getDI()->get('config');

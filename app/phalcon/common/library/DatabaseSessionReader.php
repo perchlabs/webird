@@ -9,8 +9,14 @@ use Phalcon\Db;
  */
 class DatabaseSessionReader
 {
+    /**
+     *
+     */
     private $options;
 
+    /**
+     *
+     */
     private $data;
 
     /**
@@ -43,7 +49,9 @@ class DatabaseSessionReader
         $this->options = $options;
     }
 
-
+    /**
+     *
+     */
     protected function getOptions()
     {
         return $this->options;
@@ -72,8 +80,9 @@ class DatabaseSessionReader
         return ($this->data !== false);
     }
 
-
-
+    /**
+     *
+     */
     public function has($key)
     {
         if (!is_string($key)) {
@@ -87,7 +96,9 @@ class DatabaseSessionReader
         return (array_key_exists("{$uniqueId}{$key}", $this->data));
     }
 
-
+    /**
+     *
+     */
     public function get($key)
     {
         if (!$this->has($key)) {
@@ -98,8 +109,9 @@ class DatabaseSessionReader
         return $this->data["{$uniqueId}{$key}"];
     }
 
-
-
+    /**
+     *
+     */
     private function unserialize_php($session_data)
     {
         $return_data = array();

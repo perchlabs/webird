@@ -12,12 +12,12 @@ class DebugPanel extends DIInjectable
     /**
      *
      */
-    private $startTime,
+    private $startTime;
 
     /**
      *
      */
-    private $endTime
+    private $endTime;
 
     /**
      *
@@ -32,7 +32,7 @@ class DebugPanel extends DIInjectable
     /**
      *
      */
-    private $viewsRendered,
+    private $viewsRendered;
 
     /**
      *

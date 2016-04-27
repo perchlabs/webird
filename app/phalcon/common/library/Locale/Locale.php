@@ -16,8 +16,11 @@ class Locale extends DIInjectable
     /**
      *
      */
-    private $default
+    private $default;
 
+    /**
+     *
+     */
     private $map;
 
     /**

@@ -1,8 +1,8 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Mvc\Model\Message as Message,
-    Phalcon\Mvc\Model\Validator\Regex as RegexValidator,
+use Phalcon\Validation,
+    Phalcon\Validation\Validator\Regex as RegexValidator,
     Webird\Mvc\Model;
 
 /**
@@ -82,27 +82,30 @@ class Permissions extends Model
      */
     public function validation()
     {
-        // $this->validate(new RegexValidator([
-        //     'field' => 'namespace',
-        //     'pattern' => '/^([a-z]*)$/'
-        // ]));
-        // $this->validate(new RegexValidator([
-        //     'field' => 'resource',
-        //     'pattern' => '/^([a-zA-Z]+)$/'
-        // ]));
-        // $this->validate(new RegexValidator([
-        //     'field' => 'action',
-        //     'pattern' => '/^([a-zA-Z]+)$/'
-        // ]));
-        if ($this->validationHasFailed() == true) {
-            $message = new Message($this->getDI()->getTranslate()->gettext(
-                sprintf('The resource %s has an invalid name', $this->resource)));
-            $this->appendMessage($message);
-            return false;
-        }
+        $translate = $this->getDI()->getTranslate();
+
+        $validator = new Validation();
+
+        $validator->add('namespace', new RegexValidator([
+            'pattern' => '/^([a-z]*)$/',
+            'message' => $translate->gettext('Invalid namespace.')
+        ]));
+        $validator->add('resource', new RegexValidator([
+            'pattern' => '/^([a-zA-Z]+)$/',
+            'message' => $translate->gettext('Invalid resource.')
+        ]));
+        $validator->add('action', new RegexValidator([
+            'pattern' => '/^([a-zA-Z]+)$/',
+            'message' => $translate->gettext('Invalid action.')
+        ]));
+
+        return $this->validate($validator);
     }
 
 
+    /**
+     *
+     */
     public function initialize()
     {
         $this->belongsTo('rolesId', 'Webird\Models\Roles', 'id', [

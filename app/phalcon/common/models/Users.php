@@ -1,7 +1,8 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Mvc\Model\Validator\Uniqueness,
+use Phalcon\Validation,
+    Phalcon\Validation\Validator\Uniqueness as UniquenessValidator,
     Webird\Mvc\Model,
     Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
 
@@ -60,16 +61,25 @@ class Users extends Model
      */
     public $active;
 
+    /**
+     *
+     */
     public function isActive()
     {
         return $this->active === 'Y';
     }
 
+    /**
+     *
+     */
     public function isBanned()
     {
         return $this->banned !== 'N';
     }
 
+    /**
+     *
+     */
     public function isDeleted()
     {
         return $this->deleted !== 'N';
@@ -139,14 +149,20 @@ class Users extends Model
      */
     protected function validation()
     {
-        $this->validate(new Uniqueness([
-            "field" => "email",
-            "message" => "The email is already registered"
+        $validator = new Validation();
+
+        $validator->add('email', new UniquenessValidator([
+            'message' => $this->getDI()
+                ->getTranslate()
+                ->gettext('The email is already registered.')
         ]));
 
-        return $this->validationHasFailed() != true;
+        return $this->validate($validator);
     }
 
+    /**
+     *
+     */
     protected function initialize()
     {
         $this->keepSnapshots(true);

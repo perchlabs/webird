@@ -42,36 +42,58 @@ class Permissions extends Model
      */
     public $action;
 
-    public function getNamespaceResource()
+    /**
+     *
+     */
+    public static function findFirstByQualified($qualified)
     {
-        return ($this->namespace == '') ? $this->resource : $this->namespace . ':' . $this->resource;
+        if (preg_match('/^([a-z]*)::([a-zA-Z]+)::([a-zA-Z]+)$/', $qualified, $matches) !== 1) {
+            throw new \Exception('Error: The fully qualified permission is not valid');
+        }
+
+        return self::findFirst([
+            'conditions' => 'namespace = :namespace: AND resource = :resource: AND action = :action:',
+            'bind' => [
+                'namespace' => $matches[1],
+                'resource'  => $matches[2],
+                'action'    => $matches[3]
+            ]
+        ]);
     }
 
-    // public function getNamespaceResource()
-    // {
-    //     if ($this->namespace == '') {
-    //         $nsRes =  $this->resource;
-    //     } else {
-    //         $nsRes = $this->namespace . ':' . $this->resource;
-    //     }
-    //     return $nsRes;
-    // }
+    /**
+     *
+     */
+    public function getQualified()
+    {
+        return $this->namespace . '::' . $this->resource . '::' . $this->action;
+    }
 
+    /**
+     *
+     */
+    public function getNamespaceResource()
+    {
+        return ($this->namespace == '') ? $this->resource : $this->namespace . '::' . $this->resource;
+    }
 
+    /**
+     *
+     */
     public function validation()
     {
-        $this->validate(new RegexValidator([
-            'field' => 'namespace',
-            'pattern' => '/^([a-z]*)$/'
-        ]));
-        $this->validate(new RegexValidator([
-            'field' => 'resource',
-            'pattern' => '/^([a-zA-Z]+)$/'
-        ]));
-        $this->validate(new RegexValidator([
-            'field' => 'action',
-            'pattern' => '/^([a-zA-Z]+)$/'
-        ]));
+        // $this->validate(new RegexValidator([
+        //     'field' => 'namespace',
+        //     'pattern' => '/^([a-z]*)$/'
+        // ]));
+        // $this->validate(new RegexValidator([
+        //     'field' => 'resource',
+        //     'pattern' => '/^([a-zA-Z]+)$/'
+        // ]));
+        // $this->validate(new RegexValidator([
+        //     'field' => 'action',
+        //     'pattern' => '/^([a-zA-Z]+)$/'
+        // ]));
         if ($this->validationHasFailed() == true) {
             $message = new Message($this->getDI()->getTranslate()->gettext(
                 sprintf('The resource %s has an invalid name', $this->resource)));

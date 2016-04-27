@@ -2,10 +2,10 @@
 namespace Webird\Acl;
 
 use Phalcon\Mvc\User\Component,
-    Phalcon\Acl\Adapter\Memory as AclMemory,
     Phalcon\Acl\Role as AclRole,
     Phalcon\Acl\Resource as AclResource,
-    Webird\Models\Roles;
+    Webird\Models\Roles,
+    Webird\Acl\Adapter\Memory as AclMemory;
 
 /**
  * Webird\Acl\Acl
@@ -14,9 +14,9 @@ class Acl extends Component
 {
 
     /**
-     * The ACL Object
+     * The ACL object
      *
-     * @var \Phalcon\Acl\Adapter\Memory
+     * @var \Webird\Acl\Adapter\Memory
      */
     private $acl;
 
@@ -25,7 +25,7 @@ class Acl extends Component
      *
      * @var array
      */
-    private $specComplete;
+    private $specPrivate;
 
     /**
      * Define the resources that are considered "public". These controller => actions require no authentication.
@@ -33,8 +33,6 @@ class Acl extends Component
      * @var array
      */
     private $specPublic;
-
-    private $privateResources;
 
     /**
      * Human-readable descriptions of the actions used in {@see $privateResources}
@@ -51,44 +49,31 @@ class Acl extends Component
      */
     public function __construct($aclData)
     {
-        $this->specComplete = $this->parseRawResources($aclData['complete']);
+        $this->specPrivate = $this->parseRawResources($aclData['private']);
+
         $this->specPublic = $this->parseRawResources($aclData['public']);
+        foreach ($this->specPublic as $namespace => $resources) {
+            $this->specPublic[$namespace]['errors'] = ['*'];
+        }
+
         $this->actionDescriptions = [];
     }
 
     /**
      * Checks if a resource is public
      *
+     * @param string $namespace
      * @param string $resource
      * @param string $action
      * @return boolean
      */
     public function isPublic($namespace, $resource, $action)
     {
-        if (!array_key_exists($namespace, $this->specPublic)) {
-            return false;
-        } else if (!array_key_exists($resource, $this->specPublic[$namespace])) {
-            return false;
+        try {
+            return $this->getAcl()->isPublic($namespace, $resource, $action);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
         }
-
-        $isPublic = (in_array($action, $this->specPublic[$namespace][$resource]));
-        return $isPublic;
-    }
-
-    public function splitResource($nsRes)
-    {
-        $parts = explode(':', $nsRes);
-        if (count($parts) == 1) {
-            return ['', $parts[0]];
-        } else {
-            return $parts;
-        }
-    }
-
-    public function mergeResource($namespace, $resource)
-    {
-        $nsRes = ($namespace == '') ? $resource : $namespace . ':' . $resource;
-        return $nsRes;
     }
 
     /**
@@ -112,7 +97,9 @@ class Acl extends Component
             $nsRes = $this->mergeResource($namespace, $resource);
         }
 
-        if (!$this->getAcl()->isRole($role)) {
+        if ($this->getAcl()->isPublic($namespace, $resource, $action)) {
+            return true;
+        } elseif (!$this->getAcl()->isRole($role)) {
             return false;
         } else if (!$this->getAcl()->isResource($nsRes)) {
             return false;
@@ -124,14 +111,23 @@ class Acl extends Component
     /**
      * Returns the permissions assigned to a role
      *
+     */
+     public function getPrivateSpec()
+     {
+        return $this->specPrivate;
+     }
+
+    /**
+     * Returns the permissions assigned to a role
+     *
      * @param Roles $roles
      * @return array
      */
     public function getPermissions(Roles $role)
     {
-        $permissions = array();
+        $permissions = [];
         foreach ($role->getPermissions() as $permission) {
-            $permissions[$permission->namespace . ':' . $permission->resource . '.' . $permission->action] = true;
+            $permissions[$permission->namespace . '::' . $permission->resource . '::' . $permission->action] = true;
         }
         return $permissions;
     }
@@ -146,37 +142,9 @@ class Acl extends Component
         return $this->getAcl()->getResources();
     }
 
-    /**
-     * Returns all the resources and their actions available in the application
-     *
-     * @return array
-     */
-    public function getPrivateSpec()
+    public function isAction($module, $controller, $action)
     {
-        if (isset($this->privateResources)) {
-            return $this->privateResources;
-        }
-
-        $this->privateResources = [];
-        foreach ($this->specComplete as $namespace => $resourceArr) {
-            $privateTempArr = [];
-            foreach ($resourceArr as $resource => $actionArr) {
-                $actionPublicArr = (isset($this->specPublic[$namespace][$resource]))
-                    ? $this->specPublic[$namespace][$resource] : [];
-
-                $actionPrivateArr = array_diff($actionArr, $actionPublicArr);
-
-                if (!empty($actionPrivateArr)) {
-                    $privateTempArr[$resource] = $actionPrivateArr;
-                }
-
-            }
-            if (!empty($privateTempArr)) {
-                $this->privateResources[$namespace] = $privateTempArr;
-            }
-        }
-
-        return $this->privateResources;
+        return $this->getAcl()->isAction($module, $controller, $action);
     }
 
     /**
@@ -202,47 +170,31 @@ class Acl extends Component
             return $this->acl;
         }
 
-        $this->acl = $this->build();
+        $this->acl = $this->buildAcl();
         return $this->acl;
     }
 
-    private function build()
+    /**
+     *
+     */
+    private function buildAcl()
     {
-        $acl = new AclMemory();
-        $acl->setDefaultAction(\Phalcon\Acl::DENY);
-
-        foreach ($this->specComplete as $namespace => $resources) {
-            foreach ($resources as $resource => $actions) {
-                $nsRes = ($namespace == '') ? $resource : $namespace . ':' . $resource;
-                $acl->addResource(new AclResource($this->mergeResource($namespace, $resource)), $actions);
-            }
-        }
-
-        // Register roles
-        $roles = Roles::find([
-            'active = :active:',
-            'bind' => ['active' => 'Y']
-        ]);
-        foreach ($roles as $role) {
-            $acl->addRole(new AclRole($role->name));
-        }
-        // Grant access to private area
-        foreach ($roles as $role) {
-            foreach ($this->specPublic as $namespace => $resources) {
-                foreach ($resources as $resource => $actions) {
-                    $acl->allow($role->name, $this->mergeResource($namespace, $resource), $actions);
-                }
-            }
-            // Grant permissions in "permissions" model
-            foreach ($role->getPermissions() as $permission) {
-                $acl->allow($role->name, $permission->getNamespaceResource(), $permission->action);
-            }
-        }
-
+        $acl = new AclMemory($this->specPrivate, $this->specPublic);
         return $acl;
     }
 
+    /**
+     *
+     */
+    protected function mergeResource($namespace, $resource)
+    {
+        $nsRes = ($namespace == '') ? $resource : "{$namespace}::{$resource}";
+        return $nsRes;
+    }
 
+    /**
+     *
+     */
     protected function parseRawResources($rawResources)
     {
         return $rawResources;

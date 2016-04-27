@@ -39,7 +39,7 @@
               <tbody>
                 {% for action in actions %}
                 <tr>
-                  <td><input type="checkbox" name="permissions[]" value="{{ namespace ~ ':' ~ resource ~ '.' ~ action }}"  {% if permissions[namespace ~ ':' ~ resource ~ '.' ~ action] is defined %} checked="checked" {% endif %}></td>
+                    <td><input type="checkbox" name="permissions[]" value="{{ namespace ~ '::' ~ resource ~ '::' ~ action }}"  {% if permissions[namespace ~ '::' ~ resource ~ '::' ~ action] is defined %} checked="checked" {% endif %}></td>
                   <td>{{ action }}</td>
                 </tr>
                 {% endfor %}

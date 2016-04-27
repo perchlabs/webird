@@ -1,6 +1,6 @@
 <?php
 
-$complete = [
+$private = [
     'cli' => [
         'chat'        => ['open']
     ],
@@ -9,9 +9,9 @@ $complete = [
         'helloworld'  => ['index']
     ],
     'web' => [
-        'index'       => ['index', 'notification'],
-        'session'     => ['signup', 'signin', 'signinOauth', 'signinRedirectOauth', 'signout'],
-        'userspublic' => ['confirmEmail', 'resetPassword', 'forgotPassword'],
+        'index'       => [],
+        'session'     => [],
+        'userspublic' => [],
         'about'       => ['index'],
         'privacy'     => ['index'],
         'terms'       => ['terms'],
@@ -38,6 +38,6 @@ $public = [
 ];
 
 return [
-    'complete' => $complete,
-    'public'   => $public
+    'private' => $private,
+    'public'  => $public
 ];

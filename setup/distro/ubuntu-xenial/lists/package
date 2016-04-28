@@ -23,6 +23,7 @@ php-pear
 php-common
 php-cli
 php-fpm
+php-mbstring
 php-mysql
 # dev libraries
 php-dev

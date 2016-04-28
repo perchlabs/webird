@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PHP_VERSION=7.0
-ETC_PHP=/etc/php/$PHP_VERSION
+PHP_ETC=/etc/php/$PHP_VERSION
 
 php-confd-ini-path() {
   local sapi=$1

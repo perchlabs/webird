@@ -43,7 +43,7 @@ php-extension-enable() {
     [[ $? -ne 0 ]] && exit 1
   fi
 
-  return $?
+  return 0
 }
 
 # Pecl wants beta packages to be accessed with a -beta postfix but the file

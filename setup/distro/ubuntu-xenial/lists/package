@@ -28,7 +28,6 @@ php-mysql
 php-dev
 composer
 libpcre3-dev
-libzmq3
-libzmq3-dev
-libevent-dev
+libczmq3
+libczmq-dev
 libyaml-dev

@@ -1,5 +1,6 @@
 # You must add -alpha or -beta if the package is not yet stable
-mailparse
+# Disabling mailparse until it can detect mbstring extension
+#mailparse
 yaml
 zmq-beta
 ev-beta

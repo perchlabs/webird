@@ -14,17 +14,17 @@ try {
   let wsUri = loc.protocol === 'https:' ? 'wss:' : 'ws:'
   wsUri += "//" + loc.host + "/websocket"
 
-  this.conn = new WebSocket(wsUri)
-  this.conn.onopen = () => {
+  let conn = new WebSocket(wsUri)
+  conn.addEventListener('open', function(e) {
     appendMessage("Connection established!")
-    this.conn.send('Hello World!')
-  }
-  this.conn.onmessage = () => {
+    conn.send('Hello World!')
+  })
+  conn.addEventListener('message', function(e) {
     appendMessage(e.data)
-  }
-  this.conn.onerror = (e) => {
+  })
+  conn.addEventListener('error', function(e) {
     appendError('Error Connecting.')
-  }
+  })
 } catch (err) {
   console.log(err)
   appendMessage('websocket exception', err)

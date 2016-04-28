@@ -30,6 +30,9 @@ class Chat extends DIInjectable implements MessageComponentInterface
      */
     public function onOpen(ConnectionInterface $conn)
     {
+        $sessionReader = $this->getDI()->getSessionReader();
+        $acl = $this->getDI()->getAcl();
+
         try {
             echo "New connection! ({$conn->resourceId})\n";
 
@@ -42,7 +45,6 @@ class Chat extends DIInjectable implements MessageComponentInterface
             }
             $sessionId = $cookies['PHPSESSID'];
 
-            $sessionReader = $this->getDI()->getSessionReader();
             if ($sessionReader->read($sessionId) === false) {
                 echo "Connection Rejected: Session could not be found.\n";
                 return $conn->close();
@@ -57,8 +59,7 @@ class Chat extends DIInjectable implements MessageComponentInterface
             }
             $role = $identity['role'];
 
-            $acl = $this->getDI()->getAcl();
-            if (!$this->acl->isAllowed($role, 'cli:chat', 'open')) {
+            if (!$acl->isAllowed($role, 'cli:chat', 'open')) {
                 echo "Connection Rejected: user does not have permission to open a websocket.\n";
                 return $conn->close();
             }

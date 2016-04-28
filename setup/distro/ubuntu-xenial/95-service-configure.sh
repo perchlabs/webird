@@ -13,7 +13,7 @@ MYSQL
 fi
 
 service mysql restart
-service php5-fpm restart
+service php7.0-fpm restart
 service nginx restart
 
 sleep 2s

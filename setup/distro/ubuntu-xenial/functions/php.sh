@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+PHP_VERSION=7.0
+ETC_PHP=/etc/php/$PHP_VERSION
+
 php-confd-ini-path() {
   local sapi=$1
   local ext=$2
@@ -9,7 +12,7 @@ php-confd-ini-path() {
     else code=$3
   fi
 
-  echo "/etc/php5/$sapi/conf.d/${code}-${ext}.ini"
+  echo "${PHP_ETC}/$sapi/conf.d/${code}-${ext}.ini"
   return $?
 }
 
@@ -29,7 +32,7 @@ php-extension-enable() {
 
   local cli_ini=$(php-confd-ini-path cli $name $code)
   local fpm_ini=$(php-confd-ini-path fpm $name $code)
-  local mod_ini="/etc/php5/mods-available/$name.ini"
+  local mod_ini="${PHP_ETC}/mods-available/$name.ini"
 
   echo "extension=$name.so" > "$mod_ini"
   [[ $? -ne 0 ]] && exit 1
@@ -99,6 +102,6 @@ php-pecl-install() {
 }
 
 php-fpm-restart() {
-  service php5-fpm restart
+  service "php${PHP_VERSION}-fpm" restart
   return $?
 }

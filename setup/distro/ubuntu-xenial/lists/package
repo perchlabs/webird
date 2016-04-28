@@ -16,7 +16,7 @@ make
 pkg-config
 re2c
 # environments
-nginx
+nginx-extras
 mariadb-server
 mariadb-client
 php-pear

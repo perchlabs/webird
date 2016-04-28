@@ -1,0 +1,34 @@
+# languages
+language-pack-en
+language-pack-de
+language-pack-ru
+language-pack-uk
+# translation
+gettext
+poedit
+potool
+# utilities
+vim
+git
+curl
+gcc
+make
+pkg-config
+re2c
+# environments
+nginx
+mariadb-server
+mariadb-client
+php-pear
+php-common
+php-cli
+php-fpm
+php-mysql
+# dev libraries
+php-dev
+composer
+libpcre3-dev
+libzmq3
+libzmq3-dev
+libevent-dev
+libyaml-dev

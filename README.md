@@ -18,7 +18,7 @@ Node.js is required for development only and is not required once a project has 
 * A single PHP command that starts development processes across PHP and Node.js
 * [Webpack](http://webpack.github.io/) (CommonJS) build environment
 * Live reloading (and waiting) CommonJS build environment
-* Program in Javascript ES5, Javascript ES2016 ([Babel](https://babeljs.io/)) or Coffeescript
+* Program in Javascript ES5, ES6 ([Babel](https://babeljs.io/)) or Coffeescript
 * Theme with CSS ([PostCSS](https://github.com/postcss/postcss)), SCSS or LESS
 * Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
 * Create a final PHP and Javascript source protected distribution for deployment to the server
@@ -44,18 +44,18 @@ Node.js is required for development only and is not required once a project has 
 
 ### Install Requirements:
 * PHP >= 5.4
-* Phalcon >= 2.0.4
-* MariaDB >= 10.1
+* Phalcon >= 2.1.0
+* MariaDB >= 10.0
 * Node.js >= 5.0
 
 **Note:** Node.js 5 is required because it is the first version to provide NPM 3 and it will remove the possibility of Javascript `instanceof` failing to identify an object because the object came from a different identical submodule.
 
 **Installation Instructions:**
 ```
-# Ubuntu 14.04
+# Ubuntu 16.04 Xenial
 
 # System provisioning
-sudo ./setup/provision-system.sh ubuntu1404
+sudo ./setup/provision-system.sh ubuntu-xenial
 
 # Local install of npm, bower and composer packages
 ./setup/install-local-packages.sh

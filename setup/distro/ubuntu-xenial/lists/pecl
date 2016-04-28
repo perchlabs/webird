@@ -2,5 +2,5 @@
 mailparse
 yaml
 zmq-beta
-libevent-beta
+ev-beta
 msgpack-beta

@@ -81,7 +81,7 @@ let wpConf = {
     extensions: [
       '',
       '.js', '.coffee',
-      '.html', '.nunj',
+      '.html', '.njk',
       '.css', '.scss', '.less',
       '.json', '.yml'
     ]
@@ -149,7 +149,7 @@ let wpConf = {
         test: /\.html$/,
         loader: "html"
       }, {
-        test: /\.nunj$/,
+        test: /\.njk$/,
         loader: "nunjucks",
         query: {
           config: `${devRoot}/nunjucks.config.js`,

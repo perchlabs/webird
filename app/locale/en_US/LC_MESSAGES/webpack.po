@@ -16,20 +16,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ../../../webpack\n"
 
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:6
+#: ../../../webpack/entries/app.marionette.example/partials/counter.njk:6
 msgid ""
 "The counter change buttons will post a message to the global channel for the "
 "Counter module."
 msgstr ""
 
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:9
+#: ../../../webpack/entries/app.marionette.example/partials/counter.njk:9
 msgid "Decrement"
 msgstr ""
 
-#: ../../../webpack/entries/app.marionette.example/partials/counter.nunj:10
+#: ../../../webpack/entries/app.marionette.example/partials/counter.njk:10
 msgid "Increment"
 msgstr ""
 
-#: ../../../webpack/entries/app.marionette.example/partials/websocket.nunj:5
+#: ../../../webpack/entries/app.marionette.example/partials/websocket.njk:5
 msgid "Connect"
 msgstr ""

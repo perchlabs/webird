@@ -90,7 +90,7 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 * **Nunjucks**
   * Language: `Nunjucks`
-  * List of extensions...: `*.nunj`
+  * List of extensions...: `*.njk`
   * Parser Command: `xgettext-template -L Swig --force-po -o %o %C %K %F`
   * An item in keywords list: `-k %k`
   * An item in input files list: `%f`

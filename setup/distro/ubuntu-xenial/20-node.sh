@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 # Environment variables SCRIPTDIR and TEMPDIR are available
-. $SCRIPTDIR/functions/php.sh
 
 NODE_VERSION=6.0.0
+
+NODE_INSTALLED_PATH=$(which node)
+# TODO Compare using semver
+if [[ $? -eq 0 ]]; then
+  NODE_INSTALLED_VERSION=$(node --version)
+  if [[ "$NODE_INSTALLED_VERSION" = "v${NODE_VERSION}" ]]; then
+    echo "Node installation is already up to date.\n"
+    exit 0
+  fi
+fi
+
+exit
 
 cd $TEMPDIR
 

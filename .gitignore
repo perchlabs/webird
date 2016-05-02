@@ -4,6 +4,7 @@ etc/dev.yml
 etc/dist.yml
 dist/
 dev/npm-debug.log
+dev/composer.lock
 dev/node_modules/
 dev/bower_components/
 dev/vendor/

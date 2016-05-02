@@ -1,24 +1,22 @@
 {
   "name": "webird/framework",
-  "description": "Webird Phalcon/Webpack Framework",
+  "description": "Webird Framework",
   "version": "0.8.0",
   "require": {
     "php": ">=5.4",
-    "ext-phalcon": ">=2.0.4",
-    "ext-gettext": ">=0.0.0",
-    "ext-zmq": ">=1.1.2",
-    "ext-libevent": ">=0.1.0",
+    "ext-zmq": ">=1.1.3",
+    "ext-ev": "*",
+    "ext-curl": "*",
     "react/react": ">=0.4.0",
-    "cboden/ratchet": "0.3.*",
+    "cboden/ratchet": "0.4.x-dev",
     "corneltek/getoptionkit": "2.2.*",
-    "swiftmailer/swiftmailer" : "5.4.*",
-    "lusitanian/oauth": "~0.3.5"
+    "swiftmailer/swiftmailer" : "5.4.*"
   },
   "authors" : [ {
     "name" : "David Schissler",
     "email" : "david.schissler@gmail.com"
   } ],
-  "keywords" : ["phalcon", "webpack", "gulp", "php", "framework" ],
+  "keywords" : ["php", "phalcon", "javascript", "webpack", "babel", "framework" ],
   "type" : "project",
   "license" : "BSD-3"
 }

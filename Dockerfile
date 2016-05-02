@@ -2,7 +2,7 @@
 # Dockerfile to build Webird container images
 ############################################################
 
-FROM ubuntu:14.04.3
+FROM ubuntu:16.04
 MAINTAINER David Schissler
 
 ADD . /opt/webird
@@ -10,8 +10,7 @@ ADD . /opt/webird
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
   export WEBIRD_DB_ROOT_PW='rootpw' && \
-  /opt/webird/setup/provision-system.sh ubuntu1404
-
+  /opt/webird/setup/provision-system.sh ubuntu-xenial
 
 RUN \
   ln -s /opt/webird/dev/webird.php /usr/local/bin/webird-dev && \

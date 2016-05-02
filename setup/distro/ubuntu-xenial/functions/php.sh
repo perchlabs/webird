@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
+. $SCRIPTDIR/versions.sh
 
-PHP_VERSION=7.0
 PHP_ETC=/etc/php/$PHP_VERSION
 
 php-confd-ini-path() {
@@ -16,14 +16,22 @@ php-confd-ini-path() {
   return $?
 }
 
-php-settings-update() {
-  local setting_name=$1
-  local setting_value=$2
-  local cli_ini=$(php-confd-ini-path cli $setting_name 0)
-  local fpm_ini=$(php-confd-ini-path fpm $setting_name 0)
+php-conf() {
+  local sapi=$1
+  local key=$2
+  local value=$3
+  local ini_path=$(php-confd-ini-path "$sapi" "$key" 00)
 
-  echo "${setting_name}=${setting_value}" | tee "$cli_ini" "$fpm_ini"
+  echo "${key} = ${value}" >"$ini_path"
   return $?
+}
+
+php-conf-all() {
+  local key=$1
+  local value=$2
+  php-conf cli "$key" "$value"
+  php-conf fpm "$key" "$value"
+  return 0
 }
 
 php-extension-enable() {

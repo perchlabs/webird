@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DIR=`dirname "$BASH_SOURCE"`
+. $SCRIPTDIR/versions.sh
 
 if [[ ! -z "$WEBIRD_DB_ROOT_PW" ]]; then
   service mysql stop
@@ -12,9 +12,9 @@ FLUSH PRIVILEGES;
 MYSQL
 fi
 
-service mysql restart
-service php7.0-fpm restart
-service nginx restart
+systemctl mysql restart
+systemctl php${PHP_VERSION}-fpm restart
+systemctl nginx restart
 
 sleep 2s
 

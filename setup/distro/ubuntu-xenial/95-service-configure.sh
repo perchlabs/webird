@@ -12,9 +12,9 @@ FLUSH PRIVILEGES;
 MYSQL
 fi
 
-systemctl mysql restart
-systemctl php${PHP_VERSION}-fpm restart
-systemctl nginx restart
+systemctl restart mysql
+systemctl restart php${PHP_VERSION}-fpm
+systemctl restart nginx
 
 sleep 2s
 

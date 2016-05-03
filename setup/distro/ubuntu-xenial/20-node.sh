@@ -6,7 +6,7 @@ NODE_INSTALLED_PATH=$(which node)
 if [[ $? -eq 0 ]]; then
   NODE_INSTALLED_VERSION=$(node --version)
   if [[ "$NODE_INSTALLED_VERSION" = "v${NODE_VERSION}" ]]; then
-    echo "Node installation is already up to date.\n"
+    echo "Node installation is already up to date."
     exit 0
   fi
 fi

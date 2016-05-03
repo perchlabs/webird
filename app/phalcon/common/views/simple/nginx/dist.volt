@@ -14,7 +14,7 @@ server {
 
 server {
   server_name{% for domain in domains %} {{domain}}{% endfor %};
-  listen      {{http_port}} ssl spdy;
+  listen      {{http_port}} ssl http2;
 
   root        "{{app_path}}public";
   index index.php;

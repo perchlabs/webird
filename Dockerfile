@@ -9,7 +9,7 @@ ADD . /opt/webird
 
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
-  export WEBIRD_DB_ROOT_PW='rootpw' && \
+  export DATABASE_ROOT_PASSWORD='root' && \
   /opt/webird/setup/provision-system.sh ubuntu-xenial
 
 RUN \

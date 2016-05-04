@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 . $SCRIPTDIR/versions.sh
 
-if [[ ! -z "$WEBIRD_DB_ROOT_PW" ]]; then
-  service mysql stop
+if [[ ! -z "$DATABASE_ROOT_PASSWORD" ]]; then
+  systemctl stop mysql
   mysqld_safe --skip-grant-tables
 
   mysql -u root <<MYSQL
-UPDATE mysql.user SET Password=PASSWORD("$WEBIRD_DB_ROOT_PW") Where User='root';
+UPDATE mysql.user SET Password=PASSWORD("$DATABASE_ROOT_PASSWORD") Where User='root';
 FLUSH PRIVILEGES;
 \q;
 MYSQL

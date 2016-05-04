@@ -11,8 +11,6 @@ if [[ $? -eq 0 ]]; then
   fi
 fi
 
-exit
-
 cd $TEMPDIR
 
 # Download nodejs source

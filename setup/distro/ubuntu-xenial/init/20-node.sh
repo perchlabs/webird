@@ -2,6 +2,8 @@
 # Environment variables SCRIPTDIR and TEMPDIR are available
 . $SCRIPTDIR/versions.sh
 
+[[ "$SKIP_NODE" = true ]] && exit 0
+
 NODE_INSTALLED_PATH=$(which node)
 if [[ $? -eq 0 ]]; then
   NODE_INSTALLED_VERSION=$(node --version)

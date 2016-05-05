@@ -2,6 +2,8 @@
 # Environment variables SCRIPTDIR and TEMPDIR are available
 . $SCRIPTDIR/functions/php.sh
 
+[[ "$SKIP_PECL" = true ]] && exit 0
+
 list=$(readlist "$SCRIPTDIR/lists/pecl")
 for extension in $list
 do

@@ -32,7 +32,7 @@ for fscript in $functions; do
 done
 
 # Find all of the files that begin with two numbers and sort them
-scripts=$(find "$SCRIPTDIR" -maxdepth 1 -type f -name "[0-9][0-9]*" | sort)
+scripts=$(find "$SCRIPTDIR/init" -maxdepth 1 -type f -name "[0-9][0-9]*" | sort)
 for script in $scripts; do
   "$script"
   ret=$?

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Environment variables SCRIPTDIR and TEMPDIR are available
 
+[[ "$SKIP_PACKAGE" = true ]] && exit 0
+
 # Update to get package list
 apt-get update
 # Install add-apt-repository command

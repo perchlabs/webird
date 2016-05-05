@@ -71,9 +71,11 @@ php-pecl-install() {
   local pecl_name=$name
   [[ ! -z "$state" ]] && pecl_name=$pecl_name-$state
 
+  echo "Building PECL extension $name"
+
   cd $TEMPDIR
 
-  pecl bundle $pecl_name
+  pecl bundle $pecl_name > /dev/null
   if [[ $? -ne 0 ]]; then
     >&2 echo "Pecl extension '$name': Could not be downloaded"
     return 1
@@ -81,25 +83,25 @@ php-pecl-install() {
 
   cd $name
 
-  phpize
+  phpize > /dev/null
   if [[ $? -ne 0 ]]; then
     >&2 echo "Pecl extension '$name': phpize failed"
     return 1
   fi
 
-  ./configure
+  ./configure > /dev/null
   if [[ $? -ne 0 ]]; then
     >&2 echo "Pecl extension '$name': ./configure failed"
     return 1
   fi
 
-  make
+  make > /dev/null
   if [[ $? -ne 0 ]]; then
     >&2 echo "Pecl extension '$name': make failed"
     return 1
   fi
 
-  make install
+  make install > /dev/null
   if [[ $? -ne 0 ]]; then
     >&2 echo "Pecl extension '$name': make install failed"
     return 1

@@ -1,38 +1,43 @@
 #!/usr/bin/env bash
-DIR=`dirname "$BASH_SOURCE"`
+# Get the absolute path of the script directory
+pushd `dirname $0` > /dev/null
+SETUP_ROOT_DIR=`pwd -P`
+popd > /dev/null
+
 distro=$1
 
-if [ "$EUID" -ne 0 ]; then
+if [[ "$EUID" -ne 0 ]]; then
   echo "This must be run as root"
   exit 1
 fi
 
-if [ -z $distro ]; then
-  >&2 echo "A distro must be specified for provisioning"
+if [[ -z "$distro" ]]; then
+  >&2 echo "A distro name must be specified for provisioning."
+  exit 1
+fi
+export DISTRO_DIR="$SETUP_ROOT_DIR/distro/$distro"
+if [[ ! -d "$DISTRO_DIR" ]]; then
+  >&2 echo "A provisioning directory does not exist for '$distro'."
   exit 1
 fi
 
-export SCRIPTDIR="$DIR/distro/$distro"
-export TEMPDIR=$(mktemp -d)
-if [[ ! -d $SCRIPTDIR ]]; then
-  >&2 echo "A provisioning directory does not exist for '$distro'"
-  exit 1
-fi
+TEMP_DIR=$(mktemp -d)
 
-# Export functions to be used throughout the build scripts
-functions=$(find "$DIR/functions" -maxdepth 1 -type f)
+# Allows reading of distro specific lists while ignoring lines beginning to hash
+readlist() { echo $(grep -v '^#' "$DISTRO_DIR/lists/$1"); }
+export -f readlist
+
+. "$DISTRO_DIR/exports.sh"
+functions=$(find "$DISTRO_DIR/functions" -maxdepth 1 -type f)
 for fscript in $functions; do
-  # Find the base name of the file and split it by '.'
-  fscript_basename=$(basename "$fscript")
-  fscript_parts=(${fscript_basename/./ })
-  fname=${fscript_parts[0]}
-  # Source and then export the function
-  . "$fscript"
-  export -f $fname
+  . $fscript
 done
 
+# Mark all variables for export
+set -a
+
 # Find all of the files that begin with two numbers and sort them
-scripts=$(find "$SCRIPTDIR/init" -maxdepth 1 -type f -name "[0-9][0-9]*" | sort)
+scripts=$(find "$DISTRO_DIR/init" -maxdepth 1 -type f -name "[0-9][0-9]*" | sort)
 for script in $scripts; do
   "$script"
   ret=$?
@@ -42,7 +47,7 @@ for script in $scripts; do
   fi
 done
 
-echo "All provisioning source is located at:"
-echo "$TEMPDIR\n"
+echo "Finshed. All provisioning source is located at:"
+echo "$TEMP_DIR"
 
 exit 0

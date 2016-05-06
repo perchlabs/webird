@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Environment variables SCRIPTDIR and TEMPDIR are available
-. $SCRIPTDIR/versions.sh
+# Environment variables DISTRO_DIR and TEMP_DIR are available
 
 [[ "$SKIP_NODE" = true ]] && exit 0
 
@@ -13,7 +12,7 @@ if [[ $? -eq 0 ]]; then
   fi
 fi
 
-cd $TEMPDIR
+cd $TEMP_DIR
 
 # Download nodejs source
 wget https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.gz

@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-. $SCRIPTDIR/versions.sh
-
-PHP_ETC=/etc/php/$PHP_VERSION
 
 php-confd-ini-path() {
   local sapi=$1
@@ -15,6 +12,7 @@ php-confd-ini-path() {
   echo "${PHP_ETC}/$sapi/conf.d/${code}-${ext}.ini"
   return $?
 }
+export -f php-confd-ini-path
 
 php-conf() {
   local sapi=$1
@@ -25,6 +23,7 @@ php-conf() {
   echo "${key} = ${value}" >"$ini_path"
   return $?
 }
+export -f php-conf
 
 php-conf-all() {
   local key=$1
@@ -33,6 +32,7 @@ php-conf-all() {
   php-conf fpm "$key" "$value"
   return 0
 }
+export -f php-conf-all
 
 php-extension-enable() {
   local name=$1
@@ -56,6 +56,7 @@ php-extension-enable() {
 
   return 0
 }
+export -f php-extension-enable
 
 # Pecl wants beta packages to be accessed with a -beta postfix but the file
 # that is downloaded does not have this postfix. This function is more robust
@@ -73,7 +74,7 @@ php-pecl-install() {
 
   echo "Building PECL extension $name"
 
-  cd $TEMPDIR
+  cd $TEMP_DIR
 
   pecl bundle $pecl_name > /dev/null
   if [[ $? -ne 0 ]]; then
@@ -110,8 +111,11 @@ php-pecl-install() {
   php-extension-enable $name
   return $?
 }
+export -f php-pecl-install
 
 php-fpm-restart() {
-  service "php${PHP_VERSION}-fpm" restart
+  systemctl restart "php${PHP_VERSION}-fpm"
   return $?
 }
+export -f php-fpm-restart
+

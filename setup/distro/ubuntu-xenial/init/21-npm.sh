@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Environment variables SCRIPTDIR and TEMPDIR are available
+# Environment variables DISTRO_DIR and TEMP_DIR are available
 
 [[ "$SKIP_NPM" = true ]] && exit 0
 
-modules=$(readlist "$SCRIPTDIR/lists/npm")
+modules=$(readlist npm)
 npm install -g $modules
 exit $?

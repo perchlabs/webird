@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
 if [[ ! -z "$DATABASE_ROOT_PASSWORD" ]]; then
-  systemctl set-environment MYSQL_OPTS="--skip-grant-tables"
-  systemctl stop mysql
+  echo "Setting password for MariaDB root user"
+
+#  # Restart Mysql to disable grant table checking
+  systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+  systemctl restart mysql
 
   mysql -u root <<MYSQL
-UPDATE mysql.user SET Password=PASSWORD("$DATABASE_ROOT_PASSWORD") Where User='root';
+UPDATE mysql.user SET Password=PASSWORD("$DATABASE_ROOT_PASSWORD")
+  Where User='root';
 FLUSH PRIVILEGES;
-quit;
 MYSQL
 
-  systemctl stop mysql
-  systemctl unset-environment MYSQL_OPTS
+  # Restart Mysql without --skip-grant-tables option
+  systemctl unset-environment MYSQLD_OPTS
+  systemctl restart mysql
 fi
 
 exit 0

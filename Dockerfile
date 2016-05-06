@@ -8,7 +8,6 @@ MAINTAINER David Schissler
 ADD . /opt/webird
 
 RUN \
-  export DEBIAN_FRONTEND=noninteractive && \
   export DATABASE_ROOT_PASSWORD='root' && \
   /opt/webird/setup/provision-system.sh ubuntu-xenial
 

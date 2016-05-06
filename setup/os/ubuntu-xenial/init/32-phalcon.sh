@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Environment variables DISTRO_DIR and TEMP_DIR are available
+# Environment variables OS_DIR and TEMP_DIR are available
 
 [[ "$SKIP_PHALCON" = true ]] && exit 0
 

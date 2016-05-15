@@ -7,14 +7,12 @@ use Phalcon\Mvc\Dispatcher,
     Webird\Auth\Auth,
     Webird\DatabaseSession;
 
-/*
- *  Web server related dependencies
+/**
+ *
  */
-
-
-$di->setShared('session', function() use ($di) {
-    $config = $di->get('config');
-    $connection = $di->get('db');
+$di->setShared('session', function() {
+    $config = $this->getConfig();
+    $connection = $this->getDb();
 
     $session = new DatabaseSession([
         'db'          => $connection,
@@ -29,21 +27,22 @@ $di->setShared('session', function() use ($di) {
     return $session;
 });
 
-
-
-
+/**
+ *
+ */
 $di->set('auth', function () {
     return new Auth();
 });
 
-
-
-$di->setShared('dispatcher', function() use ($di) {
+/**
+ *
+ */
+$di->setShared('dispatcher', function() {
     $security = new DispatcherSecurity();
-    $security->setDI($di);
+    $security->setDI($this);
 
     //Listen for events produced in the dispatcher using the Security plugin
-    $evManager = $di->getShared('eventsManager');
+    $evManager = $this->getShared('eventsManager');
     $evManager->attach('dispatch', $security);
 
     $dispatcher = new Dispatcher();
@@ -52,13 +51,11 @@ $di->setShared('dispatcher', function() use ($di) {
     return $dispatcher;
 });
 
-
-
-
-
-
-$di->setShared('router', function() use ($di) {
-    $config = $di->get('config');
+/**
+ *
+ */
+$di->setShared('router', function() {
+    $config = $this->getConfig();
 
     $router = new Router();
 
@@ -75,25 +72,20 @@ $di->setShared('router', function() use ($di) {
     return $router;
 });
 
-
-
-
-
-$di->setShared('cookies', function() use ($di) {
-    $config = $di->get('config');
+/**
+ *
+ */
+$di->setShared('cookies', function() {
+    $config = $this->getConfig();
 
     $cookies = new Cookies();
     $cookies->useEncryption($config->server->https);
     return $cookies;
 });
 
-
-
-
-
-
-
-
+/**
+ *
+ */
 $di->set('flash', function() {
     return new Flash([
         'error' => 'alert alert-danger',

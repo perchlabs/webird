@@ -29,7 +29,8 @@ Model::setup([
 /**
  *
  */
-$di->set('loader', function() use ($config) {
+$di->set('loader', function() {
+    $config = $this->getConfig();
     $commonDir = $config->path->commonDir;
     $modulesDir = $config->path->modulesDir;
 
@@ -60,8 +61,8 @@ $di->get('loader');
 /**
  *
  */
-$di->setShared('db', function() use ($di) {
-    $config = $di->get('config');
+$di->setShared('db', function() {
+    $config = $this->getConfig();
 
     return new DbAdapter([
         'host'     => $config->database->host,
@@ -75,9 +76,9 @@ $di->setShared('db', function() use ($di) {
 /**
  *
  */
-$di->set('sessionReader', function() use ($di) {
-    $config = $di->get('config');
-    $connection = $di->get('db');
+$di->set('sessionReader', function() {
+    $config = $this->getConfig();
+    $connection = $this->getDb();
 
     $sessionReader = new DatabaseSessionReader([
         'db'          => $connection,
@@ -95,7 +96,7 @@ $di->set('sessionReader', function() use ($di) {
  *
  */
 $voltService = function($view, $di) {
-    $config = $di->get('config');
+    $config = $di->getConfig();
     $voltCacheDir = $config->path->voltCacheDir;
 
     switch (ENV) {
@@ -150,7 +151,7 @@ $di->set('voltService', $voltService);
  *
  */
 $di->set('viewSimple', function() use ($di, $voltService) {
-    $config = $di->get('config');
+    $config = $di->getConfig();
 
     $view = new ViewSimple();
     $view->setDI($di);
@@ -167,8 +168,8 @@ $di->set('viewSimple', function() use ($di, $voltService) {
 /**
  *
  */
-$di->setShared('locale', function() use ($di) {
-    $config = $di->get('config');
+$di->setShared('locale', function() {
+    $config = $this->getConfig();
 
     switch (ENV) {
         case DIST_ENV:
@@ -182,16 +183,16 @@ $di->setShared('locale', function() use ($di) {
             break;
     }
 
-    $locale = new Locale($di, $config->locale->default, $supported, $config->locale->map);
+    $locale = new Locale($this, $config->locale->default, $supported, $config->locale->map);
     return $locale;
 });
 
 /**
  *
  */
-$di->setShared('translate', function() use ($di) {
-    $config = $di->get('config');
-    $locale = $di->get('locale');
+$di->setShared('translate', function() {
+    $config = $this->getConfig();
+    $locale = $this->getLocale();
 
     switch (ENV) {
         case DIST_ENV:
@@ -218,8 +219,8 @@ $di->setShared('translate', function() use ($di) {
 /**
  *
  */
-$di->setShared('debug', function() use ($di) {
-    $config = $di->getConfig();
+$di->setShared('debug', function() {
+    $config = $this->getConfig();
 
     $logger = new MultipleStreamLogger();
     switch (ENV) {
@@ -243,11 +244,11 @@ $di->setShared('debug', function() use ($di) {
 /**
  * Mail service
  */
-$di->setShared('mailer', function() use ($di) {
-    $config = $di->get('config');
+$di->setShared('mailer', function() {
+    $config = $this->getConfig();
 
     $mailManager = new MailManager($config->mailer, $config->site->mail);
-    $mailManager->setDI($di);
+    $mailManager->setDI($this);
 
     return $mailManager;
 });
@@ -255,8 +256,8 @@ $di->setShared('mailer', function() use ($di) {
 /**
  *
  */
-$di->set('crypt', function() use ($di) {
-    $config = $di->get('config');
+$di->set('crypt', function() {
+    $config = $this->getConfig();
 
     $crypt = new Crypt();
     $crypt->setKey($config->security->cryptKey);
@@ -266,8 +267,8 @@ $di->set('crypt', function() use ($di) {
 /**
  * Access Control List
  */
-$di->set('acl', function() use ($di) {
-    $configDir = $di->getConfig()->path->configDir;
+$di->set('acl', function() {
+    $configDir = $this->getConfig()->path->configDir;
 
     $aclData = require("$configDir/acl.php");
     $acl = new Acl($aclData);
@@ -278,8 +279,8 @@ $di->set('acl', function() use ($di) {
 /**
  *
  */
-$di->setShared('url', function() use ($di) {
-    $config = $di->get('config');
+$di->setShared('url', function() {
+    $config = $this->getConfig();
 
     $isCurrentlyHttps = $config->server->https;
     $shouldHttps = $config->security->https;

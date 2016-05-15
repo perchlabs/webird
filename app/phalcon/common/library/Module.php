@@ -14,12 +14,12 @@ abstract class Module implements ModuleDefinitionInterface
     /**
     *
     */
-    public function getViewFunc($di)
+    public function getViewFunc()
     {
         $viewsDir = $this->getViewsDir();
-        return function() use ($di, $viewsDir) {
+        return function() use ($viewsDir) {
             $view = new View();
-            $view->setDI($di);
+            $view->setDI($this);
             $view->setViewsDir($viewsDir);
             $view->setLayoutsDir('_layouts/');
             $view->setPartialsDir('_partials/');

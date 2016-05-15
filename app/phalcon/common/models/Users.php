@@ -152,6 +152,7 @@ class Users extends Model
         $validator = new Validation();
 
         $validator->add('email', new UniquenessValidator([
+            'model'   => $this,
             'message' => $this->getDI()
                 ->getTranslate()
                 ->gettext('The email is already registered.')

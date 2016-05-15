@@ -76,7 +76,7 @@ vi ./etc/dev.yml
 # nginx setup
 ./dev/webird.php nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
-sudo service nginx restart
+sudo systemctl restart nginx
 
 # /etc/hosts setup
 echo -e "\n127.0.0.1 dev.webird.io" | sudo tee -a /etc/hosts

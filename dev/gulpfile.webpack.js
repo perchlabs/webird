@@ -228,7 +228,10 @@ function getNamesFromDirectory(filepath) {
   return baseNames;
 };
 
-gulp.task('webpack:dev-server', function(callback) {
+/**
+ *
+ */
+const dev = gulp.series(function() {
   let config = yaml.load(fs.readFileSync(etcRoot + "/dev_defaults.yml", 'utf8'));
   let configCustom = yaml.load(fs.readFileSync(etcRoot + "/dev.yml", 'utf8'));
   _.merge(config, configCustom);
@@ -253,25 +256,31 @@ gulp.task('webpack:dev-server', function(callback) {
       throw new gutil.PluginError('webpack-dev-server', err);
     }
   });
-});
+})
 
 /**
  *
  */
-gulp.task('webpack:build', function(callback) {
-  wpConf.output.path = path.join(projectRoot, 'dist', 'public');
-  wpConf.plugins.concat([
-    new DefinePlugin({DEV: false}),
-    new UglifyJsPlugin()
-  ]);
+const build = gulp.series(function(callback) {
+    wpConf.output.path = path.join(projectRoot, 'dist', 'public');
+    wpConf.plugins.concat([
+      new DefinePlugin({DEV: false}),
+      new UglifyJsPlugin()
+    ]);
 
-  webpack(wpConf, function(err, stats) {
-    if (err) {
-      throw new gutil.PluginError('webpack:build', err);
-    }
-    gutil.log('[webpack:build]', stats.toString({
-      colors: true
-    }));
-    callback();
-  });
-});
+    webpack(wpConf, function(err, stats) {
+      if (err) {
+        throw new gutil.PluginError('webpack:build', err);
+      }
+      gutil.log('[webpack:build]', stats.toString({
+        colors: true
+      }));
+      callback();
+    });
+
+})
+
+module.exports = {
+  dev,
+  build
+}

@@ -8,8 +8,8 @@
     "ext-ev": "*",
     "ext-curl": "*",
     "react/react": ">=0.4.0",
-    "cboden/ratchet": "0.4.x-dev",
-    "corneltek/getoptionkit": "2.2.*",
+    "cboden/ratchet": "0.3.*",
+    "corneltek/getoptionkit": "2.3.*",
     "swiftmailer/swiftmailer" : "5.4.*"
   },
   "authors" : [ {

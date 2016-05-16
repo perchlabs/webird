@@ -39,15 +39,20 @@ class Console extends PhalconConsole
     {
         $config = $this->getDI()->getConfig();
 
-        $this->progPath = array_shift($arguments['params']);
-        $this->cmd = array_shift($arguments['params']);
-
-        if (is_null($this->cmd)) {
+        $this->progPath = $arguments['params'][0];
+        if (isset($arguments['params'][1])) {
+            $this->cmd = $arguments['params'][1];
+        } else {
             if (!isset($arguments['defaultCmd'])) {
                 throw new \Exception('The Console was not given a command', 1);
             }
             $this->cmd = $arguments['defaultCmd'];
         }
+
+        $params = array_merge(
+            [$arguments['params'][0]],
+            array_slice($arguments['params'], 2)
+        );
 
         if (in_array($this->cmd, ['help', '--help', '-h'])) {
             $this->printCmdList();
@@ -67,7 +72,7 @@ class Console extends PhalconConsole
         }
 
         if (!array_key_exists($this->cmd, $cmdArr)) {
-            throw new \Exception('The command description does not exist', 1);
+            throw new \Exception("The command '{$this->cmd}' does not exist", 1);
         }
 
         $taskParts = explode('::', $cmdArr[$this->cmd]);
@@ -78,7 +83,7 @@ class Console extends PhalconConsole
                 'module' => $arguments['module'],
                 'task'   => 'Webird\Cli\Tasks\\' . ucfirst($task),
                 'action' => $action,
-                'params' => $arguments['params']
+                'params' => $params
             ]);
         } catch (ArgumentValidationException $e) {
             $this->printHelpRecommend($e->getMessage());

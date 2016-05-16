@@ -37,9 +37,8 @@ require_once($config->path->composerDir . 'autoload.php');
 // Configure essential services
 require($config->path->configDir . 'services.php');
 
-$di = DI::getDefault();
+// Create the Console and then inject it into the DI to enable batch tasks
 $console = new WebirdConsole($di);
-// Inject the console back into the DI to enabled it to handle batch tasks inside of a task
 $di->setShared('console', $console);
 $console->registerModules([
     'cli' => ['className' => 'Webird\Cli\Module']

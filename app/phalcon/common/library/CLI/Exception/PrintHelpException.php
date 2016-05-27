@@ -11,7 +11,7 @@ class PrintHelpException extends Exception
     /**
      *
      */
-    private $cmdDef,
+    private $cmdDef;
 
     /**
      *

@@ -83,13 +83,12 @@ class UsersController extends Controller
 
         if ($this->request->isPost()) {
             if ($form->isValid($this->request->getPost()) !== false) {
-                $user = new Users();
 
                 $active = $this->request->getPost('active', 'striptags');
                 if ($active !== 'Y') {
                     $active = 'N';
                 }
-                $user->assign([
+                $user = new Users([
                     'name' => $this->request->getPost('name', 'striptags'),
                     'rolesId' => $this->request->getPost('rolesId', 'int'),
                     'email' => $this->request->getPost('email', 'email'),

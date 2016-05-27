@@ -84,8 +84,7 @@ class RolesController extends Controller
 
         if ($this->request->isPost()) {
             if ($form->isValid($this->request->getPost()) !== false) {
-                $role = new Roles();
-                $role->assign([
+                $role = new Roles([
                     'name' => $this->request->getPost('name', 'striptags'),
                     'active' => $this->request->getPost('active')
                 ]);

@@ -74,8 +74,7 @@ class UserTask extends Task
         $sendEmail = (array_key_exists('send-email', $opts));
         $emailExtraMsg = (isset($opts['send-email'])) ? trim($opts['send-email']) : '';
 
-        $user = new Users();
-        $user->assign([
+        $user = new Users([
             'name' => $name,
             'rolesId' => $role->id,
             'email' => $email,

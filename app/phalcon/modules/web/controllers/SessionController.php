@@ -46,8 +46,7 @@ class SessionController extends Controller
     //
     //     if ($this->request->isPost()) {
     //         if ($form->isValid($this->request->getPost()) != false) {
-    //             $user = new Users();
-    //             $user->assign([
+    //             $user = new Users([
     //                 'name' => $this->request->getPost('name', 'striptags'),
     //                 'email' => $this->request->getPost('email'),
     //                 'password' => $this->security->hash($this->request->getPost('password')),

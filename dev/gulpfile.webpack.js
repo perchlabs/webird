@@ -231,7 +231,7 @@ function getNamesFromDirectory(filepath) {
 /**
  *
  */
-const dev = gulp.series(function() {
+const dev = gulp.series(function(callback) {
   let config = yaml.load(fs.readFileSync(etcRoot + "/dev_defaults.yml", 'utf8'));
   let configCustom = yaml.load(fs.readFileSync(etcRoot + "/dev.yml", 'utf8'));
   _.merge(config, configCustom);
@@ -256,6 +256,8 @@ const dev = gulp.series(function() {
       throw new gutil.PluginError('webpack-dev-server', err);
     }
   });
+
+  callback();
 })
 
 /**

@@ -1,4 +1,7 @@
 <?php
+use Phalcon\DI\FactoryDefault as DI,
+    Phalcon\Mvc\Application;
+
 if (! defined('ENV')) {
   error_log('Error: The application ENV constant is not set.');
   exit(1);
@@ -37,30 +40,22 @@ switch (ENV)
 }
 
 // Create the dependency injector for the Phalcon framework
-$di = new Phalcon\DI\FactoryDefault();
-
-$di->setShared('config', function() {
-    $config = require(__DIR__ . "/config/config.php");
-    return $config;
-});
-$config = $di->get('config');
+$di = new DI();
+require_once(__DIR__ . '/config/services.php');
+require_once(__DIR__ . '/config/services_web.php');
+$config = $di->getConfig();
+$di->getLoader();
 
 if (!file_exists($config->path->tmpDir)) {
     mkdir($config->path->tmpDir);
 }
-
-// Setup composer autoloading so that it doesn't need to be specified in each Module
-require_once($config->path->composerDir . 'autoload.php');
-
-require ($config->path->configDir . 'services.php');
-require ($config->path->configDir . 'services_web.php');
 
 if (DEV) {
     class_alias('\Webird\Debug', '\Dbg', true);
 }
 
 // Handle the request and inject DI
-$application = new \Phalcon\Mvc\Application($di);
+$application = new Application($di);
 $application->registerModules([
     'web'   => ['className' => 'Webird\Web\Module'],
     'admin' => ['className' => 'Webird\Admin\Module'],

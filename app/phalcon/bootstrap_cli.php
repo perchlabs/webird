@@ -21,21 +21,13 @@ define('DEV', (ENV === DEV_ENV));
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
-
-$di->setShared('config', function() {
-    $config = require(__DIR__ . "/config/config.php");
-    return $config;
-});
-$config = $di->get('config');
+require (__DIR__ . '/config/services.php');
+$config = $di->getConfig();
+$di->getLoader();
 
 if (!file_exists($config->path->tmpDir)) {
     mkdir($config->path->tmpDir);
 }
-
-// Setup composer autoloading so that it doesn't need to be specified in each Module
-require_once($config->path->composerDir . 'autoload.php');
-// Configure essential services
-require($config->path->configDir . 'services.php');
 
 // Create the Console and then inject it into the DI to enable batch tasks
 $console = new WebirdConsole($di);

@@ -29,6 +29,13 @@ Model::setup([
 /**
  *
  */
+$di->setShared('config', function() {
+    return require(__DIR__ . "/config.php");
+});
+
+/**
+ *
+ */
 $di->set('loader', function() {
     $config = $this->getConfig();
     $commonDir = $config->path->commonDir;
@@ -37,6 +44,9 @@ $di->set('loader', function() {
     $loader = new Loader();
     $loader->setExtensions(['php']);
 
+    // Setup composer autoloading so that it doesn't need to be specified in each Module
+    require_once($config->path->composerDir . 'autoload.php');
+
     $loader->registerNamespaces([
         'Webird\Models'       => "$commonDir/models",
         'Webird\Forms'        => "$commonDir/forms",
@@ -44,6 +54,7 @@ $di->set('loader', function() {
         'Webird'              => "$commonDir/library",
     ]);
 
+    // Register module classes
     $classes = [];
     foreach ($config->app->modules as $moduleName) {
         $class = 'Webird\\' . ucfirst($moduleName) . '\\Module';
@@ -54,7 +65,6 @@ $di->set('loader', function() {
     $loader->register();
     return $loader;
 });
-$di->getLoader();
 
 /**
  *

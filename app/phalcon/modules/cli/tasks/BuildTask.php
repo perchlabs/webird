@@ -136,8 +136,6 @@ class BuildTask extends Task
         $path->voltCacheDir = $voltCacheDirBuild;
         echo "Temporarily changing voltCacheDir to {$voltCacheDirBuild}\n";
 
-        $di = $this->getDI();
-
         try {
             $this->compileVoltTemplateForModule('admin');
             $this->compileVoltTemplateForModule('web');
@@ -146,18 +144,19 @@ class BuildTask extends Task
         }
 
         // Simple views
-        $this->compileVoltDir($path->viewsSimpleDir, function() use ($di) {
-            return $di->get('viewSimple');
-        });
+        $this->compileVoltDir($path->viewsSimpleDir, \Closure::bind(function() {
+            return $this->getViewSimple();
+        }, $this->getDI()));
 
         // Common partial views
         // This is a bit hacky but it works.  We are treating the common partials as Simple to compile them.
         // We are simply changing the directory to look into and on the view itself
-        $this->compileVoltDir($path->viewsCommonDir . 'partials/', function() use ($di) {
-            $simpleView = $di->get('viewSimple');
-            $simpleView->setViewsDir($di->getConfig()->path->viewsCommonDir . 'partials/');
+        $this->compileVoltDir($path->viewsCommonDir . 'partials/', \Closure::bind(function() {
+            $config = $this->getConfig();
+            $simpleView = $this->getViewSimple();
+            $simpleView->setViewsDir($config->path->viewsCommonDir . 'partials/');
             return $simpleView;
-        });
+        }, $this->getDI()));
 
         $path->voltCacheDir = $voltCacheDirBak;
         echo "Reverting voltCacheDir to original path\n";
@@ -168,18 +167,12 @@ class BuildTask extends Task
      */
     private function compileVoltTemplateForModule($moduleName)
     {
-        $di = $this->getDI();
-
         $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
         $module = new $moduleClass();
-        $viewFunc = \Closure::bind($module->getViewFunc(), $di);
+        $viewFunc = \Closure::bind($module->getViewFunc(), $this->getDI());
 
         $view = $viewFunc();
-        $viewsDir = $view->getViewsDir();
-        $viewsLayoutsDir = $viewsDir . $view->getLayoutsDir();
-        $viewsPartialsDir = $viewsDir . $view->getPartialsDir();
-
-        $this->compileVoltDir($viewsDir, $viewFunc);
+        $this->compileVoltDir($view->getViewsDir(), $viewFunc);
     }
 
     /**
@@ -197,10 +190,10 @@ class BuildTask extends Task
             if (is_dir($pathNext)) {
                 $this->compileVoltDir("$pathNext/", $viewFunc);
             } else {
-                $di = $this->getDI();
-                $volt = $di->get('voltService', [$viewFunc($di), $di]);
-                $compiler = $volt->getCompiler();
-                $compiler->compile($pathNext);
+                $this->getDI()
+                    ->getVoltService($viewFunc(), $this->getDI())
+                    ->getCompiler()
+                    ->compile($pathNext);
             }
         }
 
@@ -277,7 +270,9 @@ WEBIRD_ENTRY;
         $config2 = yaml_parse_file($etcDir . 'dist.yml');
 
         $localeConfig = yaml_parse_file($localeDir . 'config.yml');
-        $localeConfig['supported'] = $this->getDI()->getLocale()->getSupportedLocales();
+        $localeConfig['supported'] = $this->getDI()
+            ->getLocale()
+            ->getSupportedLocales();
         $config3 = [
             'locale' => $localeConfig
         ];
@@ -311,11 +306,11 @@ WEBIRD_ENTRY;
      */
     private function compileLocales()
     {
-        $supported = $this->getDI()->getLocale()->getSupportedLocales();
+        $localeCacheDir = $this->config->dev->path->buildDir . 'cache-static/locale/';
 
-        $buildDir = $this->config->dev->path->buildDir;
-
-        $localeCacheDir = $buildDir . 'cache-static/locale/';
+        $supported = $this->getDI()
+            ->getLocale()
+            ->getSupportedLocales();
 
         foreach ($supported as $locale => $true) {
             try {

@@ -14,17 +14,6 @@ abstract class Module implements ModuleDefinitionInterface
     /**
      *
      */
-    public static function moduleNameToDir($moduleName)
-    {
-        $config = DI::getDefault()
-            ->getConfig();
-
-        return $config->path->phalconDir . "modules/{$moduleName}/";
-    }
-
-    /**
-     *
-     */
     public function getViewFunc()
     {
         $viewsDir = $this->getViewsDir();
@@ -47,7 +36,7 @@ abstract class Module implements ModuleDefinitionInterface
      *
      * @return string
      */
-    protected function getViewsDir()
+    public function getViewsDir()
     {
         return $this->getModuleRootDir() . 'views/';
     }
@@ -57,9 +46,13 @@ abstract class Module implements ModuleDefinitionInterface
      */
     protected function getModuleRootDir()
     {
+        $modulesDir = DI::getDefault()
+            ->getConfig()
+            ->path->modulesDir;
+
         $classParts = explode('\\', get_called_class());
         $moduleName = lcfirst($classParts[1]);
 
-        return self::moduleNameToDir($moduleName);
+        return $modulesDir . $moduleName . '/';
     }
 }

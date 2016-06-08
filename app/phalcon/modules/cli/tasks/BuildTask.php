@@ -144,19 +144,19 @@ class BuildTask extends Task
         }
 
         // Simple views
-        $this->compileVoltDir($path->viewsSimpleDir, \Closure::bind(function() {
+        $this->compileVoltDir($path->viewsSimpleDir, function() {
             return $this->getViewSimple();
-        }, $this->getDI()));
+        });
 
         // Common partial views
         // This is a bit hacky but it works.  We are treating the common partials as Simple to compile them.
         // We are simply changing the directory to look into and on the view itself
-        $this->compileVoltDir($path->viewsCommonDir . 'partials/', \Closure::bind(function() {
+        $this->compileVoltDir($path->viewsCommonDir . 'partials/', function() {
             $config = $this->getConfig();
             $simpleView = $this->getViewSimple();
             $simpleView->setViewsDir($config->path->viewsCommonDir . 'partials/');
             return $simpleView;
-        }, $this->getDI()));
+        });
 
         $path->voltCacheDir = $voltCacheDirBak;
         echo "Reverting voltCacheDir to original path\n";
@@ -169,16 +169,22 @@ class BuildTask extends Task
     {
         $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
         $module = new $moduleClass();
-        $viewFunc = \Closure::bind($module->getViewFunc(), $this->getDI());
 
-        $view = $viewFunc();
-        $this->compileVoltDir($view->getViewsDir(), $viewFunc);
+        $this->compileVoltDir($module->getViewsDir(), $module->getViewFunc());
     }
 
     /**
      *
      */
     private function compileVoltDir($path, $viewFunc)
+    {
+        $this->compileVoltDirWorker($path, \Closure::bind($viewFunc, $this->getDI()));
+    }
+
+    /**
+     *
+     */
+    private function compileVoltDirWorker($path, $viewFunc)
     {
         $dh = opendir($path);
         while (($fileName = readdir($dh)) !== false) {
@@ -188,7 +194,7 @@ class BuildTask extends Task
 
             $pathNext = "{$path}{$fileName}";
             if (is_dir($pathNext)) {
-                $this->compileVoltDir("$pathNext/", $viewFunc);
+                $this->compileVoltDirWorker("$pathNext/", $viewFunc);
             } else {
                 $this->getDI()
                     ->getVoltService($viewFunc(), $this->getDI())

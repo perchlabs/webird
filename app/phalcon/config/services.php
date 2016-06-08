@@ -43,20 +43,18 @@ $di->set('loader', function() {
         'Webird\Plugins'      => "$commonDir/plugins",
         'Webird'              => "$commonDir/library",
     ]);
-    $loader->register();
 
     $classes = [];
     foreach ($config->app->modules as $moduleName) {
         $class = 'Webird\\' . ucfirst($moduleName) . '\\Module';
-        $path  = Module::moduleNameToDir($moduleName) . 'Module.php';
-        $classes[$class] = $path;
+        $classes[$class] = $modulesDir . $moduleName . '/Module.php';
     }
     $loader->registerClasses($classes, true);
-    $loader->register();
 
+    $loader->register();
     return $loader;
 });
-$di->get('loader');
+$di->getLoader();
 
 /**
  *

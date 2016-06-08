@@ -12,8 +12,19 @@ use Phalcon\DI,
 abstract class Module implements ModuleDefinitionInterface
 {
     /**
-    *
-    */
+     *
+     */
+    public static function moduleNameToDir($moduleName)
+    {
+        $config = DI::getDefault()
+            ->getConfig();
+
+        return $config->path->phalconDir . "modules/{$moduleName}/";
+    }
+
+    /**
+     *
+     */
     public function getViewFunc()
     {
         $viewsDir = $this->getViewsDir();
@@ -38,28 +49,17 @@ abstract class Module implements ModuleDefinitionInterface
      */
     protected function getViewsDir()
     {
-        return $this->classNameToDir(get_called_class()) . 'views/';
+        return $this->getModuleRootDir() . 'views/';
     }
 
     /**
      *
      */
-    protected function classNameToDir($moduleClass)
+    protected function getModuleRootDir()
     {
-        $classParts = explode('\\', $moduleClass);
+        $classParts = explode('\\', get_called_class());
         $moduleName = lcfirst($classParts[1]);
-        $moduleDir = self::moduleNameToDir($moduleName);
-        return $moduleDir;
-    }
 
-    /**
-     *
-     */
-    public static function moduleNameToDir($moduleName)
-    {
-        $config = DI::getDefault()->getConfig();
-        $moduleDir = $config->path->phalconDir . "modules/{$moduleName}/";
-        return $moduleDir;
+        return self::moduleNameToDir($moduleName);
     }
-
 }

@@ -24,7 +24,7 @@ class BuildTask extends Task
     public function mainAction($argv)
     {
         $params = $this->parseArgs($argv, [
-            'title' => 'Build dist (distribution/production) system',
+            'title' => 'Build system',
             'args' => [
                 'required' => [],
                 'optional' => []
@@ -56,11 +56,11 @@ class BuildTask extends Task
     {
         $config = $this->config;
         $phalconDir = $config->path->phalconDir;
-        $distDir = $config->dev->path->distDir;
+        $buildDir = $config->dev->path->buildDir;
 
-        $distDirEsc = escapeshellarg($distDir);
+        $buildDirEsc = escapeshellarg($buildDir);
         $phalconAppDirEsc = escapeshellarg($phalconDir);
-        $phalconDistDirEsc = escapeshellarg($distDir . 'phalcon');
+        $phalconBuildDirEsc = escapeshellarg($buildDir . 'phalcon');
 
         if (! isset($config['dev']['phpEncode'])) {
             throw new \Exception('The PHP Encoder value is not set.', 1);
@@ -68,7 +68,7 @@ class BuildTask extends Task
         $phpEncode = $config->dev->phpEncode;
 
         if (empty($phpEncode)) {
-            `cp -R $phalconAppDirEsc $phalconDistDirEsc`;
+            `cp -R $phalconAppDirEsc $phalconBuildDirEsc`;
         } else {
             if (! isset($config->dev->phpEncoders[$phpEncode])) {
                 throw new \Exception("The '$phpEncode' PHP encoder setting does not exist", 1);
@@ -78,7 +78,7 @@ class BuildTask extends Task
             $encCmdEsc = escapeshellcmd($encoder->path);
             switch ($phpEncode) {
                 case 'ioncube':
-                    $cmd = "$encCmdEsc $phalconAppDirEsc --into $distDirEsc --merge-target";
+                    $cmd = "$encCmdEsc $phalconAppDirEsc --into $buildDirEsc --merge-target";
                     exec($cmd, $out, $ret);
                     break;
             }
@@ -91,18 +91,18 @@ class BuildTask extends Task
     private function cleanDirectoryStructure()
     {
         $projectDir = $this->config->dev->path->projectDir;
-        $distDir = $this->config->dev->path->distDir;
-        $distDirEsc = escapeshellarg($distDir);
+        $buildDir = $this->config->dev->path->buildDir;
+        $buildDirEsc = escapeshellarg($buildDir);
 
         // TODO: Add more checks for disasters against the rm -Rf command
         // Check for some disaster cases since the script will try to recursively delete the folder
-        if ($distDir != "{$projectDir}dist/" || $distDir == '' || $distDir == '/') {
-            throw new \Exception('Critical Error: Attempting to delete dist directory when it is not set correctly.');
+        if ($buildDir != "{$projectDir}build/" || $buildDir == '' || $buildDir == '/') {
+            throw new \Exception('Critical Error: Attempting to delete build directory when it is not set correctly.');
         }
-        if (file_exists($distDir)) {
-            exec("rm -Rf $distDirEsc", $out, $ret);
+        if (file_exists($buildDir)) {
+            exec("rm -Rf $buildDirEsc", $out, $ret);
             if ($ret != 0) {
-                throw new \Exception('There was a problem deleting the dist directory.');
+                throw new \Exception('There was a problem deleting the build directory.');
             }
         }
     }
@@ -114,13 +114,13 @@ class BuildTask extends Task
     {
         $appDir = $this->config->path->appDir;
         $projectDir = $this->config->dev->path->projectDir;
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
 
-        mkdir($distDir);
-        mkdir($distDir . 'public/');
-        mkdir($distDir . 'etc/');
-        mkdir($distDir . 'cache-static/');
-        mkdir($distDir . 'cache-static/volt/');
+        mkdir($buildDir);
+        mkdir($buildDir . 'public/');
+        mkdir($buildDir . 'etc/');
+        mkdir($buildDir . 'cache-static/');
+        mkdir($buildDir . 'cache-static/volt/');
     }
 
     /**
@@ -132,9 +132,9 @@ class BuildTask extends Task
         $devPath = $this->config->dev->path;
 
         $voltCacheDirBak = $path->voltCacheDir;
-        $voltCacheDirDist = $devPath->distDir . "cache-static/volt/";
-        $path->voltCacheDir = $voltCacheDirDist;
-        echo "Temporarily changing voltCacheDir to {$voltCacheDirDist}\n";
+        $voltCacheDirBuild = $devPath->buildDir . "cache-static/volt/";
+        $path->voltCacheDir = $voltCacheDirBuild;
+        echo "Temporarily changing voltCacheDir to {$voltCacheDirBuild}\n";
 
         $di = $this->getDI();
 
@@ -172,9 +172,9 @@ class BuildTask extends Task
 
         $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
         $module = new $moduleClass();
-        $viewFunc = $module->getViewFunc($di);
+        $viewFunc = \Closure::bind($module->getViewFunc(), $di);
 
-        $view = $viewFunc($di);
+        $view = $viewFunc();
         $viewsDir = $view->getViewsDir();
         $viewsLayoutsDir = $viewsDir . $view->getLayoutsDir();
         $viewsPartialsDir = $viewsDir . $view->getPartialsDir();
@@ -213,7 +213,7 @@ class BuildTask extends Task
      */
     private function makeEntryPoints()
     {
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
 
         $cliEntry = <<<'WEBIRD_ENTRY'
 #!/usr/bin/env php
@@ -221,15 +221,15 @@ class BuildTask extends Task
 define('ENV', 'dist');
 require(__DIR__ . '/phalcon/bootstrap_cli.php');
 WEBIRD_ENTRY;
-        file_put_contents("$distDir/webird.php", $cliEntry);
-        chmod("$distDir/webird.php", 0775);
+        file_put_contents("$buildDir/webird.php", $cliEntry);
+        chmod("$buildDir/webird.php", 0775);
 
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
 define('ENV', 'dist');
 require(__DIR__ . '/../phalcon/bootstrap_web.php');
 WEBIRD_ENTRY;
-        file_put_contents("$distDir/public/index.php", $webEntry);
+        file_put_contents("$buildDir/public/index.php", $webEntry);
     }
 
     /**
@@ -241,26 +241,26 @@ WEBIRD_ENTRY;
         $appDir = $this->config->path->appDir;
         $etcDir = $this->config->dev->path->etcDir;
         $devDir = $this->config->dev->path->devDir;
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
         // shell escaped configuration directories
         $appDirEsc = escapeshellarg($appDir);
         $projectDirEsc = escapeshellarg($projectDir);
         $devDirEsc = escapeshellarg($devDir);
-        $distDirEsc = escapeshellarg($distDir);
+        $buildDirEsc = escapeshellarg($buildDir);
 
         // Copy Composer configuration
-        copy("$devDir/composer.json", "$distDir/composer.json");
-        copy("$devDir/composer.lock", "$distDir/composer.lock");
+        copy("$devDir/composer.json", "$buildDir/composer.json");
+        copy("$devDir/composer.lock", "$buildDir/composer.lock");
         // Copy Npm/Nodejs configuration
-        copy("$devDir/package.json", "$distDir/package.json");
+        copy("$devDir/package.json", "$buildDir/package.json");
         // Copy Bower configuration
-        copy("$devDir/bower.json", "$distDir/bower.json");
+        copy("$devDir/bower.json", "$buildDir/bower.json");
 
-        `cp -R $appDir/theme/assets $distDir/public/assets`;
+        `cp -R $appDir/theme/assets $buildDir/public/assets`;
 
-        copy("$etcDir/schema.sql", "$distDir/etc/schema.sql");
-        // Move the CLI startup program to the root dist directory
-        chmod("$distDir/webird.php", 0775);
+        copy("$etcDir/schema.sql", "$buildDir/etc/schema.sql");
+        // Move the CLI startup program to the build root directory
+        chmod("$buildDir/webird.php", 0775);
     }
 
     /**
@@ -271,12 +271,12 @@ WEBIRD_ENTRY;
         $etcDir = $this->config->dev->path->etcDir;
         $localeDir = $this->config->path->localeDir;
         $devDir = $this->config->dev->path->devDir;
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
 
-        $config1 = yaml_parse_file("$etcDir/dist_defaults.yml");
-        $config2 = yaml_parse_file("$etcDir/dist.yml");
+        $config1 = yaml_parse_file($etcDir . 'dist_defaults.yml');
+        $config2 = yaml_parse_file($etcDir . 'dist.yml');
 
-        $localeConfig = yaml_parse_file("$localeDir/config.yml");
+        $localeConfig = yaml_parse_file($localeDir . 'config.yml');
         $localeConfig['supported'] = $this->getDI()->getLocale()->getSupportedLocales();
         $config3 = [
             'locale' => $localeConfig
@@ -285,8 +285,8 @@ WEBIRD_ENTRY;
         // Merge the custom settings over the defaults
         $configMerged = array_replace_recursive($config1, $config2, $config3);
 
-        // Write the merged settings to the dist directory
-        yaml_emit_file("$distDir/etc/config.yml", $configMerged);
+        // Write the merged settings to the build directory
+        yaml_emit_file("$buildDir/etc/config.yml", $configMerged);
     }
 
     /**
@@ -294,10 +294,10 @@ WEBIRD_ENTRY;
      */
     private function installPackages()
     {
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
 
         $cwd = getcwd();
-        chdir($distDir);
+        chdir($buildDir);
 
         exec("composer --no-dev install", $out, $ret);
         exec("skipclean=1 && npm install --production", $out, $ret);
@@ -313,9 +313,9 @@ WEBIRD_ENTRY;
     {
         $supported = $this->getDI()->getLocale()->getSupportedLocales();
 
-        $distDir = $this->config->dev->path->distDir;
+        $buildDir = $this->config->dev->path->buildDir;
 
-        $localeCacheDir = $distDir . 'cache-static/locale/';
+        $localeCacheDir = $buildDir . 'cache-static/locale/';
 
         foreach ($supported as $locale => $true) {
             try {

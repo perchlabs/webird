@@ -172,10 +172,10 @@ The nginx configuration must be rebuilt if the distribution environment director
 ```
 
 ```
-./dist
-├── webird.php (CLI entry for dist environment)
+./build
+├── webird.php (CLI entry for built system)
 ├── public/
-│   └── index.php (Web entry for dist environment)
+│   └── index.php (Web entry for built system)
 ├── etc/
 ├── cache-static/
 │   ├── locale/ (localization files in machine readable .mo format)
@@ -192,11 +192,11 @@ The nginx configuration must be rebuilt if the distribution environment director
 └── functions/ (helpers)
 ```
 
-Compare the `./app` directory to a built `./dist` directory to notice the differences between the app code and dev environment and the finalized dist environment.
+Compare the `./app` directory to a built `./built` directory to notice the differences between the app code and dev environment and the built system.
 
 You may also view the build system routine at `app/phalcon/modules/cli/tasks/DevTask.php`
 
-**Note**: The `./dist` directory contains only optimized and uglified JS resources and if Ion Cube has been enabled then the build process will use it to protect the PHP code.
+**Note**: The `./built` directory contains only optimized and uglified JS resources and if Ion Cube has been enabled then the build process will use it to protect the PHP code.
 
 ### TODO and the WAITING:
 * At the moment only basic websocket support is supported since [Ratchet](http://socketo.me/) does not support the [WAMP](http://wamp.ws/) v2 protocol and newer Javascript libraries such as [Autobahn|JS](http://autobahn.ws/js/) are now WAMP v2 only and the older v1 versions don't play nice with the CommonJS module system.  Ratchet development stalled out with the WAMP v2 feature, but there is hope since the [Thruway](https://github.com/voryx/Thruway) team is building upon the Ratchet code base and is hard at work to suport a WAMP v2 protocol.  There is much colloborative and blessings between the two projects so this looks positive.

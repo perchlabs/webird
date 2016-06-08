@@ -48,7 +48,6 @@ class Module extends WbModule
     {
         $di->getDispatcher()->setDefaultNamespace('Webird\Api\Controllers');
 
-        $di->setShared('view', $this->getViewFunc($di));
-
+        $di->setShared('view', $this->getViewFunc());
     }
 }

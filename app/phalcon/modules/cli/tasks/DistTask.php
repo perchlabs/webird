@@ -31,7 +31,7 @@ class DistTask extends Task
 HELPMSG;
 
         $params = $this->parseArgs($argv, [
-            'title' => 'Start the dist (distribution/production) server processes.',
+            'title' => 'Start the built server processes.',
             'help' => $help,
             'args' => [
                 'required' => [],

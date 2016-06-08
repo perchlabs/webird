@@ -20,7 +20,7 @@ let projectRoot = path.resolve('..');
 let etcRoot = path.join(projectRoot, 'etc');
 let appRoot = path.join(projectRoot, 'app');
 let devRoot = path.join(projectRoot, 'dev');
-let distRoot = path.join(projectRoot, 'dist');
+let buildRoot = path.join(projectRoot, 'build');
 let webpackRoot = path.join(appRoot, 'webpack');
 let appModulesRoot = path.join(webpackRoot, 'modules');
 let themeRoot = path.join(appRoot, 'theme');
@@ -264,7 +264,7 @@ const dev = gulp.series(function(callback) {
  *
  */
 const build = gulp.series(function(callback) {
-    wpConf.output.path = path.join(projectRoot, 'dist', 'public');
+    wpConf.output.path = path.join(projectRoot, 'build', 'public');
     wpConf.plugins.concat([
       new DefinePlugin({DEV: false}),
       new UglifyJsPlugin()

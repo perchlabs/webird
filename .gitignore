@@ -2,7 +2,7 @@ app/locale/*/LC_MESSAGES/phalcon.mo
 app/locale/*/LC_MESSAGES/webpack.mo
 etc/dev.yml
 etc/dist.yml
-dist/
+build/
 dev/npm-debug.log
 dev/composer.lock
 dev/node_modules/

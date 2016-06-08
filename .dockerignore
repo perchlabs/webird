@@ -2,4 +2,4 @@
 dev/node_modules
 dev/bower_components
 dev/vendor
-dist
+build

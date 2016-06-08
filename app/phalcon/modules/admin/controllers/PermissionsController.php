@@ -77,7 +77,6 @@ class PermissionsController extends Controller
 
         foreach ($addList as $qualified) {
             if (preg_match('/^([a-z]*)::([a-zA-Z]+)::([a-zA-Z]+)$/', $qualified, $matches) !== 1) {
-                error_log($qualified);
                 throw new \Exception('The fully qualified permission is not valid');
             }
 

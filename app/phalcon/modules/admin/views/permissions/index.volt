@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    {% if request.isPost() and role %}
+    {% if this.request.isPost() and role %}
     {% for namespace, resources in acl.getPrivateSpec() %}
       <div class="form-group">
         <div class="col-md-4 col-md-offset-4">
@@ -51,7 +51,7 @@
     {% endfor %}
     {% endif %}
 
-    {% if request.isPost() and role %}
+    {% if this.request.isPost() and role %}
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4 text-center">
         {{ submit_button(t('Save'), "name": "save", "class": "btn btn-success") }}

@@ -44,7 +44,7 @@ HELPMSG;
         ]);
 
         $appDir = $this->config->path->appDir;
-        $cmdWebirdEsc = escapeshellcmd("$appDir/webird.php");
+        $cmdWebirdEsc = escapeshellcmd("$appDir/run");
 
         $websocketProc = new Process("$cmdWebirdEsc websocket");
 

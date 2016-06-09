@@ -220,8 +220,8 @@ class BuildTask extends Task
 define('ENV', 'dist');
 require(__DIR__ . '/phalcon/bootstrap_cli.php');
 WEBIRD_ENTRY;
-        file_put_contents("$buildDir/webird.php", $cliEntry);
-        chmod("$buildDir/webird.php", 0775);
+        file_put_contents("$buildDir/run", $cliEntry);
+        chmod("$buildDir/run", 0775);
 
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
@@ -258,8 +258,6 @@ WEBIRD_ENTRY;
         `cp -R $appDir/theme/assets $buildDir/public/assets`;
 
         copy("$etcDir/schema.sql", "$buildDir/etc/schema.sql");
-        // Move the CLI startup program to the build root directory
-        chmod("$buildDir/webird.php", 0775);
     }
 
     /**

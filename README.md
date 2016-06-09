@@ -71,10 +71,10 @@ cp ./etc/templates/dev_config.yml ./etc/dev.yml
 vi ./etc/dev.yml
 # Create a Webird user
 # Change the email and password
-./dev/webird.php useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
+./dev/run useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
 
 # nginx setup
-./dev/webird.php nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
+./dev/run nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
 sudo systemctl restart nginx
 
@@ -105,7 +105,7 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 
 ## Development Usage:
-1. Run server processes: `./dev/webird.php [server]` and wait until webpack-dev-server has finished building
+1. Run server processes: `./dev/run [server]` and wait until webpack-dev-server has finished building
 2. Visit http://dev.webird.io
 
 If you see the local host file not configured page then add `127.0.0.1 dev.webird.io` to your `/etc/hosts` file.
@@ -115,7 +115,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 #### Create dist environment:
 1. Copy `./etc/templates/dist_config.yml` to `./etc/dist.yml`
 2. Configure `./etc/dist.yml` to override settings from `./etc/dist_defaults.yml`.  These two files will be merged to form `./dist/etc/config.yml`.
-3. Create the dist environment: `./dev/webird.php build`
+3. Create the dist environment: `./dev/run build`
 4. Enter into dist directory `cd ./dist`
 5. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
 6. Follow following instructions within dist environments
@@ -124,15 +124,15 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 
 **Warning**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
 
-1. Generate nginx configuration with : `./webird.php nginx | sudo tee /etc/nginx/sites-available/dist.webird.io`.
+1. Generate nginx configuration with : `./run nginx | sudo tee /etc/nginx/sites-available/dist.webird.io`.
 2. Enable nginx file: `sudo ln -s /etc/nginx/sites-available/dist.webird.io /etc/nginx/sites-enabled/dist.webird.io`
 3. Restart web server
 4. Import database schema located at `./etc/schema.sql`
-5. Run server processes: `./webird.php` (for websockets, beanstalkd loop, etc)
+5. Run server processes: `./run` (for websockets, beanstalkd loop, etc)
 6. If something is wrong modify `./config.yml` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.yml` file and then rebuild the dist environment.
 7. Visit https://dist.webird.io
 
-The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./webird.php nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
+The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./run nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
 
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 
@@ -157,7 +157,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 
 ```
 ./dev
-├── webird.php (CLI entry for dev environment)
+├── run (CLI entry for dev environment)
 ├── public/
 │   └── index.php (Web entry for dev environment)
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
@@ -173,7 +173,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 
 ```
 ./build
-├── webird.php (CLI entry for built system)
+├── run (CLI entry for built system)
 ├── public/
 │   └── index.php (Web entry for built system)
 ├── etc/

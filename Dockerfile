@@ -12,8 +12,8 @@ RUN \
   /opt/webird/setup/provision-system.sh ubuntu-xenial
 
 RUN \
-  ln -s /opt/webird/dev/webird.php /usr/local/bin/webird-dev && \
-  ln -s /opt/webird/dist/webird.php /usr/local/bin/webird && \
+  ln -s /opt/webird/dev/run /usr/local/bin/webird-dev && \
+  ln -s /opt/webird/dist/run /usr/local/bin/webird && \
   useradd -G www-data -s /bin/bash --home /opt/webird webird && \
   chown -R webird.www-data /opt/webird
 

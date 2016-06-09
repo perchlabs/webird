@@ -2,7 +2,7 @@
 namespace Webird\Cli\Tasks;
 
 use React\EventLoop\Factory as EventLoopFactory,
-    React\ChildProcess\Process,
+    Webird\CLI\Process,
     Webird\CLI\Task;
 
 /**
@@ -10,14 +10,6 @@ use React\EventLoop\Factory as EventLoopFactory,
  */
 class DistTask extends Task
 {
-
-    /**
-     *
-     */
-    public function mainAction(array $params)
-    {
-    }
-
     /**
      *
      */
@@ -44,19 +36,14 @@ HELPMSG;
         ]);
 
         $appDir = $this->config->path->appDir;
-        $cmdWebirdEsc = escapeshellcmd("$appDir/run");
+        $runEsc = escapeshellcmd("$appDir/run");
 
-        $websocketProc = new Process("$cmdWebirdEsc websocket");
+        $websocketProc = new Process("$runEsc websocket");
 
         $loop = EventLoopFactory::create();
         $loop->addTimer(0.001, function($timer) use ($websocketProc) {
             $websocketProc->start($timer->getLoop());
-            $websocketProc->stdout->on('data', function($output) {
-                echo $output;
-            });
-            $websocketProc->stderr->on('data', function($output) {
-                echo $output;
-            });
+            $websocketProc->addStdListeners();
         });
 
         $loop->run();
@@ -76,8 +63,7 @@ HELPMSG;
             'opts' => []
         ]);
 
-        $nginxConf = $this->getNginxConfig();
-        echo $nginxConf;
+        echo $this->getNginxConfig();
     }
 
     /**
@@ -94,17 +80,16 @@ HELPMSG;
         $domainFirst = $config->site->domains[0];
         $domains = $config->site->domains->toArray();
 
-        $view = $this->di->get('viewSimple');
-        $tpl = $view->render('nginx/dist', [
-            'host'           => $domainFirst,
-            'domains'        => $domains,
-            'http_port'      => $httpPort,
-            'websocket_port' => $wsPort,
-            'random_hash'    => $randomHash,
-            'app_path'       => $appDir,
-        ]);
-
-        return $tpl;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render('nginx/dist', [
+                'host'           => $domainFirst,
+                'domains'        => $domains,
+                'http_port'      => $httpPort,
+                'websocket_port' => $wsPort,
+                'random_hash'    => $randomHash,
+                'app_path'       => $appDir,
+            ]);
     }
 
 }

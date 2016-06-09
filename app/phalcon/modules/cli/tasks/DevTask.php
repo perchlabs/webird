@@ -4,7 +4,7 @@ namespace Webird\Cli\Tasks;
 use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     React\EventLoop\Factory as EventLoopFactory,
-    React\ChildProcess\Process,
+    Webird\CLI\Process,
     Webird\CLI\Task,
     Webird\Web\Module as WebModule,
     Webird\Admin\Module as AdminModule;
@@ -15,20 +15,13 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
  */
 class DevTask extends Task
 {
-
-    /**
-     *
-     */
-    public function mainAction(array $params)
-    {
-    }
-
     /**
      *
      */
     public function serverAction($argv)
     {
-        $config = $this->di->getConfig();
+        $config = $this->getDI()
+            ->getConfig();
 
         $help = <<<HELPMSG
 * PHP Ratchet websocket server on port {$config->app->wsPort}
@@ -46,36 +39,23 @@ HELPMSG;
             'opts' => []
         ]);
 
-        $devDir = $this->config->dev->path->devDir;
-        $cmdWebirdEsc = escapeshellcmd("$devDir/run");
+        $devDir = $config->dev->path->devDir;
+        $runEsc = escapeshellcmd("$devDir/run");
         $devDirEsc = escapeshellarg($devDir);
 
-        $websocketProc = new Process("$cmdWebirdEsc websocket");
+        $websocketProc = new Process("$runEsc websocket");
         $webpackProc = new Process("cd $devDirEsc && npm run dev");
 
         $loop = EventLoopFactory::create();
         $loop->addTimer(0.001, function($timer) use ($websocketProc, $webpackProc) {
             $websocketProc->start($timer->getLoop());
-            $this->addProcOutputListener($websocketProc);
+            $websocketProc->addStdListeners();
 
             $webpackProc->start($timer->getLoop());
-            $this->addProcOutputListener($webpackProc);
+            $webpackProc->addStdListeners();
         });
 
         $loop->run();
-    }
-
-    /**
-     *
-     */
-    private function addProcOutputListener($proc)
-    {
-        $proc->stdout->on('data', function($output) {
-            echo $output;
-        });
-        $proc->stderr->on('data', function($output) {
-            echo $output;
-        });
     }
 
     /**
@@ -92,8 +72,7 @@ HELPMSG;
             'opts' => []
         ]);
 
-        $nginxConf = $this->getNginxConfig();
-        echo $nginxConf;
+        echo $this->getNginxConfig();
     }
 
     /**
@@ -113,19 +92,18 @@ HELPMSG;
         $domainFirst = $config->site->domains[0];
         $domains = $config->site->domains->toArray();
 
-        $view = $this->di->get('viewSimple');
-        $tpl = $view->render('nginx/dev', [
-            'host'           => $domainFirst,
-            'domains'        => $domains,
-            'http_port'      => $httpPort,
-            'webpack_port'   => $webpackPort,
-            'websocket_port' => $websocketPort,
-            'random_hash'    => $randomHash,
-            'app_path'       => $appDir,
-            'dev_path'       => $devDir
+        return $this->getDI()
+            ->getViewSimple()
+            ->render('nginx/dev', [
+                'host'           => $domainFirst,
+                'domains'        => $domains,
+                'http_port'      => $httpPort,
+                'webpack_port'   => $webpackPort,
+                'websocket_port' => $websocketPort,
+                'random_hash'    => $randomHash,
+                'app_path'       => $appDir,
+                'dev_path'       => $devDir
         ]);
-
-        return $tpl;
     }
 
 }

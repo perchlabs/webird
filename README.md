@@ -122,7 +122,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 
 #### Configure final dist environment:
 
-**Warning**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
+**Attention**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
 
 1. Generate nginx configuration with : `./run nginx | sudo tee /etc/nginx/sites-available/dist.webird.io`.
 2. Enable nginx file: `sudo ln -s /etc/nginx/sites-available/dist.webird.io /etc/nginx/sites-enabled/dist.webird.io`

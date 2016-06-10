@@ -1,12 +1,12 @@
 <?php
-namespace Webird\Cli\Tasks;
+namespace Webird\Modules\Cli\Tasks;
 
 use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     React\EventLoop\Factory as EventLoopFactory,
     React\ChildProcess\Process,
-    Webird\Web\Module as WebModule,
-    Webird\Admin\Module as AdminModule,
+    Webird\Modules\Web\Module as WebModule,
+    Webird\Modules\Admin\Module as AdminModule,
     Webird\CLI\Task,
     Webird\Locale\Compiler as LocaleCompiler,
     Webird\Locale\CompilerException as LocaleCompilerException;

@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Web\Controllers;
+namespace Webird\Modules\Web\Controllers;
 
 use ZMQ,
     ZMQContext as ZMQContext,

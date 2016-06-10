@@ -1,12 +1,12 @@
 <?php
-namespace Webird\Admin\Controllers;
+namespace Webird\Modules\Admin\Controllers;
 
 use Phalcon\Tag,
     Phalcon\Mvc\Model\Criteria,
     Phalcon\Paginator\Adapter\Model as Paginator,
     Webird\Mvc\Controller,
     Webird\Models\Roles,
-    Webird\Admin\Forms\RolesForm;
+    Webird\Modules\Admin\Forms\RolesForm;
 
 /**
  * Webird\Controllers\RolesController

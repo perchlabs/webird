@@ -1,13 +1,11 @@
 <?php
-namespace Webird\Cli\Tasks;
+namespace Webird\Modules\Cli\Tasks;
 
 use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     React\EventLoop\Factory as EventLoopFactory,
     Webird\CLI\Process,
-    Webird\CLI\Task,
-    Webird\Web\Module as WebModule,
-    Webird\Admin\Module as AdminModule;
+    Webird\CLI\Task;
 
 /**
  * Task for Build

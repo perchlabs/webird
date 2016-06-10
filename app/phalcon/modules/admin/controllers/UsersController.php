@@ -1,14 +1,14 @@
 <?php
-namespace Webird\Admin\Controllers;
+namespace Webird\Modules\Admin\Controllers;
 
 use Phalcon\Tag,
     Phalcon\Mvc\Model\Criteria,
     Phalcon\Paginator\Adapter\Model as Paginator,
     Webird\Mvc\Controller,
-    Webird\Admin\Forms\UsersForm,
     Webird\Models\Users,
     Webird\Models\EmailConfirmations,
-    Webird\Models\PasswordChanges;
+    Webird\Models\PasswordChanges,
+    Webird\Modules\Admin\Forms\UsersForm;
 
 /**
  * Webird\Controllers\UsersController

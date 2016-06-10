@@ -51,7 +51,7 @@ abstract class Module implements ModuleDefinitionInterface
             ->path->modulesDir;
 
         $classParts = explode('\\', get_called_class());
-        $moduleName = lcfirst($classParts[1]);
+        $moduleName = lcfirst($classParts[2]);
 
         return $modulesDir . $moduleName . '/';
     }

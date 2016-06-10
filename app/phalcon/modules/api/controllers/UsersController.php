@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Api\Controllers;
+namespace Webird\Modules\Api\Controllers;
 
 use Webird\Controllers\RESTController;
 

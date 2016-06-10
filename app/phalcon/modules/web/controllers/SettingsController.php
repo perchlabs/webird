@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Web\Controllers;
+namespace Webird\Modules\Web\Controllers;
 
 use Phalcon\Tag,
     Webird\Mvc\Controller,
@@ -7,8 +7,8 @@ use Phalcon\Tag,
     Webird\Models\EmailConfirmations,
     Webird\Models\ResetPasswords,
     Webird\Models\PasswordChanges,
-    Webird\Web\Forms\ChangePasswordForm,
-    Webird\Web\Forms\ForgotPasswordForm;
+    Webird\Modules\Web\Forms\ChangePasswordForm,
+    Webird\Modules\Web\Forms\ForgotPasswordForm;
 
 /**
  * SettingsController

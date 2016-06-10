@@ -33,7 +33,7 @@ if (!file_exists($config->path->tmpDir)) {
 $console = new WebirdConsole($di);
 $di->setShared('console', $console);
 $console->registerModules([
-    'cli' => ['className' => 'Webird\Cli\Module']
+    'cli' => ['className' => 'Webird\Modules\Cli\Module']
 ]);
 
 if (DEV) {

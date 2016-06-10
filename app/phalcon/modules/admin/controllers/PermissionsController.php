@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Admin\Controllers;
+namespace Webird\Modules\Admin\Controllers;
 
 use Webird\Mvc\Controller,
     Webird\Models\Roles,

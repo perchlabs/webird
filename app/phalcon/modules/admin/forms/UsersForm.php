@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Admin\Forms;
+namespace Webird\Modules\Admin\Forms;
 
 use Phalcon\Forms\Form,
     Phalcon\Forms\Element\Text,

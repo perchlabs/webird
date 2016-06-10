@@ -57,9 +57,9 @@ if (DEV) {
 // Handle the request and inject DI
 $application = new Application($di);
 $application->registerModules([
-    'web'   => ['className' => 'Webird\Web\Module'],
-    'admin' => ['className' => 'Webird\Admin\Module'],
-    'api'   => ['className' => 'Webird\Api\Module']
+    'web'   => ['className' => 'Webird\Modules\Web\Module'],
+    'admin' => ['className' => 'Webird\Modules\Admin\Module'],
+    'api'   => ['className' => 'Webird\Modules\Api\Module']
 ]);
 
 try {

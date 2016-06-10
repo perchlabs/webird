@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Cli\Tasks;
+namespace Webird\Modules\Cli\Tasks;
 
 use ZMQ,
     PDO,
@@ -11,7 +11,7 @@ use ZMQ,
     Ratchet\Session\SessionProvider,
     Symfony\Component\HttpFoundation\Session\Storage\Handler,
     Webird\CLI\Task,
-    Webird\Cli\Chat;
+    Webird\Modules\Cli\Chat;
 
 /**
  * Task for websocket

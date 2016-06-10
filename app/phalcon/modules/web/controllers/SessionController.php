@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Web\Controllers;
+namespace Webird\Modules\Web\Controllers;
 
 use Webird\Mvc\Controller,
     Webird\Auth\AuthException,
@@ -7,8 +7,8 @@ use Webird\Mvc\Controller,
     Webird\Auth\AuthRememberMeException,
     Webird\Models\Users,
     Webird\Models\ResetPasswords,
-    Webird\Web\Forms\SigninForm,
-    Webird\Web\Forms\SignUpForm;
+    Webird\Modules\Web\Forms\SigninForm,
+    Webird\Modules\Web\Forms\SignUpForm;
 
 /**
  * Controller used handle non-authenticated session actions like signin/signout, user signup, and forgotten passwords

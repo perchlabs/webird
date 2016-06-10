@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Web\Controllers;
+namespace Webird\Modules\Web\Controllers;
 
 use Webird\Mvc\Controller;
 

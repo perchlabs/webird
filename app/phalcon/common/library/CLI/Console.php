@@ -81,7 +81,7 @@ class Console extends PhalconConsole
         try {
             parent::handle([
                 'module' => $arguments['module'],
-                'task'   => 'Webird\Cli\Tasks\\' . ucfirst($task),
+                'task'   => 'Webird\Modules\Cli\Tasks\\' . ucfirst($task),
                 'action' => $action,
                 'params' => $params
             ]);

@@ -57,7 +57,7 @@ $di->set('loader', function() {
     // Register module classes
     $classes = [];
     foreach ($config->app->modules as $moduleName) {
-        $class = 'Webird\\' . ucfirst($moduleName) . '\\Module';
+        $class = 'Webird\\Modules\\' . ucfirst($moduleName) . '\\Module';
         $classes[$class] = $modulesDir . $moduleName . '/Module.php';
     }
     $loader->registerClasses($classes, true);

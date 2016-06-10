@@ -1,17 +1,17 @@
 <?php
-namespace Webird\Web;
+namespace Webird\Modules\Web;
 
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Webird\Module as WbModule,
+    Webird\Module,
     Webird\DebugPanel;
 
 /**
  * Module for basic web needs
  *
  */
-class Module extends WbModule
+class Module extends Module
 {
 
     /**
@@ -30,9 +30,9 @@ class Module extends WbModule
     {
         $loader = new Loader();
         $loader->registerNamespaces([
-            'Webird\Web\Controllers'  => __DIR__ . '/controllers',
-            'Webird\Web\Forms'        => __DIR__ . '/forms',
-            'Webird\Web'              => __DIR__ . '/library'
+            __NAMESPACE__ . '\\Controllers' => __DIR__ . '/controllers',
+            __NAMESPACE__ . '\\Forms'       => __DIR__ . '/forms',
+            __NAMESPACE__                   => __DIR__ . '/library'
         ]);
         $loader->register();
     }
@@ -44,7 +44,8 @@ class Module extends WbModule
      */
     public function registerServices(DiInterface $di = null)
     {
-        $di->getDispatcher()->setDefaultNamespace('Webird\Web\Controllers');
+        $di->getDispatcher()
+            ->setDefaultNamespace(__NAMESPACE__ . '\\Controllers');
 
         $di->setShared('view', $this->getViewFunc());
 

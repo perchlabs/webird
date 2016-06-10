@@ -1,14 +1,14 @@
 <?php
-namespace Webird\Web\Controllers;
+namespace Webird\Modules\Web\Controllers;
 
 use Webird\Mvc\Controller,
     Webird\Auth\AuthMustChangePasswordException,
     Webird\Models\Users,
     Webird\Models\EmailConfirmations,
     Webird\Models\ResetPasswords,
-    Webird\Web\Forms\ChangePasswordForm,
-    Webird\Web\Forms\ForgotPasswordForm,
-    Webird\Auth\AuthInactiveUserException;
+    Webird\Auth\AuthInactiveUserException,
+    Webird\Modules\Web\Forms\ChangePasswordForm,
+    Webird\Modules\Web\Forms\ForgotPasswordForm;
 
 /**
  * UserspublicController

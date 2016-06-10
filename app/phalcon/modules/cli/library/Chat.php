@@ -1,11 +1,10 @@
 <?php
-namespace Webird\Cli;
+namespace Webird\Modules\Cli;
 
 use Phalcon\DI\Injectable as DIInjectable,
     Ratchet\MessageComponentInterface,
     Ratchet\ConnectionInterface,
     Webird\DatabaseSessionReader;
-
 
 /**
  * Basic chat logic for a Ratchet application

@@ -1,17 +1,16 @@
 <?php
-namespace Webird\Cli;
+namespace Webird\Modules\Cli;
 
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
-    Webird\Module as WbModule;
+    Webird\Module;
 
 /**
  * Module for CLI interface applications
  *
  */
-class Module extends WbModule
+class Module extends Module
 {
 
     /**
@@ -30,8 +29,8 @@ class Module extends WbModule
     {
         $loader = new Loader();
         $loader->registerNamespaces([
-            'Webird\Cli\Tasks'    => __DIR__ . '/tasks',
-            'Webird\Cli'          => __DIR__ . '/library'
+            __NAMESPACE__ . '\\Tasks' => __DIR__ . '/tasks',
+            __NAMESPACE__             => __DIR__ . '/library'
         ]);
         $loader->register();
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Webird\Cli\Tasks;
+namespace Webird\Modules\Cli\Tasks;
 
 use Webird\CLI\Task;
 

@@ -82,7 +82,8 @@ class Permissions extends Model
      */
     public function validation()
     {
-        $translate = $this->getDI()->getTranslate();
+        $translate = $this->getDI()
+            ->getTranslate();
 
         $validator = new Validation();
 

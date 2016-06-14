@@ -3,24 +3,24 @@
 ###################################################################
 
 upstream websocket-{{random_hash}} {
-  server localhost:{{websocket_port}};
+  server localhost:{{config.app.wsPort}};
 }
 
 ## I'm unable to get weppack proxy passthru working and so localhost:port must be used.
 ## This means that testing HTTPS with HSTS and XSS protection is currently not available in dev mode
 upstream webpack-{{random_hash}} {
-  server localhost:{{webpack_port}};
+  server localhost:{{config.dev.webpackPort}};
 }
 
 server {
-  server_name{% for domain in domains %} {{ domain }}{% endfor %};
-  listen      {{http_port}};
+  server_name{% for domain in config.site.domains %} {{ domain }}{% endfor %};
+  listen      {{config.app.httpPort}};
 
-  root        "{{dev_path}}public";
+  root        "{{config.dev.path.devDir}}public";
   index index.php;
 
-  access_log  "/var/log/nginx/{{host}}.log";
-  error_log   "/var/log/nginx/{{host}}-error.log" error;
+  access_log  "/var/log/nginx/{{config.site.domains[0]}}.log";
+  error_log   "/var/log/nginx/{{config.site.domains[0]}}-error.log" error;
 
   fastcgi_buffer_size 64k;
   fastcgi_buffers 4 64k;
@@ -52,7 +52,7 @@ server {
   }
 
   location ~ ^/assets/(.+)$ {
-    root "{{app_path}}/theme/assets";
+    root "{{config.path.appDir}}/theme/assets";
     rewrite ^/assets/(.*)$ /$1; break;
   }
 
@@ -64,7 +64,6 @@ server {
 
   location ~ \.php {
     fastcgi_index  /index.php;
-#    fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_pass 127.0.0.1:9000;
 
     include fastcgi_params;

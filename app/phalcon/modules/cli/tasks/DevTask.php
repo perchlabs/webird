@@ -78,29 +78,14 @@ HELPMSG;
      */
     private function getNginxConfig()
     {
-        $config = $this->config;
-        $appDir = $config->path->appDir;
-        $devDir = $config->dev->path->devDir;
-        $etcDir = $config->dev->path->etcDir;
-        $webpackPort = $config->dev->webpackPort;
-        $httpPort = $config->app->httpPort;
-        $websocketPort = $config->app->wsPort;
-        $randomHash = uniqid();
-
-        $domainFirst = $config->site->domains[0];
-        $domains = $config->site->domains;
+        $config = $this->getDI()
+            ->getConfig();
 
         return $this->getDI()
             ->getViewSimple()
             ->render('nginx/dev', [
-                'host'           => $domainFirst,
-                'domains'        => $domains,
-                'http_port'      => $httpPort,
-                'webpack_port'   => $webpackPort,
-                'websocket_port' => $websocketPort,
-                'random_hash'    => $randomHash,
-                'app_path'       => $appDir,
-                'dev_path'       => $devDir
+                'config'      => $config,
+                'random_hash' => uniqid(),
         ]);
     }
 

@@ -3,28 +3,28 @@
 ####################################################################
 
 upstream websocket-{{random_hash}} {
-  server localhost:{{websocket_port}};
+  server localhost:{{config.app.wsPort}};
 }
 
 server {
-  server_name{% for domain in domains %} {{ domain }}{% endfor %};
+  server_name{% for domain in config.site.domains %} {{ domain }}{% endfor %};
   listen      80;
   return 301 https://$host$request_uri;
 }
 
 server {
-  server_name{% for domain in domains %} {{domain}}{% endfor %};
-  listen      {{http_port}} ssl http2;
+  server_name{% for domain in config.site.domains %} {{domain}}{% endfor %};
+  listen      {{config.app.httpPort}} ssl http2;
 
-  root        "{{app_path}}public";
+  root        "{{config.path.appDir}}public";
   index index.php;
 
   ssl on;
   ssl_certificate /etc/nginx/ssl/server.crt;
   ssl_certificate_key /etc/nginx/ssl/server.key;
 
-  access_log  "/var/log/nginx/{{host}}.log";
-  error_log   "/var/log/nginx/{{host}}-error.log" error;
+  access_log  "/var/log/nginx/{{config.site.domains[0]}}.log";
+  error_log   "/var/log/nginx/{{config.site.domains[0]}}-error.log" error;
 
   fastcgi_buffer_size 64k;
   fastcgi_buffers 4 64k;
@@ -61,7 +61,6 @@ server {
 
   location ~ \.php {
     fastcgi_index  /index.php;
-#    fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_pass 127.0.0.1:9000;
 
     include fastcgi_params;

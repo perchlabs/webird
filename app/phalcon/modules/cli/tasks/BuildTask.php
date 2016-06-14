@@ -167,7 +167,7 @@ class BuildTask extends Task
      */
     private function compileVoltTemplateForModule($moduleName)
     {
-        $moduleClass = '\\Webird\\' . ucfirst($moduleName) . '\\Module';
+        $moduleClass = '\\Webird\\Modules\\' . ucfirst($moduleName) . '\\Module';
         $module = new $moduleClass();
 
         $this->compileVoltDir($module->getViewsDir(), $module->getViewFunc());

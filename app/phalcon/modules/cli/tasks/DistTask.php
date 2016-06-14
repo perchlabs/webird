@@ -78,7 +78,7 @@ HELPMSG;
         $randomHash = uniqid();
 
         $domainFirst = $config->site->domains[0];
-        $domains = $config->site->domains->toArray();
+        $domains = $config->site->domains;
 
         return $this->getDI()
             ->getViewSimple()

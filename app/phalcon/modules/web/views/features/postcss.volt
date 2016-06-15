@@ -12,5 +12,5 @@
       Resize this webpage for media query example
   </div>
   {{ javascript_include(['src': 'js/entries/postcss.example.js']) }}
-  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>

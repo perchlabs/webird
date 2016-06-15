@@ -23,5 +23,5 @@
   </div>
   {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
   {{ javascript_include(['src': 'js/entries/websocket.js']) }}
-  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>

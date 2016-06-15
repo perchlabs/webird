@@ -49,7 +49,7 @@ class Module extends Module
 
         $di->setShared('view', $this->getViewFunc());
 
-        if (DEV_ENV === ENV) {
+        if (DEVELOPING) {
             $debugPanel = new DebugPanel($di);
         }
     }

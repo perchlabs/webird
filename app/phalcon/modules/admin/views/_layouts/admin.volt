@@ -45,7 +45,7 @@
 </nav>
 
 {{ content() }}
-  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
   {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
   {{ javascript_include(['src': 'js/entries/admin.js']) }}
 </body>

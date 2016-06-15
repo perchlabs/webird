@@ -11,5 +11,5 @@
       View the console to see the Fetch data
   </div>
   {{ javascript_include(['src': 'js/entries/fetch.example.js']) }}
-  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>

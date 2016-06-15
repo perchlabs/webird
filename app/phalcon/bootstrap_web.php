@@ -2,7 +2,7 @@
 use Phalcon\DI\FactoryDefault as DI,
     Phalcon\Mvc\Application;
 
-if (! defined('ENV')) {
+if (!defined('ENV')) {
   error_log('Error: The application ENV constant is not set.');
   exit(1);
 }
@@ -10,7 +10,8 @@ if (! defined('ENV')) {
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
 define('DIST_ENV', 'dist');
-define('DEV', (ENV === DEV_ENV));
+define('DEVELOPING', ENV === DEV_ENV);
+define('TESTING', ENV === TEST_ENV);
 
 /*
  * Environment setup
@@ -50,7 +51,7 @@ if (!file_exists($config->path->tmpDir)) {
     mkdir($config->path->tmpDir);
 }
 
-if (DEV) {
+if (DEVELOPING) {
     class_alias('\Webird\Debug', '\Dbg', true);
 }
 

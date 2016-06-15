@@ -10,6 +10,6 @@
   <div id="console-content"></div>
   {{ javascript_include(['src': 'js/commons/marionette.js']) }}
   {{ javascript_include(['src': 'js/entries/app.marionette.example.js']) }}
-  {% if DEV %}<!--DEBUG_PANEL-->{% endif %}
+  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>
 </html>

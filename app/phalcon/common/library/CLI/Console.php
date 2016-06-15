@@ -66,7 +66,7 @@ class Console extends PhalconConsole
         // All environments
         $cmdArr = require("{$config->path->modulesDir}/{$arguments['module']}/cmd.php");
 
-        if (DEV_ENV === ENV) {
+        if (DEVELOPING) {
             $devCmdArr = require("{$config->dev->path->devDir}/cmd_overrides.php");
             $cmdArr = array_replace($cmdArr, $devCmdArr);
         }
@@ -109,7 +109,7 @@ class Console extends PhalconConsole
         // All environments
         $cmdArr = require("{$config->path->modulesDir}/cli/cmd.php");
 
-        if (DEV_ENV === ENV) {
+        if (DEVELOPING) {
             $devCmdArr = require("{$config->dev->path->devDir}/cmd_overrides.php");
             $cmdArr = array_replace($cmdArr, $devCmdArr);
         }

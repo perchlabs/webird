@@ -9,7 +9,7 @@ if (php_sapi_name() !== "cli") {
     error_log('Error: The CLI interface is not being called from the command line.');
     exit(1);
 }
-if (! defined('ENV')) {
+if (!defined('ENV')) {
     error_log('Error: ENV is not defined');
     exit(1);
 }
@@ -17,7 +17,8 @@ if (! defined('ENV')) {
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
 define('DIST_ENV', 'dist');
-define('DEV', (ENV === DEV_ENV));
+define('DEVELOPING', ENV === DEV_ENV);
+define('TESTING', ENV === TEST_ENV);
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
@@ -36,7 +37,7 @@ $console->registerModules([
     'cli' => ['className' => 'Webird\Modules\Cli\Module']
 ]);
 
-if (DEV) {
+if (DEVELOPING) {
     class_alias('\Webird\Debug', '\Dbg', true);
 }
 try {

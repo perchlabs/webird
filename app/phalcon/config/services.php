@@ -105,7 +105,9 @@ $di->set('sessionReader', function() {
  */
 $voltService = function($view, $di) {
     $config = $di->getConfig();
+    $phalconDir = $config->path->phalconDir;
     $voltCacheDir = $config->path->voltCacheDir;
+    $configDir = $config->path->configDir;
 
     switch (ENV) {
         case DIST_ENV:
@@ -122,10 +124,7 @@ $voltService = function($view, $di) {
     $volt->setOptions([
         'compileAlways' => $compileAlways,
         'stat' => $stat,
-        'compiledPath' => function($templatePath) use ($view, $voltCacheDir) {
-            $config = $view->getDI()->get('config');
-            $phalconDir = $config->path->phalconDir;
-
+        'compiledPath' => function($templatePath) use ($voltCacheDir, $phalconDir) {
             // This makes the phalcon view path into a portable fragment
             $templateFrag = str_replace($phalconDir, '', $templatePath);
             // Allows modules to share the compiled layouts and partials paths
@@ -139,13 +138,12 @@ $voltService = function($view, $di) {
                 throw new \Exception('Error: template fragment has ".." in path.');
             }
 
-            $voltCompiledPath = "{$voltCacheDir}{$templateFrag}.php";
-            return $voltCompiledPath;
+            return "{$voltCacheDir}{$templateFrag}.php";
         }
     ]);
 
     $compiler = $volt->getCompiler();
-    require($config->path->phalconDir . '/config/volt_compiler.php');
+    require("{$configDir}volt_compiler.php");
 
     return $volt;
 };

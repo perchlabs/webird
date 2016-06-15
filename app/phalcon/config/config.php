@@ -33,8 +33,8 @@ $config2 = new Config([
     'path' => [
         // Typical Phalcon paths
         'appDir'         => $appDir,
-        'configDir'      => $appDir . 'phalcon/config/',
         'phalconDir'     => $appDir . 'phalcon/',
+        'configDir'      => $appDir . 'phalcon/config/',
         'modulesDir'     => $appDir . 'phalcon/modules/',
         'commonDir'      => $appDir . 'phalcon/common/',
         'viewsCommonDir' => $appDir . 'phalcon/common/views/',

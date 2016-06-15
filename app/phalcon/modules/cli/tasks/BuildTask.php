@@ -214,6 +214,7 @@ class BuildTask extends Task
     {
         $buildDir = $this->config->dev->path->buildDir;
 
+        // Create CLI bootstrap entry
         $cliEntry = <<<'WEBIRD_ENTRY'
 #!/usr/bin/env php
 <?php
@@ -223,6 +224,7 @@ WEBIRD_ENTRY;
         file_put_contents("$buildDir/run", $cliEntry);
         chmod("$buildDir/run", 0775);
 
+        // Create web bootstrap entry
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
 define('ENV', 'dist');

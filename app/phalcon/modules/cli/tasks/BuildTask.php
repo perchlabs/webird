@@ -3,10 +3,6 @@ namespace Webird\Modules\Cli\Tasks;
 
 use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
-    React\EventLoop\Factory as EventLoopFactory,
-    React\ChildProcess\Process,
-    Webird\Modules\Web\Module as WebModule,
-    Webird\Modules\Admin\Module as AdminModule,
     Webird\CLI\Task,
     Webird\Locale\Compiler as LocaleCompiler,
     Webird\Locale\CompilerException as LocaleCompilerException;
@@ -243,11 +239,6 @@ WEBIRD_ENTRY;
         $etcDir = $this->config->dev->path->etcDir;
         $devDir = $this->config->dev->path->devDir;
         $buildDir = $this->config->dev->path->buildDir;
-        // shell escaped configuration directories
-        $appDirEsc = escapeshellarg($appDir);
-        $projectDirEsc = escapeshellarg($projectDir);
-        $devDirEsc = escapeshellarg($devDir);
-        $buildDirEsc = escapeshellarg($buildDir);
 
         // Copy Composer configuration
         copy("$devDir/composer.json", "$buildDir/composer.json");

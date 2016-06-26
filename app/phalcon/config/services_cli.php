@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Cli\Router,
     Phalcon\Cli\Dispatcher,
-    Webird\DatabaseSessionReaderl;
+    Webird\DatabaseSessionReader;
 
 /**
  *

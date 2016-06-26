@@ -23,8 +23,6 @@
       </div>
     </div>
 
-    {{ request.isPost() }}
-
     {% if request.isPost() and role %}
     {% for namespace, resources in acl.getPrivateSpec() %}
       <div class="form-group">

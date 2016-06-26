@@ -175,20 +175,20 @@ class DebugPanel extends DIInjectable
             'server'   => $this->getServerPanel(),
             'request'  => $this->getRequestPanel(),
             'database' => $this->getDbPanel(),
-            'views'     => $this->getViewsPanel(),
+            'views'    => $this->getViewsPanel(),
             'config'   => $this->getConfigPanel()
         ];
 
-        $content = $this->getView()->render("debug_panel/index", [
-            'panels' => $panels,
-            'loadTime' => round(($this->getEndTime() - $this->getStartTime()), 6),
-            'elapsedTime' => round(($this->getEndTime() - $_SERVER['REQUEST_TIME'] ), 6),
-            'mem' => number_format(memory_get_usage()/1024, 2),
-            'memPeak' => number_format(memory_get_peak_usage()/1024, 2),
-            'sessionSize' => (isset($_SESSION)) ? mb_strlen(serialize($_SESSION)/1024) : 0
-        ]);
-
-        return $content;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render("debug_panel/index", [
+                'panels' => $panels,
+                'loadTime' => round(($this->getEndTime() - $this->getStartTime()), 6),
+                'elapsedTime' => round(($this->getEndTime() - $_SERVER['REQUEST_TIME'] ), 6),
+                'mem' => number_format(memory_get_usage()/1024, 2),
+                'memPeak' => number_format(memory_get_peak_usage()/1024, 2),
+                'sessionSize' => (isset($_SESSION)) ? mb_strlen(serialize($_SESSION)/1024) : 0
+            ]);
     }
 
     /**
@@ -196,12 +196,12 @@ class DebugPanel extends DIInjectable
      */
     public function getServerPanel()
     {
-        $view = $this->getView();
-        $view->render("debug_panel/panels/server", [
-            'SERVER' => $_SERVER,
-            'headersList' => headers_list()
-        ]);
-        return $view;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render('debug_panel/panels/server', [
+                'SERVER' => $_SERVER,
+                'headersList' => headers_list()
+            ]);
     }
 
     /**
@@ -216,15 +216,15 @@ class DebugPanel extends DIInjectable
           }
         }
 
-        $view = $this->getView();
-        $view->render("debug_panel/panels/request", [
-            'SESSION' => $session,
-            'COOKIE'  => $_COOKIE,
-            'GET'      => $_GET,
-            'POST'    => $_POST,
-            'FILES'    => $_FILES
-        ]);
-        return $view;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render("debug_panel/panels/request", [
+                'SESSION' => $session,
+                'COOKIE'  => $_COOKIE,
+                'GET'      => $_GET,
+                'POST'    => $_POST,
+                'FILES'    => $_FILES
+            ]);
     }
 
     /**
@@ -252,12 +252,12 @@ class DebugPanel extends DIInjectable
             $dbs[$dbName] = $db;
         }
 
-        $view = $this->getView();
-        $view->render("debug_panel/panels/db", [
-            'profiles'  => $profiles,
-            'dbs'       => $dbs
-        ]);
-        return $view;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render("debug_panel/panels/db", [
+                'profiles'  => $profiles,
+                'dbs'       => $dbs
+            ]);
     }
 
     /**
@@ -265,11 +265,11 @@ class DebugPanel extends DIInjectable
      */
     public function getViewsPanel()
     {
-        $view = $this->getView();
-        $view->render("debug_panel/panels/views", [
-            'viewsRendered' => $this->getRenderedViews()
-        ]);
-        return $view;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render("debug_panel/panels/views", [
+                'viewsRendered' => $this->getRenderedViews()
+            ]);
     }
 
     /**
@@ -291,20 +291,11 @@ class DebugPanel extends DIInjectable
     {
         $config = $this->getDI()->getConfig();
 
-        $view = $this->getView();
-        $view->render("debug_panel/panels/config", [
-            'config' => self::object_to_array($config),
-        ]);
-        return $view;
-    }
-
-    /**
-     *
-     */
-    protected function getView()
-    {
-        $view = $this->getDI()->get('viewSimple');
-        return $view;
+        return $this->getDI()
+            ->getViewSimple()
+            ->render("debug_panel/panels/config", [
+                'config' => self::object_to_array($config),
+            ]);
     }
 
     /**

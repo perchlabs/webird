@@ -1,17 +1,24 @@
 <?php
 use Phalcon\Loader,
-    Phalcon\Mvc\Model,
-    Phalcon\Mvc\Url,
     Phalcon\Crypt,
+    Phalcon\Mvc\Model,
+    Phalcon\Filter,
+    Phalcon\Security,
+    Phalcon\Escaper,
+    Phalcon\Tag,
+    Phalcon\Annotations\Adapter\Memory as AnnotationsAdapter,
+    Phalcon\Mvc\Model\Manager as ModelManager,
+    Phalcon\Mvc\Model\MetaData\Memory as ModelMetaData,
+    Phalcon\Mvc\Model\Transaction\Manager as TransactionManager,
+    Phalcon\Mvc\Url,
     Phalcon\Mvc\View\Engine\Volt,
+    Phalcon\Events\Manager as EventsManager,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Phalcon\Logger\Multiple as MultipleStreamLogger,
     Phalcon\Logger\Adapter\File as FileLogger,
     Phalcon\Logger\Adapter\Firephp as FirephpLogger,
-    Webird\Module,
     Webird\Mvc\View\Simple as ViewSimple,
     Webird\Acl\Acl,
-    Webird\DatabaseSessionReader,
     Webird\Locale\Locale,
     Webird\Locale\Gettext,
     Webird\Mailer\Manager as MailManager,
@@ -31,6 +38,73 @@ Model::setup([
  */
 $di->setShared('config', function() {
     return require(__DIR__ . "/config.php");
+});
+
+/**
+ *
+ */
+$di->setShared('modelsManager', function() {
+    return new ModelManager();
+});
+
+/**
+ *
+ */
+$di->setShared('modelsMetadata', function() {
+    return new ModelMetaData();
+});
+
+/**
+ *
+ */
+$di->setShared('filter', function() {
+    return new Filter();
+});
+
+/**
+ *
+ */
+$di->setShared('tag', function() {
+    return new Tag();
+});
+
+/**
+ *
+ */
+$di->setShared('escaper', function() {
+    return new Escaper();
+});
+
+/**
+ *
+ */
+$di->setShared('annotations', function() {
+    if (DEVELOPING && $this->getConfig()->dev->phpEncode) {
+        throw new \Exception('Annotations cannot be used if PHP is being encoded because they will be removed.');
+    }
+
+    return new AnnotationsAdapter();
+});
+
+/**
+ *
+ */
+ $di->setShared('security', function() {
+     return new Security();
+ });
+
+/**
+ *
+ */
+$di->setShared('eventsManager', function() {
+    return new EventsManager();
+});
+
+/**
+ *
+ */
+$di->setShared('transactionManager', function() {
+    return new TransactionManager();
 });
 
 /**
@@ -84,27 +158,9 @@ $di->setShared('db', function() {
 /**
  *
  */
-$di->set('sessionReader', function() {
+$voltService = function($view) {
     $config = $this->getConfig();
-    $connection = $this->getDb();
 
-    $sessionReader = new DatabaseSessionReader([
-        'db'          => $connection,
-        'unique_id'   => $config->session->unique_id,
-        'db_table'    => $config->session->db_table,
-        'db_id_col'   => $config->session->db_id_col,
-        'db_data_col' => $config->session->db_data_col,
-        'db_time_col' => $config->session->db_time_col,
-        'uniqueId'    => $config->session->unique_id
-    ]);
-    return $sessionReader;
-});
-
-/**
- *
- */
-$voltService = function($view, $di) {
-    $config = $di->getConfig();
     $phalconDir = $config->path->phalconDir;
     $voltCacheDir = $config->path->voltCacheDir;
     $configDir = $config->path->configDir;
@@ -120,7 +176,7 @@ $voltService = function($view, $di) {
             break;
     }
 
-    $volt = new Volt($view, $di);
+    $volt = new Volt($view, $this);
     $volt->setOptions([
         'compileAlways' => $compileAlways,
         'stat' => $stat,
@@ -156,18 +212,15 @@ $di->set('voltService', $voltService);
 /**
  *
  */
-$di->set('viewSimple', function() use ($di, $voltService) {
-    $config = $di->getConfig();
+$di->set('viewSimple', function() use ($voltService) {
+    $config = $this->getConfig();
 
     $view = new ViewSimple();
-    $view->setDI($di);
-
+    $view->setDI($this);
     $view->registerEngines([
-        '.volt' => $voltService
+        '.volt' => \Closure::bind($voltService, $this)
     ]);
-
     $view->setViewsDir($config->path->viewsSimpleDir);
-
     return $view;
 });
 
@@ -189,8 +242,7 @@ $di->setShared('locale', function() {
             break;
     }
 
-    $locale = new Locale($this, $config->locale->default, $supported, $config->locale->map);
-    return $locale;
+    return new Locale($this, $config->locale->default, $supported, $config->locale->map);
 });
 
 /**
@@ -218,7 +270,6 @@ $di->setShared('translate', function() {
         'localeDir'      => $config->path->localeDir,
         'localeCacheDir' => $config->path->localeCacheDir
     ]);
-
     return $gettext;
 });
 
@@ -255,7 +306,6 @@ $di->setShared('mailer', function() {
 
     $mailManager = new MailManager($config->mailer, $config->site->mail);
     $mailManager->setDI($this);
-
     return $mailManager;
 });
 
@@ -274,12 +324,10 @@ $di->set('crypt', function() {
  * Access Control List
  */
 $di->set('acl', function() {
-    $configDir = $this->getConfig()->path->configDir;
+    $configDir = $this->getConfig()
+        ->path->configDir;
 
-    $aclData = require("$configDir/acl.php");
-    $acl = new Acl($aclData);
-
-    return $acl;
+    return new Acl(require("$configDir/acl.php"));
 });
 
 /**

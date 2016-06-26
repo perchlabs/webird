@@ -1,7 +1,8 @@
 <?php
 namespace Webird\Modules\Cli\Tasks;
 
-use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
+use Phalcon\DI,
+    Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
     Phalcon\Mvc\View\Engine\Volt,
     Webird\CLI\Task,
     Webird\Locale\Compiler as LocaleCompiler,
@@ -13,7 +14,6 @@ use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
  */
 class BuildTask extends Task
 {
-
     /**
      *
      */
@@ -28,6 +28,18 @@ class BuildTask extends Task
             'opts' => []
         ]);
 
+        // Fix for missing services in CLI services.  If a service is missing then it will cause compiled Volt
+        // templates that leave out the $this-> at the beginning due to the service not being available and so Volt
+        // assumes that it is a variable.
+        $diPrimary = $this->getDI();
+        $di = new DI();
+        require($this->config->path->configDir . 'services_web.php');
+        foreach ($di->getServices() as $serviceName => $service) {
+            if (!$diPrimary->has($serviceName)) {
+                $diPrimary->set($serviceName, function() {});
+            }
+        }
+
         $this->cleanDirectoryStructure();
         $this->buildDirectoryStructure();
 
@@ -41,8 +53,6 @@ class BuildTask extends Task
         $this->installPackages();
         $this->compileLocales();
         $this->buildWebpack();
-
-        exit(0);
     }
 
     /**
@@ -58,7 +68,7 @@ class BuildTask extends Task
         $phalconAppDirEsc = escapeshellarg($phalconDir);
         $phalconBuildDirEsc = escapeshellarg($buildDir . 'phalcon');
 
-        if (! isset($config['dev']['phpEncode'])) {
+        if (!isset($config->dev->phpEncode)) {
             throw new \Exception('The PHP Encoder value is not set.', 1);
         }
         $phpEncode = $config->dev->phpEncode;
@@ -66,7 +76,7 @@ class BuildTask extends Task
         if (empty($phpEncode)) {
             `cp -R $phalconAppDirEsc $phalconBuildDirEsc`;
         } else {
-            if (! isset($config->dev->phpEncoders[$phpEncode])) {
+            if (!isset($config->dev->phpEncoders[$phpEncode])) {
                 throw new \Exception("The '$phpEncode' PHP encoder setting does not exist", 1);
             }
 

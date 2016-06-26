@@ -6,7 +6,7 @@
         <div class="text-warning">
           {{ content() }}
         </div>
-        {% if this.auth.doesNeedToChangePassword() %}
+        {% if auth.doesNeedToChangePassword() %}
           <div class="alert alert-info">{{t('You are required to change your password at this time')}}</div>
         {% endif %}
       </div>

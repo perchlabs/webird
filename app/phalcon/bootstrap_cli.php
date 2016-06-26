@@ -1,5 +1,5 @@
 <?php
-use Phalcon\DI\FactoryDefault\CLI as DI,
+use Phalcon\DI,
     Phalcon\PhalconDebug,
     Phalcon\Exception As PhalconException,
     Webird\CLI\Console as WebirdConsole,
@@ -22,7 +22,8 @@ define('TESTING', ENV === TEST_ENV);
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
-require (__DIR__ . '/config/services.php');
+require __DIR__ . '/config/services.php';
+require __DIR__ . '/config/services_cli.php';
 $config = $di->getConfig();
 $di->getLoader();
 

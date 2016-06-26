@@ -1,5 +1,5 @@
 <?php
-use Phalcon\DI\FactoryDefault as DI,
+use Phalcon\DI,
     Phalcon\Mvc\Application;
 
 if (!defined('ENV')) {
@@ -42,8 +42,8 @@ switch (ENV)
 
 // Create the dependency injector for the Phalcon framework
 $di = new DI();
-require_once(__DIR__ . '/config/services.php');
-require_once(__DIR__ . '/config/services_web.php');
+require_once __DIR__ . '/config/services.php';
+require_once __DIR__ . '/config/services_web.php';
 $config = $di->getConfig();
 $di->getLoader();
 

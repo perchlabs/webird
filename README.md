@@ -8,7 +8,7 @@ Node.js is required for development only and is not required once a project has 
 
 #### Key features of Webird:
 * HTML5 IE11+
-* PHP 5.4+
+* PHP 7+
 * Node.js 5+
 * PHP [Ratchet](http://socketo.me/) websockets that offer read-only access to the PHP session data
 * Google OAuth2 login
@@ -43,7 +43,7 @@ Node.js is required for development only and is not required once a project has 
 * [Ion Cube](http://www.ioncube.com/) - optional PHP source protection
 
 ### Install Requirements:
-* PHP >= 5.4
+* PHP >= 7.0
 * Phalcon >= 2.1.0
 * MariaDB >= 10.1
 * Node.js >= 5.0

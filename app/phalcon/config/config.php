@@ -63,13 +63,12 @@ $config2 = new Config([
     ],
     'session' => [
         'unique_id'      => 'wb-',
-        'db_table'       => 'session_data',
-        'db_id_col'      => 'session_id',
-        'db_data_col'    => 'data',
-        'db_time_col'    => 'modified_at',
-        'expire'         => 1200
+        'table'          => 'session_data',
+        'session_id'     => 'session_id',
+        'data'           => 'data',
+        'created_at'     => 'created_at',
+        'modified_at'    => 'modified_at'
     ]
-
 ]);
 
 // Merge it into main config

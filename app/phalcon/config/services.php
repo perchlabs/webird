@@ -1,12 +1,12 @@
 <?php
 use Phalcon\Loader,
     Phalcon\Crypt,
-    Phalcon\Mvc\Model,
     Phalcon\Filter,
     Phalcon\Security,
     Phalcon\Escaper,
     Phalcon\Tag,
     Phalcon\Annotations\Adapter\Memory as AnnotationsAdapter,
+    Phalcon\Mvc\Model,
     Phalcon\Mvc\Model\Manager as ModelManager,
     Phalcon\Mvc\Model\MetaData\Memory as ModelMetaData,
     Phalcon\Mvc\Model\Transaction\Manager as TransactionManager,
@@ -89,9 +89,9 @@ $di->setShared('annotations', function() {
 /**
  *
  */
- $di->setShared('security', function() {
-     return new Security();
- });
+$di->setShared('security', function() {
+    return new Security();
+});
 
 /**
  *

@@ -10,7 +10,9 @@
     "react/react": ">=0.4.0",
     "cboden/ratchet": "0.3.*",
     "corneltek/getoptionkit": "2.3.*",
-    "swiftmailer/swiftmailer" : "5.4.*"
+    "swiftmailer/swiftmailer": "5.4.*",
+    "league/oauth2-client": "1.4.1",
+    "league/oauth2-google": "1.0.1"
   },
   "authors" : [ {
     "name" : "David Schissler",

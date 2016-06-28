@@ -2,9 +2,6 @@
 namespace Webird\Auth;
 
 use Phalcon\Mvc\User\Component,
-    OAuth\OAuth2\Service\Google,
-    OAuth\Common\Http\Exception\TokenResponseException,
-    OAuth\Common\Consumer\Credentials,
     Webird\Models\Users,
     Webird\Models\RememberTokens,
     Webird\Models\SuccessSignins,
@@ -54,93 +51,51 @@ class Auth extends Component
      * Checks the OAuth callback for final authentication.
      * Throws an exception on fail
      *
-     * @param string $provider
+     * @param string $providerName
      * @param string $code
      */
-    public function checkOauth($provider, $code)
+    public function checkOauth($providerName, $code)
     {
-        $t = $this->translate;
-
-        if (!isset($this->config->services[$provider])) {
-            throw new AuthException($t->gettext('OAuth signin error'));
-        }
-        $configProvider = $this->config->services[$provider];
+        $t = $this->getDI()
+            ->getTranslate();
 
         // This provider scope and end point url is subject to time as providers revise their systems
-        switch ($provider) {
-            case 'google':
-                // $scope = Google::SCOPE_EMAIL;
-                // $scopeUrl = 'https://www.googleapis.com/oauth2/v1/userinfo';
-                $scope = Google::SCOPE_EMAIL;
-                $scopeUrl = 'https://www.googleapis.com/plus/v1/people/me';
-                break;
-            // case 'microsoft':
-            //     // TODO:
-            //     // $scope = \OAuth\OAuth2\Service\Microsoft::SCOPE_BASIC;
-            //     // $scopeUrl = \OAuth\OAuth2\Service\Microsoft::SCOPE_BASIC;
-            //     break;
-            default:
-                throw new AuthException('Invalid oauth provider');
-                break;
-        }
-
-        $redirectUrl = $this->di->getUrl()->get("signin/oauth/{$provider}");
-        // The web server will send these credentials to the Oauth provider
-        $credentials = new Credentials(
-            $configProvider->clientId,
-            $configProvider->clientSecret,
-            $redirectUrl
-        );
-
-        // Session storage
-        $storage = new OauthSessionStorage();
-        $service = (new \OAuth\ServiceFactory())
-            ->createService($provider, $credentials, $storage, [$scope]);
-
-        // There is a possibility that the access token could not be received
         try {
-            $token = $service->requestAccessToken($code);
+            switch ($providerName) {
+                case 'google':
+                    $provider = $this->getDI()
+                        ->getGoogleOauthProvider();
+
+                        $token = $provider->getAccessToken('authorization_code', [
+                            'code' => $code
+                        ]);
+                    break;
+                default:
+                    throw new AuthException('Invalid oauth provider');
+                    break;
+            }
         } catch (\Exception $e) {
-            // error_log($e->getMessage());
-            throw new AuthException($t->gettext('OAuth signin error'));
+            throw new AuthException('Problem authorizing OAuth signin.');
         }
 
         try {
-            $json = $service->request($scopeUrl);
+            // We got an access token, let's now get the owner details
+            $ownerDetails = $provider->getResourceOwner($token);
         } catch (\Exception $e) {
-            // error_log('The Oauth request failed.');
-            throw new AuthException($t->gettext('OAuth signin error'));
+            throw new AuthException('Problem obtaining users details.');
         }
 
-        $result = json_decode($json, true);
-        if ($result === false) {
-            // error_log('The Oauth response did not contain valid JSON.');
-            throw new AuthException($t->gettext('OAuth signin error'));
-        }
-
-        switch ($provider) {
+        switch ($providerName) {
             case 'google':
-                if (! isset($result['emails'][0]['value']) || filter_var($result['emails'][0]['value'], FILTER_VALIDATE_EMAIL) === false) {
-                    // error_log('The Oauth response email is invalid.');
-                    throw new AuthException($t->gettext('Oauth authentication failed'));
-                }
-                $email = $result['emails'][0]['value'];
+                $email = $ownerDetails->getEmail();
                 break;
-            case 'microsoft':
             default:
-                if (! isset($result['email']) || filter_var($result['email'], FILTER_VALIDATE_EMAIL) === false) {
-                    // error_log('The Oauth response email is invalid.');
-                    throw new AuthException($t->gettext('Oauth authentication failed'));
-                }
-                if (! isset($result['verified_email']) || $result['verified_email'] !== true) {
-                    throw new AuthException($t->gettext('The email could not be verified.'));
-                }
-                $email = $result['email'];
+                throw new AuthException($t->gettext('Unsupported OAuth Provider.'));
                 break;
         }
 
         $user = Users::findFirstByEmail($email);
-        if ($user == false) {
+        if (!$user) {
             $this->registerUserThrottling(0);
             throw new AuthException($t->gettext('This email is not registered in the system.'));
         }
@@ -157,46 +112,34 @@ class Auth extends Component
     /**
      * Creates the OAuth redirect url
      *
-     * @param string $provider
+     * @param string $providerName
      * @return boolean
      */
-    public function getRedirectOauthUrl($provider)
+    public function getAuthorizationUrl($providerName)
     {
-        $t = $this->translate;
+        $t = $this->getDI()
+            ->getTranslate();
 
-        $redirectUrl = $this->di->getUrl()->get("signin/oauth/{$provider}");
+        $redirectUrl = $this->getDI()
+            ->getUrl()
+            ->get("signin/oauth/{$providerName}");
 
-        $configProvider = $this->config->services[$provider];
-        // Setup the credentials for the requests
-        $credentials = new Credentials(
-            $configProvider->clientId,
-            $configProvider->clientSecret,
-            $redirectUrl
-        );
-
-        switch ($provider) {
-            case 'google':
-                // $scope = 'userinfo_email';
-                $scope = 'email';
-                break;
-            // case 'microsoft':
-            //     $scope = 'basic';
-            //     break;
-            default:
-                throw new AuthException($t->gettext('Invalid oauth provider'));
-                break;
+        try {
+            switch ($providerName) {
+                case 'google':
+                    $provider = $this->getDI()
+                        ->getGoogleOauthProvider();
+                    $authUrl = $provider->getAuthorizationUrl();
+                    break;
+                default:
+                    throw new AuthException($t->gettext('Invalid oauth provider'));
+                    break;
+            }
+        } catch (\Exception $e) {
+            throw new AuthException('Problem authorizing OAuth signin.');
         }
 
-        // Session storage
-        $storage = new OauthSessionStorage();
-
-        // Instantiate the service using the credentials, http client and storage mechanism for the token
-        $service = (new \OAuth\ServiceFactory())
-            ->createService($provider, $credentials, $storage, [$scope]);
-
-        $authUri = $service->getAuthorizationUri();
-
-        return $authUri;
+        return $authUrl;
     }
 
     /**

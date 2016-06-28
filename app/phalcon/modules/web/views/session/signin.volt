@@ -18,7 +18,6 @@
       <div class="col-md-4 col-md-offset-4">
         <p>
           <a href="{{ url('signin/redirectoauth/google/') ~ security.getSessionToken() }}">Google</a>
-          {#<a href="{{ url('signin/redirectoauth/microsoft/') ~ security.getSessionToken() }}">Microsoft</a>#}
         </p>
       </div>
     </div>

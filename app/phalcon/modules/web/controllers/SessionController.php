@@ -116,7 +116,8 @@ class SessionController extends Controller
     {
         $provider = $this->dispatcher->getParam('provider');
         $code = $this->request->get('code');
-        if (! is_string($code)) {
+
+        if (!is_string($code)) {
             $this->flash->error($this->translate('The OAuth provider information is invalid.'));
             return false;
         }
@@ -147,7 +148,7 @@ class SessionController extends Controller
             ]);
         }
 
-        $authUrl = $this->auth->getRedirectOauthUrl($provider);
+        $authUrl = $this->auth->getAuthorizationUrl($provider);
 
         $this->response->redirect($authUrl, true);
         $this->response->send();

@@ -5,6 +5,7 @@ use Phalcon\Mvc\Dispatcher,
     Phalcon\Http\Response\Cookies as HttpCookies,
     Phalcon\Http\Request as HttpRequest,
     Phalcon\Session\Bag as SessionBag,
+    League\OAuth2\Client\Provider\Google as GoogleProvider,
     Webird\Plugins\DispatcherSecurity,
     Webird\Mvc\Router as Router,
     Webird\Auth\Auth,
@@ -106,6 +107,21 @@ $di->set('sessionBag', function($arg) {
  */
 $di->set('auth', function () {
     return new Auth();
+});
+
+/**
+ *
+ */
+$di->set('googleOauthProvider', function () {
+    $configProvider = $this->getConfig()
+        ->services['google'];
+
+    return new GoogleProvider([
+        'clientId'     => $configProvider->clientId,
+        'clientSecret' => $configProvider->clientSecret,
+        'redirectUri'  => 'http://dev.webird.io/signin/oauth/google',
+        'hostedDomain' => 'http://dev.webird.io',
+    ]);
 });
 
 /**

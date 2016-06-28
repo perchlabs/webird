@@ -81,20 +81,17 @@ class Acl extends Component
      *
      * @return boolean
      */
-    public function isAllowed()
+    public function isAllowed(...$argv)
     {
-        $argc = func_num_args();
-        $argv = func_get_args();
-        if ($argc < 3 || $argc > 4) {
-            throw new \Exception('Invalid number of arguments');
-        }
-
-        // Parse parameters
+        $argc = count($argv);
         if ($argc === 3) {
             list($role, $nsRes, $action) = $argv;
-        } else {
+            list($namespace, $resource) = explode('::', $nsRes);
+        } elseif ($argc === 4) {
             list($role, $namespace, $resource, $action) = $argv;
             $nsRes = $this->mergeResource($namespace, $resource);
+        } else {
+            throw new \Exception('Invalid number of arguments');
         }
 
         if ($this->getAcl()->isPublic($namespace, $resource, $action)) {
@@ -179,8 +176,7 @@ class Acl extends Component
      */
     private function buildAcl()
     {
-        $acl = new AclMemory($this->specPrivate, $this->specPublic);
-        return $acl;
+        return new AclMemory($this->specPrivate, $this->specPublic);
     }
 
     /**
@@ -188,8 +184,7 @@ class Acl extends Component
      */
     protected function mergeResource($namespace, $resource)
     {
-        $nsRes = ($namespace == '') ? $resource : "{$namespace}::{$resource}";
-        return $nsRes;
+        return ($namespace == '') ? $resource : "{$namespace}::{$resource}";
     }
 
     /**

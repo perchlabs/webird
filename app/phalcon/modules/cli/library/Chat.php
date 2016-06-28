@@ -29,37 +29,39 @@ class Chat extends DIInjectable implements MessageComponentInterface
      */
     public function onOpen(ConnectionInterface $conn)
     {
-        $sessionReader = $this->getDI()->getSessionReader();
-        $acl = $this->getDI()->getAcl();
+        $sessionReader = $this->getDI()
+            ->getSessionReader();
+        $acl = $this->getDI()
+            ->getAcl();
 
         try {
-            echo "New connection! ({$conn->resourceId})\n";
+            fwrite(STDOUT, "New connection! ({$conn->resourceId})\n");
 
             // TODO: This authentication code could easily be brought into a generic class
-
             $cookies = $conn->WebSocket->request->getCookies();
-            if (! array_key_exists('PHPSESSID', $cookies)) {
-                echo "Connection Rejected: Session Cookie was not present.\n";
+            if (!array_key_exists('PHPSESSID', $cookies)) {
+                fwrite(STDERR, "Connection Rejected: Session Cookie was not present.\n");
                 return $conn->close();
             }
             $sessionId = $cookies['PHPSESSID'];
 
             if ($sessionReader->read($sessionId) === false) {
-                echo "Connection Rejected: Session could not be found.\n";
+                fwrite(STDERR, "Connection Rejected: Session could not be found.\n");
                 return $conn->close();
             }
             if (($identity = $sessionReader->get('auth-identity')) === false) {
-                echo "Connection Rejected: session auth-identity data is not present.\n";
+                fwrite(STDERR, "Connection Rejected: session auth-identity data is not present.\n");
                 return $conn->close();
             }
+
             if (!isset($identity['role'])) {
-                echo "Connection Rejected: session user role data is not present.\n";
+                fwrite(STDERR, "Connection Rejected: session user role data is not present.\n");
                 return $conn->close();
             }
             $role = $identity['role'];
 
-            if (!$acl->isAllowed($role, 'cli:chat', 'open')) {
-                echo "Connection Rejected: user does not have permission to open a websocket.\n";
+            if (!$acl->isAllowed($role, 'cli::chat', 'open')) {
+                fwrite(STDERR, "Connection Rejected: user does not have permission to open a websocket.\n");
                 return $conn->close();
             }
 
@@ -68,7 +70,7 @@ class Chat extends DIInjectable implements MessageComponentInterface
 
         } catch (\Exception $e) {
             $conn->close();
-            echo $e->getMessage() . "\n";
+            fwrite(STDOUT, $e->getMessage() . "\n");
         }
     }
 
@@ -81,8 +83,8 @@ class Chat extends DIInjectable implements MessageComponentInterface
     public function onMessage(ConnectionInterface $from, $msg) {
         $numRecv = $this->clients->count() - 1;
 
-        echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+        fwrite(STDOUT, sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
+            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's'));
 
         foreach ($this->clients as $client) {
             if ($from !== $client) {
@@ -101,7 +103,7 @@ class Chat extends DIInjectable implements MessageComponentInterface
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
 
-        echo "Connection {$conn->resourceId} has disconnected\n";
+        fwrite(STDOUT, "Connection {$conn->resourceId} has disconnected\n");
     }
 
     /**
@@ -111,7 +113,7 @@ class Chat extends DIInjectable implements MessageComponentInterface
      * @param \Exception                    $e
     */
     public function onError(ConnectionInterface $conn, \Exception $e) {
-        echo "An error has occurred: {$e->getMessage()}\n";
+        fwrite(STDERR, $e->getMessage() . "\n");
 
         $conn->close();
     }

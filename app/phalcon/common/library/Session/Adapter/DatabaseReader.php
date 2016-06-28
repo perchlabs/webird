@@ -1,14 +1,20 @@
 <?php
-namespace Webird;
+namespace Webird\Session\Adapter;
 
-use Phalcon\Db;
+use Phalcon\Db,
+    Phalcon\Db\AdapterInterface as DbAdapter;
 
 /**
  * Read-only session access
  *
  */
-class DatabaseSessionReader
+class DatabaseReader
 {
+    /**
+     * @var DbAdapter
+     */
+    protected $connection;
+
     /**
      *
      */
@@ -22,28 +28,30 @@ class DatabaseSessionReader
     /**
      * {@inheritdoc}
      *
-     * @param  array                      $options
-     * @throws \Phalcon\Session\Exception
+     * @param  array $options
+     * @throws Exception
      */
     public function __construct($options = null)
     {
-        if (!isset($options['db'])) {
-            throw new \Exception("The parameter 'db' is required");
+        if (!isset($options['db']) || !$options['db'] instanceof DbAdapter) {
+            throw new Exception(
+                'Parameter "db" is required and it must be an instance of Phalcon\Db\AdapterInterface'
+            );
         }
-        if (!isset($options['unique_id'])) {
-            throw new \Exception("The parameter unique_id is required");
+
+        $this->connection = $options['db'];
+        unset($options['db']);
+
+        if (!isset($options['table']) || empty($options['table']) || !is_string($options['table'])) {
+            throw new Exception("Parameter 'table' is required and it must be a non empty string");
         }
-        if (!isset($options['db_table'])) {
-            throw new \Exception("The parameter 'db_table' is required");
-        }
-        if (!isset($options['db_id_col'])) {
-            throw new \Exception("The parameter 'db_id_col' is required");
-        }
-        if (!isset($options['db_data_col'])) {
-            throw new \Exception("The parameter 'db_data_col' is required");
-        }
-        if (!isset($options['db_time_col'])) {
-            throw new \Exception("The parameter 'db_time_col' is required");
+
+        $columns = ['session_id', 'data', 'created_at', 'modified_at'];
+        foreach ($columns as $column) {
+            $oColumn = "column_$column";
+            if (!isset($options[$oColumn]) || !is_string($options[$oColumn]) || empty($options[$oColumn])) {
+                $options[$oColumn] = $column;
+            }
         }
 
         $this->options = $options;
@@ -64,16 +72,21 @@ class DatabaseSessionReader
      */
     public function read($sessionId)
     {
+        $maxLifetime = (int) ini_get('session.gc_maxlifetime');
+
         $options = $this->getOptions();
-        $row = $options['db']->fetchOne(
+        $row = $this->connection->fetchOne(
             sprintf(
-                'SELECT %s FROM %s WHERE %s = ?',
-                $options['db']->escapeIdentifier($options['db_data_col']),
-                $options['db']->escapeIdentifier($options['db_table']),
-                $options['db']->escapeIdentifier($options['db_id_col'])
+                'SELECT %s FROM %s WHERE %s = ? AND COALESCE(%s, %s) + %d >= ?',
+                $this->connection->escapeIdentifier($options['column_data']),
+                $this->connection->escapeIdentifier($options['table']),
+                $this->connection->escapeIdentifier($options['column_session_id']),
+                $this->connection->escapeIdentifier($options['column_modified_at']),
+                $this->connection->escapeIdentifier($options['column_created_at']),
+                $maxLifetime
             ),
             Db::FETCH_NUM,
-            [$sessionId]
+            [$sessionId, time()]
         );
 
         $this->data = (empty($row[0])) ? false : $this->unserialize_php($row[0]);
@@ -92,8 +105,7 @@ class DatabaseSessionReader
             return false;
         }
 
-        $uniqueId = $this->getOptions()['unique_id'];
-        return (array_key_exists("{$uniqueId}{$key}", $this->data));
+        return (array_key_exists($key, $this->data));
     }
 
     /**
@@ -105,8 +117,7 @@ class DatabaseSessionReader
             return false;
         }
 
-        $uniqueId = $this->getOptions()['unique_id'];
-        return $this->data["{$uniqueId}{$key}"];
+        return $this->data[$key];
     }
 
     /**

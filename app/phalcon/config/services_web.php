@@ -9,7 +9,7 @@ use Phalcon\Mvc\Dispatcher,
     Webird\Plugins\DispatcherSecurity,
     Webird\Mvc\Router as Router,
     Webird\Auth\Auth,
-    Webird\Session\Adapter\Database as DatabaseSessionAdapter;
+    Webird\Session\Adapter\Database as DatabaseSession;
 
 /**
  *
@@ -80,11 +80,7 @@ $di->setShared('request', function() {
  */
 $di->setShared('session', function() {
     $config = $this->getConfig();
-
-
-    $columns = ['session_id', 'data', 'created_at', 'modified_at'];
-
-    $session = new DatabaseSessionAdapter([
+    $session = new DatabaseSession([
         'db'          => $this->getDb(),
         'table'       => $config->session->table,
         'session_id'  => $config->session->session_id,
@@ -92,8 +88,8 @@ $di->setShared('session', function() {
         'created_at'  => $config->session->created_at,
         'modified_at' => $config->session->modified_at,
     ]);
-
     $session->start();
+
     return $session;
 });
 

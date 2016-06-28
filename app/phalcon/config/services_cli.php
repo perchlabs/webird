@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Cli\Router,
     Phalcon\Cli\Dispatcher,
-    Webird\DatabaseSessionReader;
+    Webird\Session\Adapter\DatabaseReader as DatabaseSessionReader;
 
 /**
  *
@@ -22,15 +22,12 @@ $di->setShared('dispatcher', function() {
  */
 $di->set('sessionReader', function() {
     $config = $this->getConfig();
-    $connection = $this->getDb();
-
     return new DatabaseSessionReader([
-        'db'          => $connection,
-        'unique_id'   => $config->session->unique_id,
-        'db_table'    => $config->session->db_table,
-        'db_id_col'   => $config->session->db_id_col,
-        'db_data_col' => $config->session->db_data_col,
-        'db_time_col' => $config->session->db_time_col,
-        'uniqueId'    => $config->session->unique_id
+        'db'          => $this->getDb(),
+        'table'       => $config->session->table,
+        'session_id'  => $config->session->session_id,
+        'data'        => $config->session->data,
+        'created_at'  => $config->session->created_at,
+        'modified_at' => $config->session->modified_at,
     ]);
 });

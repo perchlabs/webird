@@ -62,7 +62,6 @@ $config2 = new Config([
         'https'          => (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
     ],
     'session' => [
-        'unique_id'      => 'wb-',
         'table'          => 'session_data',
         'session_id'     => 'session_id',
         'data'           => 'data',

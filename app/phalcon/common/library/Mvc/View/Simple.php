@@ -28,8 +28,6 @@ class Simple extends PhViewSimple
         $this->setVars([
             'TESTING'    => TESTING,
             'DEVELOPING' => DEVELOPING,
-            'domain'     => $config->server->domain,
-            'link'       => $config->site->link
         ]);
 
         return parent::render($path, $params);

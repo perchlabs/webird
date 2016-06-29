@@ -171,11 +171,17 @@ class Auth extends Component
         }
     }
 
+    /**
+     *
+     */
     public function doesNeedToChangePassword()
     {
         return ($this->session->has('must-change-password'));
     }
 
+    /**
+     *
+     */
     public function clearNeedToChangePassword()
     {
         if ($this->session->has('must-change-password')) {

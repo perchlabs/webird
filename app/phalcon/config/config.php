@@ -21,9 +21,14 @@ switch (ENV) {
         break;
 }
 
+$isCurrentlyHttps = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'));
+$shouldHttps = $config->security->https;
+$usingHsts = ($config->security->hsts > 0);
+$https = ($isCurrentlyHttps || $shouldHttps || $usingHsts);
+
 $config2 = new Config([
     'app' => [
-        'baseUri'        => '/',
+        'uriPathPrefix'  => '/',
         'defaultPath'    => 'features',
         'modules'        => ['cli', 'web', 'api', 'admin']
     ],
@@ -55,11 +60,10 @@ $config2 = new Config([
     'security' => [
         'passwordMinLength' => 8
     ],
-    // This is for settings that the server is in actuality
     'server' => [
-        'domain'         => (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : '',
-        'proto'          => (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https' : 'http',
-        'https'          => (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'))
+        'domain'  => (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : '',
+        'https'   => $https,
+        'proto'   => $https ? 'https' : 'http'
     ],
     'session' => [
         'table'          => 'session_data',
@@ -72,9 +76,5 @@ $config2 = new Config([
 
 // Merge it into main config
 $config->merge($config2);
-
-// Configure settings that require more calculation
-$proto = ($config->security->https || $config->security->hsts > 0) ? 'https' : 'http';
-$config->site->link = "{$proto}://" . $config->site->domains[0] . $config->app->baseUri;
 
 return $config;

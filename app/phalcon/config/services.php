@@ -330,27 +330,42 @@ $di->set('acl', function() {
     return new Acl(require("$configDir/acl.php"));
 });
 
+// /**
+//  *
+//  */
+// $di->setShared('url', function() {
+//     $config = $this->getConfig();
+//
+//     $isCurrentlyHttps = $config->server->https;
+//     $shouldHttps = $config->security->https;
+//     $usingHsts = ($config->security->hsts > 0);
+//
+//     $proto = ($isCurrentlyHttps || $shouldHttps || $usingHsts) ? 'https' : 'http';
+//
+//     if ($config->server->domain == '') {
+//         $domain = $config->site->domains[0];
+//     } else {
+//         $domain = $config->server->domain;
+//     }
+//
+//     $uri = $config->app->uriPathPrefix;
+//
+//     $url = new Url();
+//     $url->seturiPathPrefix("{$proto}://{$domain}{$uri}");
+//     return $url;
+// });
+
 /**
  *
  */
 $di->setShared('url', function() {
     $config = $this->getConfig();
 
-    $isCurrentlyHttps = $config->server->https;
-    $shouldHttps = $config->security->https;
-    $usingHsts = ($config->security->hsts > 0);
-
-    $proto = ($isCurrentlyHttps || $shouldHttps || $usingHsts) ? 'https' : 'http';
-
-    if ($config->server->domain == '') {
-        $domain = $config->site->domains[0];
-    } else {
-        $domain = $config->server->domain;
-    }
-
-    $uri = $config->app->baseUri;
+    $proto = $config->server->proto;
+    $domain = ($config->server->domain == '') ? $config->site->domains[0] : $config->server->domain;
+    $uriPathPrefix = $config->app->uriPathPrefix;
 
     $url = new Url();
-    $url->setBaseUri("{$proto}://{$domain}{$uri}");
+    $url->setBaseUri("{$proto}://{$domain}{$uriPathPrefix}");
     return $url;
 });

@@ -21,11 +21,6 @@ security:
   cryptKey: CHANGE ME!!!
 services:
   google:
-    clientId: ""
-    clientSecret: ""
-  microsoft:
-    clientId: ""
-    clientSecret: ""
 mailer:
   driver: smtp
   host: smtp.gmail.com

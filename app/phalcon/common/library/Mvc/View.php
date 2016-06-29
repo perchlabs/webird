@@ -28,8 +28,6 @@ class View extends PhView
         $this->setVars([
             'TESTING'    => TESTING,
             'DEVELOPING' => DEVELOPING,
-            'domain'     => $config->server->domain,
-            'link'       => $config->site->link
         ]);
 
         return parent::render($controllerName, $actionName, $params);

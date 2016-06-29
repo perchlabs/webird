@@ -14,13 +14,17 @@
       </div>
     </div>
 
-    <div class="form-group text-center">
-      <div class="col-md-4 col-md-offset-4">
-        <p>
-          <a href="{{ url('signin/redirectoauth/google/') ~ security.getSessionToken() }}">Google</a>
-        </p>
-      </div>
-    </div>
+    {% if config.services is defined %}
+      {% if config.services.google is defined -%}
+        <div class="form-group text-center">
+          <div class="col-md-4 col-md-offset-4">
+            <p>
+              <a href="{{ url('signin/redirectoauth/google/') ~ security.getSessionToken() }}">Google</a>
+            </p>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
 
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">

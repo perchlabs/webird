@@ -116,8 +116,7 @@ class SessionController extends Controller
     {
         $provider = $this->dispatcher->getParam('provider');
         $code = $this->request->get('code');
-
-        if (!is_string($code)) {
+        if (empty($code)) {
             $this->flash->error($this->translate('The OAuth provider information is invalid.'));
             return false;
         }

@@ -117,6 +117,9 @@ $di->set('googleOauthProvider', function () {
     return new GoogleProvider([
         'clientId'     => $configProvider->clientId,
         'clientSecret' => $configProvider->clientSecret,
+        // FIXME: Definitely should not be hard coded.
+        //        The configuration needs to be played with so that it provides
+        //        these settings ready to go.
         'redirectUri'  => 'http://dev.webird.io/signin/oauth/google',
         'hostedDomain' => 'http://dev.webird.io',
     ]);

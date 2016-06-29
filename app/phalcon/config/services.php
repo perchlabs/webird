@@ -151,7 +151,7 @@ $di->setShared('db', function() {
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname'   => $config->database->dbname,
-        'charset'  => $config->database->charset
+        'charset'  => 'utf8'
     ]);
 });
 

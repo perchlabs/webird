@@ -53,10 +53,6 @@ $config2 = new Config([
         // Third party dependency paths
         'composerDir'    => $composerDir
     ],
-    'database' => [
-      'charset'          => 'utf8'
-    ],
-    // This is for settings that the server should be
     'security' => [
         'passwordMinLength' => 8
     ],

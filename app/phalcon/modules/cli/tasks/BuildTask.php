@@ -255,8 +255,6 @@ WEBIRD_ENTRY;
         copy("$devDir/composer.lock", "$buildDir/composer.lock");
         // Copy Npm/Nodejs configuration
         copy("$devDir/package.json", "$buildDir/package.json");
-        // Copy Bower configuration
-        copy("$devDir/bower.json", "$buildDir/bower.json");
 
         `cp -R $appDir/theme/assets $buildDir/public/assets`;
 
@@ -303,7 +301,6 @@ WEBIRD_ENTRY;
 
         exec("composer --no-dev install", $out, $ret);
         exec("skipclean=1 && npm install --production", $out, $ret);
-        exec("bower install --production --allow-root --config.interactive=false", $out, $ret);
 
         chdir($cwd);
     }

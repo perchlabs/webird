@@ -275,18 +275,6 @@ class DebugPanel extends DIInjectable
     /**
      *
      */
-    public static function object_to_array($d)
-    {
-        if (is_object($d)) {
-            $d = get_object_vars($d);
-        }
-
-        return is_array($d) ? array_map(__METHOD__, $d) : $d;
-    }
-
-    /**
-     *
-     */
     public function getConfigPanel()
     {
         $config = $this->getDI()->getConfig();
@@ -294,7 +282,7 @@ class DebugPanel extends DIInjectable
         return $this->getDI()
             ->getViewSimple()
             ->render("debug_panel/panels/config", [
-                'config' => self::object_to_array($config),
+                'config' => $config->toArray(),
             ]);
     }
 

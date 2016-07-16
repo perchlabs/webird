@@ -251,7 +251,7 @@ const dev = gulp.series(function(callback) {
       chunks: false,
       modules: false
     }
-  }).listen(webpackPort, 'localhost', function(err) {
+  }).listen(webpackPort, '0.0.0.0', function(err) {
     if (err) {
       throw new gutil.PluginError('webpack-dev-server', err);
     }

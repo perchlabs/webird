@@ -157,7 +157,7 @@ class DebugPanel extends DIInjectable
     {
         $this->endTime = microtime(true);
 
-        $debugPanel = $this->renderPanel();
+        $debugPanel = $this->renderPanels();
         $content = $view->getContent();
 
         $newContent = str_replace('<!--DEBUG_PANEL-->', $debugPanel, $content, $count);
@@ -169,7 +169,7 @@ class DebugPanel extends DIInjectable
     /**
      *
      */
-    public function renderPanel()
+    public function renderPanels()
     {
         $panels = [
             'server'   => $this->getServerPanel(),
@@ -182,11 +182,11 @@ class DebugPanel extends DIInjectable
         return $this->getDI()
             ->getViewSimple()
             ->render("debug_panel/index", [
-                'panels' => $panels,
-                'loadTime' => round(($this->getEndTime() - $this->getStartTime()), 6),
+                'panels'      => $panels,
+                'loadTime'    => round(($this->getEndTime() - $this->getStartTime()), 6),
                 'elapsedTime' => round(($this->getEndTime() - $_SERVER['REQUEST_TIME'] ), 6),
-                'mem' => number_format(memory_get_usage()/1024, 2),
-                'memPeak' => number_format(memory_get_peak_usage()/1024, 2),
+                'mem'         => number_format(memory_get_usage()/1024, 2),
+                'memPeak'     => number_format(memory_get_peak_usage()/1024, 2),
                 'sessionSize' => (isset($_SESSION)) ? mb_strlen(serialize($_SESSION)/1024) : 0
             ]);
     }
@@ -221,9 +221,9 @@ class DebugPanel extends DIInjectable
             ->render("debug_panel/panels/request", [
                 'SESSION' => $session,
                 'COOKIE'  => $_COOKIE,
-                'GET'      => $_GET,
+                'GET'     => $_GET,
                 'POST'    => $_POST,
-                'FILES'    => $_FILES
+                'FILES'   => $_FILES
             ]);
     }
 
@@ -255,8 +255,8 @@ class DebugPanel extends DIInjectable
         return $this->getDI()
             ->getViewSimple()
             ->render("debug_panel/panels/db", [
-                'profiles'  => $profiles,
-                'dbs'       => $dbs
+                'profiles' => $profiles,
+                'dbs'      => $dbs
             ]);
     }
 
@@ -277,7 +277,8 @@ class DebugPanel extends DIInjectable
      */
     public function getConfigPanel()
     {
-        $config = $this->getDI()->getConfig();
+        $config = $this->getDI()
+            ->getConfig();
 
         return $this->getDI()
             ->getViewSimple()

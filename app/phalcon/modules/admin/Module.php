@@ -4,14 +4,14 @@ namespace Webird\Modules\Admin;
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Webird\Module,
+    Webird\Module as ModuleBase,
     Webird\DebugPanel;
 
 /**
  * Module for system administration
  *
  */
-class Module extends Module
+class Module extends ModuleBase
 {
 
     /**

@@ -4,13 +4,13 @@ namespace Webird\Modules\Cli;
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Webird\Module;
+    Webird\Module as ModuleBase;
 
 /**
  * Module for CLI interface applications
  *
  */
-class Module extends Module
+class Module extends ModuleBase
 {
 
     /**

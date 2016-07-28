@@ -4,14 +4,14 @@ namespace Webird\Modules\Web;
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Webird\Module,
+    Webird\Module as ModuleBase,
     Webird\DebugPanel;
 
 /**
  * Module for basic web needs
  *
  */
-class Module extends Module
+class Module extends ModuleBase
 {
 
     /**

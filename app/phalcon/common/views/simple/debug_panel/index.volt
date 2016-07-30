@@ -51,7 +51,7 @@
                 <tbody>
                     <tr>
                         <td style="padding-bottom: 4px;">Webpack</td>
-                        <td style="padding-bottom: 4px;"><a href="{{'http://localhost:'~config.dev.webpackPort~'/webpack-dev-server'}}">webpack-dev-server</a></td>
+                        <td style="padding-bottom: 4px;"><a href="{{url('webpack-dev-server')}}" target="_blank" class="ctrl">webpack-dev-server</a></td>
                     </tr>
                     <tr>
                         <td style="padding-bottom: 4px;">Script</td>

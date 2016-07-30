@@ -6,8 +6,6 @@ upstream websocket-{{random_hash}} {
   server localhost:{{config.app.wsPort}};
 }
 
-## I'm unable to get weppack proxy passthru working and so localhost:port must be used.
-## This means that testing HTTPS with HSTS and XSS protection is currently not available in dev mode
 upstream webpack-{{random_hash}} {
   server localhost:{{config.dev.webpackPort}};
 }
@@ -42,6 +40,13 @@ server {
     proxy_connect_timeout 43200000;
     proxy_read_timeout    43200000;
     proxy_send_timeout    43200000;
+  }
+
+  # For viewing resources
+  location = /webpack-dev-server {
+    proxy_pass http://webpack-{{random_hash}}/webpack-dev-server;
+    proxy_redirect off;
+    proxy_buffering off;
   }
 
   location ~ ^/(css|js|fonts)/(.+)$ {

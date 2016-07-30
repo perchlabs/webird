@@ -1,6 +1,6 @@
 {
   "name": "webird",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "dependencies": {},
   "devDependencies": {
     "babel-core": "5.8.24",

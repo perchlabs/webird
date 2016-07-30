@@ -1,7 +1,7 @@
 {
   "name": "webird/framework",
   "description": "Webird Framework",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "require": {
     "php": ">=7.0",
     "ext-phalcon": "^3.0",

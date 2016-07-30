@@ -1,6 +1,6 @@
 {
   "name": "webird",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "devDependencies": {
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",

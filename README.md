@@ -44,7 +44,7 @@ Node.js is required for development only and is not required once a project has 
 
 ### Install Requirements:
 * PHP >= 7.0
-* Phalcon >= 2.1.0
+* Phalcon >= 3.0.0
 * MariaDB >= 10.1
 * Node.js >= 5.0
 

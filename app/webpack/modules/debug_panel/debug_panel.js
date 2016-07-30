@@ -139,7 +139,7 @@ function init() {
   if (isOpen()) {
     open()
   }
-  mousetrap.bind(['ctrl+shift+d', 'command+shift+d'], function(e) {
+  mousetrap.bind(['ctrl+shift+d'], function(e) {
     toggle()
   })
   $('pre code').each(function(i, block) {

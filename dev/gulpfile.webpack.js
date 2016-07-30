@@ -80,7 +80,7 @@ let wpConf = {
     },
     extensions: [
       '',
-      '.js', '.coffee',
+      '.js',
       '.html', '.njk',
       '.css', '.scss', '.less',
       '.json', '.yml'
@@ -133,9 +133,6 @@ let wpConf = {
           stage: 0,
           cacheDirectory: '/tmp'
         }
-      }, {
-        test: /\.coffee$/,
-        loader: "coffee"
       }, {
         test: /\.json$/,
         loader: "json"

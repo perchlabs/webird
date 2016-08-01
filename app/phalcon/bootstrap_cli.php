@@ -2,7 +2,6 @@
 use Phalcon\DI,
     Phalcon\PhalconDebug,
     Phalcon\Exception As PhalconException,
-    Webird\CLI\Console as WebirdConsole,
     Webird\Cli\Exception\ArgumentValidationException;
 
 if (php_sapi_name() !== "cli") {
@@ -31,22 +30,16 @@ if (!file_exists($config->path->tmpDir)) {
     mkdir($config->path->tmpDir);
 }
 
-// Create the Console and then inject it into the DI to enable batch tasks
-$console = new WebirdConsole($di);
-$di->setShared('console', $console);
-$console->registerModules([
-    'cli' => ['className' => 'Webird\Modules\Cli\Module']
-]);
-
 if (DEVELOPING) {
     class_alias('\Webird\Debug', '\Dbg', true);
 }
 try {
-    $console->handle([
-        'module'     => 'cli',
-        'defaultCmd' => 'server',
-        'params'     => $argv
-    ]);
+    $console = $di->getConsole()
+        ->handle([
+            'module'     => 'cli',
+            'defaultCmd' => 'server',
+            'params'     => $argv
+        ]);
 }
 catch (PhalconException $e) {
     error_log($e->getMessage());

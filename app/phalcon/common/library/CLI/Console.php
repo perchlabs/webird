@@ -37,7 +37,8 @@ class Console extends PhalconConsole
      */
     public function handle($arguments = null)
     {
-        $config = $this->getDI()->getConfig();
+        $config = $this->getDI()
+            ->getConfig();
 
         $this->progPath = $arguments['params'][0];
         if (isset($arguments['params'][1])) {
@@ -81,7 +82,7 @@ class Console extends PhalconConsole
         try {
             parent::handle([
                 'module' => $arguments['module'],
-                'task'   => 'Webird\Modules\Cli\Tasks\\' . ucfirst($task),
+                'task'   => $task,
                 'action' => $action,
                 'params' => $params
             ]);

@@ -6,9 +6,10 @@ The PHP foundation is comprised of Phalcon and Composer, which are used to creat
 The front end resources are bundled with Webpack, which solves many problems associated with modern web development by bringing the Node.js popularized CommonJS module system to the browser.
 Node.js is required for development only and is not required once a project has been built.
 
-#### Key features of Webird:
+#### Key aspects of Webird:
 * HTML5 IE11+
 * PHP 7+
+* Phalcon 3+
 * Node.js 5+
 * PHP [Ratchet](http://socketo.me/) websockets that offer read-only access to the PHP session data
 * Google OAuth2 login
@@ -18,7 +19,7 @@ Node.js is required for development only and is not required once a project has 
 * A single PHP command that starts development processes across PHP and Node.js
 * [Webpack](http://webpack.github.io/) (CommonJS) build environment
 * Live reloading (and waiting) CommonJS build environment
-* Program in Javascript ES5, ES6 ([Babel](https://babeljs.io/)) or Coffeescript
+* Program in Javascript ES5, ES6 ([Babel](https://babeljs.io/))
 * Theme with CSS ([PostCSS](https://github.com/postcss/postcss)), SCSS or LESS
 * Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
 * Create a final PHP and Javascript source protected distribution for deployment to the server
@@ -29,7 +30,6 @@ Node.js is required for development only and is not required once a project has 
 * [nginx](http://nginx.org/)
 * [Phalcon](http://phalconphp.com/en/)
 * [Babel](https://babeljs.io/) - Javascript ES2016 to ES5
-* [Coffeescript](http://coffeescript.org/)
 * [PostCSS](https://github.com/postcss/postcss)
 * [Composer](https://getcomposer.org/) - PHP package manager
 * [npm](https://www.npmjs.org/) - Node.js package manager
@@ -149,7 +149,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   ├── config/
 │   └── modules/
 └── webpack
-    ├── config.json (you can make this .json, .yml, .js or .coffee)
+    ├── config.json (you can make this .json, .yml, .js)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
     └── modules (custom commonjs modules)

@@ -25,7 +25,7 @@ abstract class Module implements ModuleDefinitionInterface
             $view->setPartialsDir('_partials/');
 
             $view->registerEngines([
-                '.volt' => 'voltService'
+                '.volt' => 'voltShared'
             ]);
             return $view;
         };

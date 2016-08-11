@@ -158,7 +158,7 @@ $di->setShared('db', function() {
 /**
  *
  */
-$voltService = function($view) {
+$di->set('volt', function($view) {
     $config = $this->getConfig();
 
     $phalconDir = $config->path->phalconDir;
@@ -202,23 +202,25 @@ $voltService = function($view) {
     require("{$configDir}volt_compiler.php");
 
     return $volt;
-};
+});
 
 /**
  *
  */
-$di->set('voltService', $voltService);
+$di->setShared('voltShared', function($view) {
+    return $this->getVolt($view);
+});
 
 /**
  *
  */
-$di->set('viewSimple', function() use ($voltService) {
+$di->set('viewSimple', function() {
     $config = $this->getConfig();
 
     $view = new ViewSimple();
     $view->setDI($this);
     $view->registerEngines([
-        '.volt' => \Closure::bind($voltService, $this)
+        '.volt' => 'volt'
     ]);
     $view->setViewsDir($config->path->viewsSimpleDir);
     return $view;

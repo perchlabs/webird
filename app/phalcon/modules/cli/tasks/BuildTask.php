@@ -203,7 +203,7 @@ class BuildTask extends Task
                 $this->compileVoltDirWorker("$pathNext/", $viewFunc);
             } else {
                 $this->getDI()
-                    ->getVoltService($viewFunc(), $this->getDI())
+                    ->getVoltShared($viewFunc())
                     ->getCompiler()
                     ->compile($pathNext);
             }
@@ -251,14 +251,14 @@ WEBIRD_ENTRY;
         $buildDir = $this->config->dev->path->buildDir;
 
         // Copy Composer configuration
-        copy("$devDir/composer.json", "$buildDir/composer.json");
-        copy("$devDir/composer.lock", "$buildDir/composer.lock");
+        copy("$devDir/composer.json", $buildDir . 'composer.json');
+        copy("$devDir/composer.lock", $buildDir . 'composer.lock');
         // Copy Npm/Nodejs configuration
-        copy("$devDir/package.json", "$buildDir/package.json");
+        copy("$devDir/package.json", $buildDir . 'package.json');
 
-        `cp -R $appDir/theme/assets $buildDir/public/assets`;
+        `cp -R $appDir/theme/assets {$buildDir}public/assets`;
 
-        copy("$etcDir/schema.sql", "$buildDir/etc/schema.sql");
+        copy("$etcDir/schema.sql", $buildDir . 'etc/schema.sql');
     }
 
     /**

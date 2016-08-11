@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Pass in the voltService compiler or instantiate a fresh compiler in the requiring code.
+ * Pass in a volt compiler or instantiate a fresh compiler in the requiring code.
  * This allows the compiler to be used on the CLI.
  */
 

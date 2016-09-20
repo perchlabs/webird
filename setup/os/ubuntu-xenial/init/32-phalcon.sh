@@ -12,7 +12,7 @@ cd "$TEMP_DIR/zephir"
 
 # Install Phalcon
 echo "Installing Phalcon"
-git clone --depth=1 -b 2.1.x git://github.com/phalcon/cphalcon.git "$TEMP_DIR/cphalcon" > /dev/null
+git clone --depth=1 -b 3.0.x git://github.com/phalcon/cphalcon.git "$TEMP_DIR/cphalcon" > /dev/null
 [[ $? -ne 0 ]] && exit $?
 cd "$TEMP_DIR/cphalcon"
 # Must use the ZendEngine3 option for PHP 7

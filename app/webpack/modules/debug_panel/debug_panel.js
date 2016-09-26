@@ -4,20 +4,49 @@ import highlight from 'highlight'
 import 'highlight.js/styles/github'
 import './style.less'
 
-let global = {
+export default {
   open,
   close,
-  init,
   toggle
 }
 
-export default global
-window.wbdebug = global
+window.wbdebug = this
 
 highlight.registerLanguage('sql', require('highlight.js/lib/languages/sql'))
 highlight.registerLanguage('php', require('highlight.js/lib/languages/php'))
 highlight.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
-highlight.registerLanguage('coffeescript', require('highlight.js/lib/languages/coffeescript'))
+
+$('#wbdebug-container').css('display', '')
+if (!isSet()) {
+  setClosed
+}
+if (isOpen()) {
+  open()
+}
+mousetrap.bind(['ctrl+shift+d'], function(e) {
+  toggle()
+})
+$('pre code').each(function(i, block) {
+  highlight.highlightBlock(block)
+})
+$("#wbdebug-main-nav a").click(function(e) {
+  e.preventDefault()
+  let name = $(this).data("open")
+  togglePanel(name)
+})
+$(".wbdebug-panel-close").click(function(e) {
+  e.preventDefault()
+  closeActivePanel()
+})
+$(".collapser").click(function() {
+  if ($(this).hasClass("closed")) {
+    $(this).removeClass("closed")
+    $(this).next().show()
+  } else {
+    $(this).addClass("closed")
+    $(this).next().hide()
+  }
+})
 
 /**
  *
@@ -126,41 +155,4 @@ function toggle() {
   } else {
     open()
   }
-}
-
-/**
- *
- */
-function init() {
-  $('#wbdebug-container').css('display', '')
-  if (!isSet()) {
-    setClosed
-  }
-  if (isOpen()) {
-    open()
-  }
-  mousetrap.bind(['ctrl+shift+d'], function(e) {
-    toggle()
-  })
-  $('pre code').each(function(i, block) {
-    highlight.highlightBlock(block)
-  })
-  $("#wbdebug-main-nav a").click(function(e) {
-    e.preventDefault()
-    let name = $(this).data("open")
-    togglePanel(name)
-  })
-  $(".wbdebug-panel-close").click(function(e) {
-    e.preventDefault()
-    closeActivePanel()
-  })
-  $(".collapser").click(function() {
-    if ($(this).hasClass("closed")) {
-      $(this).removeClass("closed")
-      $(this).next().show()
-    } else {
-      $(this).addClass("closed")
-      $(this).next().hide()
-    }
-  })
 }

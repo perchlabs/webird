@@ -1,6 +1,6 @@
 ---
 commons:
-  init_complex: [admin, public, angular, websocket]
+  init_complex: [admin, public, websocket]
   marionette: [app.marionette.example]
 browsers:
 - "last 5 Chrome versions"

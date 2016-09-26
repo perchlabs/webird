@@ -1,7 +1,8 @@
 # You must add -alpha or -beta if the package is not yet stable
-# Disabling mailparse until it can detect mbstring extension
+# Manually downloading, patch and installing mailparse
+# in pecl init script until mbstring issue is resolved
 #mailparse
-yaml-beta
+yaml-2.0.0
+ev
 zmq-beta
-ev-beta
 msgpack-beta

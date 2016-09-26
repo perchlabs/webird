@@ -21,7 +21,7 @@ if [[ ! -d "$OS_DIR" ]]; then
   exit 1
 fi
 
-TEMP_DIR=$(mktemp -d)
+export TEMP_DIR=$(mktemp -d)
 
 # Allows reading of OS specific lists while ignoring lines beginning to hash
 readlist() { echo $(grep -v '^#' "$OS_DIR/lists/$1"); }

@@ -9,8 +9,8 @@ skipclean=1
 npm install
 [[ $? -ne 0 ]] && exit $?
 
-# Its best not to run this script as root but the script will allow it
-bower install --allow-root --config.interactive=false
+# Run bower install from local node_modules so that it doesn't need to be globally installed
+npm run bower-install
 [[ $? -ne 0 ]] && exit $?
 
 composer install

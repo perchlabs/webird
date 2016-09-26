@@ -52,7 +52,8 @@
   "scripts": {
     "dev": "gulp webpack:dev-server",
     "build": "gulp webpack:build",
-    "dev-build": "gulp webpack:dev-build"
+    "dev-build": "gulp webpack:dev-build",
+    "bower-install": "bower install --allow-root --config.interactive=false"
   },
   "engines": {
     "node": ">=5.0"

@@ -19,13 +19,6 @@ class FeaturesController extends Controller
     }
 
     /**
-     * Angular and Webpack integration example
-     */
-    public function angularAction()
-    {
-    }
-
-    /**
      * Marionette and Webpack integration example
      */
     public function marionetteAction()

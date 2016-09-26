@@ -33,6 +33,14 @@ let appConfig = yaml.load(fs.readFileSync(webpackRoot + "/config.yml", 'utf8'));
 /**
  *
  */
+const babelCacheDir = '/tmp/babel-cache-' + projectRootHash;
+if (!fs.existsSync(babelCacheDir)) {
+  fs.mkdirSync(babelCacheDir);
+}
+
+/**
+ *
+ */
 let entryMap = {};
 for (let common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
   entryMap[`commons/${common}`] = `./commons/${common}`;
@@ -112,16 +120,9 @@ let wpConf = {
       path.join(bowerRoot, "/lodash"),
       path.join(bowerRoot, "/jquery"),
       path.join(bowerRoot, "/bootstrap"),
-      path.join(bowerRoot, "/angular"),
-      path.join(bowerRoot, "/angular-ui-router"),
-      path.join(bowerRoot, "/angular-cookies"),
-      path.join(bowerRoot, "/angular-resource")
     ],
     loaders: [
       {
-        test: /[\/]angular\.js$/,
-        loader: "exports?angular"
-      }, {
         test: /jquery\.js$/,
         loader: "expose?jQuery!expose?$"
       }, {
@@ -129,9 +130,14 @@ let wpConf = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          optional: ['runtime'],
-          stage: 0,
-          cacheDirectory: '/tmp'
+          cacheDirectory: babelCacheDir,
+          plugins: [
+            require.resolve('babel-plugin-transform-runtime')
+          ],
+          presets: [
+            require.resolve('babel-preset-es2015'),
+            require.resolve('babel-preset-stage-0')
+          ]
         }
       }, {
         test: /\.json$/,

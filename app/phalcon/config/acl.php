@@ -16,7 +16,7 @@ $private = [
         'privacy'     => ['index'],
         'terms'       => ['terms'],
         'settings'    => ['changePassword'],
-        'features'    => ['index', 'angular', 'marionette', 'websocket', 'postcss', 'fetch']
+        'features'    => ['index', 'marionette', 'websocket', 'postcss', 'fetch']
     ],
     'admin' => [
         'index'       => ['index'],

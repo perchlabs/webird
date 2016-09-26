@@ -34,13 +34,6 @@ $compiler->addFunction('varexport', function($val) {
 });
 
 /*
- * Support angular since '{{' and '}}' conflict between Volt and Angular
- */
-$compiler->addFunction('ng', function($input) {
-    return '"{{".' . $input . '."}}"';
-});
-
-/*
  *
  */
 $compiler->addFunction('common', function($partial) {

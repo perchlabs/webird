@@ -16,6 +16,13 @@ add-apt-repository 'deb [arch=amd64,i386] http://mirror.netinch.com/pub/mariadb/
 # Nginx Stable Ubuntu PPA
 # add-apt-repository ppa:nginx/stable
 
+# Add Nodejs repository
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+# Add Phalcon repository
+curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
+#curl -s https://packagecloud.io/install/repositories/phalcon/nightly/script.deb.sh | sudo bash
+
 # Update again after PPA changes
 apt-get update
 apt-get upgrade -y

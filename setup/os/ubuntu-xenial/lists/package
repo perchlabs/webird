@@ -16,6 +16,7 @@ make
 pkg-config
 re2c
 # environments
+nodejs
 nginx-extras
 mariadb-server
 mariadb-client
@@ -26,6 +27,7 @@ php-fpm
 php-curl
 php-mbstring
 php-mysql
+php7.0-phalcon
 # dev libraries
 php-dev
 composer

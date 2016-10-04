@@ -4,8 +4,6 @@ let path = require('path');
 let fs = require('fs');
 let yaml = require('js-yaml');
 let crypto = require('crypto');
-let gulp = require('gulp');
-let gutil = require('gulp-util');
 let webpack = require('webpack');
 let WebpackDevServer = require('webpack-dev-server');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -80,7 +78,8 @@ let wpConf = {
   },
   resolve: {
     root: [appModulesRoot, bowerRoot, nodeModulesRoot, themeRoot],
-    modulesDirectories: [appModulesRoot, 'node_modules', 'bower_components'],
+    modulesDirectories: ['node_modules', 'bower_components'],
+    // modulesDirectories: [appModulesRoot, 'node_modules', 'bower_components'],
     alias: {
       underscore: 'lodash',
       handlebars: 'handlebars/dist/handlebars',
@@ -89,7 +88,7 @@ let wpConf = {
     extensions: [
       '',
       '.js',
-      '.html', '.njk',
+      '.vue', '.html', '.njk',
       '.css', '.scss', '.less',
       '.json', '.yml'
     ]
@@ -132,13 +131,28 @@ let wpConf = {
         query: {
           cacheDirectory: babelCacheDir,
           plugins: [
+            // require('babel-plugin-transform-runtime')
             require.resolve('babel-plugin-transform-runtime')
+            // 'transform-runtime'
           ],
           presets: [
+            // require('babel-preset-es2015'),
+            // require('babel-preset-es2016'),
+            // require('babel-preset-es2017'),
+            // require('babel-preset-stage-0')
             require.resolve('babel-preset-es2015'),
+            require.resolve('babel-preset-es2016'),
+            require.resolve('babel-preset-es2017'),
             require.resolve('babel-preset-stage-0')
+            // 'es2015',
+            // 'es2016',
+            // 'es2017',
+            // 'stage-0'
           ]
         }
+      }, {
+        test: /\.vue$/,
+        loader: "vue"
       }, {
         test: /\.json$/,
         loader: "json"
@@ -234,7 +248,7 @@ function getNamesFromDirectory(filepath) {
 /**
  *
  */
-const dev = gulp.series(function(callback) {
+ function dev() {
   let config = yaml.load(fs.readFileSync(etcRoot + "/dev_defaults.yml", 'utf8'));
   let configCustom = yaml.load(fs.readFileSync(etcRoot + "/dev.yml", 'utf8'));
   _.merge(config, configCustom);
@@ -256,17 +270,14 @@ const dev = gulp.series(function(callback) {
     }
   }).listen(webpackPort, '0.0.0.0', function(err) {
     if (err) {
-      throw new gutil.PluginError('webpack-dev-server', err);
     }
   });
-
-  callback();
-})
+}
 
 /**
  *
  */
-const build = gulp.series(function(callback) {
+function build() {
     wpConf.output.path = path.join(projectRoot, 'build', 'public');
     wpConf.plugins.concat([
       new DefinePlugin({DEV: false}),
@@ -277,15 +288,11 @@ const build = gulp.series(function(callback) {
       if (err) {
         throw new gutil.PluginError('webpack:build', err);
       }
-      gutil.log('[webpack:build]', stats.toString({
-        colors: true
-      }));
-      callback();
     });
+}
 
-})
-
-module.exports = {
-  dev,
-  build
+if (process.env.NODE_ENV !== 'production') {
+  dev()
+} else {
+  build()
 }

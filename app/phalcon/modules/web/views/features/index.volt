@@ -15,7 +15,7 @@
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{t('Frameworks')}}</h3>
-      <a href="{{ url('features/marionette') }}" class="btn btn-primary">{{ t('Marionette') }}</a>
+      <a href="{{ url('features/vue') }}" class="btn btn-primary">{{ t('Vue') }}</a>
     </div>
   </div>
   <div class="row top7">

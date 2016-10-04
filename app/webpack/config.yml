@@ -1,12 +1,12 @@
 ---
 commons:
   init_complex: [admin, public, websocket]
-  marionette: [app.marionette.example]
+  vue: [vue.example]
 browsers:
 - "last 5 Chrome versions"
 - "last 5 Firefox versions"
-- "Explorer > 9"
-- "iOS >= 6"
+- "Explorer > 11"
+- "iOS >= 8"
 - "> 2% in US"
 constants:
   HELLO_WORLD_CONSTANT: "Hello World"

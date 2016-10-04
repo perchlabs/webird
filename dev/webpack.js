@@ -166,15 +166,6 @@ let wpConf = {
         test: /\.html$/,
         loader: "html"
       }, {
-        test: /\.njk$/,
-        loader: "nunjucks",
-        query: {
-          config: `${devRoot}/nunjucks.config.js`,
-          // Don't show the 'Cannot configure nunjucks environment before precompile' warning
-          // This can be made quite if you understand the implications
-          // quiet: true
-        }
-      }, {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
       }, {

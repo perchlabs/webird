@@ -10,9 +10,10 @@ Node.js is required for development only and is not required once a project has 
 * PHP 7.0
 * [Phalcon](http://phalconphp.com/en/) 3
 * [Webpack](http://webpack.github.io/) 2
-* [nginx](http://nginx.org/)
+* [Vue](https://vuejs.org/) 2
 * [Buble](https://buble.surge.sh/guide/)
 * [PostCSS](https://github.com/postcss/postcss)
+* [nginx](http://nginx.org/)
 * [Composer](https://getcomposer.org/)
 * [Nodejs](https://nodejs.org)
 * [Ratchet](http://socketo.me/)

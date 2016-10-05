@@ -27,7 +27,7 @@ Node.js is required for development only and is not required once a project has 
 * Manage all third party dependencies with Composer and NPM
 * Bash provisioning and local installation scripts for configuring system
 * A single PHP command that starts development processes across PHP and Nodejs
-* Live reloading (and waiting) ES6 module CommonJS front end environment
+* Live reloading (and waiting) ES6 module and CommonJS front end environment
 * Google OAuth2 login
 * Integration gettext .po environment for both PHP and Webpack
 * Create a final PHP and Javascript source protected distribution for deployment to the server

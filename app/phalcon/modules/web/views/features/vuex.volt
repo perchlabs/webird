@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{t('Webird Vue Technology Demo')}}</title>
+  <title>{{t('Webird Vue with Vuex Technology Demo')}}</title>
   {{ common('head_init') }}
   {#{{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}#}
 </head>
@@ -9,6 +9,6 @@
   <div id="app"></div>
 
   {{ javascript_include(['src': 'js/commons/vue.js']) }}
-  {{ javascript_include(['src': 'js/entries/vue.simple.js']) }}
+  {{ javascript_include(['src': 'js/entries/vue.vuex.js']) }}
 </body>
 </html>

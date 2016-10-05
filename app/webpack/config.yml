@@ -5,7 +5,8 @@ commons:
   - public
   - websocket
   vue:
-  - vue.example
+  - vue.simple
+  - vue.vuex
 browsers:
 - "last 5 Chrome versions"
 - "last 5 Firefox versions"

@@ -27,6 +27,14 @@ class FeaturesController extends Controller
     }
 
     /**
+     * Vue with Vuex integration example
+     */
+    public function vuexAction()
+    {
+
+    }
+
+    /**
      * Marionette and Webpack integration example
      */
     public function marionetteAction()

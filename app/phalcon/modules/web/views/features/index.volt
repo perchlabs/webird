@@ -16,8 +16,10 @@
     <div class="col-md-6">
       <h3>{{t('Frameworks')}}</h3>
       <a href="{{ url('features/vue') }}" class="btn btn-primary">{{ t('Vue') }}</a>
+      <a href="{{ url('features/vuex') }}" class="btn btn-primary">{{ t('Vuex') }}</a>
     </div>
   </div>
+
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{t('Technologies')}}</h3>

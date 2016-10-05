@@ -3,7 +3,7 @@
 Webird was created to merge the latest PHP and Node.js innovations into a single application stack.
 
 The PHP foundation is comprised of Phalcon and Composer, which are used to create a HMVC foundation that offers everything that is expected of a modern PHP server side framework.
-The front end resources are bundled with Webpack, which solves many problems associated with modern web development by bringing the Node.js popularized CommonJS module system to the browser.
+The Javascript foundation is built around with Webpack 2, Vue 2 and NPM, which when used together are able to produce highly efficient single page applications.
 Node.js is required for development only and is not required once a project has been built.
 
 #### Key technologies of Webird:

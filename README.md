@@ -6,41 +6,32 @@ The PHP foundation is comprised of Phalcon and Composer, which are used to creat
 The front end resources are bundled with Webpack, which solves many problems associated with modern web development by bringing the Node.js popularized CommonJS module system to the browser.
 Node.js is required for development only and is not required once a project has been built.
 
-#### Key aspects of Webird:
-* HTML5 IE11+
-* PHP 7+
-* Phalcon 3+
-* Node.js 5+
-* PHP [Ratchet](http://socketo.me/) websockets that offer read-only access to the PHP session data
-* Google OAuth2 login
-* PHP CLI utilities for many tasks
-* Manage most third party dependencies with Composer, NPM and Bower
-* Bash provisioning and local installation scripts for configuring system
-* A single PHP command that starts development processes across PHP and Node.js
-* [Webpack](http://webpack.github.io/) (CommonJS) build environment
-* Live reloading (and waiting) CommonJS build environment
-* Program in Javascript ES5, ES6 ([Babel](https://babeljs.io/))
-* Theme with CSS ([PostCSS](https://github.com/postcss/postcss)), SCSS or LESS
-* Complete integration of gettext .po translation data between the PHP and Webpack (Javascript) environments
-* Create a final PHP and Javascript source protected distribution for deployment to the server
-* AngularJS and Backbone/Marionette Webpack examples
-* [Docker](https://www.docker.com/) container
-
-#### Key components of Webird:
+#### Key technologies of Webird:
+* PHP 7.0
+* [Phalcon](http://phalconphp.com/en/) 3
+* [Webpack](http://webpack.github.io/) 2
 * [nginx](http://nginx.org/)
-* [Phalcon](http://phalconphp.com/en/)
-* [Babel](https://babeljs.io/) - Javascript ES2016 to ES5
+* [Buble](https://buble.surge.sh/guide/)
 * [PostCSS](https://github.com/postcss/postcss)
-* [Composer](https://getcomposer.org/) - PHP package manager
-* [npm](https://www.npmjs.org/) - Node.js package manager
-* [Bower](http://bower.io/) - Node.js based package manager specifically for front end resources
-* [Gulp.js](http://gulpjs.com/) - Streaming build system
-* [Webpack](http://webpack.github.io/) - CommonJS build environment
-* [Ratchet](http://socketo.me/) - PHP websockets
-* [gettext](http://www.gnu.org/software/gettext/gettext.html) - Translations
-* [MariaDB](https://mariadb.org/) - MySQL fork
-* [Docker](https://www.docker.com/) - Docker container for easy deployment
-* [Ion Cube](http://www.ioncube.com/) - optional PHP source protection
+* [Composer](https://getcomposer.org/)
+* [Nodejs](https://nodejs.org)
+* [Ratchet](http://socketo.me/)
+* [gettext](http://www.gnu.org/software/gettext/gettext.html)
+* [MariaDB](https://mariadb.org/) 10.1
+* [Docker](https://www.docker.com/)
+* [Ion Cube](http://www.ioncube.com/)
+
+#### Notable aspects of Webird:
+* PHP CLI utilities for many tasks
+* Manage all third party dependencies with Composer and NPM
+* Bash provisioning and local installation scripts for configuring system
+* A single PHP command that starts development processes across PHP and Nodejs
+* Live reloading (and waiting) ES6 module CommonJS front end environment
+* Google OAuth2 login
+* Integration gettext .po environment for both PHP and Webpack
+* Create a final PHP and Javascript source protected distribution for deployment to the server
+* Vue 2.0 example integration
+* [Docker](https://www.docker.com/) container
 
 ### Install Requirements:
 * PHP >= 7.0

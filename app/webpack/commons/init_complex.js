@@ -1,3 +1,4 @@
+import '../bootstrap'
 import 'theme_style/bootstrap'
 import 'theme_script/bootstrap'
 import init from 'init'

@@ -31,7 +31,7 @@ Node.js is required for development only and is not required once a project has 
 * Integration gettext .po environment for both PHP and Webpack
 * Create a final PHP and Javascript source protected distribution for deployment to the server
 * Vue 2.0 example integration
-* [Docker](https://www.docker.com/) container
+* Includes Dockerfile
 
 ### Install Requirements:
 * PHP >= 7.0

@@ -7,7 +7,7 @@ let crypto = require('crypto');
 let webpack = require('webpack');
 let WebpackDevServer = require('webpack-dev-server');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let ResolverPlugin = require('webpack/lib/ResolverPlugin');
+let LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 let ProvidePlugin = require('webpack/lib/ProvidePlugin');
 let DefinePlugin = require('webpack/lib/DefinePlugin');
 let CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
@@ -22,7 +22,6 @@ let buildRoot = path.join(projectRoot, 'build');
 let webpackRoot = path.join(appRoot, 'webpack');
 let appModulesRoot = path.join(webpackRoot, 'modules');
 let themeRoot = path.join(appRoot, 'theme');
-let bowerRoot = path.join(devRoot, 'bower_components');
 let nodeModulesRoot = path.join(devRoot, 'node_modules');
 let projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
@@ -74,27 +73,35 @@ let wpConf = {
     publicPath        : '/',
     filename          : 'js/[name].js',
     chunkFilename     : 'js/chunk/[id].js',
-    namedChunkFilename: 'js/[name].js'
   },
   resolve: {
-    root: [appModulesRoot, bowerRoot, nodeModulesRoot, themeRoot],
-    modulesDirectories: ['node_modules', 'bower_components'],
-    // modulesDirectories: [appModulesRoot, 'node_modules', 'bower_components'],
+    modules: [appModulesRoot, nodeModulesRoot, themeRoot],
+    descriptionFiles: ['package.json'],
+    mainFields: ['main', 'browser'],
+    mainFiles: ['index'],
     alias: {
       underscore: 'lodash',
       handlebars: 'handlebars/dist/handlebars',
       highlight: 'highlight.js/lib/highlight'
     },
     extensions: [
-      '',
       '.js',
-      '.vue', '.html', '.njk',
+      '.vue', '.html',
       '.css', '.scss', '.less',
       '.json', '.yml'
-    ]
+    ],
+    enforceExtension: false,
+    enforceModuleExtension: false
   },
   resolveLoader: {
-    root: nodeModulesRoot
+    modules: [nodeModulesRoot],
+    descriptionFiles: ['package.json'],
+    mainFields: ['main'],
+    mainFiles: ['index'],
+    extensions: ['.js'],
+    enforceExtension: false,
+    enforceModuleExtension: false,
+    moduleExtensions: ['-loader']
   },
   plugins: [
     new DefinePlugin({
@@ -103,51 +110,58 @@ let wpConf = {
       LOCALE_ROOT: JSON.stringify(appRoot + "/locale"),
       THEME_ROOT: JSON.stringify(appRoot + "/theme"),
     }),
-    new ExtractTextPlugin('css/[name].css', { allChunks: false}),
+    // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
     new ProvidePlugin({
       _: 'lodash',
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new ResolverPlugin([new ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])], ["normal", "loader"]),
-    new DedupePlugin()
+    new LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          require("postcss-import")({
+            addDependencyTo: webpack,
+            path: [themeRoot, appModulesRoot, nodeModulesRoot]
+          }),
+          require("postcss-url")(),
+          require("postcss-cssnext")({
+            browsers: appConfig.browsers,
+            import: {
+              path: [themeRoot],
+              // Setup watches on these files
+              onImport: function(files) {
+                files.forEach(this.addDependency);
+              }.bind(this)
+            }
+          }),
+          require("postcss-browser-reporter")(),
+          require("postcss-reporter")(),
+        ]
+      }
+    })
   ]
   // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
   .concat(commonsChunkPluginArr),
   module: {
-    noParse: [
-      path.join(bowerRoot, "/lodash"),
-      path.join(bowerRoot, "/jquery"),
-      path.join(bowerRoot, "/bootstrap"),
-    ],
     loaders: [
+      // {
+      //   test: /jquery\.js$/,
+      //   loader: "expose?jQuery!expose?$"
+      // }, {
       {
-        test: /jquery\.js$/,
-        loader: "expose?jQuery!expose?$"
-      }, {
         test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel',
         query: {
           cacheDirectory: babelCacheDir,
           plugins: [
-            // require('babel-plugin-transform-runtime')
             require.resolve('babel-plugin-transform-runtime')
-            // 'transform-runtime'
           ],
           presets: [
-            // require('babel-preset-es2015'),
-            // require('babel-preset-es2016'),
-            // require('babel-preset-es2017'),
-            // require('babel-preset-stage-0')
             require.resolve('babel-preset-es2015'),
             require.resolve('babel-preset-es2016'),
             require.resolve('babel-preset-es2017'),
             require.resolve('babel-preset-stage-0')
-            // 'es2015',
-            // 'es2016',
-            // 'es2017',
-            // 'stage-0'
           ]
         }
       }, {
@@ -158,62 +172,64 @@ let wpConf = {
         loader: "json"
       }, {
         test: /\.yml$/,
-        loader: "json!yaml"
+        loaders: ['json', 'yaml']
       }, {
         test: /\.po$/,
-        loader: "json!po?format=jed1.x"
+        loaders: [
+          'json',
+          { loader: 'po', query: { format: 'jed1.x'} }
+        ]
       }, {
         test: /\.html$/,
         loader: "html"
       }, {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+        loaders: ['style', 'css', 'postcss']
       }, {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+        loaders: ['style', 'css', 'less']
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+        loaders: ['style', 'css', 'sass']
       }, {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url?prefix=img/&limit=8192'
+        loader: 'url',
+        query: {
+          prefix: 'img/',
+          limit: '8192'
+        }
       }, {
         test: /\.(woff|woff2)$/,
-        loader: "url?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
+        loader: 'url',
+        query: {
+          name: 'fonts/[hash].[ext]',
+          limit: '10000',
+          mimetype: 'application/font-woff'
+        }
       }, {
         test: /\.ttf$/,
-        loader: "file?name=fonts/[hash].[ext]"
+        loader: 'file',
+        query: {
+          name: 'fonts/[hash].[ext]'
+        }
       }, {
         test: /\.eot$/,
-        loader: "file?name=fonts/[hash].[ext]"
+        loader: 'file',
+        query: {
+          name: 'fonts/[hash].[ext]'
+        }
       }, {
         test: /\.svg$/,
-        loader: "file?name=fonts/[hash].[ext]"
+        loader: 'file',
+        query: {
+          name: 'fonts/[hash].[ext]'
+        }
       }
     ]
   },
-  postcss: function (webpack) {
-    return [
-      require("postcss-import")({
-        addDependencyTo: webpack,
-        path: [themeRoot, appModulesRoot, nodeModulesRoot]
-      }),
-      require("postcss-url")(),
-      require("postcss-cssnext")({
-        // Defined in './app/webpack/config'
-        browsers: appConfig.browsers,
-        import: {
-          path: [themeRoot],
-          // Setup watches on these files
-          onImport: function(files) {
-            files.forEach(this.addDependency);
-          }.bind(this)
-        }
-      }),
-      require("postcss-browser-reporter")(),
-      require("postcss-reporter")(),
-    ]
-  }
 };
 
 /**
@@ -246,7 +262,6 @@ function getNamesFromDirectory(filepath) {
 
   let webpackPort = config.dev.webpackPort;
   wpConf.devtool = 'source-map';
-  wpConf.debug = true;
   wpConf.plugins.push(new DefinePlugin({DEV: true}));
   wpConf.output.publicPath = "http://" + config.site.domains[0] + "/";
 
@@ -272,12 +287,12 @@ function build() {
     wpConf.output.path = path.join(projectRoot, 'build', 'public');
     wpConf.plugins.concat([
       new DefinePlugin({DEV: false}),
+      new DedupePlugin (),
       new UglifyJsPlugin()
     ]);
 
     webpack(wpConf, function(err, stats) {
       if (err) {
-        throw new gutil.PluginError('webpack:build', err);
       }
     });
 }

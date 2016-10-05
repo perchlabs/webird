@@ -145,25 +145,28 @@ let wpConf = {
   module: {
     loaders: [
       // {
-      //   test: /jquery\.js$/,
-      //   loader: "expose?jQuery!expose?$"
-      // }, {
+      //   test: /\.js?$/,
+      //   exclude: /node_modules/,
+      //   loader: 'babel',
+      //   query: {
+      //     cacheDirectory: babelCacheDir,
+      //     plugins: [
+      //       // require.resolve('babel-plugin-transform-runtime')
+      //       'babel-plugin-transform-runtime'
+      //     ],
+      //     presets: [
+      //       [
+      //         require.resolve('babel-preset-es2015'),
+      //         { modules: false }
+      //       ],
+      //       require.resolve('babel-preset-es2016'),
+      //       require.resolve('babel-preset-es2017'),
+      //       require.resolve('babel-preset-stage-0')
+      //     ]
+      //   }
       {
         test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: babelCacheDir,
-          plugins: [
-            require.resolve('babel-plugin-transform-runtime')
-          ],
-          presets: [
-            require.resolve('babel-preset-es2015'),
-            require.resolve('babel-preset-es2016'),
-            require.resolve('babel-preset-es2017'),
-            require.resolve('babel-preset-stage-0')
-          ]
-        }
+        loaders: 'buble'
       }, {
         test: /\.vue$/,
         loader: "vue"
@@ -287,7 +290,11 @@ function build() {
     wpConf.output.path = path.join(projectRoot, 'build', 'public');
     wpConf.plugins.concat([
       new DefinePlugin({DEV: false}),
-      new DedupePlugin (),
+      new LoaderOptionsPlugin({
+        minimize: true,
+        debug: false
+      }),
+      new DedupePlugin(),
       new UglifyJsPlugin()
     ]);
 

@@ -6,7 +6,7 @@ let yaml = require('js-yaml');
 let crypto = require('crypto');
 let webpack = require('webpack');
 let WebpackDevServer = require('webpack-dev-server');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+// let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 let ProvidePlugin = require('webpack/lib/ProvidePlugin');
 let DefinePlugin = require('webpack/lib/DefinePlugin');
@@ -118,28 +118,16 @@ let wpConf = {
     }),
     new LoaderOptionsPlugin({
       options: {
-        postcss: [
-          require("postcss-import")({
-            addDependencyTo: webpack,
-            path: [themeRoot, appModulesRoot, nodeModulesRoot]
-          }),
-          require("postcss-url")(),
-          require("postcss-cssnext")({
-            browsers: appConfig.browsers,
-            import: {
-              path: [themeRoot],
-              // Setup watches on these files
-              onImport: function(files) {
-                files.forEach(this.addDependency);
-              }.bind(this)
-            }
-          }),
-          require("postcss-browser-reporter")(),
-          require("postcss-reporter")(),
-        ]
-      }
+        postcss: postcssSetup,
+        vue: {
+          postcss: postcssSetup,
+          buble: {
+            objectAssign: 'Object.assign',
+          }
+        }
+      },
     })
-  ]
+   ]
   // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
   .concat(commonsChunkPluginArr),
   module: {
@@ -166,7 +154,14 @@ let wpConf = {
       //   }
       {
         test: /\.js?$/,
-        loaders: 'buble'
+        loaders: 'buble',
+        query: {
+          objectAssign: 'Object.assign',
+          transformations: {
+            modules: false,
+            forOf: false
+          }
+        }
       }, {
         test: /\.vue$/,
         loader: "vue"
@@ -234,6 +229,32 @@ let wpConf = {
     ]
   },
 };
+
+/**
+ *
+ */
+ function postcssSetup(webpack) {
+  return [
+    require("postcss-import")({
+      addDependencyTo: webpack,
+      path: [themeRoot, appModulesRoot, nodeModulesRoot]
+    }),
+    require("postcss-url")(),
+    require("postcss-cssnext")({
+      // Defined in './app/webpack/config'
+      browsers: appConfig.browsers,
+      import: {
+        path: [themeRoot],
+        // Setup watches on these files
+        onImport: function(files) {
+          files.forEach(this.addDependency);
+        }.bind(this)
+      }
+    }),
+    require("postcss-browser-reporter")(),
+    require("postcss-reporter")(),
+  ]
+}
 
 /**
  *

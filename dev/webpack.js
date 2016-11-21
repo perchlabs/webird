@@ -64,6 +64,17 @@ for (let commonName in appConfig.commons) {
 /**
  *
  */
+const bubbleOptions = {
+  objectAssign: 'Object.assign',
+  transforms: {
+    modules: false,
+    forOf: false,
+  }
+}
+
+/**
+ *
+ */
 let wpConf = {
   cache: true,
   context: webpackRoot,
@@ -121,9 +132,7 @@ let wpConf = {
         postcss: postcssSetup,
         vue: {
           postcss: postcssSetup,
-          buble: {
-            objectAssign: 'Object.assign',
-          }
+          buble: bubbleOptions,
         }
       },
     })
@@ -132,36 +141,10 @@ let wpConf = {
   .concat(commonsChunkPluginArr),
   module: {
     loaders: [
-      // {
-      //   test: /\.js?$/,
-      //   exclude: /node_modules/,
-      //   loader: 'babel',
-      //   query: {
-      //     cacheDirectory: babelCacheDir,
-      //     plugins: [
-      //       // require.resolve('babel-plugin-transform-runtime')
-      //       'babel-plugin-transform-runtime'
-      //     ],
-      //     presets: [
-      //       [
-      //         require.resolve('babel-preset-es2015'),
-      //         { modules: false }
-      //       ],
-      //       require.resolve('babel-preset-es2016'),
-      //       require.resolve('babel-preset-es2017'),
-      //       require.resolve('babel-preset-stage-0')
-      //     ]
-      //   }
       {
         test: /\.js?$/,
         loaders: 'buble',
-        query: {
-          objectAssign: 'Object.assign',
-          transformations: {
-            modules: false,
-            forOf: false
-          }
-        }
+        query: bubbleOptions,
       }, {
         test: /\.vue$/,
         loader: "vue"

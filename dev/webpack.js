@@ -104,6 +104,9 @@ let wpConf = {
     enforceExtension: false,
     enforceModuleExtension: false
   },
+  performance: {
+    hints: false
+  },
   resolveLoader: {
     modules: [nodeModulesRoot],
     descriptionFiles: ['package.json'],

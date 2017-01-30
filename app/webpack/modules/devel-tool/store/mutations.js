@@ -24,6 +24,5 @@ export default {
   [types.SET_ACTIVE_PANEL_NAME] (state, payload) {
     state.activePanelName = payload
   },
-
 };
 // NOTICE: The semicolon is necessary here due to limitations in Buble transpiler.

@@ -12,12 +12,10 @@ Vue.use(Vuex)
 /**
  *
  */
-export default function(data) {
-  return new Vuex.Store({
-    mutations,
-    getters,
-    actions,
-    state: state(data),
-    strict: false,
-  })
-}
+export default new Vuex.Store({
+  mutations,
+  getters,
+  actions,
+  state,
+  strict: false,
+})

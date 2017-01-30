@@ -35,5 +35,4 @@ export default {
 
     commit(types.SET_ACTIVE_PANEL_NAME, panelName)
   },
-
 }

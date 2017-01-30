@@ -2,10 +2,10 @@
 namespace Webird\Auth;
 
 use Phalcon\DI,
-    OAuth\Common\Storage\TokenStorageInterface,
-    OAuth\Common\Token\TokenInterface,
-    OAuth\Common\Storage\Exception\TokenNotFoundException,
-    OAuth\Common\Storage\Exception\AuthorizationStateNotFoundException;
+use OAuth\Common\Storage\TokenStorageInterface;
+use OAuth\Common\Token\TokenInterface;
+use OAuth\Common\Storage\Exception\TokenNotFoundException;
+use OAuth\Common\Storage\Exception\AuthorizationStateNotFoundException;
 
 /**
  * Stores a token in a PHP session.

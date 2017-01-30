@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Acl;
 
-use Phalcon\Mvc\User\Component,
-    Phalcon\Acl\Role as AclRole,
-    Phalcon\Acl\Resource as AclResource,
-    Webird\Models\Roles,
-    Webird\Acl\Adapter\Memory as AclMemory;
+use Phalcon\Mvc\User\Component;
+use Phalcon\Acl\Role as AclRole;
+use Phalcon\Acl\Resource as AclResource;
+use Webird\Models\Roles;
+use Webird\Acl\Adapter\Memory as AclMemory;
 
 /**
  * Webird\Acl\Acl

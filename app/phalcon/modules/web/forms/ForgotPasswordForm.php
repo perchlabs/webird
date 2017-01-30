@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Modules\Web\Forms;
 
-use Phalcon\Forms\Form,
-    Phalcon\Forms\Element\Text,
-    Phalcon\Forms\Element\Submit,
-    Phalcon\Validation\Validator\PresenceOf,
-    Phalcon\Validation\Validator\Email;
+use Phalcon\Forms\Form;
+use Phalcon\Forms\Element\Text;
+use Phalcon\Forms\Element\Submit;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Email;
 
 /**
  * Form for requesting a password reset

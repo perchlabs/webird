@@ -1,14 +1,13 @@
 <?php
 namespace Webird\Cli;
 
-use Phalcon\CLI\Task As PhalconTask,
-    GetOptionKit\OptionCollection,
-    GetOptionKit\OptionParser,
-    GetOptionKit\Exception\RequireValueException,
-    GetOptionKit\Exception\InvalidOptionException,
-    Webird\CLI\Exception\ArgumentValidationException,
-    Webird\CLI\Exception\PrintHelpException;
-
+use Phalcon\CLI\Task As PhalconTask;
+use GetOptionKit\OptionCollection;
+use GetOptionKit\OptionParser;
+use GetOptionKit\Exception\RequireValueException;
+use GetOptionKit\Exception\InvalidOptionException;
+use Webird\CLI\Exception\ArgumentValidationException;
+use Webird\CLI\Exception\PrintHelpException;
 
 // TODO, FIXME: Review if webUser, webGroup variables are still needed
 

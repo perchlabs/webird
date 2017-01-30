@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Modules\Admin\Controllers;
 
-use Webird\Mvc\Controller,
-    Webird\Models\Roles,
-    Webird\Models\Permissions;
+use Webird\Mvc\Controller;
+use Webird\Models\Roles;
+use Webird\Models\Permissions;
 
 /**
  * View and define permissions for the various role levels.

@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Mvc\Model\Behavior;
 
-use Phalcon\Mvc\ModelInterface,
-    Phalcon\Mvc\Model\Behavior,
-    Phalcon\Mvc\Model\BehaviorInterface,
-    Webird\Models\Audit,
-    Webird\Models\AuditDetail;
+use Phalcon\Mvc\ModelInterfac;
+use Phalcon\Mvc\Model\Behavior;
+use Phalcon\Mvc\Model\BehaviorInterface;
+use Webird\Models\Audit;
+use Webird\Models\AuditDetail;
 
 /**
  * Phalcon\Mvc\Model\Behavior\Blameable

@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Logger\Adapter;
 
-use Phalcon\Logger\Adapter,
-    Phalcon\Logger\AdapterInterface,
-    Webird\Logger\Formatter\Firelogger as Formatter;
+use Phalcon\Logger\Adapter;
+use Phalcon\Logger\AdapterInterface;
+use Webird\Logger\Formatter\Firelogger as Formatter;
 
 /**
  * Phalcon\Logger\Adapter\Firelogger

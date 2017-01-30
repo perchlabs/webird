@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Modules\Cli\Tasks;
 
-use Phalcon\DI,
-    Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler,
-    Phalcon\Mvc\View\Engine\Volt,
-    Webird\CLI\Task,
-    Webird\Locale\Compiler as LocaleCompiler,
-    Webird\Locale\CompilerException as LocaleCompilerException;
+use Phalcon\DI;
+use Phalcon\Mvc\View\Engine\Volt\Compiler as Compiler;
+use Phalcon\Mvc\View\Engine\Volt;
+use Webird\CLI\Task;
+use Webird\Locale\Compiler as LocaleCompiler;
+use Webird\Locale\CompilerException as LocaleCompilerException;
 
 /**
  * Task for Build

@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Plugins;
 
-use Phalcon\Db\Profiler as Profiler,
-    Phalcon\DI\Injectable as DIInjectable,
-    Phalcon\Assets\Inline\Js as InlineJs,
-    Phalcon\Events\Event,
-    Phalcon\Mvc\Dispatcher,
-    Phalcon\Mvc\User\Plugin;
+use Phalcon\Db\Profiler as Profiler;
+use Phalcon\DI\Injectable as DIInjectable;
+use Phalcon\Assets\Inline\Js as InlineJs;
+use Phalcon\Events\Event;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\User\Plugin;
 
 /**
  *

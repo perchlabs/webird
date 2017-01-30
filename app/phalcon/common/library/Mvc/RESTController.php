@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Controllers;
 
-use Phalcon\Mvc\Controller,
-    Phalcon\Http\Response as Response,
-    Webird\Mvc\Controller;
+use Phalcon\Mvc\Controller;
+use Phalcon\Http\Response as Response;
+use Webird\Mvc\Controller;
 
 /**
  *

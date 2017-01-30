@@ -1,10 +1,10 @@
 <?php
 namespace Webird;
 
-use Phalcon\DI,
-    Phalcon\Mvc\ModuleDefinitionInterface,
-    Phalcon\Events\Manager as EventsManager,
-    Webird\Mvc\View;
+use Phalcon\DI;
+use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Events\Manager as EventsManager;
+use Webird\Mvc\View;
 
 /**
  * Module

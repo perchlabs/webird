@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Mvc\Model\Behavior;
 
-use Phalcon\Mvc\ModelInterface,
-    Phalcon\Mvc\Model\Behavior,
-    Phalcon\Mvc\Model\BehaviorInterface,
-    Phalcon\Mvc\Model\Message,
-    Phalcon\Mvc\Model\Relation;
+use Phalcon\Mvc\ModelInterface;
+use Phalcon\Mvc\Model\Behavior;
+use Phalcon\Mvc\Model\BehaviorInterface;
+use Phalcon\Mvc\Model\Message;
+use Phalcon\Mvc\Model\Relation;
 
 /**
  * Webird\Mvc\Model\Behavior\SoftDelete

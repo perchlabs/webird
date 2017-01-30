@@ -1,9 +1,9 @@
 <?php
 namespace Webird\CLI;
 
-use Phalcon\CLI\Console as PhalconConsole,
-    Webird\CLI\Exception\ArgumentValidationException,
-    Webird\CLI\Exception\PrintHelpException;
+use Phalcon\CLI\Console as PhalconConsole;
+use Webird\CLI\Exception\ArgumentValidationException;
+use  Webird\CLI\Exception\PrintHelpException;
 
 /**
  * Console class for all CLI applications

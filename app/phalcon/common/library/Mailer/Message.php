@@ -14,10 +14,9 @@
  */
 namespace Webird\Mailer;
 
-use Swift_ByteStream_FileByteStream as FileByteStream,
-    Swift_Attachment as Attachment,
-    Swift_Image as Image;
-
+use Swift_ByteStream_FileByteStream as FileByteStream;
+use Swift_Attachment as Attachment;
+use Swift_Image as Image;
 
 /**
  * Class Message

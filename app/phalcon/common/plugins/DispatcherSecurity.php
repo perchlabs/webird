@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Plugins;
 
-use Phalcon\Events\Event,
-    Phalcon\Mvc\Dispatcher,
-    Phalcon\Mvc\User\Plugin;
+use Phalcon\Events\Event;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\User\Plugin;
 
 /**
  * Security Plugin to be attached to a \Phalcon\Mvc\Dispatcher object

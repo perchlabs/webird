@@ -1,15 +1,15 @@
 <?php
 namespace Webird\Modules\Web\Forms;
 
-use Phalcon\Forms\Form,
-    Phalcon\Forms\Element\Text,
-    Phalcon\Forms\Element\Password,
-    Phalcon\Forms\Element\Submit,
-    Phalcon\Forms\Element\Check,
-    Phalcon\Forms\Element\Hidden,
-    Phalcon\Validation\Validator\PresenceOf,
-    Phalcon\Validation\Validator\Email,
-    Phalcon\Validation\Validator\Identical;
+use Phalcon\Forms\Form;
+use Phalcon\Forms\Element\Text;
+use Phalcon\Forms\Element\Password;
+use Phalcon\Forms\Element\Submit;
+use Phalcon\Forms\Element\Check;
+use Phalcon\Forms\Element\Hidden;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\Identical;
 
 /**
  * Form for user signin

@@ -1,8 +1,8 @@
 <?php
 namespace Webird\Session\Adapter;
 
-use Phalcon\Db,
-    Phalcon\Db\AdapterInterface as DbAdapter;
+use Phalcon\Db;
+use Phalcon\Db\AdapterInterface as DbAdapter;
 
 /**
  * Read-only session access

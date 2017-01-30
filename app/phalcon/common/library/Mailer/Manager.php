@@ -14,14 +14,14 @@
  */
 namespace Webird\Mailer;
 
-use Phalcon\Config,
-    Phalcon\Mvc\User\Component,
-    Phalcon\Mvc\View\Simple as ViewSimple,
-    Webird\Mailer\Message,
-    Swift_SmtpTransport as SmtpTransport,
-    Swift_MailTransport as MailTransport,
-    Swift_SendmailTransport as SendmailTransport,
-    Swift_Mailer as Mailer;
+use Phalcon\Config;
+use Phalcon\Mvc\User\Component;
+use Phalcon\Mvc\View\Simple as ViewSimple;
+use Webird\Mailer\Message;
+use Swift_SmtpTransport as SmtpTransport;
+use Swift_MailTransport as MailTransport;
+use Swift_SendmailTransport as SendmailTransport;
+use Swift_Mailer as Mailer;
 
 /**
  * Class Manager

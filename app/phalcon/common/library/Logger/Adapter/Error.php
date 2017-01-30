@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Logger\Adapter;
 
-use Phalcon\Logger\Adapter,
-    Phalcon\Logger\AdapterInterface,
-    Phalcon\Logger\Formatter\Line as Formatter;
+use Phalcon\Logger\Adapter;
+use Phalcon\Logger\AdapterInterface;
+use Phalcon\Logger\Formatter\Line as Formatter;
 
 /**
  * Webird\Logger\Adapter\Error

@@ -1,6 +1,6 @@
 <?php
-use Phalcon\DI,
-    Phalcon\Mvc\Application;
+use Phalcon\DI;
+use Phalcon\Mvc\Application;
 
 if (!defined('ENV')) {
   error_log('Error: The application ENV constant is not set.');

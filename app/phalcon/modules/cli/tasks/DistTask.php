@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Modules\Cli\Tasks;
 
-use React\EventLoop\Factory as EventLoopFactory,
-    Webird\CLI\Process,
-    Webird\CLI\Task;
+use React\EventLoop\Factory as EventLoopFactory;
+use Webird\CLI\Process;
+use Webird\CLI\Task;
 
 /**
  *

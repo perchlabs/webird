@@ -1,12 +1,12 @@
 <?php
 namespace Webird\Modules\Cli\Tasks;
 
-use Webird\Models\Users,
-    Webird\Models\Roles,
-    Webird\Models\PasswordChanges,
-    Webird\Models\EmailConfirmations,
-    Webird\CLI\Task,
-    Webird\CLI\Exception\ArgumentValidationException;
+use Webird\Models\Users;
+use Webird\Models\Roles;
+use Webird\Models\PasswordChanges;
+use Webird\Models\EmailConfirmations;
+use Webird\CLI\Task;
+use Webird\CLI\Exception\ArgumentValidationException;
 
 /**
  * Task for user functions

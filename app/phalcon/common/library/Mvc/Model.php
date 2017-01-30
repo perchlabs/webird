@@ -1,8 +1,8 @@
 <?php
 namespace Webird\Mvc;
 
-use Phalcon\Mvc\Model as PhModel,
-    Webird\Mvc\Model\Traits\SoftDeleteModelTrait;
+use Phalcon\Mvc\Model as PhModel;
+use Webird\Mvc\Model\Traits\SoftDeleteModelTrait;
 
 /**
  *

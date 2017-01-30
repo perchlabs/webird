@@ -1,10 +1,10 @@
 <?php
 namespace Webird\Modules\Web;
 
-use Phalcon\DI,
-    Phalcon\Loader,
-    Phalcon\DiInterface,
-    Webird\Module as ModuleBase;
+use Phalcon\DI;
+use Phalcon\Loader;
+use Phalcon\DiInterface;
+use Webird\Module as ModuleBase;
 
 /**
  * Module for basic web needs

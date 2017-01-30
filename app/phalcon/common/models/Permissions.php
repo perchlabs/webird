@@ -1,9 +1,9 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Validation,
-    Phalcon\Validation\Validator\Regex as RegexValidator,
-    Webird\Mvc\Model;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Regex as RegexValidator;
+use Webird\Mvc\Model;
 
 /**
  * Permissions

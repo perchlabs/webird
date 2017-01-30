@@ -1,8 +1,8 @@
 <?php
 namespace Webird\Modules\Api\Controllers;
 
-use Phalcon\Http\Response as Response,
-    Webird\Mvc\Controller;
+use Phalcon\Http\Response as Response;
+use Webird\Mvc\Controller;
 
 /**
  * Display Helloworld Api data.

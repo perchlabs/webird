@@ -1,10 +1,10 @@
 <?php
 namespace Webird\Models;
 
-use Phalcon\Validation,
-    Phalcon\Validation\Validator\Uniqueness as UniquenessValidator,
-    Webird\Mvc\Model,
-    Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Uniqueness as UniquenessValidator;
+use Webird\Mvc\Model;
+use Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
 
 /**
  * Webird\Models\Users

@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Modules\Web\Forms;
 
-use Phalcon\Forms\Form,
-    Phalcon\Forms\Element\Password,
-    Phalcon\Validation\Validator\PresenceOf,
-    Phalcon\Validation\Validator\StringLength,
-    Phalcon\Validation\Validator\Confirmation;
+use Phalcon\Forms\Form;
+use Phalcon\Forms\Element\Password;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\StringLength;
+use Phalcon\Validation\Validator\Confirmation;
 
 /**
  * Form for changing user password

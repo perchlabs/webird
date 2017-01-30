@@ -1,7 +1,7 @@
 <?php
-use Phalcon\DI,
-    Phalcon\Exception As PhalconException,
-    Webird\Cli\Exception\ArgumentValidationException;
+use Phalcon\DI;
+use Phalcon\Exception As PhalconException;
+use Webird\Cli\Exception\ArgumentValidationException;
 
 if (php_sapi_name() !== "cli") {
     error_log('Error: The CLI interface is not being called from the command line.');

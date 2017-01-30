@@ -1,11 +1,11 @@
 <?php
 namespace Webird\Auth;
 
-use Phalcon\Mvc\User\Component,
-    Webird\Models\Users,
-    Webird\Models\RememberTokens,
-    Webird\Models\SuccessSignins,
-    Webird\Models\FailedSignins;
+use Phalcon\Mvc\User\Component;
+use Webird\Models\Users;
+use Webird\Models\RememberTokens;
+use Webird\Models\SuccessSignins;
+use Webird\Models\FailedSignins;
 
 /**
  * Webird\Auth\Auth

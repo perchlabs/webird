@@ -1,16 +1,16 @@
 <?php
 namespace Webird\Modules\Admin\Forms;
 
-use Phalcon\Forms\Form,
-    Phalcon\Forms\Element\Text,
-    Phalcon\Forms\Element\Textarea,
-    Phalcon\Forms\Element\Hidden,
-    Phalcon\Forms\Element\Select,
-    Phalcon\Forms\Element\Check,
-    Phalcon\Forms\Element\Submit,
-    Phalcon\Validation\Validator\PresenceOf,
-    Phalcon\Validation\Validator\Email,
-    Webird\Models\Roles;
+use Phalcon\Forms\Form;
+use Phalcon\Forms\Element\Text;
+use Phalcon\Forms\Element\Textarea;
+use Phalcon\Forms\Element\Hidden;
+use Phalcon\Forms\Element\Select;
+use Phalcon\Forms\Element\Check;
+use Phalcon\Forms\Element\Submit;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Email;
+use Webird\Models\Roles;
 
 /**
  * Form for modifying an user

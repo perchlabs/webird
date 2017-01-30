@@ -57,7 +57,7 @@ for (const commonName in appConfig.commons) {
   commonsChunkPluginArr.push(new CommonsChunkPlugin({
     name    : `commons/${commonName}`,
     filename: 'js/[name].js',
-    chunks  : entryArrPath
+    chunks  : entryArrPath,
   }));
 }
 
@@ -69,7 +69,7 @@ const bubbleOptions = {
   transforms: {
     modules: false,
     forOf: false,
-  }
+  },
 }
 
 /**
@@ -92,7 +92,7 @@ const wpConf = {
     mainFiles: ['index'],
     alias: {
       underscore: 'lodash',
-      highlight: 'highlight.js/lib/highlight'
+      highlight: 'highlight.js/lib/highlight',
     },
     extensions: [
       '.js',
@@ -101,10 +101,10 @@ const wpConf = {
       '.css',
     ],
     enforceExtension: false,
-    enforceModuleExtension: false
+    enforceModuleExtension: false,
   },
   performance: {
-    hints: false
+    hints: false,
   },
   resolveLoader: {
     modules: [nodeModulesRoot],
@@ -114,7 +114,7 @@ const wpConf = {
     extensions: ['.js'],
     enforceExtension: false,
     enforceModuleExtension: false,
-    moduleExtensions: ['-loader']
+    moduleExtensions: ['-loader'],
   },
   plugins: [
     new DefinePlugin({
@@ -126,7 +126,7 @@ const wpConf = {
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
     new ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
     }),
     new LoaderOptionsPlugin({
       options: {
@@ -148,33 +148,33 @@ const wpConf = {
         query: bubbleOptions,
       }, {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
       }, {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       }, {
         test: /\.yml$/,
-        loaders: ['json', 'yaml']
+        loaders: ['json', 'yaml'],
       }, {
         test: /\.po$/,
         loaders: [
           'json',
-          { loader: 'po', query: { format: 'jed1.x'} }
+          { loader: 'po', query: { format: 'jed1.x'} },
         ]
       }, {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
-        loaders: ['style', 'css', 'postcss']
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
+        loaders: ['style', 'css', 'postcss'],
       }, {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url?prefix=img/&limit=8192'
+        loader: 'url?prefix=img/&limit=8192',
       }, {
       }, {
         test: /\.(png|jpg|gif)$/,
         loader: 'url',
         query: {
           prefix: 'img/',
-          limit: '8192'
+          limit: '8192',
         }
       }, {
         test: /\.(woff|woff2)$/,
@@ -182,28 +182,28 @@ const wpConf = {
         query: {
           name: 'fonts/[hash].[ext]',
           limit: '10000',
-          mimetype: 'application/font-woff'
+          mimetype: 'application/font-woff',
         }
       }, {
         test: /\.eot$/,
         loader: 'file',
         query: {
-          name: 'fonts/[hash].[ext]'
-        }
+          name: 'fonts/[hash].[ext]',
+        },
       }, {
         test: /\.ttf$/,
         loader: 'file',
         query: {
-          name: 'fonts/[hash].[ext]'
-        }
+          name: 'fonts/[hash].[ext]',
+        },
       }, {
         test: /\.svg$/,
         loader: 'file',
         query: {
-          name: 'fonts/[hash].[ext]'
-        }
-      }
-    ]
+          name: 'fonts/[hash].[ext]',
+        },
+      },
+    ],
   },
 };
 
@@ -214,7 +214,7 @@ const wpConf = {
   return [
     require('postcss-import')({
       // addDependencyTo: webpack,
-      path: [themeRoot, appModulesRoot, nodeModulesRoot]
+      path: [themeRoot, appModulesRoot, nodeModulesRoot],
     }),
     require('postcss-url')(),
     require('postcss-cssnext')({
@@ -225,7 +225,7 @@ const wpConf = {
         // Setup watches on these files
         onImport: function(files) {
           files.forEach(this.addDependency);
-        }.bind(this)
+        }.bind(this),
       }
     }),
     require('postcss-browser-reporter')(),
@@ -274,7 +274,7 @@ function getNamesFromDirectory(filepath) {
       colors: true,
       children: false,
       chunks: false,
-      modules: false
+      modules: false,
     }
   }).listen(webpackPort, '0.0.0.0', function(err) {
     if (err) {
@@ -294,7 +294,7 @@ function build() {
         debug: false
       }),
       new DedupePlugin(),
-      new UglifyJsPlugin()
+      new UglifyJsPlugin(),
     ]);
 
     webpack(wpConf, function(err, stats) {

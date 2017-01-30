@@ -9,17 +9,41 @@
 </template>
 
 <script>
+// System
 import { mapGetters, mapActions } from 'vuex'
 
+/**
+ *
+ */
 export default {
-  computed: mapGetters([
-    'evenOrOdd'
-  ]),
-  methods: mapActions([
-    'increment',
-    'decrement',
-    'incrementIfOdd',
-    'incrementAsync'
-  ])
+
+  /**
+   *
+   */
+  computed: {
+
+    /**
+     *
+     */
+    ...mapGetters([
+      'evenOrOdd',
+    ]),
+  },
+
+  /**
+   *
+   */
+  methods: {
+
+    /**
+     *
+     */
+    ...mapActions([
+      'increment',
+      'decrement',
+      'incrementIfOdd',
+      'incrementAsync',
+    ]),
+  },
 }
 </script>

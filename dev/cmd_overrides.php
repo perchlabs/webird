@@ -2,5 +2,5 @@
 return [
     'build'  => 'build',
     'nginx'  => 'dev::nginx',
-    'server' => 'dev::server'
+    'server' => 'dev::server',
 ];

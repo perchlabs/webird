@@ -8,16 +8,36 @@
 </template>
 
 <script>
+
+  /**
+   *
+   */
   export default {
+
+    /**
+     *
+     */
     data() {
       return {
-        counter: 0
+        counter: 0,
       }
     },
+
+    /**
+     *
+     */
     methods: {
+
+      /**
+       *
+       */
       decrease: function() {
         this.counter--
       },
+
+      /**
+       *
+       */
       increase: function() {
         this.counter++
       }

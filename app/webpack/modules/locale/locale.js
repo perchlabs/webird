@@ -4,7 +4,7 @@ import Jed from 'jed'
  *
  */
 // LOCALE_ROOT is a constant defined in webpack config and is evaluated at build time
-let localeConfig = require(`${LOCALE_ROOT}/config`)
+const localeConfig = require(`${LOCALE_ROOT}/config`)
 
 /**
  *
@@ -35,28 +35,28 @@ export default {
    */
   ngettext: function(msg1, msg2, n) {
     return i18n.ngettext(msg1, msg2, n)
-  }
+  },
 }
 
 /**
  *
  */
 function initExecutor(resolve, reject) {
-  let localeDefault = localeConfig['default']
-  let map           = localeConfig['map']
+  const localeDefault = localeConfig['default']
+  const map           = localeConfig['map']
 
-  let langRaw = window.navigator.userLanguage || window.navigator.language
-  let langParts = langRaw.replace('-', '_').split('_')
+  const langRaw = window.navigator.userLanguage || window.navigator.language
+  const langParts = langRaw.replace('-', '_').split('_')
 
-  let language = langParts[0]
-  let country = langParts.length > 1 ? '_' + langParts[1].toUpperCase() : ''
-  let locale = `${language}${country}`
+  const language = langParts[0]
+  const country = langParts.length > 1 ? '_' + langParts[1].toUpperCase() : ''
+  const locale = `${language}${country}`
 
   let waitForLangChunk
   try {
     waitForLangChunk = getLangLoader(locale)
   } catch (eLocale) {
-    let localeNext = map.hasOwnProperty(language) ? map[language] : localeDefault
+    const localeNext = map.hasOwnProperty(language) ? map[language] : localeDefault
     waitForLangChunk = getLangLoader(localeNext)
   }
   waitForLangChunk(function(messages) {

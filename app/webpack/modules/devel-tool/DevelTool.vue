@@ -111,7 +111,7 @@
     data() {
       return {
         panels: ['config', 'database', 'views', 'request', 'server',],
-        shortcut: 'ctrl+y'
+        shortcut: 'ctrl+y',
       }
     },
 

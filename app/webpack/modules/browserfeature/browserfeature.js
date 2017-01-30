@@ -27,7 +27,7 @@ let test = {
   },
   intl: function() {
     return window.Intl && typeof window.Intl === 'object'
-  }
+  },
 }
 
 export default {

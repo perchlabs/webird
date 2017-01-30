@@ -3,7 +3,7 @@ fetch('/features/fetch/api', {
   'method': 'GET',
   'credentials': 'include',
   'same-origin': true,
-  'no-cors': true
+  'no-cors': true,
 })
 .then(function(response) {
   if (response.status !== 200) {

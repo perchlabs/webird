@@ -76,8 +76,6 @@ class Devel extends Plugin
      */
     public function beforeRenderView($event, $view, $file)
     {
-        error_log('Debug: beforeRenderView');
-
         $router = $this->getDI()
             ->getRouter();
         $config = $this->getDI()
@@ -128,7 +126,7 @@ class Devel extends Plugin
                 'request'  => $this->getRequestData(),
                 'database' => $this->getDbData(),
                 'views'    => $this->getViewsData(),
-                'config'   => $this->getConfigData()
+                'config'   => $this->getConfigData(),
             ],
             'measurement' => [
               'loadTime'    => round(($endTime - $this->startTime), 6),
@@ -147,7 +145,7 @@ class Devel extends Plugin
     {
         return [
             'SERVER' => $_SERVER,
-            'headersList' => headers_list()
+            'headersList' => headers_list(),
         ];
     }
 
@@ -168,7 +166,7 @@ class Devel extends Plugin
             'COOKIE'  => $_COOKIE,
             'GET'     => $_GET,
             'POST'    => $_POST,
-            'FILES'   => $_FILES
+            'FILES'   => $_FILES,
         ];
     }
 
@@ -197,7 +195,7 @@ class Devel extends Plugin
     public function getViewsData()
     {
         return [
-            'viewsRendered' => $this->getRenderedViews()
+            'viewsRendered' => $this->getRenderedViews(),
         ];
     }
 

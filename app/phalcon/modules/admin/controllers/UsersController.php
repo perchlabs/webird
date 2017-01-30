@@ -60,14 +60,14 @@ class UsersController extends Controller
         if (count($users) == 0) {
             $this->flash->notice($this->translate->gettext('The search did not find any users'));
             return $this->dispatcher->forward([
-                "action" => "index"
+                "action" => "index",
             ]);
         }
 
         $paginator = new Paginator([
             "data" => $users,
             "limit" => 10,
-            "page" => $numberPage
+            "page" => $numberPage,
         ]);
 
         $this->view->page = $paginator->getPaginate();
@@ -92,7 +92,7 @@ class UsersController extends Controller
                     'name' => $this->request->getPost('name', 'striptags'),
                     'rolesId' => $this->request->getPost('rolesId', 'int'),
                     'email' => $this->request->getPost('email', 'email'),
-                    'active' => $active
+                    'active' => $active,
                 ]);
 
                 if ($user->save()) {
@@ -130,13 +130,13 @@ class UsersController extends Controller
         if (!$user) {
             $this->flash->error($this->translate->gettext('User was not found'));
             return $this->dispatcher->forward([
-                'action' => 'index'
+                'action' => 'index',
             ]);
         }
         $this->view->user = $user;
 
         $form = new UsersForm($user, [
-            'edit' => true
+            'edit' => true,
         ]);
         $form->setDI($this->getDI());
         $this->view->form = $form;
@@ -148,7 +148,7 @@ class UsersController extends Controller
                     'rolesId' => $this->request->getPost('rolesId', 'int'),
                     'email' => $this->request->getPost('email', 'email'),
                     'banned' => $this->request->getPost('banned'),
-                    'active' => $this->request->getPost('active')
+                    'active' => $this->request->getPost('active'),
                 ]);
 
                 if (!$user->save()) {
@@ -173,7 +173,7 @@ class UsersController extends Controller
         if (!$user) {
             $this->flash->error($this->translate->gettext('User was not found'));
             return $this->dispatcher->forward([
-                'action' => 'index'
+                'action' => 'index',
             ]);
         }
 
@@ -184,7 +184,7 @@ class UsersController extends Controller
         }
 
         return $this->dispatcher->forward([
-            'action' => 'index'
+            'action' => 'index',
         ]);
     }
 

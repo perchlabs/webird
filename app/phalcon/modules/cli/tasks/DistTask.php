@@ -27,12 +27,12 @@ HELPMSG;
             'help' => $help,
             'args' => [
                 'required' => [],
-                'optional' => []
+                'optional' => [],
             ],
             'opts' => [
                 'w|wsport:'    => "websockets listen on port (default is {$config->app->wsPort}).",
-                'z|zmqport:' => "zmq listen on port (default is {$config->app->zmqPort})."
-            ]
+                'z|zmqport:' => "zmq listen on port (default is {$config->app->zmqPort}).",
+            ],
         ]);
 
         $appDir = $this->config->path->appDir;
@@ -58,9 +58,9 @@ HELPMSG;
             'title' => 'Generate a dist (distribution/production) nginx configuration',
             'args' => [
                 'required' => [],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
 
         echo $this->getNginxConfig();

@@ -23,9 +23,9 @@ class BuildTask extends Task
             'title' => 'Build system',
             'args' => [
                 'required' => [],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
 
         // Fix for missing services in CLI services.  If a service is missing then it will cause compiled Volt
@@ -323,7 +323,7 @@ WEBIRD_ENTRY;
                     'locale'         => $locale,
                     'domains'        => $this->config->locale->domains,
                     'localeDir'      => $this->config->path->localeDir,
-                    'localeCacheDir' => $localeCacheDir
+                    'localeCacheDir' => $localeCacheDir,
                 ]);
             } catch (LocaleCompilerException $e) {
                 error_log($e->getMessage());

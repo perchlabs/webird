@@ -152,7 +152,7 @@ $di->setShared('db', function() {
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname'   => $config->database->dbname,
-        'charset'  => 'utf8'
+        'charset'  => 'utf8',
     ]);
 
     if (DEVELOPING) {
@@ -217,7 +217,7 @@ $di->set('volt', function($view) {
             }
 
             return "{$voltCacheDir}{$templateFrag}.php";
-        }
+        },
     ]);
 
     $compiler = $volt->getCompiler();
@@ -242,7 +242,7 @@ $di->set('viewSimple', function() {
     $view = new ViewSimple();
     $view->setDI($this);
     $view->registerEngines([
-        '.volt' => 'volt'
+        '.volt' => 'volt',
     ]);
     $view->setViewsDir($config->path->viewsSimpleDir);
     return $view;
@@ -292,7 +292,7 @@ $di->setShared('translate', function() {
         'supported'      => $locale->getSupportedLocales(),
         'domains'        => $config->locale->domains,
         'localeDir'      => $config->path->localeDir,
-        'localeCacheDir' => $config->path->localeCacheDir
+        'localeCacheDir' => $config->path->localeCacheDir,
     ]);
     return $gettext;
 });

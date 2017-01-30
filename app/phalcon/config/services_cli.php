@@ -10,7 +10,7 @@ use Webird\Session\Adapter\DatabaseReader as DatabaseSessionReader;
 $di->setShared('console', function() {
     $console = new Console($this);
     $console->registerModules([
-        'cli' => ['className' => 'Webird\Modules\Cli\Module']
+        'cli' => ['className' => 'Webird\Modules\Cli\Module'],
     ]);
 
     return $console;

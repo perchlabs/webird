@@ -90,7 +90,7 @@ class EmailConfirmations extends Model
             ->getMailer()
             ->createMessageFromView('emailConfirmation', [
                 'extraMsg' => isset($this->extraMsg) ? $this->extraMsg : '',
-                'resetUrl' => 'confirm/' . $this->code
+                'resetUrl' => 'confirm/' . $this->code,
             ])
             ->to($this->user->email, $this->user->name)
             ->subject($subjectMsg);
@@ -104,7 +104,7 @@ class EmailConfirmations extends Model
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [
-            'alias' => 'user'
+            'alias' => 'user',
         ]);
 
         $this->skipAttributes(['extraMessage']);

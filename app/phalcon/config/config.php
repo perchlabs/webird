@@ -30,10 +30,10 @@ $config2 = new Config([
     'app' => [
         'uriPathPrefix'  => '/',
         'defaultPath'    => 'features',
-        'modules'        => ['cli', 'web', 'api', 'admin']
+        'modules'        => ['cli', 'web', 'api', 'admin'],
     ],
     'locale' => [
-        'domains' => ['phalcon']
+        'domains' => ['phalcon'],
     ],
     'path' => [
         // Typical Phalcon paths
@@ -51,23 +51,23 @@ $config2 = new Config([
         'voltCacheDir'   => $cacheDir . 'volt/',
         'localeCacheDir' => $cacheDir . 'locale/',
         // Third party dependency paths
-        'composerDir'    => $composerDir
+        'composerDir'    => $composerDir,
     ],
     'security' => [
-        'passwordMinLength' => 8
+        'passwordMinLength' => 8,
     ],
     'server' => [
         'domain'  => (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : '',
         'https'   => $https,
-        'proto'   => $https ? 'https' : 'http'
+        'proto'   => $https ? 'https' : 'http',
     ],
     'session' => [
         'table'          => 'session_data',
         'session_id'     => 'session_id',
         'data'           => 'data',
         'created_at'     => 'created_at',
-        'modified_at'    => 'modified_at'
-    ]
+        'modified_at'    => 'modified_at',
+    ],
 ]);
 
 // Merge it into main config

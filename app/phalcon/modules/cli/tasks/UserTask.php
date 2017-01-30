@@ -30,13 +30,13 @@ class UserTask extends Task
             'title' => 'Add a user with a permission role.',
             'args' => [
                 'required' => ['email', 'role'],
-                'optional' => []
+                'optional' => [],
             ],
             'opts' => [
                 'p|password:' => 'set user password (otherwise it will need to be on first login).',
                 'a|activate' => 'activate',
-                'E|send-email?' => 'send email confirmation with optional message'
-            ]
+                'E|send-email?' => 'send email confirmation with optional message',
+            ],
         ]);
         list($emailRaw, $roleRef) = $params['args'];
         $opts = $params['opts'];
@@ -79,7 +79,7 @@ class UserTask extends Task
             'rolesId' => $role->id,
             'email' => $email,
             'active' => $active,
-            'password' => $password
+            'password' => $password,
         ]);
 
         if (!$user->save()) {
@@ -108,9 +108,9 @@ class UserTask extends Task
             'title' => 'Delete a user by email or primary key.',
             'args' => [
                 'required' => ['user'],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
         list($userRef) = $params['args'];
 
@@ -134,14 +134,14 @@ class UserTask extends Task
             'title' => 'Modify or view status for a user by email or primary key.',
             'args' => [
                 'required' => ['user'],
-                'optional' => []
+                'optional' => [],
             ],
             'opts' => [
                 'r|role'                  => 'Set user permission role',
                 'a|active:'               => 'Set user active status',
                 'b|banned:'               => 'Set user banned status. A banned user is also deactivated',
-                'm|must-change-password:' => 'Set must change password status'
-            ]
+                'm|must-change-password:' => 'Set must change password status',
+            ],
         ]);
 
         list($userRef) = $params['args'];
@@ -198,9 +198,9 @@ class UserTask extends Task
             'title' => 'Change the password of an existing user by email or primary key.',
             'args' => [
                 'required' => ['user', 'new_password'],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
         list($userRef, $password) = $params['args'];
 
@@ -249,12 +249,12 @@ class UserTask extends Task
         if (ctype_digit($roleRef)) {
             $roleParam = [
                 'conditions' => 'id = ?0 AND active = ?1',
-                'bind' => [$roleRef, 'Y']
+                'bind' => [$roleRef, 'Y'],
             ];
         } else {
             $roleParam = [
                 'conditions' => 'name = ?0 AND active = ?1',
-                'bind' => [$roleRef, 'Y']
+                'bind' => [$roleRef, 'Y'],
             ];
         }
         if (($role = Roles::findFirst($roleParam)) === false) {

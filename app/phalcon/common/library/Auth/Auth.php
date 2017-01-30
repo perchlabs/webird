@@ -162,7 +162,7 @@ class Auth extends Component
         $this->session->set('auth-identity', [
             'id'    => $user->id,
             'email' => $user->email,
-            'role'  => $user->role->name
+            'role'  => $user->role->name,
         ]);
 
         if ($user->mustChangePassword == 'Y') {
@@ -207,8 +207,8 @@ class Auth extends Component
             'ipAddress = ?0 AND attempted >= ?1',
             'bind' => [
                 $this->request->getClientAddress(),
-                time() - 3600 * 6
-            ]
+                time() - 3600 * 6,
+            ],
         ]);
 
         switch ($attempts) {
@@ -280,8 +280,8 @@ class Auth extends Component
                     'usersId = ?0 AND token = ?1',
                     'bind' => [
                         $user->id,
-                        $token
-                    ]
+                        $token,
+                    ],
                 ]);
                 if ($remember) {
 

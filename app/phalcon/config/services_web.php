@@ -118,7 +118,7 @@ $di->set('googleOauthProvider', function () {
         'clientId'     => $configProvider->clientId,
         'clientSecret' => $configProvider->clientSecret,
         'redirectUri'  => $this->getUrl()->get('signin/oauth/google'),
-        'hostedDomain' => "$proto://$domain"
+        'hostedDomain' => "$proto://$domain",
     ]);
 });
 
@@ -129,6 +129,6 @@ $di->set('flash', function() {
     return new Flash([
         'error' => 'alert alert-danger',
         'success' => 'alert alert-success',
-        'notice' => 'alert alert-info'
+        'notice' => 'alert alert-info',
     ]);
 });

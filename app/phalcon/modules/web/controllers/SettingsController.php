@@ -39,7 +39,7 @@ class SettingsController extends Controller
             $this->flash->success($this->translate->gettext('You must be signed in to change the password'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 

@@ -25,37 +25,37 @@ class SigninForm extends Form
 
         // Email
         $email = new Text('email', [
-            'placeholder' => $t->gettext('Email')
+            'placeholder' => $t->gettext('Email'),
         ]);
         $email->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Email is required')
+                'message' => $t->gettext('Email is required'),
             ]),
             new Email([
-                'message' => $t->gettext('Email is not valid')
-            ])
+                'message' => $t->gettext('Email is not valid'),
+            ]),
         ]);
         $this->add($email);
 
         // Password
         $password = new Password('password', [
-            'placeholder' => $t->gettext('Password')
+            'placeholder' => $t->gettext('Password'),
         ]);
         $password->addValidator(new PresenceOf([
-            'message' => $t->gettext('Password is required')
+            'message' => $t->gettext('Password is required'),
         ]));
         $this->add($password);
 
         // Remember
         $remember = new Check('remember', [
-            'value' => $t->gettext('yes')
+            'value' => $t->gettext('yes'),
         ]);
         $remember->setLabel($t->gettext('Remember me'));
         $this->add($remember);
 
         // Submit
         $submit = new Submit('submit', [
-            'value' => $t->gettext('Go')
+            'value' => $t->gettext('Go'),
         ]);
         $this->add($submit);
     }

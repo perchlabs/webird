@@ -84,7 +84,7 @@ class Console extends PhalconConsole
                 'module' => $arguments['module'],
                 'task'   => $task,
                 'action' => $action,
-                'params' => $params
+                'params' => $params,
             ]);
         } catch (ArgumentValidationException $e) {
             $this->printHelpRecommend($e->getMessage());

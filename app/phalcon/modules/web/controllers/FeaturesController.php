@@ -45,7 +45,7 @@ class FeaturesController extends Controller
             'category' => 'kittensCategory',
             'title'    => 'big_title',
             'article'  => 'good',
-            'when'     => time()
+            'when'     => time(),
         ];
 
         $context = new ZMQContext();
@@ -72,7 +72,7 @@ class FeaturesController extends Controller
         if (isset($api) && $api == 'api') {
             $response = $this->getDI()->getResponse();
             $data = [
-                'this_is_data' => 'here_it_is'
+                'this_is_data' => 'here_it_is',
             ];
             $json = json_encode($data, JSON_PRETTY_PRINT);
 

@@ -32,9 +32,9 @@ HELPMSG;
             'help' => $help,
             'args' => [
                 'required' => [],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
 
         $devDir = $config->dev->path->devDir;
@@ -65,9 +65,9 @@ HELPMSG;
             'title' => 'Generate a dev (development) nginx configuration',
             'args' => [
                 'required' => [],
-                'optional' => []
+                'optional' => [],
             ],
-            'opts' => []
+            'opts' => [],
         ]);
 
         echo $this->getNginxConfig();

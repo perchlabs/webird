@@ -30,12 +30,12 @@ class Roles extends Model
         $this->hasMany('id', 'Webird\Models\Users', 'rolesId', [
             'alias' => 'users',
             'foreignKey' => [
-                'message' => 'Role cannot be deleted because it\'s used on Users'
-            ]
+                'message' => 'Role cannot be deleted because it\'s used on Users',
+            ],
         ]);
 
         $this->hasMany('id', 'Webird\Models\Permissions', 'rolesId', [
-            'alias' => 'permissions'
+            'alias' => 'permissions',
         ]);
     }
 }

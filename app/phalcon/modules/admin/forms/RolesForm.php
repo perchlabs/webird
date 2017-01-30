@@ -19,7 +19,8 @@ class RolesForm extends Form
      */
     public function initialize($entity = null, $options = null)
     {
-        $t = $this->getDI()->get('translate');
+        $t = $this->getDI()
+            ->getTranslate();
 
         if (isset($options['edit']) && $options['edit']) {
             $id = new Hidden('id');
@@ -30,26 +31,26 @@ class RolesForm extends Form
         $this->add($id);
 
         $name = new Text('name', [
-            'placeholder' => $t->gettext('Name')
+            'placeholder' => $t->gettext('Name'),
         ]);
         $name->setLabel($t->gettext('Name'));
         $name->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Name is required')
-            ])
+                'message' => $t->gettext('Name is required'),
+            ]),
         ]);
         $this->add($name);
 
         $active = new Select('active', [
             'Y' => $t->gettext('Yes'),
-            'N' => $t->gettext('No')
+            'N' => $t->gettext('No'),
         ]);
         $active->setLabel($t->gettext('Active'));
         $this->add($active);
 
         // Submit
         $submit = new Submit('submit', [
-            'value' => $t->gettext('Save')
+            'value' => $t->gettext('Save'),
         ]);
         $this->add($submit);
     }

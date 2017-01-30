@@ -36,57 +36,57 @@ class UsersForm extends Form
 
         // Name field
         $name = new Text('name', [
-            'placeholder' => $t->gettext('Name')
+            'placeholder' => $t->gettext('Name'),
         ]);
         $name->setLabel($t->gettext('Name'));
         $name->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Name is required')
-            ])
+                'message' => $t->gettext('Name is required'),
+            ]),
         ]);
         $this->add($name);
 
         // Email field
         $email = new Text('email', [
-            'placeholder' => $t->gettext('Email')
+            'placeholder' => $t->gettext('Email'),
         ]);
         $email->setLabel($t->gettext('Email'));
         $email->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Email is required')
+                'message' => $t->gettext('Email is required'),
             ]),
             new Email([
-                'message' => $t->gettext('Email is not valid')
-            ])
+                'message' => $t->gettext('Email is not valid'),
+            ]),
         ]);
         $this->add($email);
 
         // rolesId field
         $roles = Roles::find([
             'active = :active:',
-            'bind' => ['active' => 'Y']
+            'bind' => ['active' => 'Y'],
         ]);
         $role = new Select('rolesId', $roles, [
             'using' => [
                 'id',
-                'name'
+                'name',
             ],
             'useEmpty' => true,
             'emptyText' => '...',
-            'emptyValue' => ''
+            'emptyValue' => '',
         ]);
         $role->setLabel($t->gettext('Role'));
         $role->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('The user role must be set.')
-            ])
+                'message' => $t->gettext('The user role must be set.'),
+            ]),
         ]);
         $this->add($role);
 
         // active field
         $active = new Select('active', [
             'N' => $t->gettext('No'),
-            'Y' => $t->gettext('Yes')
+            'Y' => $t->gettext('Yes'),
         ]);
         $active->setLabel($t->gettext('Active'));
         $this->add($active);
@@ -94,21 +94,21 @@ class UsersForm extends Form
         // banned field
         $banned = new Select('banned', [
             'Y' => $t->gettext('Yes'),
-            'N' => $t->gettext('No')
+            'N' => $t->gettext('No'),
         ]);
         $banned->setLabel($t->gettext('Banned'));
         $this->add($banned);
 
         // emailActivationMsg field
         $emailExtraMsg = new Textarea('emailActivationMsg', [
-            'placeholder' => $t->gettext('Add text to send confirmation email.')
+            'placeholder' => $t->gettext('Add text to send confirmation email.'),
         ]);
         $emailExtraMsg->setLabel($t->gettext('Send activation email'));
         $this->add($emailExtraMsg);
 
         // Submit
         $submit = new Submit('submit', [
-            'value' => $t->gettext('Save')
+            'value' => $t->gettext('Save'),
         ]);
         $this->add($submit);
     }

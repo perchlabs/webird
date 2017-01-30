@@ -30,7 +30,7 @@ class Module extends ModuleBase
         $loader = new Loader();
         $loader->registerNamespaces([
             __NAMESPACE__ . '\\Tasks' => __DIR__ . '/tasks',
-            __NAMESPACE__             => __DIR__ . '/library'
+            __NAMESPACE__             => __DIR__ . '/library',
         ]);
         $loader->register();
     }

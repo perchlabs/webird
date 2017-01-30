@@ -140,7 +140,7 @@ class DispatcherSecurity extends Plugin
         if ($moduleCurrent == $moduleDestination) {
             $dispatcher->forward([
                 'controller' => $controller,
-                'action' => $action
+                'action' => $action,
             ]);
         } else {
             $pathArr = [];

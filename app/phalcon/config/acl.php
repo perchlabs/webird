@@ -2,11 +2,11 @@
 
 $private = [
     'cli' => [
-        'chat'        => ['open']
+        'chat'        => ['open'],
     ],
     'api' => [
         'users'       => ['list', 'count'],
-        'helloworld'  => ['index']
+        'helloworld'  => ['index'],
     ],
     'web' => [
         'index'       => [],
@@ -16,14 +16,14 @@ $private = [
         'privacy'     => ['index'],
         'terms'       => ['terms'],
         'settings'    => ['changePassword'],
-        'features'    => ['index', 'vue', 'vuex', 'websocket', 'postcss', 'fetch']
+        'features'    => ['index', 'vue', 'vuex', 'websocket', 'postcss', 'fetch'],
     ],
     'admin' => [
         'index'       => ['index'],
         'roles'       => ['index', 'search', 'edit', 'create', 'delete'],
         'permissions' => ['index'],
-        'users'       => ['index', 'search', 'create', 'edit', 'delete']
-    ]
+        'users'       => ['index', 'search', 'create', 'edit', 'delete'],
+    ],
 ];
 
 $public = [
@@ -33,11 +33,11 @@ $public = [
         'userspublic' => ['confirmEmail', 'resetPassword', 'forgotPassword'],
         'about'       => ['index'],
         'privacy'     => ['index'],
-        'terms'       => ['terms']
-    ]
+        'terms'       => ['terms'],
+    ],
 ];
 
 return [
     'private' => $private,
-    'public'  => $public
+    'public'  => $public,
 ];

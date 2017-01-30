@@ -46,7 +46,7 @@ class SuccessSignins extends Model
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [
-            'alias' => 'user'
+            'alias' => 'user',
         ]);
     }
 }

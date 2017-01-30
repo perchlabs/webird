@@ -154,7 +154,7 @@ abstract class Task extends PhalconTask
         // The final result to be used in Tasks
         $params = [
             'args' => $args,
-            'opts' => $opts
+            'opts' => $opts,
         ];
 
         return $params;

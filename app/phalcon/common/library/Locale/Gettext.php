@@ -54,7 +54,7 @@ class Gettext
                 'locale'          => $options['locale'],
                 'domains'         => $options['domains'],
                 'localeDir'       => $options['localeDir'],
-                'localeCacheDir'  => $options['localeCacheDir']
+                'localeCacheDir'  => $options['localeCacheDir'],
             ]);
         }
 

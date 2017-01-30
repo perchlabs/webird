@@ -11,14 +11,14 @@ $router->add('/signin/redirectoauth/([a-z]+)/([a-zA-Z0-9=+/]+)', [
     'controller'  => 'session',
     'action'      => 'signinRedirectOauth',
     'provider'    => 1,
-    'nonce'       => 2
+    'nonce'       => 2,
 ]);
 $router->add('/signin/oauth/([a-z]+)/:params', [
     'module'      => 'web',
     'controller'  => 'session',
     'action'      => 'signinOauth',
     'provider'    => 1,
-    'params'      => 2
+    'params'      => 2,
 ]);
 $router->add('/signin', 'session::signin');
 

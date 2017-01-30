@@ -34,7 +34,7 @@ try {
         ->handle([
             'module'     => 'cli',
             'defaultCmd' => 'server',
-            'params'     => $argv
+            'params'     => $argv,
         ]);
 }
 catch (PhalconException $e) {

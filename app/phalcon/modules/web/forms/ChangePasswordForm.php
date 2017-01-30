@@ -25,15 +25,15 @@ class ChangePasswordForm extends Form
         $password->setLabel($t->gettext('Password'));
         $password->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Password is required')
+                'message' => $t->gettext('Password is required'),
             ]),
             new StringLength([
                 'min' => $passwordMinLength,
-                'messageMinimum' => sprintf($t->gettext('Password is too short. Minimum %d characters'), $passwordMinLength)
+                'messageMinimum' => sprintf($t->gettext('Password is too short. Minimum %d characters'), $passwordMinLength),
             ]),
             new Confirmation([
                 'message' => $t->gettext('Password doesn\'t match confirmation'),
-                'with' => 'confirmPassword'
+                'with' => 'confirmPassword',
             ])
         ]);
         $this->add($password);
@@ -43,7 +43,7 @@ class ChangePasswordForm extends Form
         $confirmPassword->setLabel($t->gettext('Confirm Password'));
         $confirmPassword->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('The confirmation password is required')
+                'message' => $t->gettext('The confirmation password is required'),
             ])
         ]);
         $this->add($confirmPassword);

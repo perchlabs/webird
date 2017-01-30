@@ -50,13 +50,13 @@ class SessionController extends Controller
     //                 'name' => $this->request->getPost('name', 'striptags'),
     //                 'email' => $this->request->getPost('email'),
     //                 'password' => $this->security->hash($this->request->getPost('password')),
-    //                 'rolesId' => 2
+    //                 'rolesId' => 2,
     //             ]);
     //
     //             if ($user->save()) {
     //                 return $this->dispatcher->forward([
     //                     'controller' => 'index',
-    //                     'action' => 'index'
+    //                     'action' => 'index',
     //                 ]);
     //             }
     //
@@ -81,7 +81,7 @@ class SessionController extends Controller
                         $this->auth->check([
                             'email'    => $this->request->getPost('email'),
                             'password' => $this->request->getPost('password'),
-                            'remember' => $this->request->getPost('remember')
+                            'remember' => $this->request->getPost('remember'),
                         ]);
 
                         // Authentication is successful, redirect to default path.
@@ -143,7 +143,7 @@ class SessionController extends Controller
             $this->flash->error($this->translate->gettext('Security token is invalid.'));
             return $this->dispatcher->forward([
                 'controller' => 'session',
-                'action'     => 'signin'
+                'action'     => 'signin',
             ]);
         }
 

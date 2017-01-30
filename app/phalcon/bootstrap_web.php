@@ -55,7 +55,7 @@ $application = new Application($di);
 $application->registerModules([
     'web'   => ['className' => 'Webird\Modules\Web\Module'],
     'admin' => ['className' => 'Webird\Modules\Admin\Module'],
-    'api'   => ['className' => 'Webird\Modules\Api\Module']
+    'api'   => ['className' => 'Webird\Modules\Api\Module'],
 ]);
 
 try {

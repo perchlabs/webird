@@ -109,8 +109,8 @@ class Memory extends AclMemory
         $roles = Roles::find([
             'active = :active:',
             'bind' => [
-                'active' => 'Y'
-            ]
+                'active' => 'Y',
+            ],
         ]);
 
         foreach ($roles as $role) {

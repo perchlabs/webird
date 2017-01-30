@@ -263,7 +263,7 @@ class RESTController extends Controller
             503 => 'Service Unavailable',
             504 => 'Gateway Timeout',
             505 => 'HTTP Version Not Supported',
-            509 => 'Bandwidth Limit Exceeded'
+            509 => 'Bandwidth Limit Exceeded',
         ];
 
         $result = (isset($codes[$code])) ?

@@ -32,8 +32,8 @@ class SignUpForm extends Form
         $name->setLabel($t->gettext('Name'));
         $name->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Full name is required')
-            ])
+                'message' => $t->gettext('Full name is required'),
+            ]),
         ]);
         $this->add($name);
 
@@ -42,11 +42,11 @@ class SignUpForm extends Form
         $email->setLabel($t->gettext('E-Mail'));
         $email->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('Email is required')
+                'message' => $t->gettext('Email is required'),
             ]),
             new Email([
-                'message' => t$->gettext('Email is not valid')
-            ])
+                'message' => t$->gettext('Email is not valid'),
+            ]),
         ]);
         $this->add($email);
 
@@ -55,16 +55,16 @@ class SignUpForm extends Form
         $password->setLabel($t->gettext('Password'));
         $password->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('The password is required')
+                'message' => $t->gettext('The password is required'),
             ]),
             new StringLength([
                 'min' => $passwordMinLength,
-                'messageMinimum' => sprintf($t->gettext('Password is too short. Minimum %d characters'), $passwordMinLength)
+                'messageMinimum' => sprintf($t->gettext('Password is too short. Minimum %d characters'), $passwordMinLength),
             ]),
             new Confirmation([
                 'message' => $t->gettext('Password doesn\'t match confirmation'),
-                'with' => 'confirmPassword'
-            ])
+                'with' => 'confirmPassword',
+            ]),
         ]);
         $this->add($password);
 
@@ -73,19 +73,19 @@ class SignUpForm extends Form
         $confirmPassword->setLabel($t->gettext('Confirm Password'));
         $confirmPassword->addValidators([
             new PresenceOf([
-                'message' => $t->gettext('The confirmation password is required')
-            ])
+                'message' => $t->gettext('The confirmation password is required'),
+            ]),
         ]);
         $this->add($confirmPassword);
 
         // Terms
         $terms = new Check('terms', [
-            'value' => $t->gettext('yes')
+            'value' => $t->gettext('yes'),
         ]);
         $terms->setLabel($t->gettext('Accept terms and conditions'));
         $terms->addValidator(new Identical([
             'value' => 'yes',
-            'message' => $t->gettext('Terms and conditions must be accepted')
+            'message' => $t->gettext('Terms and conditions must be accepted'),
         ]));
         $this->add($terms);
 
@@ -93,13 +93,13 @@ class SignUpForm extends Form
         $csrf = new Hidden('csrf');
         $csrf->addValidator(new Identical([
             'value' => $this->security->getSessionToken(),
-            'message' => $t->gettext('CSRF validation failed')
+            'message' => $t->gettext('CSRF validation failed'),
         ]));
         $this->add($csrf);
 
         // Sign Up
         $this->add(new Submit($t->gettext('Sign Up'), [
-            'class' => 'btn btn-success'
+            'class' => 'btn btn-success',
         ]));
     }
 

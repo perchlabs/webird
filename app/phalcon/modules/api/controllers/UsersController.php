@@ -24,7 +24,7 @@ class UsersController extends RESTController
                 'id'    => $model->id,
                 'email' => $model->email,
                 'name'  => $model->name,
-                'role'  => $model->role->name
+                'role'  => $model->role->name,
             ];
         }
 

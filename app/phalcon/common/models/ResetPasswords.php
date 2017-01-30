@@ -84,7 +84,7 @@ class ResetPasswords extends Model
         $message = $this->getDI()
             ->getMailer()
             ->createMessageFromView('resetPassword', [
-                'resetUrl' => 'reset-password/' . $this->code
+                'resetUrl' => 'reset-password/' . $this->code,
             ])
             ->to($this->user->email, $this->user->name)
             ->subject($subjectMsg);
@@ -98,7 +98,7 @@ class ResetPasswords extends Model
     public function initialize()
     {
         $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [
-            'alias' => 'user'
+            'alias' => 'user',
         ]);
     }
 }

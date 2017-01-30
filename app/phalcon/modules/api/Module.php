@@ -32,7 +32,7 @@ class Module extends ModuleBase
         $loader->registerNamespaces([
             __NAMESPACE__ . '\\Controllers' => __DIR__ . '/controllers',
             __NAMESPACE__ . '\\Forms'       => __DIR__ . '/forms',
-            __NAMESPACE__                   => __DIR__ . '/library'
+            __NAMESPACE__                   => __DIR__ . '/library',
         ]);
         $loader->register();
     }

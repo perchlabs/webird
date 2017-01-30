@@ -39,11 +39,11 @@ class Router extends PhRouter
     {
         $this->add("/$moduleName", [
             'module' => $moduleName,
-            'controller' => 'index'
+            'controller' => 'index',
         ]);
         $this->add("/$moduleName/:controller", [
             'module' => $moduleName,
-            'controller' => 1
+            'controller' => 1,
         ]);
         $this->add("/$moduleName/:controller/:action", [
             'module' => $moduleName,
@@ -54,7 +54,7 @@ class Router extends PhRouter
             'module' => $moduleName,
             'controller' => 1,
             'action' => 2,
-            'params' => 3
+            'params' => 3,
         ]);
     }
 }

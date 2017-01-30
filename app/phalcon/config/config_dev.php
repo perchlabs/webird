@@ -24,12 +24,12 @@ $config3 = new Config([
             'projectDir' => $projectDir,
             'etcDir'     => $etcDir,
             'devDir'     => $devDir,
-            'buildDir'    => $buildDir
+            'buildDir'    => $buildDir,
         ]
     ]
 ]);
 $config4 = new Config([
-    'locale' => yaml_parse_file("$appDir/locale/config.yml")
+    'locale' => yaml_parse_file("$appDir/locale/config.yml"),
 ]);
 
 

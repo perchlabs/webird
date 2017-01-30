@@ -40,7 +40,7 @@ class UserspublicController extends Controller
             $this->flash->error($t->gettext('The confirmation code was not valid.'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 
@@ -48,7 +48,7 @@ class UserspublicController extends Controller
             $this->flash->error($t->gettext('User is banned'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 
@@ -56,7 +56,7 @@ class UserspublicController extends Controller
             $this->flash->notice($t->gettext("You have already confirmed your email. Proceed to signin"));
             return $this->dispatcher->forward([
                 'controller' => 'session',
-                'action' => 'signin'
+                'action' => 'signin',
             ]);
         }
 
@@ -72,7 +72,7 @@ class UserspublicController extends Controller
             }
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 
@@ -102,7 +102,7 @@ class UserspublicController extends Controller
             $this->flash->error($this->translate->gettext('The password reset code is invalid'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 
@@ -112,13 +112,13 @@ class UserspublicController extends Controller
             $this->flash->notice($t->gettext('Activate the user first before changing password.'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         } else if ($user->isBanned()) {
             $this->flash->error($t->gettext('User is banned'));
             return $this->dispatcher->forward([
                 'controller' => 'index',
-                'action' => 'notification'
+                'action' => 'notification',
             ]);
         }
 
@@ -144,7 +144,7 @@ class UserspublicController extends Controller
                         }
                         return $this->dispatcher->forward([
                             'controller' => 'index',
-                            'action' => 'notification'
+                            'action' => 'notification',
                         ]);
                     }
                 } catch (AuthException $e) {
@@ -176,7 +176,7 @@ class UserspublicController extends Controller
                         $this->flash->success($this->translate->gettext('Please check your inbox for a reset password message.'));
                         return $this->dispatcher->forward([
                             'controller' => 'index',
-                            'action' => 'notification'
+                            'action' => 'notification',
                         ]);
                     } else {
                         foreach ($resetPassword->getMessages() as $message) {

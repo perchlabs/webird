@@ -60,14 +60,14 @@ class RolesController extends Controller
             $this->flash->notice($this->translate->gettext('The search did not find any roles'));
 
             return $this->dispatcher->forward([
-                "action" => "index"
+                "action" => "index",
             ]);
         }
 
         $paginator = new Paginator([
             "data" => $roles,
             "limit" => 10,
-            "page" => $numberPage
+            "page" => $numberPage,
         ]);
 
         $this->view->page = $paginator->getPaginate();
@@ -86,7 +86,7 @@ class RolesController extends Controller
             if ($form->isValid($this->request->getPost()) !== false) {
                 $role = new Roles([
                     'name' => $this->request->getPost('name', 'striptags'),
-                    'active' => $this->request->getPost('active')
+                    'active' => $this->request->getPost('active'),
                 ]);
 
                 if (!$role->save()) {
@@ -111,13 +111,13 @@ class RolesController extends Controller
         if (!$role) {
             $this->flash->error($this->translate->gettext('Role was not found'));
             return $this->dispatcher->forward([
-                'action' => 'index'
+                'action' => 'index',
             ]);
         }
         $this->view->role = $role;
 
         $form = new RolesForm($role, [
-            'edit' => true
+            'edit' => true,
         ]);
         $form->setDI($this->getDI());
         $this->view->form = $form;
@@ -126,7 +126,7 @@ class RolesController extends Controller
             if ($form->isValid($this->request->getPost()) !== false) {
                 $role->assign([
                     'name' => $this->request->getPost('name', 'striptags'),
-                    'active' => $this->request->getPost('active')
+                    'active' => $this->request->getPost('active'),
                 ]);
 
                 if (!$role->save()) {
@@ -154,7 +154,7 @@ class RolesController extends Controller
             $this->flash->error($this->translate->gettext('Role was not found'));
 
             return $this->dispatcher->forward([
-                'action' => 'index'
+                'action' => 'index',
             ]);
         }
 
@@ -165,7 +165,7 @@ class RolesController extends Controller
         }
 
         return $this->dispatcher->forward([
-            'action' => 'index'
+            'action' => 'index',
         ]);
     }
 }

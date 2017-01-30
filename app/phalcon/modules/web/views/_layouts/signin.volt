@@ -17,8 +17,8 @@
 <div id="onlywithscript" style="display:none;">
   {{ content() }}
 </div>
+{{common('devel_tool')}}
   {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
   {{ javascript_include(['src': 'js/entries/signin.js']) }}
-  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>
 </html>

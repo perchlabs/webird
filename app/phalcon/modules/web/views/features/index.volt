@@ -31,12 +31,13 @@
   <div class="row top7">
     <div class="col-md-6">
       <h3>{{t('Tools')}}</h3>
+
       {% if DEVELOPING %}
-        <a href="javascript:void(0)" class="btn btn-primary" onclick="wbdebug.toggle()">{{ t('Debug Panel') | escape }}</a>
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="devel.open()">{{ t('Devel Panel') | escape }}</a>
       {% else %}
         Debug Panel is not available in dist environment
       {% endif %}
     </div>
   </div>
-  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </div>
+{{common('devel_tool')}}

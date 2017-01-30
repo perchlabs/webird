@@ -1,12 +1,10 @@
 import '../../bootstrap'
 // System
 import Vue from 'vue'
-import VueResource from 'vue-resource'
 // Application
 import init from 'init'
 import locale from 'locale'
-
-Vue.use(VueResource)
+import DevelTool from 'devel-tool'
 
 const localePromise = locale.init()
 const documentPromise = new Promise(function(resolve, reject) {
@@ -16,6 +14,9 @@ const documentPromise = new Promise(function(resolve, reject) {
 init([localePromise, documentPromise])
   .then(function() {
     if (DEV) {
-      require('debug_panel')
+      window.devel = DevelTool({
+        el: '#devel-tool',
+        data: window.develToolData,
+      })
     }
   })

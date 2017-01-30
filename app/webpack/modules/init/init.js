@@ -1,6 +1,5 @@
-'use strict';
 
-var promise;
+let promise;
 export default function(iterable) {
   if (iterable) {
     if (promise) {

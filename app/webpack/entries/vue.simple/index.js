@@ -5,14 +5,12 @@ import init from 'init'
 // Local
 import App from './App'
 
-Vue.component('app', App)
-
-// This is transpiled to var
-const ABC = 123
-
+/**
+ *
+ */
 init().then(function() {
-  const app = new Vue({
+  new Vue({
     el: '#app',
-    template: '<app></app>'
+    render: h => h(App),
   })
 })

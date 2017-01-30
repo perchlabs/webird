@@ -10,6 +10,6 @@
   <div id="content">
       View the console to see the Fetch data
   </div>
+{{common('devel_tool')}}
   {{ javascript_include(['src': 'js/entries/fetch.example.js']) }}
-  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>

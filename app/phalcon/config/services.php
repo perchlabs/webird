@@ -18,6 +18,7 @@ use Phalcon\Loader,
     Phalcon\Logger\Adapter\File as FileLogger,
     Phalcon\Logger\Adapter\Firephp as FirephpLogger,
     Webird\Mvc\View\Simple as ViewSimple,
+    Webird\Plugins\Devel as DevelPlugin,
     Webird\Acl\Acl,
     Webird\Locale\Locale,
     Webird\Locale\Gettext,
@@ -146,13 +147,34 @@ $di->set('loader', function() {
 $di->setShared('db', function() {
     $config = $this->getConfig();
 
-    return new DbAdapter([
+    $connection = new DbAdapter([
         'host'     => $config->database->host,
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname'   => $config->database->dbname,
         'charset'  => 'utf8'
     ]);
+
+    if (DEVELOPING) {
+        $eventsManager = new EventsManager();
+        $eventsManager->attach('db', $this->getDevel());
+        $connection->setEventsManager($eventsManager);
+    }
+
+    return $connection;
+});
+
+/**
+ *
+ */
+$di->setShared('devel', function() {
+    if (!DEVELOPING) {
+        throw new \Exception('The Debug plugin can only be used in the Development environment.');
+    }
+
+    $devel = new DevelPlugin();
+    $devel->setDI($this);
+    return $devel;
 });
 
 /**
@@ -273,31 +295,6 @@ $di->setShared('translate', function() {
         'localeCacheDir' => $config->path->localeCacheDir
     ]);
     return $gettext;
-});
-
-/**
- *
- */
-$di->setShared('debug', function() {
-    $config = $this->getConfig();
-
-    $logger = new MultipleStreamLogger();
-    switch (ENV) {
-        case DEV_ENV:
-            $logger->push(new ErrorLogger());
-            if ('cli' != php_sapi_name()) {
-                $debugLogFile = str_replace('{{name}}', $config->site->domains[0],
-                    $config->dev->path->debugLog);
-                $fileLogger = new FileLogger($debugLogFile);
-                $fileLogger->getFormatter()->setFormat('%message%');
-                $logger->push($fileLogger);
-
-                $logger->push(new Firelogger());
-                $logger->push(new FirephpLogger(''));
-            }
-        break;
-    }
-    return $logger;
 });
 
 /**

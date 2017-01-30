@@ -1,31 +1,31 @@
 'use strict';
-let _ = require('lodash');
-let path = require('path');
-let fs = require('fs');
-let yaml = require('js-yaml');
-let crypto = require('crypto');
-let webpack = require('webpack');
-let WebpackDevServer = require('webpack-dev-server');
-// let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-let ProvidePlugin = require('webpack/lib/ProvidePlugin');
-let DefinePlugin = require('webpack/lib/DefinePlugin');
-let CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-let DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-let UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const _ = require('lodash');
+const path = require('path');
+const fs = require('fs');
+const yaml = require('js-yaml');
+const crypto = require('crypto');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-let projectRoot = path.resolve('..');
-let etcRoot = path.join(projectRoot, 'etc');
-let appRoot = path.join(projectRoot, 'app');
-let devRoot = path.join(projectRoot, 'dev');
-let buildRoot = path.join(projectRoot, 'build');
-let webpackRoot = path.join(appRoot, 'webpack');
-let appModulesRoot = path.join(webpackRoot, 'modules');
-let themeRoot = path.join(appRoot, 'theme');
-let nodeModulesRoot = path.join(devRoot, 'node_modules');
-let projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
+const projectRoot = path.resolve('..');
+const etcRoot = path.join(projectRoot, 'etc');
+const appRoot = path.join(projectRoot, 'app');
+const devRoot = path.join(projectRoot, 'dev');
+const buildRoot = path.join(projectRoot, 'build');
+const webpackRoot = path.join(appRoot, 'webpack');
+const appModulesRoot = path.join(webpackRoot, 'modules');
+const themeRoot = path.join(appRoot, 'theme');
+const nodeModulesRoot = path.join(devRoot, 'node_modules');
+const projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-let appConfig = yaml.load(fs.readFileSync(webpackRoot + "/config.yml", 'utf8'));
+const appConfig = yaml.load(fs.readFileSync(webpackRoot + '/config.yml', 'utf8'));
 
 /**
  *
@@ -38,20 +38,20 @@ if (!fs.existsSync(babelCacheDir)) {
 /**
  *
  */
-let entryMap = {};
-for (let common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
+const entryMap = {};
+for (const common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
   entryMap[`commons/${common}`] = `./commons/${common}`;
 }
-for (let entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
+for (const entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
   entryMap[`entries/${entry}`] = `./entries/${entry}`;
 }
 
 /**
  *
  */
-let commonsChunkPluginArr = [];
-for (let commonName in appConfig.commons) {
-  let entryArrPath = appConfig.commons[commonName].map(function(entryName) {
+const commonsChunkPluginArr = [];
+for (const commonName in appConfig.commons) {
+  const entryArrPath = appConfig.commons[commonName].map(function(entryName) {
     return `entries/${entryName}`;
   });
   commonsChunkPluginArr.push(new CommonsChunkPlugin({
@@ -75,12 +75,12 @@ const bubbleOptions = {
 /**
  *
  */
-let wpConf = {
+const wpConf = {
   cache: true,
   context: webpackRoot,
   entry: entryMap,
   output: {
-    path              : "/tmp/webird-" + projectRootHash + "-webpack",
+    path              : `/tmp/webird-${projectRootHash}-webpack`,
     publicPath        : '/',
     filename          : 'js/[name].js',
     chunkFilename     : 'js/chunk/[id].js',
@@ -92,14 +92,13 @@ let wpConf = {
     mainFiles: ['index'],
     alias: {
       underscore: 'lodash',
-      handlebars: 'handlebars/dist/handlebars',
       highlight: 'highlight.js/lib/highlight'
     },
     extensions: [
       '.js',
-      '.vue', '.html',
-      '.css', '.scss', '.less',
-      '.json', '.yml'
+      '.vue',
+      '.json', '.yml',
+      '.css',
     ],
     enforceExtension: false,
     enforceModuleExtension: false
@@ -119,14 +118,13 @@ let wpConf = {
   },
   plugins: [
     new DefinePlugin({
-      VERSION: JSON.stringify(require(devRoot + "/package.json").version),
+      VERSION: JSON.stringify(require(devRoot + '/package.json').version),
       WEBPACK_ROOT: JSON.stringify(webpackRoot),
-      LOCALE_ROOT: JSON.stringify(appRoot + "/locale"),
-      THEME_ROOT: JSON.stringify(appRoot + "/theme"),
+      LOCALE_ROOT: JSON.stringify(appRoot + '/locale'),
+      THEME_ROOT: JSON.stringify(appRoot + '/theme'),
     }),
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
     new ProvidePlugin({
-      _: 'lodash',
       $: 'jquery',
       jQuery: 'jquery'
     }),
@@ -136,9 +134,9 @@ let wpConf = {
         vue: {
           postcss: postcssSetup,
           buble: bubbleOptions,
-        }
+        },
       },
-    })
+    }),
    ]
   // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
   .concat(commonsChunkPluginArr),
@@ -150,10 +148,10 @@ let wpConf = {
         query: bubbleOptions,
       }, {
         test: /\.vue$/,
-        loader: "vue"
+        loader: 'vue'
       }, {
         test: /\.json$/,
-        loader: "json"
+        loader: 'json'
       }, {
         test: /\.yml$/,
         loaders: ['json', 'yaml']
@@ -164,20 +162,13 @@ let wpConf = {
           { loader: 'po', query: { format: 'jed1.x'} }
         ]
       }, {
-        test: /\.html$/,
-        loader: "html"
-      }, {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
         loaders: ['style', 'css', 'postcss']
       }, {
-        test: /\.less$/,
-        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-        loaders: ['style', 'css', 'less']
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url?prefix=img/&limit=8192'
       }, {
-        test: /\.scss$/,
-        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-        loaders: ['style', 'css', 'sass']
       }, {
         test: /\.(png|jpg|gif)$/,
         loader: 'url',
@@ -194,13 +185,13 @@ let wpConf = {
           mimetype: 'application/font-woff'
         }
       }, {
-        test: /\.ttf$/,
+        test: /\.eot$/,
         loader: 'file',
         query: {
           name: 'fonts/[hash].[ext]'
         }
       }, {
-        test: /\.eot$/,
+        test: /\.ttf$/,
         loader: 'file',
         query: {
           name: 'fonts/[hash].[ext]'
@@ -221,12 +212,12 @@ let wpConf = {
  */
  function postcssSetup(webpack) {
   return [
-    require("postcss-import")({
-      addDependencyTo: webpack,
+    require('postcss-import')({
+      // addDependencyTo: webpack,
       path: [themeRoot, appModulesRoot, nodeModulesRoot]
     }),
-    require("postcss-url")(),
-    require("postcss-cssnext")({
+    require('postcss-url')(),
+    require('postcss-cssnext')({
       // Defined in './app/webpack/config'
       browsers: appConfig.browsers,
       import: {
@@ -237,8 +228,8 @@ let wpConf = {
         }.bind(this)
       }
     }),
-    require("postcss-browser-reporter")(),
-    require("postcss-reporter")(),
+    require('postcss-browser-reporter')(),
+    require('postcss-reporter')(),
   ]
 }
 
@@ -246,12 +237,12 @@ let wpConf = {
  *
  */
 function getNamesFromDirectory(filepath) {
-  let files = fs.readdirSync(filepath);
-  let baseNames = _.chain(files).filter(function(filename) {
+  const files = fs.readdirSync(filepath);
+  const baseNames = _.chain(files).filter(function(filename) {
     return filename[0] !== '#';
   }).map(function(filename) {
     let entryName, ext;
-    if (fs.lstatSync(filepath + "/" + filename).isDirectory()) {
+    if (fs.lstatSync(`${filepath}/${filename}`).isDirectory()) {
       entryName = filename;
     } else {
       ext = path.extname(filename);
@@ -266,16 +257,17 @@ function getNamesFromDirectory(filepath) {
  *
  */
  function dev() {
-  let config = yaml.load(fs.readFileSync(etcRoot + "/dev_defaults.yml", 'utf8'));
-  let configCustom = yaml.load(fs.readFileSync(etcRoot + "/dev.yml", 'utf8'));
+  const config = yaml.load(fs.readFileSync(`${etcRoot}/dev_defaults.yml`, 'utf8'));
+  const configCustom = yaml.load(fs.readFileSync(`${etcRoot}/dev.yml`, 'utf8'));
   _.merge(config, configCustom);
 
-  let webpackPort = config.dev.webpackPort;
-  wpConf.devtool = 'source-map';
+  const webpackPort = config.dev.webpackPort;
+  // wpConf.devtool = 'source-map';
+  // wpConf.devtool = 'inline-source-map';
   wpConf.plugins.push(new DefinePlugin({DEV: true}));
-  wpConf.output.publicPath = "http://" + config.site.domains[0] + "/";
+  wpConf.output.publicPath = "/";
 
-  let devServer = new WebpackDevServer(webpack(wpConf), {
+  const devServer = new WebpackDevServer(webpack(wpConf), {
     contentBase: devRoot,
     stats: {
       assets: false,

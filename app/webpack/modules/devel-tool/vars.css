@@ -1,0 +1,47 @@
+:root {
+  --html__font-family: arial, sans-serif;
+  --html__font-size: 13px;
+  --html__color: black;
+}
+:root {
+  --site-info--font: 14px Century Gothic, sans-serif;
+}
+
+:root {
+  --normal__text--color: black;
+  --active--color: #008000;
+
+  --action__text--color: #4970b7;
+  --action__text--color--hover: #404040;
+  --action__text--color--disabled: #babcc0;
+
+  --tool__text--color--modal: #3d3e45;
+
+
+  --match__text--color: #ed9e37;
+
+  --error__text--color: #c00;
+
+  --item__border--color: #adacac;
+
+
+  --block__background--color--lightest: white;
+  --block__background--color--light: #f7f8fa;
+  --block__background--color--medium: #ededed;
+  --block__background--color--dark: #505050;
+  --block__border--color--light: #e5e5e6;
+  --block__border--color--medium: #ddddde;
+  --block__border--color--dark: #c3c1c5;
+
+  --head__description--color: #222222;
+
+  --group__head__text--color: #505050;
+  --group__border--color: #e3e3e4;
+
+  --group__divider-internal--color: #f1f1f2;
+
+  --group__head__text--color-collapser: #69798B;
+
+  --data-table__tr__background--color--even: #f5f5f5;
+  --data-table__tr__background--color--odd: #fff;
+}

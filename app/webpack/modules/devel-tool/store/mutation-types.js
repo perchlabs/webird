@@ -1,0 +1,3 @@
+
+export const SET_OPEN_FLAG = 'SET_OPEN_FLAG'
+export const SET_ACTIVE_PANEL_NAME = 'SET_ACTIVE_PANEL_NAME'

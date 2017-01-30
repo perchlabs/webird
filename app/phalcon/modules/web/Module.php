@@ -4,8 +4,7 @@ namespace Webird\Modules\Web;
 use Phalcon\DI,
     Phalcon\Loader,
     Phalcon\DiInterface,
-    Webird\Module as ModuleBase,
-    Webird\DebugPanel;
+    Webird\Module as ModuleBase;
 
 /**
  * Module for basic web needs
@@ -48,9 +47,5 @@ class Module extends ModuleBase
             ->setDefaultNamespace(__NAMESPACE__ . '\\Controllers');
 
         $di->setShared('view', $this->getViewFunc());
-
-        if (DEVELOPING) {
-            $debugPanel = new DebugPanel($di);
-        }
     }
 }

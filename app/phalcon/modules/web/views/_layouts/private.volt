@@ -44,8 +44,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-{{ content() }}
+{{content()}}
+{{common('devel_tool')}}
   {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
-  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>
 </html>

@@ -7,7 +7,7 @@
 </head>
 <body>
   <div id="app"></div>
-
+{{common('devel_tool')}}
   {{ javascript_include(['src': 'js/commons/vue.js']) }}
   {{ javascript_include(['src': 'js/entries/vue.vuex.js']) }}
 </body>

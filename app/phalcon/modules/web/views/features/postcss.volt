@@ -11,6 +11,6 @@
   <div id="content">
       Resize this webpage for media query example
   </div>
+{{common('devel_tool')}}
   {{ javascript_include(['src': 'js/entries/postcss.example.js']) }}
-  {% if DEVELOPING %}<!--DEBUG_PANEL-->{% endif %}
 </body>

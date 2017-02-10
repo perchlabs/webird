@@ -136,7 +136,7 @@ The nginx configuration must be rebuilt if the distribution environment director
     ├── config.yml (you can make this .json, .yml, .js)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
-    └── modules (custom commonjs modules)
+    └── modules (general ES2016 and commonjs modules)
 ```
 
 ```

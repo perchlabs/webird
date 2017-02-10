@@ -45,8 +45,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development nodejs webpack.js",
-    "build": "NODE_ENV=production nodejs webpack.js",
-    "bower-install": "bower install --allow-root --config.interactive=false"
+    "build": "NODE_ENV=production nodejs webpack.js"
   },
   "engines": {
     "node": ">=5.0"

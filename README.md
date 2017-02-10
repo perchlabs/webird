@@ -38,9 +38,7 @@ Node.js is required for development only and is not required once a project has 
 * PHP >= 7.0
 * Phalcon >= 3.0.0
 * MariaDB >= 10.1
-* Node.js >= 5.0
-
-**Note:** Node.js 5 is required because it is the first version to provide NPM 3 and it will remove the possibility of Javascript `instanceof` failing to identify an object because the object came from a different identical submodule.
+* Node.js >= 6.0
 
 **Installation Instructions:**
 ```
@@ -49,7 +47,7 @@ Node.js is required for development only and is not required once a project has 
 # System provisioning
 sudo ./setup/provision-system.sh ubuntu-xenial
 
-# Local install of npm, bower and composer packages
+# Local install of NPM and Composer packages
 ./setup/install-local-packages.sh
 
 # mariadb setup
@@ -80,13 +78,6 @@ In order to modify the localization messages you will need to configure the [Poe
 ##### Poedit Configuration Instructions:
 Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
-* **Nunjucks**
-  * Language: `Nunjucks`
-  * List of extensions...: `*.njk`
-  * Parser Command: `xgettext-template -L Swig --force-po -o %o %C %K %F`
-  * An item in keywords list: `-k %k`
-  * An item in input files list: `%f`
-  * Source code charset: `--from-code=%c`
 * **Volt**
   * Language: `Volt`
   * List of extensions...: `*.volt`
@@ -94,7 +85,8 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
   * An item in keywords list: `-k %k`
   * An item in input files list: `%f`
   * Source code charset: `--from-code=%c`
-
+* **Vue**
+  * TODO
 
 ## Development Usage:
 1. Run server processes: `./dev/run [server]` and wait until webpack-dev-server has finished building
@@ -141,7 +133,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   ├── config/
 │   └── modules/
 └── webpack
-    ├── config.json (you can make this .json, .yml, .js)
+    ├── config.yml (you can make this .json, .yml, .js)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
     └── modules (custom commonjs modules)
@@ -154,12 +146,10 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   └── index.php (Web entry for dev environment)
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
 ├── packages.json (npm configuration)
-├── bower.json (Bower configuration)
 ├── vendor.json (Composer configuration)
 ├── gulpfile.js (Gulp streaming build system configuration)
 ├── gulpfile.webpack.js (Webpack configuration)
 ├── node_modules/
-├── bower_components/
 └── vendor/
 ```
 

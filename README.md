@@ -147,8 +147,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
 ├── packages.json (npm configuration)
 ├── vendor.json (Composer configuration)
-├── gulpfile.js (Gulp streaming build system configuration)
-├── gulpfile.webpack.js (Webpack configuration)
+├── webpack.js (Webpack script)
 ├── node_modules/
 └── vendor/
 ```

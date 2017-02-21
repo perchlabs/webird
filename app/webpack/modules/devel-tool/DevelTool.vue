@@ -183,7 +183,7 @@
   bottom: 0;
   padding: 0;
   width: 190px;
-  background: var(--block__background--color--medium);
+  background: var(--region__background--color--medium);
   pointer-events: auto;
 }
 .panels {
@@ -206,16 +206,16 @@
   border-color: transparent;
   border-width: 1px 0px 1px 0px;
   width: 100%;
-  color: var(--action__text--color);
+  color: var(--text-action--color);
 }
 .panel-open:hover {
-  color: var(--action__text--color--hover);
+  color: var(--text-action--color--hover);
   cursor: pointer;
 }
 .panel-open--active {
   color: var(--html__color);
   background-color: white;
-  border-color: var(--block__background--color--light);
+  border-color: var(--region__background--color--light);
 }
 
 
@@ -228,8 +228,8 @@
   position: absolute;
   bottom: 5px;
   right: 0;
-  border-top: 2px solid var(--block__border--color--medium);
-  background: var(--block__background--color--medium);
+  border-top: 2px solid var(--region__border--color--medium);
+  background: var(--region__background--color--medium);
 }
 
 .status__section-title {

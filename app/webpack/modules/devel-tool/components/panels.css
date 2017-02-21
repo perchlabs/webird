@@ -16,7 +16,7 @@
   left: 0;
   height: 50px;
   padding: 0 5px;
-  background: var(--block__background--color--dark);
+  background: var(--region__background--color--dark);
   border-bottom: 1px solid #faebcc;
   font-size: 35px;
   z-index: 2;
@@ -42,14 +42,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: var(--block__background--color--light);
+  background-color: var(--region__background--color--light);
 }
 
 .content-collapser {
   position: relative;
   padding: 7px;
   margin: 10px 0 0 0;
-  background: var(--group__head__text--color-collapser);
+  background: var(--group__head-collapser--color);
   font-size: 14px;
   color: #fff;
   cursor: pointer;
@@ -59,21 +59,21 @@
   width: 100%;
   font-size: 12px;
   border-collapse: collapse;
-  color: var(--normal__text--color);
+  color: var(--text-normal--color);
   margin-bottom: 10px;
 }
 .content__table-head-cell {
   text-align: left;
 }
 .content__table-row:nth-child(odd) {
-  background: var(--data-table__tr__background--color--odd);
+  background: var(--table__tr__background--color--odd);
 }
 .content__table-row:nth-child(even) {
-  background: var(--data-table__tr__background--color--even);
+  background: var(--table__tr__background--color--even);
 }
 
 .content__table-cell {
   text-align: left;
   padding: 5px 7px;
-  border: 1px solid var(--block__background--color--light);
+  border: 1px solid var(--region__background--color--light);
 }

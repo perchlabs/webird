@@ -2,80 +2,28 @@
   --html__font-family: arial, sans-serif;
   --html__font-size: 13px;
   --html__color: black;
-}
-:root {
-  --site-info--font: 14px Century Gothic, sans-serif;
-}
 
-:root {
-  --normal__text--color: black;
-  --active--color: #008000;
+  --text-normal--color: black;
+  --text-active--color: #008000;
+  --text-action--color: #4970b7;
+  --text-action--color--hover: #404040;
+  --text-action--color--disabled: #babcc0;
+  --text-match--color: #ed9e37;
+  --text-error--color: #c00;
 
-  --action__text--color: #4970b7;
-  --action__text--color--hover: #404040;
-  --action__text--color--disabled: #babcc0;
+  --region__background--color--white: white;
+  --region__background--color--light: #f7f8fa;
+  --region__background--color--medium: #ededed;
+  --region__background--color--dark: #505050;
+  --region__border--color--light: #e5e5e6;
+  --region__border--color--medium: #ddddde;
+  --region__border--color--dark: #c3c1c5;
 
-  --tool__text--color--modal: #3d3e45;
-
-
-  --match__text--color: #ed9e37;
-
-  --error__text--color: #c00;
-
-  --item__border--color: #adacac;
-
-
-  --block__background--color--lightest: white;
-  --block__background--color--light: #f7f8fa;
-  --block__background--color--medium: #ededed;
-  --block__background--color--dark: #505050;
-  --block__border--color--light: #e5e5e6;
-  --block__border--color--medium: #ddddde;
-  --block__border--color--dark: #c3c1c5;
-
-  --head__description--color: #222222;
-
-  --group__head__text--color: #505050;
+  --group__head-text--color: #505050;
+  --group__head-collapser--color: #69798B;
+  --group__divider-internal--color: #f1f1f2;
   --group__border--color: #e3e3e4;
 
-  --group__divider-internal--color: #f1f1f2;
-
-  --group__head__text--color-collapser: #69798B;
-
-  --data-table__tr__background--color--even: #f5f5f5;
-  --data-table__tr__background--color--odd: #fff;
-
-  /*--color-text-option-icon: #696969;*/
-
-
-  /*--color-text-head-status-normal: black;
-  --color-text-head-status-error: red;*/
-
-  /*--color-background-head-status-normal: #4dc935;*/
-  /*--color-background-head-status-warning: #fff423;*/
-  /*--color-backgorund-head-status-error: red;*/
-
-}
-
-:root {
-  --content-file-o: "\e010";
-  --content-folder-open-o: "\e018";
-  --content-commenting-o: "\e00c";
-  --content-file-text: "\e068";
-  --content-briefcase: "\e006";
-  --content-few-items: "\e0e6";
-  --content-some-items: "\e0ee";
-  --content-many-items: "\e0e8";
-  --content-arrows: "\e023";
-  --content-pencil: "\e107";
-  --content-vector-line: "\e10a";
-  --content-vector-rect: "\e10b";
-  --content-eraser: "\e00d";
-
-  --content-clipboard: "\e0a5";
-  --content-cloud-upload: "\e007";
-  --content-arrow-circle-down: "\e002";
-  --content-arrow-circle-up: "\e000";
-  --content-times: "\e05e";
-
+  --table__tr__background--color--even: #f5f5f5;
+  --table__tr__background--color--odd: #fff;
 }

@@ -26,6 +26,7 @@ php-cli
 php-fpm
 php-curl
 php-mbstring
+php-zip
 php-mysql
 php7.0-phalcon
 # dev libraries

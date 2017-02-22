@@ -25,12 +25,12 @@ const themeRoot = path.join(appRoot, 'theme');
 const nodeModulesRoot = path.join(devRoot, 'node_modules');
 const projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-const appConfig = yaml.load(fs.readFileSync(webpackRoot + '/config.yml', 'utf8'));
+const appConfig = yaml.load(fs.readFileSync(`${webpackRoot}/config.yml`, 'utf8'));
 
 /**
  *
  */
-const babelCacheDir = '/tmp/babel-cache-' + projectRootHash;
+const babelCacheDir = `/tmp/babel-cache-${projectRootHash}`;
 if (!fs.existsSync(babelCacheDir)) {
   fs.mkdirSync(babelCacheDir);
 }
@@ -59,6 +59,18 @@ for (const commonName in appConfig.commons) {
     filename: 'js/[name].js',
     chunks  : entryArrPath,
   }));
+}
+
+/**
+ *  Build constants and combine developer added constants added in app/webpack/config
+ */
+const constants = {
+  VERSION: JSON.stringify(require(`${devRoot}/package.json`).version),
+  LOCALE_ROOT: JSON.stringify(`${appRoot}/locale`),
+  THEME_ROOT: JSON.stringify(`${appRoot}/theme`),
+}
+for (const i in appConfig.constants) {
+  constants[i] = JSON.stringify(appConfig.constants[i])
 }
 
 /**
@@ -91,7 +103,6 @@ const wpConf = {
     mainFields: ['main', 'browser'],
     mainFiles: ['index'],
     alias: {
-      underscore: 'lodash',
       highlight: 'highlight.js/lib/highlight',
     },
     extensions: [
@@ -117,12 +128,6 @@ const wpConf = {
     moduleExtensions: ['-loader'],
   },
   plugins: [
-    new DefinePlugin({
-      VERSION: JSON.stringify(require(devRoot + '/package.json').version),
-      WEBPACK_ROOT: JSON.stringify(webpackRoot),
-      LOCALE_ROOT: JSON.stringify(appRoot + '/locale'),
-      THEME_ROOT: JSON.stringify(appRoot + '/theme'),
-    }),
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
     new ProvidePlugin({
       $: 'jquery',
@@ -264,8 +269,12 @@ function getNamesFromDirectory(filepath) {
   const webpackPort = config.dev.webpackPort;
   // wpConf.devtool = 'source-map';
   // wpConf.devtool = 'inline-source-map';
-  wpConf.plugins.push(new DefinePlugin({DEV: true}));
-  wpConf.output.publicPath = "/";
+
+  // Constants
+  Object.assign(constants, {
+    DEV: JSON.stringify(true),
+  })
+  wpConf.plugins.push(new DefinePlugin(constants));
 
   const devServer = new WebpackDevServer(webpack(wpConf), {
     contentBase: devRoot,
@@ -286,21 +295,28 @@ function getNamesFromDirectory(filepath) {
  *
  */
 function build() {
-    wpConf.output.path = path.join(projectRoot, 'build', 'public');
-    wpConf.plugins.concat([
-      new DefinePlugin({DEV: false}),
-      new LoaderOptionsPlugin({
-        minimize: true,
-        debug: false
-      }),
-      new DedupePlugin(),
-      new UglifyJsPlugin(),
-    ]);
 
-    webpack(wpConf, function(err, stats) {
-      if (err) {
-      }
-    });
+  wpConf.output.path = path.join(projectRoot, 'build', 'public');
+
+  // Constants
+  Object.assign(constants, {
+    DEV: JSON.stringify(false),
+  })
+
+  wpConf.plugins = wpConf.plugins.concat([
+    new DefinePlugin(constants),
+    new LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new DedupePlugin(),
+    new UglifyJsPlugin(),
+  ]);
+
+  webpack(wpConf, function(err, stats) {
+    if (err) {
+    }
+  });
 }
 
 if (process.env.NODE_ENV !== 'production') {

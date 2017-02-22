@@ -1,5 +1,5 @@
 // System
-import Vue from 'vue/dist/vue'
+import Vue from 'vue'
 import pdflib from 'pdfjs-dist'
 import 'pdfjs-dist/web/pdf_viewer'
 // Application

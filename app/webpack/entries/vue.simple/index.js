@@ -1,5 +1,5 @@
 // System
-import Vue from 'vue/dist/vue'
+import Vue from 'vue'
 // Application
 import init from 'init'
 // Local

@@ -273,6 +273,7 @@ function getNamesFromDirectory(filepath) {
   // Constants
   Object.assign(constants, {
     DEV: JSON.stringify(true),
+    'process.env.NODE_ENV': JSON.stringify('development'),
   })
   wpConf.plugins.push(new DefinePlugin(constants));
 
@@ -301,6 +302,7 @@ function build() {
   // Constants
   Object.assign(constants, {
     DEV: JSON.stringify(false),
+    'process.env.NODE_ENV': JSON.stringify('production'),
   })
 
   wpConf.plugins = wpConf.plugins.concat([

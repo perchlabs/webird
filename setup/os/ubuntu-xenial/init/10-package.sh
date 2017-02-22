@@ -17,7 +17,7 @@ add-apt-repository 'deb [arch=amd64,i386] http://mirror.netinch.com/pub/mariadb/
 # add-apt-repository ppa:nginx/stable
 
 # Add Nodejs repository
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 
 # Add Phalcon repository
 curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash

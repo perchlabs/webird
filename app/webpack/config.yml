@@ -7,6 +7,7 @@ commons:
   vue:
   - vue.simple
   - vue.vuex
+  - pdf-viewer
 browsers:
 - "last 5 Chrome versions"
 - "last 5 Firefox versions"

@@ -257,6 +257,7 @@ WEBIRD_ENTRY;
         copy("$devDir/package.json", $buildDir . 'package.json');
 
         `cp -R $appDir/theme/assets {$buildDir}public/assets`;
+        `cp -R $appDir/static {$buildDir}public/static`;
 
         copy("$etcDir/schema.sql", $buildDir . 'etc/schema.sql');
     }

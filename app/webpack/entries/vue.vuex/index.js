@@ -1,4 +1,6 @@
-import Vue from 'vue'
+// System
+import Vue from 'vue/dist/vue'
+// Local
 import Counter from './Counter.vue'
 import store from './store'
 

@@ -57,8 +57,13 @@ server {
   }
 
   location ~ ^/assets/(.+)$ {
-    root "{{config.path.appDir}}/theme/assets";
+    root "{{config.path.appDir}}theme/assets";
     rewrite ^/assets/(.*)$ /$1; break;
+  }
+
+  location ~ ^/static/(.+)$ {
+    root "{{config.path.appDir}}static";
+    rewrite ^/static/(.*)$ /$1; break;
   }
 
   try_files $uri $uri/ @rewrite;

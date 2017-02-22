@@ -91,4 +91,10 @@ class FeaturesController extends Controller
     {
     }
 
+    /**
+     * Pdf viewer
+     */
+    public function pdfviewerAction()
+    {
+    }
 }

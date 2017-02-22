@@ -98,9 +98,9 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 
 #### Create dist environment:
 1. Copy `./etc/templates/dist_config.yml` to `./etc/dist.yml`
-2. Configure `./etc/dist.yml` to override settings from `./etc/dist_defaults.yml`.  These two files will be merged to form `./dist/etc/config.yml`.
+2. Configure `./etc/dist.yml` to override settings from `./etc/dist_defaults.yml`.  These two files will be merged to form `./build/etc/config.yml`.
 3. Create the dist environment: `./dev/run build`
-4. Enter into dist directory `cd ./dist`
+4. Enter into dist directory `cd ./build`
 5. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
 6. Follow following instructions within dist environments
 
@@ -156,7 +156,9 @@ The nginx configuration must be rebuilt if the distribution environment director
 ./build
 ├── run (CLI entry for built system)
 ├── public/
-│   └── index.php (Web entry for built system)
+│   ├── index.php (Web entry for built system)
+    └── static resources copied from app directory
+
 ├── etc/
 ├── cache-static/
 │   ├── locale/ (localization files in machine readable .mo format)
@@ -173,7 +175,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 └── functions/ (helpers)
 ```
 
-Compare the `./app` directory to a built `./built` directory to notice the differences between the app code and dev environment and the built system.
+Compare the `./app` directory to a built `./build` directory to notice the differences between the app code and dev environment and the built system.
 
 You may also view the build system routine at `app/phalcon/modules/cli/tasks/DevTask.php`
 

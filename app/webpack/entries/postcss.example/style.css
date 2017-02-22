@@ -4,10 +4,9 @@
 @custom-media --size2 (width >= 601px) and (width <= 800px);
 
 #content {
-    width: 200px;
-    color: color(red alpha(-10%));
+  width: 200px;
+  color: color(red alpha(-10%));
 }
-
 
 @media (--size1) {
   #content {

@@ -25,8 +25,8 @@ $config3 = new Config([
             'etcDir'     => $etcDir,
             'devDir'     => $devDir,
             'buildDir'    => $buildDir,
-        ]
-    ]
+        ],
+    ],
 ]);
 $config4 = new Config([
     'locale' => yaml_parse_file("$appDir/locale/config.yml"),

@@ -9,5 +9,5 @@
   <!-- Firefox, Chrome, Safari, IE 11+ and Opera 96x96 pixels -->
   <link rel="icon" href="{{url('assets/favicon.png')}}">
 {% if DEVELOPING and config.dev.webpackLiveReload %}
-{{ javascript_include(['src': 'http://localhost:'~config.dev.webpackPort~'/webpack-dev-server.js'], false) }}
+  {{ javascript_include(['src': 'http://'~config.server.domain~':'~config.dev.webpackPort~'/webpack-dev-server.js'], false) }}
 {% endif %}

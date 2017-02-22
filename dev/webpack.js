@@ -243,19 +243,20 @@ const wpConf = {
  */
 function getNamesFromDirectory(filepath) {
   const files = fs.readdirSync(filepath);
-  const baseNames = _.chain(files).filter(function(filename) {
-    return filename[0] !== '#';
-  }).map(function(filename) {
-    let entryName, ext;
-    if (fs.lstatSync(`${filepath}/${filename}`).isDirectory()) {
-      entryName = filename;
-    } else {
-      ext = path.extname(filename);
-      entryName = filename.substr(0, filename.length - ext.length);
-    }
-    return entryName;
-  }).value();
-  return baseNames;
+
+  return _.chain(files)
+    .filter(filename => filename[0] !== '#')
+    .map(function(filename) {
+      let entryName, ext;
+      if (fs.lstatSync(`${filepath}/${filename}`).isDirectory()) {
+        entryName = filename;
+      } else {
+        ext = path.extname(filename);
+        entryName = filename.substr(0, filename.length - ext.length);
+      }
+      return entryName;
+    })
+    .value();
 };
 
 /**

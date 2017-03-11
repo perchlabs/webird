@@ -4,9 +4,7 @@ DEVDIR="$(readlink -f "$DIR/../dev")"
 
 cd "$DEVDIR"
 
-# skipclean=1 prevents a non-interactive install error
-skipclean=1
-npm install
+yarn install
 [[ $? -ne 0 ]] && exit $?
 
 composer install

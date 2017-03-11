@@ -16,6 +16,7 @@ Node.js is required for development only and is not required once a project has 
 * [nginx](http://nginx.org/)
 * [Composer](https://getcomposer.org/)
 * [Nodejs](https://nodejs.org)
+* [Yarn](https://github.com/yarnpkg/yarn)
 * [Ratchet](http://socketo.me/)
 * [gettext](http://www.gnu.org/software/gettext/gettext.html)
 * [MariaDB](https://mariadb.org/) 10.1

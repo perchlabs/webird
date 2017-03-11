@@ -17,6 +17,7 @@ pkg-config
 re2c
 # environments
 nodejs
+yarn
 nginx-extras
 mariadb-server
 mariadb-client

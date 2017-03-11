@@ -146,7 +146,10 @@ const wpConf = {
   // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
   .concat(commonsChunkPluginArr),
   module: {
-    loaders: [
+    // noParse: [
+    //   /jquery/,
+    // ],
+    rules: [
       {
         test: /\.js?$/,
         loaders: 'buble',

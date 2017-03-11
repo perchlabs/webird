@@ -3,6 +3,7 @@
     Document
     <page
       v-for="(page, i) in pagesCalc"
+      :key="i"
       :src="page.src"
       :dim="page.dim"
       :top="page.top">

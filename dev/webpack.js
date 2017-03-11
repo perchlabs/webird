@@ -172,7 +172,11 @@ const wpConf = {
       }, {
         test: /\.css$/,
         // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
-        loaders: ['style', 'css', 'postcss'],
+        loaders: [
+          'style',
+          'css?importLoaders=1',
+          'postcss',
+        ],
       }, {
         test: /\.(png|jpg|gif)$/,
         loader: 'url?prefix=img/&limit=8192',

@@ -2,6 +2,7 @@
 namespace Webird\Modules\Cli;
 
 use Phalcon\DI\Injectable as DIInjectable;
+use GuzzleHttp\Psr7 as GuzzlePsr7;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Webird\DatabaseSessionReader;
@@ -37,15 +38,22 @@ class Chat extends DIInjectable implements MessageComponentInterface
         try {
             fwrite(STDOUT, "New connection! ({$conn->resourceId})\n");
 
-            // TODO: This authentication code could easily be brought into a generic class
-            $cookies = $conn->WebSocket->request->getCookies();
-            if (!array_key_exists('PHPSESSID', $cookies)) {
+            // // TODO: This authentication code should be moved to a service
+            $cookiesHeader = $conn->httpRequest->getHeader('Cookie');
+            if(count($cookiesHeader)) {
+                $cookies = GuzzlePsr7\parse_header($cookiesHeader)[0];
+                if (array_key_exists('PHPSESSID', $cookies)) {
+                    $sessionId = $cookies['PHPSESSID'];
+                } else {
+                    fwrite(STDERR, "Connection Rejected: Session Cookie was not present.\n");
+                    return $conn->close();
+                }
+            } else {
                 fwrite(STDERR, "Connection Rejected: Session Cookie was not present.\n");
                 return $conn->close();
             }
-            $sessionId = $cookies['PHPSESSID'];
 
-            if ($sessionReader->read($sessionId) === false) {
+            if ($sessionReader->read($sessionId) !== true) {
                 fwrite(STDERR, "Connection Rejected: Session could not be found.\n");
                 return $conn->close();
             }

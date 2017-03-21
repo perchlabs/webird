@@ -5,11 +5,11 @@ use Phalcon\Http\Response as HttpResponse;
 use Phalcon\Http\Response\Cookies as HttpCookies;
 use Phalcon\Http\Request as HttpRequest;
 use Phalcon\Session\Bag as SessionBag;
+use Phalcon\Session\Adapter\Database as DatabaseSession;
 use League\OAuth2\Client\Provider\Google as GoogleProvider;
 use Webird\Plugins\DispatcherSecurity;
 use Webird\Mvc\Router as Router;
 use Webird\Auth\Auth;
-use Webird\Session\Adapter\Database as DatabaseSession;
 
 /**
  *

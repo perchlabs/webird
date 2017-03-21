@@ -9,9 +9,7 @@ import App from './App'
 
 // Configuration for pdf.js library
 const {PDFJS}  = pdflib
-// This needs to be a seperate file because it is a web worker.
-// TODO: Have build system place this file.
-PDFJS.workerSrc = '/static/js/pdf.worker.min.js'
+PDFJS.workerSrc = require('entry?name=js/pdf.worker.js!pdfjs-dist/build/pdf.worker.min.js')
 
 /**
  *

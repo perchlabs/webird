@@ -1,4 +1,3 @@
-import '../../bootstrap'
 // System
 import Vue from 'vue'
 // Application

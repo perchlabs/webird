@@ -1,4 +1,4 @@
-import '../bootstrap'
+import '../jquery-setup'
 import 'bootstrap/dist/css/bootstrap'
 import 'bootstrap/dist/css/bootstrap-theme'
 import 'bootstrap/dist/js/bootstrap'

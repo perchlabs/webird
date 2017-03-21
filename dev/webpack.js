@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
@@ -129,10 +128,6 @@ const wpConf = {
   },
   plugins: [
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
-    new ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
     new LoaderOptionsPlugin({
       options: {
         postcss: postcssSetup,
@@ -146,9 +141,9 @@ const wpConf = {
   // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
   .concat(commonsChunkPluginArr),
   module: {
-    // noParse: [
-    //   /jquery/,
-    // ],
+    noParse: [
+      /$jquery^/,
+    ],
     rules: [
       {
         test: /\.js?$/,

@@ -19,7 +19,7 @@
     "name" : "David Schissler",
     "email" : "david.schissler@gmail.com"
   } ],
-  "keywords" : ["php", "phalcon", "javascript", "webpack", "babel", "framework" ],
+  "keywords" : ["php", "phalcon", "javascript", "webpack", "vue", "buble", "framework" ],
   "type" : "project",
   "license" : "BSD-3"
 }

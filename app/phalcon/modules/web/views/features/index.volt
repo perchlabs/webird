@@ -34,7 +34,7 @@
       <h3>{{t('Tools')}}</h3>
 
       {% if DEVELOPING %}
-        <a href="javascript:void(0)" class="btn btn-primary" onclick="devel.open()">{{ t('Devel Panel') | escape }}</a>
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="devel.toggle()">{{ t('Devel Panel') | escape }}</a>
       {% else %}
         Debug Panel is not available in dist environment
       {% endif %}

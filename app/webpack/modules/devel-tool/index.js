@@ -38,6 +38,7 @@ export default function(options) {
        */
       ...mapActions({
         open: 'openTool',
+        toggle: 'toggleTool',
       }),
     },
 

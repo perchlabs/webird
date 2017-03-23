@@ -4,9 +4,14 @@
     class="component-devel-tool">
 
     <div class="nav">
-      <template v-for="panelName in panels">
-        <div class="panel-open" @click="setActivePanel(panelName)">{{panelName}}</div>
-      </template>
+      <div class="panel-close" @click="closeTool">X</div>
+
+      <div
+        v-for="panelName in panels"
+        class="panel-open"
+        @click="setActivePanel(panelName)">
+        {{panelName}}
+      </div>
 
       <div class="status">
         <h3 class="status__section-title">Resource Usage</h3>
@@ -146,6 +151,7 @@
         'setActivePanel',
         'toggleTool',
         'openTool',
+        'closeTool',
       ]),
     },
 
@@ -175,7 +181,13 @@
   pointer-events: none;
   overflow: hidden;
 }
-
+.panel-close {
+  text-align: right;
+  padding: 3px 10px;
+  color: var(--text-error--color);
+  font-size: 22px;
+  cursor: pointer;
+}
 .nav {
   position: absolute;
   top: 0;
@@ -219,8 +231,6 @@
 }
 
 
-
-
 .status {
   box-sizing: border-box;
   width: 100%;
@@ -262,5 +272,4 @@
   border: none;
   text-align: right;
 }
-
 </style>

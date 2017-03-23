@@ -41,4 +41,3 @@
     </div>
   </div>
 </div>
-{{common('devel_tool')}}

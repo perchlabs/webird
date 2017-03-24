@@ -13,7 +13,8 @@
         <tbody>
         <tr v-for="view in sections.viewsRendered" class="content__table-row">
           <td class="content__table-cell">{{view.path}}</td>
-          <td class="content__table-cell">{{view.params}}</td>
+
+          <td class="content__table-cell"><pre><code class="php">{{view.params}}</code></pre></td>
         </tr>
         </tbody>
       </table>

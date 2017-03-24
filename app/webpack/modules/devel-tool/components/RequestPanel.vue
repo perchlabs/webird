@@ -20,7 +20,7 @@
           <tbody>
           <tr v-for="(value, key) in sections[sectionItem.name]" class="content__table-row">
             <td class="content__table-cell">{{key}}</td>
-            <td class="content__table-cell">{{value}}</td>
+            <td class="content__table-cell"><pre><code class="php">{{value}}</code></pre></td>
           </tr>
           </tbody>
         </table>

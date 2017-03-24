@@ -73,12 +73,22 @@
   // System
   import {mapGetters, mapActions} from 'vuex'
   import mousetrap from 'mousetrap'
+  import highlight from 'highlight'
+  import langSql from 'highlight.js/lib/languages/sql'
+  import langPhp from 'highlight.js/lib/languages/php'
+  import langJavascript from 'highlight.js/lib/languages/javascript'
+  import 'highlight.js/styles/github'
+
   // Local
   import ConfigPanel from './components/ConfigPanel'
   import DatabasePanel from './components/DatabasePanel'
   import ViewsPanel from './components/ViewsPanel'
   import RequestPanel from './components/RequestPanel'
   import ServerPanel from './components/ServerPanel'
+
+  highlight.registerLanguage('sql', langSql)
+  highlight.registerLanguage('php', langPhp)
+  highlight.registerLanguage('javascript', langJavascript)
 
   /**
    *
@@ -150,6 +160,19 @@
       })
     },
 
+    /**
+     *
+     */
+    updated() {
+      if (this.isOpen) {
+        // Highlight all descendant pre code pairs in this element.
+        this.$el
+          .querySelectorAll('pre code')
+          .forEach(block => {
+            highlight.highlightBlock(block)
+          })
+      }
+    }
   }
 </script>
 

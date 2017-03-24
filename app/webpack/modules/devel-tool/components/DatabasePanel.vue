@@ -21,8 +21,8 @@
         <tbody>
         <tr v-for="profile in sections.profiles" class="content__table-row">
           <td class="content__table-cell">{{profile.time}}</td>
-          <td class="content__table-cell">{{profile.sql}}</td>
-          <td class="content__table-cell">{{profile.vars}}</td>
+          <td class="content__table-cell"><pre><code class="sql">{{profile.sql}}</code></pre></td>
+          <td class="content__table-cell"><pre><code class="php">{{profile.vars}}</code></pre></td>
         </tr>
         </tbody>
       </table>

@@ -158,8 +158,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── run (CLI entry for built system)
 ├── public/
 │   ├── index.php (Web entry for built system)
-    └── static resources copied from app directory
-
+│   └── static resources copied from app directory
 ├── etc/
 ├── cache-static/
 │   ├── locale/ (localization files in machine readable .mo format)

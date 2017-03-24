@@ -54,30 +54,16 @@
           </tbody>
         </table>
       </div>
-
     </div>
 
     <div class="panels" v-show="isPanelOpen">
-      <config-panel
-        v-show="panelName == 'config'"
-        :sections="panelData.config">
-      </config-panel>
-      <database-panel
-        v-show="panelName == 'database'"
-        :sections="panelData.database">
-      </database-panel>
-      <views-panel
-        v-show="panelName == 'views'"
-        :sections="panelData.views">
-      </views-panel>
-      <request-panel
-        v-show="panelName == 'request'"
-        :sections="panelData.request">
-      </request-panel>
-      <server-panel
-        v-show="panelName == 'server'"
-        :sections="panelData.server">
-      </server-panel>
+      <component
+        v-for="panelName in panels"
+        v-show="panelName == activePanelName"
+        :key="panelName"
+        :is="`${panelName}Panel`"
+        :sections="panelData[panelName]">
+      </component>
     </div>
 
   </div>
@@ -132,7 +118,7 @@
         'wasOpened',
         'isOpen',
         'isPanelOpen',
-        'panelName',
+        'activePanelName',
         'panelData',
         'measurement',
       ]),

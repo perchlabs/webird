@@ -28,7 +28,7 @@ export default {
   /**
    *
    */
-  panelName(state) {
+  activePanelName(state) {
     return state.activePanelName
   },
 

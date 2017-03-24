@@ -31,8 +31,8 @@ export default {
    *
    */
   setActivePanel({getters, commit}, payload) {
-    const panelName = payload
+    const activePanelName = payload
 
-    commit(types.SET_ACTIVE_PANEL_NAME, panelName)
+    commit(types.SET_ACTIVE_PANEL_NAME, activePanelName)
   },
 }

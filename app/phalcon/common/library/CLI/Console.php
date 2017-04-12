@@ -65,10 +65,10 @@ class Console extends PhalconConsole
         }
 
         // All environments
-        $cmdArr = require("{$config->path->modulesDir}/{$arguments['module']}/cmd.php");
+        $cmdArr = require "{$config->path->modulesDir}/{$arguments['module']}/cmd.php";
 
         if (DEVELOPING) {
-            $devCmdArr = require("{$config->dev->path->devDir}/cmd_overrides.php");
+            $devCmdArr = require "{$config->dev->path->devDir}/cmd_overrides.php";
             $cmdArr = array_replace($cmdArr, $devCmdArr);
         }
 
@@ -108,10 +108,10 @@ class Console extends PhalconConsole
         $config = $this->getDI()->get('config');
 
         // All environments
-        $cmdArr = require("{$config->path->modulesDir}/cli/cmd.php");
+        $cmdArr = require "{$config->path->modulesDir}/cli/cmd.php";
 
         if (DEVELOPING) {
-            $devCmdArr = require("{$config->dev->path->devDir}/cmd_overrides.php");
+            $devCmdArr = require "{$config->dev->path->devDir}/cmd_overrides.php";
             $cmdArr = array_replace($cmdArr, $devCmdArr);
         }
 

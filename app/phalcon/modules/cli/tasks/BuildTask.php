@@ -33,7 +33,7 @@ class BuildTask extends Task
         // assumes that it is a variable.
         $diPrimary = $this->getDI();
         $di = new DI();
-        require($this->config->path->configDir . 'services_web.php');
+        require $this->config->path->configDir . 'services_web.php';
         foreach ($di->getServices() as $serviceName => $service) {
             if (!$diPrimary->has($serviceName)) {
                 $diPrimary->set($serviceName, function() {});
@@ -225,7 +225,7 @@ class BuildTask extends Task
 #!/usr/bin/env php
 <?php
 define('ENV', 'dist');
-require(__DIR__ . '/phalcon/bootstrap_cli.php');
+require __DIR__ . '/phalcon/bootstrap_cli.php';
 WEBIRD_ENTRY;
         file_put_contents("$buildDir/run", $cliEntry);
         chmod("$buildDir/run", 0775);
@@ -234,7 +234,7 @@ WEBIRD_ENTRY;
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
 define('ENV', 'dist');
-require(__DIR__ . '/../phalcon/bootstrap_web.php');
+require __DIR__ . '/../phalcon/bootstrap_web.php';
 WEBIRD_ENTRY;
         file_put_contents("$buildDir/public/index.php", $webEntry);
     }

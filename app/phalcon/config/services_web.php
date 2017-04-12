@@ -27,7 +27,7 @@ $di->setShared('router', function() {
     }
 
     // Fetch routes from user
-    require($config->path->configDir . '/routes.php');
+    require $config->path->configDir . '/routes.php';
 
     return $router;
 });

@@ -38,7 +38,7 @@ Model::setup([
  *
  */
 $di->setShared('config', function() {
-    return require(__DIR__ . "/config.php");
+    return require __DIR__ . "/config.php";
 });
 
 /**
@@ -221,7 +221,7 @@ $di->set('volt', function($view) {
     ]);
 
     $compiler = $volt->getCompiler();
-    require("{$configDir}volt_compiler.php");
+    require "{$configDir}volt_compiler.php";
 
     return $volt;
 });
@@ -326,7 +326,7 @@ $di->set('acl', function() {
     $configDir = $this->getConfig()
         ->path->configDir;
 
-    return new Acl(require("$configDir/acl.php"));
+    return new Acl(require "$configDir/acl.php");
 });
 
 /**

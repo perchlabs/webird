@@ -62,8 +62,8 @@
         v-show="panelName == activePanelName"
         :key="panelName"
         :is="`${panelName}Panel`"
-        :sections="panelData[panelName]">
-      </component>
+        :sections="panelData[panelName]"
+      />
     </div>
 
   </div>

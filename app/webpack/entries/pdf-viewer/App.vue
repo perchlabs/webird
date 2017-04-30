@@ -1,7 +1,7 @@
 <template>
   <document-viewer
-    :pages="pages">
-  </document-viewer>
+    :pages="pages"
+  />
 </template>
 
 <script>

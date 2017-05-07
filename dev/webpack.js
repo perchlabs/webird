@@ -282,6 +282,7 @@ function getNamesFromDirectory(filepath) {
 
   const devServer = new WebpackDevServer(webpack(wpConf), {
     contentBase: devRoot,
+    disableHostCheck: true,
     stats: {
       assets: false,
       colors: true,

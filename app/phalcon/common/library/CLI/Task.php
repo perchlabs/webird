@@ -127,7 +127,7 @@ abstract class Task extends PhalconTask
             exit(1);
         }
 
-        if (isset($argv[0]) && in_array($argv[0], ['--help', '-h'])) {
+        if (isset($argv[1]) && in_array($argv[1], ['--help', '-h'])) {
             throw new PrintHelpException($cmdDef, $specs);
         }
 
@@ -151,18 +151,13 @@ abstract class Task extends PhalconTask
         $args = array_map(function($arg) { return $arg->arg; }, $result->arguments);
         // Clean options
         $opts = array_map(function($opt) { return $opt->value; }, $result->keys);
+
         // The final result to be used in Tasks
-        $params = [
+        return [
             'args' => $args,
             'opts' => $opts,
         ];
-
-        return $params;
     }
-
-
-
-
 
     // /**
     //  * Checks if the system web user can read the current users files

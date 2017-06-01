@@ -17,7 +17,7 @@ add-apt-repository 'deb [arch=amd64,i386] http://mirror.netinch.com/pub/mariadb/
 # add-apt-repository ppa:nginx/stable
 
 # Add Nodejs repository
-curl -sL https://deb.nodesource.com/setup_7.x | bash
+curl -sL https://deb.nodesource.com/setup_8.x | bash
 
 # Add Yarn repository
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -

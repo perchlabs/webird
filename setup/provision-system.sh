@@ -23,7 +23,8 @@ fi
 
 export TEMP_DIR=$(mktemp -d)
 
-# Allows reading of OS specific lists while ignoring lines beginning to hash
+# Allows reading of OS specific lists.
+# Ignores lines which begin with the hash symbol.
 readlist() { echo $(grep -v '^#' "$OS_DIR/lists/$1"); }
 export -f readlist
 
@@ -33,10 +34,10 @@ for fscript in $functions; do
   . $fscript
 done
 
-# Mark all variables for export
+# Mark all variables for export.
 set -a
 
-# Find all of the files that begin with two numbers and sort them
+# Find all of the files that begin with two digits and sort them.
 scripts=$(find "$OS_DIR/init" -maxdepth 1 -type f -name "[0-9][0-9]*" | sort)
 for script in $scripts; do
   "$script"

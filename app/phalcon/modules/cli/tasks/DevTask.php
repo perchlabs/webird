@@ -59,10 +59,10 @@ HELPMSG;
     /**
      *
      */
-    public function nginxAction($argv)
+    public function caddyAction($argv)
     {
         $params = $this->parseArgs($argv, [
-            'title' => 'Generate a dev (development) nginx configuration',
+            'title' => 'Generate a caddy configuration for dev environment.',
             'args' => [
                 'required' => [],
                 'optional' => [],
@@ -70,23 +70,39 @@ HELPMSG;
             'opts' => [],
         ]);
 
-        echo $this->getNginxConfig();
+        $config = $this->getDI()
+            ->getConfig();
+
+        echo $this->getDI()
+            ->getViewSimple()
+            ->render('caddy/dev', [
+                'config'      => $config,
+                'random_hash' => uniqid(),
+        ]);
     }
 
     /**
      *
      */
-    private function getNginxConfig()
+    public function nginxAction($argv)
     {
+        $params = $this->parseArgs($argv, [
+            'title' => 'Generate a nginx configuration for dev environment.',
+            'args' => [
+                'required' => [],
+                'optional' => [],
+            ],
+            'opts' => [],
+        ]);
+
         $config = $this->getDI()
             ->getConfig();
 
-        return $this->getDI()
+        echo $this->getDI()
             ->getViewSimple()
             ->render('nginx/dev', [
                 'config'      => $config,
                 'random_hash' => uniqid(),
         ]);
     }
-
 }

@@ -55,7 +55,7 @@ HELPMSG;
     public function nginxAction($argv)
     {
         $params = $this->parseArgs($argv, [
-            'title' => 'Generate a dist (distribution/production) nginx configuration',
+            'title' => 'Generate a nginx configuration for dist environment.',
             'args' => [
                 'required' => [],
                 'optional' => [],
@@ -63,23 +63,14 @@ HELPMSG;
             'opts' => [],
         ]);
 
-        echo $this->getNginxConfig();
-    }
-
-    /**
-     *
-     */
-    private function getNginxConfig()
-    {
         $config = $this->getDI()
             ->getConfig();
 
-        return $this->getDI()
+        echo $this->getDI()
             ->getViewSimple()
-            ->render('nginx/dist', [
+            ->render('caddy/dist', [
                 'config'      => $config,
                 'random_hash' => uniqid(),
             ]);
     }
-
 }

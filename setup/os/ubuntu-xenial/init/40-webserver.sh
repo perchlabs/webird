@@ -17,7 +17,7 @@ case "$WEBIRD_WEBSERVER" in
 
     # Create simple Caddyfile to import all enabled sites.
     cat > $CADDY_ETC/Caddyfile <<EOF
-import /etc/caddy/sites-enabled/*.conf
+import /etc/caddy/sites-enabled/*
 EOF
 
     chown -R root:root $CADDY_ETC

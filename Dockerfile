@@ -12,14 +12,13 @@ RUN \
   /opt/webird/setup/provision-system.sh ubuntu-xenial
 
 RUN \
-  ln -s /opt/webird/dev/run /usr/local/bin/webird-dev && \
-  ln -s /opt/webird/dist/run /usr/local/bin/webird && \
   useradd -G www-data -s /bin/bash --home /opt/webird webird && \
   chown -R webird.www-data /opt/webird
 
 USER webird
 RUN \
   export HOME=/opt/webird && \
+  export WEBIRD_PROVISION=noninteractive
   /opt/webird/setup/install-local-packages.sh
 
 USER root

@@ -13,9 +13,6 @@ apt-get install -y software-properties-common
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
 add-apt-repository 'deb [arch=amd64,i386] http://mirror.netinch.com/pub/mariadb/repo/10.1/ubuntu xenial main'
 
-# Nginx Stable Ubuntu PPA
-# add-apt-repository ppa:nginx/stable
-
 # Add Nodejs repository
 curl -sL https://deb.nodesource.com/setup_8.x | bash
 

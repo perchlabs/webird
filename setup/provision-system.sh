@@ -28,7 +28,17 @@ export TEMP_DIR=$(mktemp -d)
 readlist() { echo $(grep -v '^#' "$OS_DIR/lists/$1"); }
 export -f readlist
 
-. "$OS_DIR/exports.sh"
+# Setup interativity
+[[ -z "$WEBIRD_PROVISION" ]] && WEBIRD_PROVISION=interactive
+if [[ "$WEBIRD_PROVISION" != interactive ]] && [[ "$WEBIRD_PROVISION" != noninteractive ]]; then
+  >&2 echo "Invalid interactivity choice."
+  exit 1
+fi
+
+# Environment setup, questions and options.
+. "$OS_DIR/init.sh"
+
+# Include all OS specific global functions.
 functions=$(find "$OS_DIR/functions" -maxdepth 1 -type f)
 for fscript in $functions; do
   . $fscript

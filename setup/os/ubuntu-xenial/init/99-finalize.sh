@@ -3,27 +3,21 @@
 systemctl restart mysql
 systemctl restart php${PHP_VERSION}-fpm
 
-case "$WEBIRD_WEBSERVER" in
-  caddy)
-    # Disable and stop nginx
-    systemctl disable nginx
-    systemctl stop nginx
+# Disable and stop all unused webservers
+list=(nginx caddy)
+remove=($WEBIRD_WEBSERVER)
+disableList=("${list[@]/$remove}")
+for i in "${!disableList[@]}"; do
+  disabledServer = "${disableList[$i]}"
+  [[ -z "$disabledServer" ]] && continue
 
-    # Enable and start caddy
-    systemctl enable caddy
-    systemctl restart caddy
-    ;;
-  nginx)
-    # Disable and stop caddy
-    systemctl disable caddy
-    systemctl stop caddy
+  systemctl disable "$disabledServer"
+  systemctl stop "$disabledServer"
+done
 
-    # Enable and start nginx
-    systemctl enable nginx
-    systemctl restart nginx
-    ;;
-esac
-
+# Enable and start active webserver
+systemctl enable "$WEBIRD_WEBSERVER"
+systemctl restart "$WEBIRD_WEBSERVER"
 
 sleep 2s
 

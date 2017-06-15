@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Environment variables OS_DIR and TEMP_DIR are available
 
-[[ "$SKIP_PHALCON" = true ]] && exit 0
+[[ -n "$SKIP_PHALCON" ]] && exit 0
 
 # Install Zephir
 echo "Installing Zephir"

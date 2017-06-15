@@ -20,14 +20,10 @@ case "$WEBIRD_WEBSERVER" in
 import /etc/caddy/sites-enabled/*.conf
 EOF
 
-    chown -R root:www-data $CADDY_ETC
+    chown -R root:root $CADDY_ETC
 
     install -m 644 -o root -g root init/linux-systemd/caddy.service /etc/systemd/system/
-#    cp caddy.service /etc/systemd/system/
-#    chown root:root /etc/systemd/system/caddy.service
-#    chmod 644 /etc/systemd/system/caddy.service
     systemctl daemon-reload
-
 
     # Give the caddy binary the ability to bind to
     # privileged ports (e.g. 80, 443) as a non-root user.
@@ -45,7 +41,7 @@ chown -R www-data:root $SSL_DIR
 chmod 0770 $SSL_DIR
 
 if [[ -f "$SSL_DIR/server.key" || -f  "$SSL_DIR/server.crt" ]]; then
-  echo "Skipping nginx self-signing certificate, since one already exists."
+  echo "Skipping web server self-signing certificate, since one already exists."
 else
   openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
     -subj "/C=US/ST=Calfornia/L=Windsor/O=Webird/OU=Department of Silly Walks/CN=*.webird.io" \

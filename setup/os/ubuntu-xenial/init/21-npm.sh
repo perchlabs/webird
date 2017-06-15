@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # Environment variables OS_DIR and TEMP_DIR are available
 
-[[ "$SKIP_NPM" = true ]] && exit 0
+[[ -n "$SKIP_NPM" ]] && exit 0
 
-modules=$(readlist npm)
-npm install -g $modules
-exit $?
+packages=$(readlist npm)
+if [[ -n "$packages" ]]; then
+  npm install -g $packages
+  exit $?
+fi
+
+exit 0

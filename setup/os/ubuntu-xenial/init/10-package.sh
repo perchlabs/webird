@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Environment variables OS_DIR and TEMP_DIR are available
 
-[[ "$SKIP_PACKAGE" = true ]] && exit 0
+[[ -n "$SKIP_PACKAGE" ]] && exit 0
 
 # Update to get package list
 apt-get update
@@ -29,6 +29,9 @@ apt-get update
 apt-get upgrade -y
 
 packages=$(readlist package)
-apt-get install -y $packages
+if [[ -n "$packages" ]]; then
+  apt-get install -y $packages
+exit $?
+fi
 
 exit 0

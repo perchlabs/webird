@@ -8,11 +8,11 @@ list=(nginx caddy)
 remove=($WEBIRD_WEBSERVER)
 disableList=("${list[@]/$remove}")
 for i in "${!disableList[@]}"; do
-  disabledServer = "${disableList[$i]}"
-  [[ -z "$disabledServer" ]] && continue
+  disabledService="${disableList[$i]}"
+  [[ -z "$disabledService" ]] && continue
 
-  systemctl disable "$disabledServer"
-  systemctl stop "$disabledServer"
+  systemctl disable "$disabledService"
+  systemctl stop "$disabledService"
 done
 
 # Enable and start active webserver

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Environment variables OS_DIR and TEMP_DIR are available
 
-[[ "$SKIP_NODE" = true ]] && exit 0
+[[ -n "$SKIP_NODE"  ]] && exit 0
 
 NODE_INSTALLED_PATH=$(which node)
 if [[ $? -eq 0 ]]; then

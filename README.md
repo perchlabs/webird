@@ -16,7 +16,6 @@ Node.js is required for development only and is not required once a project has 
 * [nginx](http://nginx.org/)
 * [Composer](https://getcomposer.org/)
 * [Nodejs](https://nodejs.org)
-* [Yarn](https://github.com/yarnpkg/yarn)
 * [Ratchet](http://socketo.me/)
 * [gettext](http://www.gnu.org/software/gettext/gettext.html)
 * [MariaDB](https://mariadb.org/) 10.1
@@ -39,7 +38,7 @@ Node.js is required for development only and is not required once a project has 
 * PHP >= 7.0
 * Phalcon >= 3.0.0
 * MariaDB >= 10.1
-* Node.js >= 7.0
+* Node.js >= 8.0
 
 **Installation Instructions:**
 ```

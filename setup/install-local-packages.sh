@@ -4,7 +4,7 @@ DEVDIR="$(readlink -f "$DIR/../dev")"
 
 cd "$DEVDIR"
 
-yarn install
+npm install
 [[ $? -ne 0 ]] && exit $?
 
 composer install

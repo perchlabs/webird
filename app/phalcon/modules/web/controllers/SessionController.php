@@ -1,14 +1,14 @@
 <?php
 namespace Webird\Modules\Web\Controllers;
 
-use Webird\Mvc\Controller,
-    Webird\Auth\AuthException,
-    Webird\Auth\AuthMustChangePasswordException,
-    Webird\Auth\AuthRememberMeException,
-    Webird\Models\Users,
-    Webird\Models\ResetPasswords,
-    Webird\Modules\Web\Forms\SigninForm,
-    Webird\Modules\Web\Forms\SignUpForm;
+use Webird\Mvc\Controller;
+use Webird\Auth\AuthException;
+use Webird\Auth\AuthMustChangePasswordException;
+use Webird\Auth\AuthRememberMeException;
+use Webird\Models\Users;
+use Webird\Models\ResetPasswords;
+use Webird\Modules\Web\Forms\SigninForm;
+use Webird\Modules\Web\Forms\SignUpForm;
 
 /**
  * Controller used handle non-authenticated session actions like signin/signout, user signup, and forgotten passwords

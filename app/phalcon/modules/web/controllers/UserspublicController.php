@@ -1,14 +1,14 @@
 <?php
 namespace Webird\Modules\Web\Controllers;
 
-use Webird\Mvc\Controller,
-    Webird\Auth\AuthMustChangePasswordException,
-    Webird\Models\Users,
-    Webird\Models\EmailConfirmations,
-    Webird\Models\ResetPasswords,
-    Webird\Auth\AuthInactiveUserException,
-    Webird\Modules\Web\Forms\ChangePasswordForm,
-    Webird\Modules\Web\Forms\ForgotPasswordForm;
+use Webird\Mvc\Controller;
+use Webird\Auth\AuthMustChangePasswordException;
+use Webird\Models\Users;
+use Webird\Models\EmailConfirmations,
+use Webird\Models\ResetPasswords;
+use Webird\Auth\AuthInactiveUserException;
+use Webird\Modules\Web\Forms\ChangePasswordForm;
+use Webird\Modules\Web\Forms\ForgotPasswordForm;
 
 /**
  * UserspublicController
@@ -16,12 +16,17 @@ use Webird\Mvc\Controller,
  */
 class UserspublicController extends Controller
 {
-
+    /**
+     *
+     */
     public function initialize()
     {
         parent::initialize();
     }
 
+    /**
+     *
+     */
     public function indexAction()
     {
 
@@ -189,5 +194,4 @@ class UserspublicController extends Controller
 
         $this->view->form = $form;
     }
-
 }

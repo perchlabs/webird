@@ -1,14 +1,14 @@
 <?php
 namespace Webird\Modules\Web\Controllers;
 
-use Phalcon\Tag,
-    Webird\Mvc\Controller,
-    Webird\Models\Users,
-    Webird\Models\EmailConfirmations,
-    Webird\Models\ResetPasswords,
-    Webird\Models\PasswordChanges,
-    Webird\Modules\Web\Forms\ChangePasswordForm,
-    Webird\Modules\Web\Forms\ForgotPasswordForm;
+use Phalcon\Tag;
+use Webird\Mvc\Controller;
+use Webird\Models\Users;
+use Webird\Models\EmailConfirmations;
+use Webird\Models\ResetPasswords;
+use Webird\Models\PasswordChanges;
+use Webird\Modules\Web\Forms\ChangePasswordForm;
+use Webird\Modules\Web\Forms\ForgotPasswordForm;
 
 /**
  * SettingsController
@@ -17,6 +17,9 @@ use Phalcon\Tag,
 class SettingsController extends Controller
 {
 
+    /**
+     *
+     */
     public function initialize()
     {
         parent::initialize();
@@ -24,9 +27,11 @@ class SettingsController extends Controller
         $this->view->setTemplateBefore('private');
     }
 
+    /**
+     *
+     */
     public function indexAction()
     {
-
     }
 
     /**

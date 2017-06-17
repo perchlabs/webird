@@ -16,7 +16,7 @@ $private = [
         'privacy'     => ['index'],
         'terms'       => ['terms'],
         'settings'    => ['changePassword'],
-        'features'    => ['index', 'vue', 'vuex', 'websocket', 'postcss', 'fetch', 'pdfviewer'],
+        'features'    => ['index', 'vue', 'vuex', 'websocket', 'serversent', 'postcss', 'fetch', 'pdfviewer'],
     ],
     'admin' => [
         'index'       => ['index'],

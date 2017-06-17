@@ -24,6 +24,7 @@
     <div class="col-md-6">
       <h3>{{t('Technologies')}}</h3>
       <a href="{{ url('features/websocket') }}" class="btn btn-primary">{{ t('Websocket') }}</a>
+      <a href="{{ url('features/serversent') }}" class="btn btn-primary">{{ t('Server-Sent') }}</a>
       <a href="{{ url('features/postcss') }}" class="btn btn-primary">{{ t('PostCSS') }}</a>
       <a href="{{ url('features/fetch') }}" class="btn btn-primary">{{ t('Fetch API with async/await') }}</a>
       <a href="{{ url('features/pdfviewer') }}" class="btn btn-primary">{{ t('PDF.js viewer') }}</a>

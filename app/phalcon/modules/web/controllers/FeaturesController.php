@@ -1,9 +1,11 @@
 <?php
 namespace Webird\Modules\Web\Controllers;
 
-use ZMQ,
-    ZMQContext as ZMQContext,
-    Webird\Mvc\Controller;
+use ZMQ;
+use ZMQContext as ZMQContext;
+use Webird\Mvc\Controller;
+use Webird\Http\ServerSent;
+use Webird\Http\ServerSent\Event;
 
 /**
  * Controller for the Framework examples
@@ -31,28 +33,36 @@ class FeaturesController extends Controller
      */
     public function vuexAction()
     {
-
     }
 
     /**
-     * Marionette and Webpack integration example
+     *
      */
-    public function marionetteAction()
+    public function serversentAction()
     {
-        $zmqPort = $this->config->app->zmqPort;
+        $dispatcher = $this->getDI()
+            ->getDispatcher();
 
-        $data = [
-            'category' => 'kittensCategory',
-            'title'    => 'big_title',
-            'article'  => 'good',
-            'when'     => time(),
-        ];
+        $option = $dispatcher->getParam(0);
+        if ($option === 'messages') {
+            $server = new ServerSent($this->getDI());
+            $server->start();
 
-        $context = new ZMQContext();
-        $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'framework pusher');
-        $socket->connect("tcp://localhost:${zmqPort}");
+            $count = 0;
+            while ($count < 5) {
+                $count++;
 
-        $socket->send(json_encode($data));
+                $event = new Event();
+                $event
+                    ->setName('webird')
+                    ->addData(['count' => $count])
+                    ->setRetry(2);
+
+                $server->sendEvent($event);
+
+                sleep(1);
+            }
+        }
     }
 
     /**
@@ -60,7 +70,6 @@ class FeaturesController extends Controller
      */
     public function websocketAction()
     {
-
     }
 
     /**
@@ -68,19 +77,21 @@ class FeaturesController extends Controller
      */
     public function fetchAction()
     {
-        $api = $this->dispatcher->getParam(0);
-        if (isset($api) && $api == 'api') {
-            $response = $this->getDI()->getResponse();
+        $dispatcher = $this->getDI()
+            ->getDispatcher();
+
+        $option = $dispatcher->getParam(0);
+        if ($option === 'api') {
             $data = [
                 'this_is_data' => 'here_it_is',
             ];
-            $json = json_encode($data, JSON_PRETTY_PRINT);
 
-            $response->setHeader('Content-Type', 'application/json');
-            $response->setContent($json);
-            $response->send();
+            $response = $this->getDI()
+                ->getResponse();
 
             $this->view->disable();
+            $response->setJsonContent($data);
+            $response->send();
         }
     }
 

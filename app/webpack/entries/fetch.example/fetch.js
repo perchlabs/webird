@@ -9,10 +9,8 @@ fetch('/features/fetch/api', {
   if (response.status !== 200) {
     throw 'Invalid status.'
   }
-  if (response.headers.get('Content-Type') !== 'application/json') {
-    throw 'Invalid content type.'
-  }
-  return response.text()
+
+  return response.json()
 })
 .then(function(data) {
   console.log('API data')

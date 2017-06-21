@@ -2,16 +2,19 @@
 namespace Webird\Modules\Cli\Tasks;
 
 use ZMQ;
-use PDO;
-use React\ZMQ\Context as ZMQContext;
+use ZMQContext;
+use ZMQDevice;
+use React\ZMQ\Context as ReactZMQContext;
 use React\EventLoop\Factory as EventLoopFactory;
-use Ratchet\Server\IoServer;
-use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use Ratchet\Session\SessionProvider;
-use Symfony\Component\HttpFoundation\Session\Storage\Handler;
+use Ratchet\Http\HttpServer;
+use React\Socket\Server as Reactor;
+
+use Ratchet\Server\IoServer;
+use Ratchet\Wamp\WampServer;
+
 use Webird\CLI\Task;
-use Webird\Modules\Cli\Chat;
+use Webird\Modules\Cli\Broadcaster;
 
 /**
  * Task for websocket
@@ -30,7 +33,29 @@ class ServiceTask extends Task
     /**
      *
      */
-    public function websocketListenAction($argv)
+    public function serversentAction($argv)
+    {
+        $ctx = new ZMQContext();
+
+        $sub = $ctx->getSocket(ZMQ::SOCKET_SUB);
+        $sub->bind("tcp://127.0.0.1:5554");
+        $sub->setSockOpt(ZMQ::SOCKOPT_SUBSCRIBE, '');
+        $sub->setSockOpt(ZMQ::SOCKOPT_LINGER, 0);
+
+        $pub = $ctx->getSocket(ZMQ::SOCKET_PUB);
+        $pub->bind("tcp://127.0.0.1:5555");
+        $pub->setSockOpt(ZMQ::SOCKOPT_LINGER, 0);
+
+        echo "The device server has been started.\n";
+
+        $device = new ZMQDevice($sub, $pub);
+        $device->run();
+    }
+
+    /**
+     *
+     */
+    public function websocketAction($argv)
     {
         $config = $this->di->getConfig();
 
@@ -54,26 +79,24 @@ class ServiceTask extends Task
         $zmqPort = (isset($opts['zmqport'])) ? $opts['zmqport'] : $config->app->zmqPort;
 
         $loop = EventLoopFactory::create();
-        $chat = new Chat();
-        $chat->setDI($this->getDI());
 
+        $broadcaster = new Broadcaster();
+        $broadcaster->setDI($this->getDI());
 
         // Listen for the web server to make a ZeroMQ push after an ajax request
-        // $context = new ZMQContext($loop);
-        // $pull = $context->getSocket(ZMQ::SOCKET_PULL);
-        // $pull->bind("tcp://127.0.0.1:${zmqPort}"); // Binding to 127.0.0.1 means the only client that can connect is itself
-        // $pull->on('message', [$chat, 'onUserJoin']);
+        $context = new ReactZMQContext($loop);
+        $sub = $context->getSocket(ZMQ::SOCKET_SUB);
+        $sub->subscribe('');
+        $sub->bind("tcp://127.0.0.1:$zmqPort");
+        $sub->on('message', [$broadcaster, 'onPost']);
 
-        $wsServer = new WsServer($chat);
-
-        $ioServer = IoServer::factory(
-            new HttpServer($wsServer),
-            $wsPort
-        );
+        $wsServer = new WsServer($broadcaster);
+        $httpServer = new HttpServer($wsServer);
+        $socket = new Reactor("0.0.0.0:$wsPort", $loop);
+        $ioServer = new IoServer($httpServer, $socket, $loop);
 
         echo "websocket listening on port $wsPort in " . ENV . " mode\n";
 
-        $ioServer->run();
+        $loop->run();
     }
-
 }

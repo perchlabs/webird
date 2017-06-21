@@ -3,6 +3,8 @@ namespace Webird\Modules\Web\Controllers;
 
 use ZMQ;
 use ZMQContext as ZMQContext;
+use React\EventLoop\Factory as EventLoopFactory;
+use React\ZMQ\Context as ReactZMQContent;
 use Webird\Mvc\Controller;
 use Webird\Http\ServerSent;
 use Webird\Http\ServerSent\Event;
@@ -32,43 +34,6 @@ class FeaturesController extends Controller
      * Vue with Vuex integration example
      */
     public function vuexAction()
-    {
-    }
-
-    /**
-     *
-     */
-    public function serversentAction()
-    {
-        $dispatcher = $this->getDI()
-            ->getDispatcher();
-
-        $option = $dispatcher->getParam(0);
-        if ($option === 'messages') {
-            $server = new ServerSent($this->getDI());
-            $server->start();
-
-            $count = 0;
-            while ($count < 5) {
-                $count++;
-
-                $event = new Event();
-                $event
-                    ->setName('webird')
-                    ->addData(['count' => $count])
-                    ->setRetry(2);
-
-                $server->sendEvent($event);
-
-                sleep(1);
-            }
-        }
-    }
-
-    /**
-     * Ratchet and Webpack integration example
-     */
-    public function websocketAction()
     {
     }
 

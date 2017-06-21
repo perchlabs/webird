@@ -8,11 +8,14 @@ use Ratchet\ConnectionInterface;
 use Webird\DatabaseSessionReader;
 
 /**
- * Basic chat logic for a Ratchet application
+ *
  */
-class Chat extends DIInjectable implements MessageComponentInterface
+class BroadCaster extends DIInjectable implements MessageComponentInterface
 {
 
+    /**
+     *
+     */
     protected $clients;
 
     /**
@@ -83,23 +86,36 @@ class Chat extends DIInjectable implements MessageComponentInterface
     }
 
     /**
+     *
+     */
+    public function onPost($msg)
+    {
+        $numRecv = $this->clients->count() - 1;
+
+        foreach ($this->clients as $client) {
+            $client->send($msg);
+        }
+    }
+
+    /**
      * Receives a message when registered in the websocket server
      *
      * @param \Ratchet\ConnectionInterface  $from
      * @param string                        $msg
     */
-    public function onMessage(ConnectionInterface $from, $msg) {
-        $numRecv = $this->clients->count() - 1;
-
-        fwrite(STDOUT, sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's'));
-
-        foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                // The sender is not the receiver, send to each client connected
-                $client->send($msg);
-            }
-        }
+    public function onMessage(ConnectionInterface $from, $msg)
+    {
+        // $numRecv = $this->clients->count() - 1;
+        //
+        // fwrite(STDOUT, sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
+        //     , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's'));
+        //
+        // foreach ($this->clients as $client) {
+        //     if ($from !== $client) {
+        //         // The sender is not the receiver, send to each client connected
+        //         $client->send($msg);
+        //     }
+        // }
     }
 
     /**
@@ -107,7 +123,8 @@ class Chat extends DIInjectable implements MessageComponentInterface
      *
      * @param \Ratchet\ConnectionInterface  $conn
     */
-    public function onClose(ConnectionInterface $conn) {
+    public function onClose(ConnectionInterface $conn)
+    {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
 
@@ -120,10 +137,10 @@ class Chat extends DIInjectable implements MessageComponentInterface
      * @param \Ratchet\ConnectionInterface  $from
      * @param \Exception                    $e
     */
-    public function onError(ConnectionInterface $conn, \Exception $e) {
+    public function onError(ConnectionInterface $conn, \Exception $e)
+    {
         fwrite(STDERR, $e->getMessage() . "\n");
 
         $conn->close();
     }
-
 }

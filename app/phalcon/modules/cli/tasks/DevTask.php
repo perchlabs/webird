@@ -41,16 +41,18 @@ HELPMSG;
         $runEsc = escapeshellcmd("$devDir/run");
         $devDirEsc = escapeshellarg($devDir);
 
+        $serversentProc = new Process("$runEsc serversent");
         $websocketProc = new Process("$runEsc websocket");
         $webpackProc = new Process("cd $devDirEsc && npm run dev");
 
-        $loop = EventLoopFactory::create();
-        $loop->addTimer(0.001, function($timer) use ($websocketProc, $webpackProc) {
-            $websocketProc->start($timer->getLoop());
-            $websocketProc->addStdListeners();
+        $procs = [$serversentProc, $websocketProc, $webpackProc];
 
-            $webpackProc->start($timer->getLoop());
-            $webpackProc->addStdListeners();
+        $loop = EventLoopFactory::create();
+        $loop->addTimer(0.001, function($timer) use ($procs) {
+            foreach ($procs as $proc) {
+                $proc->start($timer->getLoop());
+                $proc->addStdListeners();
+            }
         });
 
         $loop->run();

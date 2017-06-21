@@ -50,6 +50,7 @@ class ServerSent
 
         // Disable proxy buffering and fastcgi_buffering.
         $response->setHeader('X-Accel-Buffering', 'no');
+        $response->setheader('Cache-Control', 'no-cache');
         $response->setContentType('text/event-stream');
         $response->setContent('');
         $response->send();

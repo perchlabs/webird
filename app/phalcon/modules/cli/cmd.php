@@ -6,5 +6,6 @@ return [
     'userstatus' => 'user::status',
     'userdel'    => 'user::delete',
     'server'     => 'dist::server',
-    'websocket'  => 'service::websocketListen',
+    'websocket'  => 'service::websocket',
+    'serversent' => 'service::serversent',
 ];

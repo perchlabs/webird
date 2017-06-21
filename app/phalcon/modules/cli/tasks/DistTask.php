@@ -38,12 +38,17 @@ HELPMSG;
         $appDir = $this->config->path->appDir;
         $runEsc = escapeshellcmd("$appDir/run");
 
+        $serversentProc = new Process("$runEsc serversent");
         $websocketProc = new Process("$runEsc websocket");
 
+        $procs = [$serversentProc, $websocketProc];
+
         $loop = EventLoopFactory::create();
-        $loop->addTimer(0.01, function($timer) use ($websocketProc) {
-            $websocketProc->start($timer->getLoop());
-            $websocketProc->addStdListeners();
+        $loop->addTimer(0.001, function($timer) use ($procs) {
+            foreach ($procs as $proc) {
+                $proc->start($timer->getLoop());
+                $proc->addStdListeners();
+            }
         });
 
         $loop->run();

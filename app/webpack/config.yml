@@ -3,7 +3,6 @@ commons:
   init_complex:
   - admin
   - public
-  - websocket
   vue:
   - vue.simple
   - vue.vuex

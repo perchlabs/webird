@@ -59,9 +59,6 @@ class BroadcastController extends Controller
      */
     public function serversentAction()
     {
-        $dispatcher = $this->getDI()
-            ->getDispatcher();
-
         $server = new ServerSent($this->getDI());
         $server->start();
 
@@ -79,7 +76,10 @@ class BroadcastController extends Controller
                 ->setRetry(2);
 
             $server->sendEvent($event);
-            // echo "Received: ". $msg[1] ." on channel: ". $msg[0] ."\n";
+        });
+
+        $loop->addPeriodicTimer(3, function() use ($server) {
+            $server->sendHeartbeat();
         });
 
         $loop->run();

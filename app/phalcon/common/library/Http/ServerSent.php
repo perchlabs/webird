@@ -50,6 +50,10 @@ class ServerSent
 
         // Disable proxy buffering and fastcgi_buffering.
         $response->setHeader('X-Accel-Buffering', 'no');
+
+        // Disable output compression.
+        $response->setHeader('Content-Encoding', 'none');
+
         $response->setheader('Cache-Control', 'no-cache');
         $response->setContentType('text/event-stream');
         $response->setContent('');
@@ -66,6 +70,17 @@ class ServerSent
     public function sendEvent(Event $event)
     {
         echo (string) $event;
+        flush();
+    }
+
+    /**
+     * Send a heartbeat comment to the browser.
+     * This keeps the EventSource connection open in the browser and allows PHP to know if
+     * the connection has ended.
+     */
+    public function sendHeartbeat()
+    {
+        echo ":heartbeat\n\n";
         flush();
     }
 

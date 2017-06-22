@@ -38,7 +38,7 @@ HELPMSG;
         ]);
 
         $devDir = $config->dev->path->devDir;
-        $runEsc = escapeshellcmd("$devDir/run");
+        $runEsc = escapeshellcmd($devDir . 'run');
         $devDirEsc = escapeshellarg($devDir);
 
         $serversentProc = new Process("$runEsc serversent");

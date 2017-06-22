@@ -1,8 +1,9 @@
 <?php
 namespace Webird\Modules\Cli;
 
+use SplObjectStorage;
 use Phalcon\DI\Injectable as DIInjectable;
-use GuzzleHttp\Psr7 as GuzzlePsr7;
+use function GuzzleHttp\Psr7\parse_header;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Webird\DatabaseSessionReader;
@@ -23,7 +24,7 @@ class BroadCaster extends DIInjectable implements MessageComponentInterface
      */
     public function __construct()
     {
-        $this->clients = new \SplObjectStorage();
+        $this->clients = new SplObjectStorage();
     }
 
     /**
@@ -44,7 +45,7 @@ class BroadCaster extends DIInjectable implements MessageComponentInterface
             // // TODO: This authentication code should be moved to a service
             $cookiesHeader = $conn->httpRequest->getHeader('Cookie');
             if(count($cookiesHeader)) {
-                $cookies = GuzzlePsr7\parse_header($cookiesHeader)[0];
+                $cookies = parse_header($cookiesHeader)[0];
                 if (array_key_exists('PHPSESSID', $cookies)) {
                     $sessionId = $cookies['PHPSESSID'];
                 } else {

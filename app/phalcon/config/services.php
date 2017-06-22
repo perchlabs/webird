@@ -19,6 +19,7 @@ use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Adapter\Firephp as FirephpLogger;
 use Webird\Mvc\View\Simple as ViewSimple;
 use Webird\Plugins\Devel as DevelPlugin;
+use Webird\Plugins\Reconnect as ReconnectPlugin;
 use Webird\Acl\Acl;
 use Webird\Locale\Locale;
 use Webird\Locale\Gettext;
@@ -155,10 +156,16 @@ $di->setShared('db', function() {
         'charset'  => 'utf8',
     ]);
 
+    $eventsManager = new EventsManager();
+    $connection->setEventsManager($eventsManager);
+
+    $reconnect = new ReconnectPlugin();
+    $reconnect->setEventsManager($eventsManager);
+    $reconnect->initializeConnection($connection);
+    $eventsManager->attach('db', $reconnect);
+
     if (DEVELOPING) {
-        $eventsManager = new EventsManager();
         $eventsManager->attach('db', $this->getDevel());
-        $connection->setEventsManager($eventsManager);
     }
 
     return $connection;

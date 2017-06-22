@@ -7,4 +7,3 @@ dev/node_modules/
 dev/vendor/
 dev/npm-debug.log
 dev/composer.lock
-dev/package-lock.json

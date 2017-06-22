@@ -29,14 +29,6 @@ const appConfig = yaml.load(fs.readFileSync(`${webpackRoot}/config.yml`, 'utf8')
 /**
  *
  */
-const babelCacheDir = `/tmp/babel-cache-${projectRootHash}`;
-if (!fs.existsSync(babelCacheDir)) {
-  fs.mkdirSync(babelCacheDir);
-}
-
-/**
- *
- */
 const entryMap = {};
 for (const common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
   entryMap[`commons/${common}`] = `./commons/${common}`;

@@ -163,7 +163,7 @@ class Users extends Model
     /**
      *
      */
-    protected function initialize()
+    public function initialize()
     {
         $this->keepSnapshots(true);
 

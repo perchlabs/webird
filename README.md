@@ -9,7 +9,7 @@ Node.js is required for development only and is not required once a project has 
 #### Key technologies of Webird:
 * PHP 7.0
 * [Phalcon](http://phalconphp.com/en/) 3
-* [Webpack](http://webpack.github.io/) 2
+* [Webpack](http://webpack.github.io/) 3
 * [Vue](https://vuejs.org/) 2
 * [Buble](https://buble.surge.sh/guide/)
 * [PostCSS](https://github.com/postcss/postcss)
@@ -145,7 +145,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── public/
 │   └── index.php (Web entry for dev environment)
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
-├── packages.json (npm configuration)
+├── packages.json (NPM configuration)
 ├── vendor.json (Composer configuration)
 ├── webpack.js (Webpack script)
 ├── node_modules/

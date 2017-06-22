@@ -2,6 +2,7 @@
 namespace Webird\Models;
 
 use Webird\Mvc\Model;
+use Webird\Models\Users
 
 /**
  * FailedSignins
@@ -39,7 +40,7 @@ class FailedSignins extends Model
      */
     public function initialize()
     {
-        $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [
+        $this->belongsTo('usersId', Users::class, 'id', [
             'alias' => 'user',
         ]);
     }

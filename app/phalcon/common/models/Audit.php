@@ -2,6 +2,8 @@
 namespace Webird\Models;
 
 use Webird\Mvc\Model;
+use Webird\Models\Users;
+use Webird\Models\AuditDetail;
 
 /**
  *
@@ -14,11 +16,11 @@ class Audit extends Model
      */
     public function initialize()
     {
-        $this->belongsTo('usersId', 'Webird\Models\Users', 'id', [
+        $this->belongsTo('usersId', Users::class, 'id', [
             'alias' => 'user',
         ]);
 
-        $this->hasMany('id', 'Webird\Models\AuditDetail', 'audit_id', [
+        $this->hasMany('id', AuditDetail::class, 'audit_id', [
             'alias' => 'details',
         ]);
     }

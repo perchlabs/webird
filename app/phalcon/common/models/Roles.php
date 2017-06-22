@@ -2,6 +2,8 @@
 namespace Webird\Models;
 
 use Webird\Mvc\Model;
+use Webird\Models\Users;
+use Webird\Models\Permissions;
 
 /**
  * Webird\Models\Roles
@@ -27,14 +29,14 @@ class Roles extends Model
      */
     public function initialize()
     {
-        $this->hasMany('id', 'Webird\Models\Users', 'rolesId', [
+        $this->hasMany('id', Users::class, 'rolesId', [
             'alias' => 'users',
             'foreignKey' => [
                 'message' => 'Role cannot be deleted because it\'s used on Users',
             ],
         ]);
 
-        $this->hasMany('id', 'Webird\Models\Permissions', 'rolesId', [
+        $this->hasMany('id', Permissions::class, 'rolesId', [
             'alias' => 'permissions',
         ]);
     }

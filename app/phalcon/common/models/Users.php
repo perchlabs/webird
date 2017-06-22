@@ -5,6 +5,10 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Uniqueness as UniquenessValidator;
 use Webird\Mvc\Model;
 use Webird\Mvc\Model\Behavior\Blameable as BlameableBehavior;
+use Webird\Models\Roles;
+use Webird\Models\SuccessSignins;
+use Webird\Models\PasswordChanges;
+use Webird\Models\ResetPasswords;
 
 /**
  * Webird\Models\Users
@@ -173,26 +177,26 @@ class Users extends Model
             'cascade' => true,
         ]);
 
-        $this->belongsTo('rolesId', 'Webird\Models\Roles', 'id', [
+        $this->belongsTo('rolesId', Roles::class, 'id', [
             'alias' => 'role',
             'reusable' => true,
         ]);
 
-        $this->hasMany('id', 'Webird\Models\SuccessSignins', 'usersId', [
+        $this->hasMany('id', SuccessSignins::class, 'usersId', [
             'alias' => 'successSignins',
             'foreignKey' => [
                 'message' => 'User cannot be deleted because he/she has activity in the system',
             ],
         ]);
 
-        $this->hasMany('id', 'Webird\Models\PasswordChanges', 'usersId', [
+        $this->hasMany('id', PasswordChanges::class, 'usersId', [
             'alias' => 'passwordChanges',
             'foreignKey' => [
                 'message' => 'User cannot be deleted because he/she has activity in the system',
             ],
         ]);
 
-        $this->hasMany('id', 'Webird\Models\ResetPasswords', 'usersId', [
+        $this->hasMany('id', ResetPasswords::class, 'usersId', [
             'alias' => 'resetPasswords',
             'foreignKey' => [
                 'message' => 'User cannot be deleted because he/she has activity in the system',

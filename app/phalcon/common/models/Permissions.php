@@ -4,6 +4,7 @@ namespace Webird\Models;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Regex as RegexValidator;
 use Webird\Mvc\Model;
+use Webird\Models\Roles;
 
 /**
  * Permissions
@@ -108,7 +109,7 @@ class Permissions extends Model
      */
     public function initialize()
     {
-        $this->belongsTo('rolesId', 'Webird\Models\Roles', 'id', [
+        $this->belongsTo('rolesId', Roles::class, 'id', [
             'alias' => 'role',
         ]);
     }

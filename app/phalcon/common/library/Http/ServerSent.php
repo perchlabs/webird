@@ -75,8 +75,8 @@ class ServerSent
 
     /**
      * Send a heartbeat comment to the browser.
-     * This keeps the EventSource connection open in the browser and allows PHP to know if
-     * the connection has ended.
+     * This keeps the EventSource connection open in the browser
+     * and allows PHP to know if the connection has ended.
      */
     public function sendHeartbeat()
     {

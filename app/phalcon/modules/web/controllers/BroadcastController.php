@@ -62,10 +62,12 @@ class BroadcastController extends Controller
         $loop = EventLoopFactory::create();
         $context = new ReactZMQContent($loop);
 
-        $server = new ServerSent();
+        $server = new ServerSent([
+            'keepAlive'  => 2,
+            'retryDelay' => 2,
+        ]);
         $server->setDI($this->getDI());
         $server->start();
-        $server->setRetry(2);
 
         $sub = $context->getSocket(ZMQ::SOCKET_SUB);
         $sub->connect('tcp://127.0.0.1:5555');
@@ -77,8 +79,8 @@ class BroadcastController extends Controller
                 ->sendWith($server);
         });
 
-        $loop->addPeriodicTimer(3, function() use ($server) {
-            $server->sendHeartbeat();
+        $loop->addPeriodicTimer(0.25, function() use ($server) {
+            $server->keepAlive();
         });
 
         $loop->run();

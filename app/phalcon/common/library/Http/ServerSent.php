@@ -20,14 +20,48 @@ class ServerSent implements InjectionAwareInterface
     /**
      *
      */
-    private $isStarted;
+    private $isRunning;
 
     /**
      *
      */
-    public function __construct()
+    private $keepAlive;
+
+    /**
+     *
+     */
+    private $retryDelay;
+
+    /**
+     *
+     */
+    private $lastTime;
+
+    /**
+     *
+     */
+    public function __construct(array $options = [])
     {
-        $this->isStarted = false;
+        if (array_key_exists('keepAlive', $options)) {
+            $keepAlive = $options['keepAlive'];
+            if (!is_int($keepAlive) && !is_float($keepAlive)) {
+                throw new Exception('keepAlive value must be a number.');
+            }
+            if ($keepAlive <= 0) {
+                throw new Exception('keepAlive must be great than 0.');
+            }
+            $this->keepAlive = $keepAlive;
+        }
+
+        if (array_key_exists('retryDelay', $options)) {
+            $retryDelay = $options['retryDelay'];
+            if (!is_int($retryDelay)) {
+                throw new Exception('retryDelay value must be an integer.');
+            }
+            $this->retryDelay = $retryDelay;
+        }
+
+        $this->isRunning = false;
     }
 
     /**
@@ -66,34 +100,22 @@ class ServerSent implements InjectionAwareInterface
 
         $response->setHeader('Cache-Control', 'no-cache');
         $response->setContentType('text/event-stream');
-        $response->setContent('');
+
+        $content = '';
+        if ($this->retryDelay) {
+            $content .= 'retry:' . $this->retryDelay . "\n\n";
+        }
+
+        $response->setContent($content);
         $response->send();
 
         // Remove two levels of output buffering
         ob_get_clean();
         ob_get_clean();
 
-        $this->isStarted = true;
-    }
+        $this->lastTime = microtime(true);
 
-    /**
-     *
-     */
-    public function setRetry($seconds, $flush = true)
-    {
-        if (!$this->isStarted) {
-            throw new Exception('The ServerSent has not been started yet.');
-        }
-
-        $event = new Event();
-        $event->setRetry($seconds);
-        echo (string) $event;
-
-        if ($flush) {
-            flush();
-        }
-
-        return $this;
+        $this->isRunning = true;
     }
 
     /**
@@ -101,12 +123,21 @@ class ServerSent implements InjectionAwareInterface
      */
     public function sendEvent(Event $event)
     {
-        if (!$this->isStarted) {
-            throw new Exception('The ServerSent has not been started yet.');
-        }
+        $text = (string) $event;
+        $this->flushText($text);
 
-        echo (string) $event;
-        flush();
+        return $this;
+    }
+
+    /**
+     *
+     */
+    public function keepAlive()
+    {
+        $now = microtime(true);
+        if ($this->keepAlive && $now - $this->lastTime > $this->keepAlive) {
+            $this->sendHeartbeat();
+        }
 
         return $this;
     }
@@ -118,12 +149,7 @@ class ServerSent implements InjectionAwareInterface
      */
     public function sendHeartbeat()
     {
-        if (!$this->isStarted) {
-            throw new Exception('The ServerSent has not been started yet.');
-        }
-
-        echo ":heartbeat\n\n";
-        flush();
+        $this->flushText(":heartbeat\n\n");
 
         return $this;
     }
@@ -133,12 +159,29 @@ class ServerSent implements InjectionAwareInterface
      */
     public function end()
     {
-        if (!$this->isStarted) {
+        if (!$this->isRunning) {
             throw new Exception('The ServerSent is not running.');
         }
 
         // Rebuild the output buffering as we found it.
         ob_start();
         ob_start();
+
+        $this->isRunning = false;
+    }
+
+    /**
+     *
+     */
+    protected function flushText($text)
+    {
+        if (!$this->isRunning) {
+            throw new Exception('The ServerSent is not running.');
+        }
+
+        echo $text;
+        flush();
+
+        $this->lastTime = microtime(true);
     }
 }

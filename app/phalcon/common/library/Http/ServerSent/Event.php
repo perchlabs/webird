@@ -2,6 +2,7 @@
 namespace Webird\Http\ServerSent;
 
 use JsonSerializable;
+use Webird\Http\ServerSent\Event;
 
 /**
  *
@@ -74,11 +75,11 @@ class Event
     {
         // TODO: More checks
         if (!is_string($name)) {
-            throw new \Exception('The event-source event name must be a string.');
+            throw new Exception('The event-source event name must be a string.');
         }
 
         if ($this->checkValidity && strpos($name, "\n") !== false) {
-            throw new \Exception('The event-source event name must not contain a newline character.');
+            throw new Exception('The event-source event name must not contain a newline character.');
         }
 
         $this->name = $name;
@@ -102,7 +103,7 @@ class Event
     public function setRetry($retry)
     {
         if (!is_int($retry)) {
-            throw new \Exception('The event-source retry must be an integer.');
+            throw new Exception('The event-source retry must be an integer.');
         }
         $this->retry = $retry;
 
@@ -115,8 +116,15 @@ class Event
     public function addData($data)
     {
         $this->data[] = 'data:' . $this->convertStringField($data);
-
         return $this;
+    }
+
+    /**
+     *
+     */
+    public function sendWith($server)
+    {
+        $server->sendEvent($this);
     }
 
     /**
@@ -136,12 +144,12 @@ class Event
                 break;
             case 'string':
                 if ($this->checkValidity && strpos($dataRaw, "\n") !== false) {
-                    throw new \Exception('An event-source line must not contain a newline character until the end.');
+                    throw new Exception('An event-source line must not contain a newline character until the end.');
                 }
                 $data = $dataRaw;
                 break;
             default:
-                throw new \Exception('Invalid data type.');
+                throw new Exception('Invalid data type.');
                 break;
         }
 

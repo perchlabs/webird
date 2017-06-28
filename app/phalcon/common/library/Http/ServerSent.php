@@ -2,12 +2,14 @@
 namespace Webird\Http;
 
 use Phalcon\DiInterface;
+use Phalcon\Di\InjectionAwareInterface;
 use Webird\Http\ServerSent\Event;
+use Webird\Http\ServerSent\Exception;
 
 /**
  *
  */
-class ServerSent
+class ServerSent implements InjectionAwareInterface
 {
 
     /**
@@ -18,12 +20,20 @@ class ServerSent
     /**
      *
      */
-    private $eventName;
+    private $isStarted;
 
     /**
      *
      */
-    public function __construct(DiInterface $di)
+    public function __construct()
+    {
+        $this->isStarted = false;
+    }
+
+    /**
+     *
+     */
+    public function setDI(DiInterface $di)
     {
         $this->di = $di;
     }
@@ -54,7 +64,7 @@ class ServerSent
         // Disable output compression.
         $response->setHeader('Content-Encoding', 'none');
 
-        $response->setheader('Cache-Control', 'no-cache');
+        $response->setHeader('Cache-Control', 'no-cache');
         $response->setContentType('text/event-stream');
         $response->setContent('');
         $response->send();
@@ -62,6 +72,28 @@ class ServerSent
         // Remove two levels of output buffering
         ob_get_clean();
         ob_get_clean();
+
+        $this->isStarted = true;
+    }
+
+    /**
+     *
+     */
+    public function setRetry($seconds, $flush = true)
+    {
+        if (!$this->isStarted) {
+            throw new Exception('The ServerSent has not been started yet.');
+        }
+
+        $event = new Event();
+        $event->setRetry($seconds);
+        echo (string) $event;
+
+        if ($flush) {
+            flush();
+        }
+
+        return $this;
     }
 
     /**
@@ -69,8 +101,14 @@ class ServerSent
      */
     public function sendEvent(Event $event)
     {
+        if (!$this->isStarted) {
+            throw new Exception('The ServerSent has not been started yet.');
+        }
+
         echo (string) $event;
         flush();
+
+        return $this;
     }
 
     /**
@@ -80,8 +118,14 @@ class ServerSent
      */
     public function sendHeartbeat()
     {
+        if (!$this->isStarted) {
+            throw new Exception('The ServerSent has not been started yet.');
+        }
+
         echo ":heartbeat\n\n";
         flush();
+
+        return $this;
     }
 
     /**
@@ -89,6 +133,10 @@ class ServerSent
      */
     public function end()
     {
+        if (!$this->isStarted) {
+            throw new Exception('The ServerSent is not running.');
+        }
+
         // Rebuild the output buffering as we found it.
         ob_start();
         ob_start();

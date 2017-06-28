@@ -59,23 +59,22 @@ class BroadcastController extends Controller
      */
     public function serversentAction()
     {
-        $server = new ServerSent($this->getDI());
-        $server->start();
-
         $loop = EventLoopFactory::create();
         $context = new ReactZMQContent($loop);
+
+        $server = new ServerSent();
+        $server->setDI($this->getDI());
+        $server->start();
+        $server->setRetry(2);
 
         $sub = $context->getSocket(ZMQ::SOCKET_SUB);
         $sub->connect('tcp://127.0.0.1:5555');
         $sub->subscribe('webird');
         $sub->on('messages', function($msg) use ($server) {
-            $event = new Event();
-            $event
+            (new Event())
                 ->setName('webird')
                 ->addData(['message' => $msg[1]])
-                ->setRetry(2);
-
-            $server->sendEvent($event);
+                ->sendWith($server);
         });
 
         $loop->addPeriodicTimer(3, function() use ($server) {

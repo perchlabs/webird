@@ -188,8 +188,6 @@ class ServerSent implements InjectionAwareInterface
         $response = $this->getDI()
             ->getResponse();
 
-        $response->setHeader('X-Hello', 'World');
-
         // Disable proxy buffering and fastcgi_buffering.
         $response->setHeader('X-Accel-Buffering', 'no');
 

@@ -92,13 +92,8 @@ class ServerSent implements InjectionAwareInterface
 
         $view->disable();
 
-        // Disable proxy buffering and fastcgi_buffering.
-        $response->setHeader('X-Accel-Buffering', 'no');
+        $this->setHeaders();
 
-        // Disable output compression.
-        $response->setHeader('Content-Encoding', 'none');
-
-        $response->setHeader('Cache-Control', 'no-cache');
         $response->setContentType('text/event-stream');
 
         $content = '';
@@ -183,5 +178,25 @@ class ServerSent implements InjectionAwareInterface
         flush();
 
         $this->lastTime = microtime(true);
+    }
+
+    /**
+     *
+     */
+    protected function setHeaders()
+    {
+        $response = $this->getDI()
+            ->getResponse();
+
+        $response->setHeader('X-Hello', 'World');
+
+        // Disable proxy buffering and fastcgi_buffering.
+        $response->setHeader('X-Accel-Buffering', 'no');
+
+        // Disable output compression.
+        $response->setHeader('Content-Encoding', 'none');
+
+        // Disable front end caching.
+        $response->setHeader('Cache-Control', 'no-cache');
     }
 }

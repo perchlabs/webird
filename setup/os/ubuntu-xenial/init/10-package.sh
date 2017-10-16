@@ -19,10 +19,6 @@ add-apt-repository 'deb [arch=amd64,i386] http://mirror.netinch.com/pub/mariadb/
 # Add Nodejs repository
 curl -sL https://deb.nodesource.com/setup_8.x | bash
 
-# Add Yarn repository
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-
 # Add Phalcon repository
 curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash
 #curl -s https://packagecloud.io/install/repositories/phalcon/nightly/script.deb.sh | sudo bash

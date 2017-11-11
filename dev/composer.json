@@ -13,7 +13,7 @@
     "react/child-process": "^0.4",
     "react/socket": "^0.5.1",
     "react/zmq": "0.3.0",
-    "cboden/ratchet": "0.4.x-dev",
+    "cboden/ratchet": "0.4",
     "corneltek/getoptionkit": "^2.5.1",
     "swiftmailer/swiftmailer": "5.4.6",
     "league/oauth2-client": "1.4.1",

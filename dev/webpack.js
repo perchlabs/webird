@@ -2,7 +2,6 @@
 const _ = require('lodash');
 const path = require('path');
 const fs = require('fs');
-const yaml = require('js-yaml');
 const crypto = require('crypto');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -24,7 +23,7 @@ const themeRoot = path.join(appRoot, 'theme');
 const nodeModulesRoot = path.join(devRoot, 'node_modules');
 const projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
-const appConfig = yaml.load(fs.readFileSync(`${webpackRoot}/config.yml`, 'utf8'));
+const appConfig = require(`${webpackRoot}/config.json`);
 
 /**
  *
@@ -148,9 +147,6 @@ const wpConf = {
         test: /\.json$/,
         loader: 'json',
       }, {
-        test: /\.yml$/,
-        loaders: ['json', 'yaml'],
-      }, {
         test: /\.po$/,
         loaders: [
           'json',
@@ -257,8 +253,8 @@ function getNamesFromDirectory(filepath) {
  *
  */
  function dev() {
-  const config = yaml.load(fs.readFileSync(`${etcRoot}/dev_defaults.yml`, 'utf8'));
-  const configCustom = yaml.load(fs.readFileSync(`${etcRoot}/dev.yml`, 'utf8'));
+  const config = require(`${etcRoot}/dev_defaults.json`);
+  const configCustom = require(`${etcRoot}/dev.json`);
   _.merge(config, configCustom);
 
   const webpackPort = config.dev.webpackPort;

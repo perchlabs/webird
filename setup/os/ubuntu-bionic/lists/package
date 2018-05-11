@@ -1,0 +1,34 @@
+# languages
+language-pack-en
+language-pack-de
+language-pack-ru
+language-pack-uk
+# translation
+# utilities
+vim
+git
+curl
+gcc
+make
+pkg-config
+re2c
+# environments
+nodejs
+nginx-extras
+mariadb-server
+mariadb-client
+php-pear
+php-common
+php-cli
+php-fpm
+php-curl
+php-mbstring
+php-zip
+php-mysql
+#php7.2-phalcon
+# dev libraries
+php-dev
+composer
+libpcre3-dev
+libczmq4
+libczmq-dev

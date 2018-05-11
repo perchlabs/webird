@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
-export PHP_VERSION=7.0
-export NODE_VERSION=6.6.6
-export ZEPHIR_VERSION=
+export PHP_VERSION=7.2
+export NODE_VERSION=8.11.1
+
+
+# export PHALCON_COMPILE=
+
+export PHALCON_COMPILE=tarball
 export PHALCON_VERSION=3.3.2
+
+# export PHALCON_COMPILE=tree
+# export PHALCON_VERSION=3.4.x
+
+export ZEPHIR_VERSION=0.10.9
+export ZEPHIR_PARSER_VERSION=1.1.2
 
 export PHP_ETC=/etc/php/$PHP_VERSION
 export NGINX_ETC=/etc/nginx

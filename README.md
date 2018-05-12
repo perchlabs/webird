@@ -145,11 +145,8 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── public/
 │   └── index.php (Web entry for dev environment)
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
-├── packages.json (NPM configuration)
-├── vendor.json (Composer configuration)
 ├── webpack.js (Webpack script)
-├── node_modules/
-└── vendor/
+└── node_modules/
 ```
 
 ```

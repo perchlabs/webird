@@ -20,7 +20,6 @@ Node.js is required for development only and is not required once a project has 
 * [gettext](http://www.gnu.org/software/gettext/gettext.html)
 * [MariaDB](https://mariadb.org/) 10.1
 * [Docker](https://www.docker.com/)
-* [Ion Cube](http://www.ioncube.com/)
 
 #### Notable aspects of Webird:
 * PHP CLI utilities for many tasks

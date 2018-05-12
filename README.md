@@ -42,7 +42,7 @@ Node.js is required for development only and is not required once a project has 
 
 **Installation Instructions:**
 ```
-# Ubuntu 18.04 Xenial
+# Ubuntu 18.04 Bionic
 
 # System provisioning
 sudo ./setup/provision-system.sh ubuntu-xenial
@@ -52,8 +52,8 @@ sudo ./setup/provision-system.sh ubuntu-xenial
 
 # mariadb setup
 # set DB_ROOT_PW to
-mysqladmin --user=root --password=DB_ROOT_PW create webird
-mysql --user=root --password=DB_ROOT_PW webird < ./etc/schema.sql
+mysqladmin --user=root --password=DATABASE_PASSWORD create webird
+mysql --user=root --password=DATABASE_PASSWORD webird < ./etc/schema.sql
 
 # Development setting configuration
 cp ./etc/templates/dev_config.json ./etc/dev.json

@@ -11,7 +11,7 @@ Node.js is required for development only and is not required once a project has 
 * [Phalcon](http://phalconphp.com/en/) 3
 * [Webpack](http://webpack.github.io/) 3
 * [Vue](https://vuejs.org/) 2
-* [Buble](https://buble.surge.sh/guide/)
+* [Babel](https://babeljs.io/) 6
 * [PostCSS](https://github.com/postcss/postcss)
 * [nginx](http://nginx.org/)
 * [Composer](https://getcomposer.org/)
@@ -44,7 +44,7 @@ Node.js is required for development only and is not required once a project has 
 # Ubuntu 18.04 Bionic
 
 # System provisioning
-sudo ./setup/provision-system.sh ubuntu-xenial
+sudo ./setup/provision-system.sh ubuntu-bionic
 
 # Local install of NPM and Composer packages
 ./setup/install-local-packages.sh
@@ -72,7 +72,7 @@ echo -e "\n127.0.0.1 dev.webird.io" | sudo tee -a /etc/hosts
 ```
 
 ### Poedit Localization editor:
-In order to modify the localization messages you will need to configure the [Poedit](http://poedit.net/) GNU gettext frontend since it does not come with the tools necessary to parse Volt and Vue templates.  The provision script will have installed a nodejs script called xgettext-template.
+In order to modify the localization messages you will need to configure the [Poedit](http://poedit.net/) GNU gettext frontend since it does not come with the tools necessary to parse Volt and Vue templates.  The provision script will have installed a node script called xgettext-template.
 
 ##### Poedit Configuration Instructions:
 Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
@@ -144,8 +144,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ├── public/
 │   └── index.php (Web entry for dev environment)
 ├── cmd_overrides/ (dev specific command overrides for CLI interface)
-├── webpack.js (Webpack script)
-└── node_modules/
+└── webpack.js (Webpack script)
 ```
 
 ```
@@ -166,7 +165,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ./setup
 ├── provision-system.sh (takes a parameter $distro to provision system)
 ├── install-local-packages.sh (installs local packages into ./dev/)
-├── distro/ (distro specific scripts for provision-system.sh)
+├── os/ (operating specific scripts for provision-system.sh)
 └── functions/ (helpers)
 ```
 

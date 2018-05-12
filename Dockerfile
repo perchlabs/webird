@@ -2,13 +2,13 @@
 # Dockerfile to build Webird container images
 ############################################################
 
-FROM ubuntu:16.04.2
+FROM ubuntu:18.04
 MAINTAINER David Schissler
 
 ADD . /opt/webird
 
 RUN \
-  export DATABASE_ROOT_PASSWORD='root' && \
+  export DATABASE_PASSWORD='open' && \
   /opt/webird/setup/provision-system.sh ubuntu-xenial
 
 RUN \

@@ -19,8 +19,8 @@
   "database": {
     "host": "localhost",
     "dbname": "webird",
-    "username": "root",
-    "password": "root"
+    "username": "webird",
+    "password": "open"
   },
   "security": {
     "salt": "CHANGE ME!!!",

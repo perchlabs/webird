@@ -51,13 +51,13 @@ sudo ./setup/provision-system.sh ubuntu-xenial
 ./setup/install-local-packages.sh
 
 # mariadb setup
-# set DB_ROOT_PW to
-mysqladmin --user=root --password=DATABASE_PASSWORD create webird
-mysql --user=root --password=DATABASE_PASSWORD webird < ./etc/schema.sql
+# set DATABASE_PASSWORD to password for webird user.
+mysqladmin --user=webird --password=DATABASE_PASSWORD create webird
+mysql --user=webird --password=DATABASE_PASSWORD webird < ./etc/schema.sql
 
 # Development setting configuration
 cp ./etc/templates/dev_config.json ./etc/dev.json
-# configure setting for local database password. (default is root:root)
+# configure setting for local database password. (default is webird:open)
 vi ./etc/dev.json
 # Create a Webird user
 # Change the email and password

@@ -1,7 +1,7 @@
 app/locale/*/LC_MESSAGES/phalcon.mo
 app/locale/*/LC_MESSAGES/webpack.mo
-etc/dev.yml
-etc/dist.yml
+etc/dev.json
+etc/dist.json
 build/
 dev/node_modules/
 dev/vendor/

@@ -1,6 +1,6 @@
 <?php
 use Phalcon\Config;
-use Phalcon\Config\Adapter\Json
+use Phalcon\Config\Adapter\Json;
 
 $projectDir = realpath(__DIR__ . '/../../..') . '/';
 $appDir = $projectDir . 'app/';
@@ -17,8 +17,8 @@ clearstatcache();
 exec("mkdir -p " . escapeshellarg($cacheDir . 'volt/'));
 exec("mkdir -p " . escapeshellarg($cacheDir . 'locale/'));
 
-$config = new Json("{$etcDir}/dev_defaults.json");
-$config2 = new Json("{$etcDir}/dev.json");
+$config = new Json("{$etcDir}dev_defaults.json");
+$config2 = new Json("{$etcDir}dev.json");
 $config3 = new Config([
     DEV_ENV => [
         'path' => [
@@ -29,10 +29,9 @@ $config3 = new Config([
         ],
     ],
 ]);
-$config4 = new Json([
-    'locale' => new Json("$appDir/locale/config.json"),
+$config4 = new Config([
+    'locale' => new Json("{$appDir}locale/config.json"),
 ]);
-
 
 $config->merge($config2);
 $config->merge($config3);

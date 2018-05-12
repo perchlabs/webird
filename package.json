@@ -45,8 +45,8 @@
     "pdfjs-dist": "1.9.661"
   },
   "scripts": {
-    "dev": "NODE_ENV=development nodejs webpack.js",
-    "build": "NODE_ENV=production nodejs webpack.js"
+    "dev": "NODE_ENV=development node dev/webpack.js",
+    "build": "NODE_ENV=production node dev/webpack.js"
   },
   "engineString": true,
   "engines": {

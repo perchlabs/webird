@@ -1,4 +1,4 @@
 .git
-dev/node_modules
-dev/vendor
+node_modules
+vendor
 build

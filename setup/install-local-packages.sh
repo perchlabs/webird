@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 DIR=$(dirname "$BASH_SOURCE")
-DEVDIR="$(readlink -f "$DIR/../dev")"
+ROOT_DIR="$(readlink -f "$DIR/..")"
 
-cd "$DEVDIR"
+cd "$ROOT_DIR"
 
 npm install
 [[ $? -ne 0 ]] && exit $?

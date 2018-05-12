@@ -12,7 +12,7 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
-const projectRoot = path.resolve('..');
+const projectRoot = path.resolve(__dirname + '/..');
 const etcRoot = path.join(projectRoot, 'etc');
 const appRoot = path.join(projectRoot, 'app');
 const devRoot = path.join(projectRoot, 'dev');
@@ -20,7 +20,7 @@ const buildRoot = path.join(projectRoot, 'build');
 const webpackRoot = path.join(appRoot, 'webpack');
 const appModulesRoot = path.join(webpackRoot, 'modules');
 const themeRoot = path.join(appRoot, 'theme');
-const nodeModulesRoot = path.join(devRoot, 'node_modules');
+const nodeModulesRoot = path.join(projectRoot, 'node_modules');
 const projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex');
 
 const appConfig = require(`${webpackRoot}/config.json`);
@@ -55,7 +55,7 @@ for (const commonName in appConfig.commons) {
  *  Build constants and combine developer added constants added in app/webpack/config
  */
 const constants = {
-  VERSION: JSON.stringify(require(`${devRoot}/package.json`).version),
+  VERSION: JSON.stringify(require(`${projectRoot}/package.json`).version),
   LOCALE_ROOT: JSON.stringify(`${appRoot}/locale`),
   THEME_ROOT: JSON.stringify(`${appRoot}/theme`),
 }

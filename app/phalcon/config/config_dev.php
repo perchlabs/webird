@@ -7,7 +7,7 @@ $appDir = $projectDir . 'app/';
 $etcDir = $projectDir . 'etc/';
 $devDir = $projectDir . 'dev/';
 $buildDir = $projectDir . 'build/';
-$composerDir = $devDir . 'vendor/';
+$composerDir = $projectDir . 'vendor/';
 $cacheDir = $tmpDir . 'cache/';
 
 // Clear cache for gettext and other extensions

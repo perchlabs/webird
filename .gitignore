@@ -3,7 +3,8 @@ app/locale/*/LC_MESSAGES/webpack.mo
 etc/dev.json
 etc/dist.json
 build/
-dev/node_modules/
-dev/vendor/
-dev/npm-debug.log
-dev/composer.lock
+node_modules/
+vendor/
+npm-debug.log
+composer.lock
+package-lock.json

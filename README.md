@@ -7,7 +7,7 @@ The Javascript foundation is built with Webpack 3, Vue 2 and NPM, which when use
 Node.js is required for development only and is not required once a project has been built.
 
 #### Key technologies of Webird:
-* PHP 7.0
+* PHP 7.2
 * [Phalcon](http://phalconphp.com/en/) 3
 * [Webpack](http://webpack.github.io/) 3
 * [Vue](https://vuejs.org/) 2
@@ -35,14 +35,14 @@ Node.js is required for development only and is not required once a project has 
 * Includes Dockerfile
 
 ### Install Requirements:
-* PHP >= 7.0
-* Phalcon >= 3.2.0
+* PHP >= 7.2
+* Phalcon >= 3.3.0
 * MariaDB >= 10.1
 * Node.js >= 8.0
 
 **Installation Instructions:**
 ```
-# Ubuntu 16.04 Xenial
+# Ubuntu 18.04 Xenial
 
 # System provisioning
 sudo ./setup/provision-system.sh ubuntu-xenial
@@ -56,9 +56,9 @@ mysqladmin --user=root --password=DB_ROOT_PW create webird
 mysql --user=root --password=DB_ROOT_PW webird < ./etc/schema.sql
 
 # Development setting configuration
-cp ./etc/templates/dev_config.yml ./etc/dev.yml
+cp ./etc/templates/dev_config.json ./etc/dev.json
 # configure setting for local database password. (default is root:root)
-vi ./etc/dev.yml
+vi ./etc/dev.json
 # Create a Webird user
 # Change the email and password
 ./dev/run useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
@@ -97,8 +97,8 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 ## Distribution Usage:
 
 #### Create dist environment:
-1. Copy `./etc/templates/dist_config.yml` to `./etc/dist.yml`
-2. Configure `./etc/dist.yml` to override settings from `./etc/dist_defaults.yml`.  These two files will be merged to form `./build/etc/config.yml`.
+1. Copy `./etc/templates/dist_config.json` to `./etc/dist.json`
+2. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
 3. Create the dist environment: `./dev/run build`
 4. Enter into dist directory `cd ./build`
 5. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
@@ -113,7 +113,7 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 3. Restart web server
 4. Import database schema located at `./etc/schema.sql`
 5. Run server processes: `./run` (for websockets, beanstalkd loop, etc)
-6. If something is wrong modify `./config.yml` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.yml` file and then rebuild the dist environment.
+6. If something is wrong modify `./config.json` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.json` file and then rebuild the dist environment.
 7. Visit https://dist.webird.io
 
 The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./run nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
@@ -133,7 +133,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   ├── config/
 │   └── modules/
 └── webpack
-    ├── config.yml (you can make this .json, .yml, .js)
+    ├── config.json (you can make this .json or .js)
     ├── commons (common code to be run by multiple entry points)
     ├── entries (specific code entry points)
     └── modules (general ES2016 and commonjs modules)

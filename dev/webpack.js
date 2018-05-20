@@ -126,8 +126,11 @@ const wpConf = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         loader: 'babel-loader',
+        exclude: file => (
+          /node_modules/.test(file) &&
+          !/\.vue\.js/.test(file)
+        ),
         options: {
           cwd: projectRoot,
           configFile: `${devRoot}/babel.js`,

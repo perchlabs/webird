@@ -6,15 +6,19 @@
     "webpack": "3.8.1",
     "node-libs-browser": "2.0.0",
     "webpack-dev-server": "2.9.4",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-3": "^6.24.1",
+    "@babel/core": "7.0.0-beta.47",
+    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.47",
+    "@babel/plugin-transform-async-to-generator": "7.0.0-beta.47",
+    "@babel/preset-env": "7.0.0-beta.47",
+    "@babel/preset-stage-2": "7.0.0-beta.47",
+    "@babel/preset-stage-3": "7.0.0-beta.47",
+    "regenerator-runtime": "0.11.1",
+    "babel-loader": "8.0.0-beta.2",
     "vue": "2.5.2",
     "vue-template-compiler": "2.5.2",
     "vue-router": "3.0.1",
     "vuex": "3.0.0",
-    "vue-loader": "13.3.0",
+    "vue-loader": "15.1.0",
     "bundle-loader": "0.5.5",
     "entry-loader": "0.2.0",
     "file-loader": "1.1.5",
@@ -49,17 +53,6 @@
   "scripts": {
     "dev": "NODE_ENV=development node dev/webpack.js",
     "build": "NODE_ENV=production node dev/webpack.js"
-  },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "modules": false
-        }
-      ],
-      "stage-3"
-    ]
   },
   "browserslist": [
     "last 5 Chrome versions",

@@ -12,6 +12,8 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin')
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin')
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 const projectRoot = path.resolve(__dirname + '/..')
 const etcRoot = path.join(projectRoot, 'etc')
 const appRoot = path.join(projectRoot, 'app')
@@ -87,7 +89,7 @@ const wpConf = {
     extensions: [
       '.js',
       '.vue',
-      '.json', '.yml',
+      '.json',
       '.css',
     ],
     enforceExtension: false,
@@ -107,14 +109,11 @@ const wpConf = {
     moduleExtensions: ['-loader'],
   },
   plugins: [
+    new VueLoaderPlugin(),
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
     new LoaderOptionsPlugin({
       options: {
         postcss: postcssSetup,
-        vue: {
-          postcss: postcssSetup,
-          // buble: bubbleOptions,
-        },
       },
     }),
    ]
@@ -129,60 +128,78 @@ const wpConf = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }, {
+        options: {
+          cwd: projectRoot,
+          configFile: `${devRoot}/babel.js`,
+        },
+      },
+      {
         test: /\.vue$/,
-        loader: 'vue',
-      }, {
+        loader: 'vue-loader',
+      },
+      {
         test: /\.json$/,
-        loader: 'json',
-      }, {
+        loader: 'json-loader',
+      },
+      {
         test: /\.po$/,
         loaders: [
-          'json',
-          { loader: 'po', query: { format: 'jed1.x'} },
-        ]
-      }, {
+          'json-loader',
+          {
+            loader: 'po',
+            query: {
+              format: 'jed1.x'
+            }
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
         loaders: [
-          'style',
-          'css?importLoaders=1',
-          'postcss',
+          'style-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader',
         ],
-      }, {
+      },
+      {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url?prefix=img/&limit=8192',
-      }, {
-      }, {
+        loader: 'url-loader?prefix=img/&limit=8192',
+      },
+      {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           prefix: 'img/',
           limit: '8192',
         }
-      }, {
+      },
+      {
         test: /\.(woff|woff2)$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           name: 'fonts/[hash].[ext]',
           limit: '10000',
           mimetype: 'application/font-woff',
         }
-      }, {
+      },
+      {
         test: /\.eot$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
           name: 'fonts/[hash].[ext]',
         },
-      }, {
+      },
+      {
         test: /\.ttf$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
           name: 'fonts/[hash].[ext]',
         },
-      }, {
+      },
+      {
         test: /\.svg$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
           name: 'fonts/[hash].[ext]',
         },

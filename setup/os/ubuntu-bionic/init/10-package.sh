@@ -12,7 +12,7 @@ apt-get install -y software-properties-common
 # add-apt-repository ppa:nginx/stable
 
 # Add Nodejs repository
-curl -sL https://deb.nodesource.com/setup_8.x | bash
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 # Add Phalcon repository
 # curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash

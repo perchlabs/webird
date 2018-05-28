@@ -66,9 +66,6 @@ vi ./etc/dev.json
 ./dev/run nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
 sudo systemctl restart nginx
-
-# /etc/hosts setup
-echo -e "\n127.0.0.1 dev.webird.io" | sudo tee -a /etc/hosts
 ```
 
 ### Poedit Localization editor:

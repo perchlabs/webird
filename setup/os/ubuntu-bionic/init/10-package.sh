@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Environment variables OS_DIR and TEMP_DIR are available
 
-[[ "$SKIP_PACKAGE" = true ]] && exit 0
+[[ ! -z "${SKIP_PACKAGE+x}" ]] && exit 0
 
 # Update to get package list
 apt-get update

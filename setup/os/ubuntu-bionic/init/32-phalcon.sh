@@ -5,8 +5,7 @@
 [[ -z "$PHALCON_COMPILE" ]] && exit 0
 
 # You can skip compiling Phalcon by manually exporting this.
-[[ "$SKIP_PHALCON" = true ]] && exit 0
-
+[[ ! -z "${SKIP_PHALCON+x}" ]] && exit 0
 
 # Install Zephir
 echo "Installing Zephir"

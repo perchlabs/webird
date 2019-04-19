@@ -6,7 +6,7 @@
 list=$(readlist npm)
 [[ "$list" == "" ]] && exit 0
 
-npm install -g $list
+sudo npm install -g $list
 if [[ $? -ne 0 ]]; then
   >&2 echo "There was a problem installing NPM modules"
   exit 1

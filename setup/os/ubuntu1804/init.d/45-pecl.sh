@@ -15,11 +15,11 @@ for line in $list; do
 
   code=${BASH_REMATCH[1]//-}
   extension=${BASH_REMATCH[2]}
-  status=${BASH_REMATCH[3]//-}
+  state=${BASH_REMATCH[3]//-}
 
   echo -e "${COLOR_NOTICE}${extension}${TEXT_RESET}"
 
-  phpPeclInstall "$extension"
+  phpPeclInstall "$extension" "$state"
   if [[ $? -ne 0 ]]; then
     >&2 echo "There was a problem installing PECL extension '$extension'"
     exit 1

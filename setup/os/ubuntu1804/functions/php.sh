@@ -49,7 +49,7 @@ phpExtensionEnableSapi() {
   local code="$3"
 
   local modIniPath="${PHP_ETC}/mods-available/$name.ini"
-  local sapiIniPath=$(phpConfdIniPath $sapi $name $code)
+  local sapiIniPath=$(phpConfdIniPath "$sapi" "$name" "$code")
 
   echo "extension=$name.so" | sudo tee "$modIniPath" > /dev/null
   if [[ $? -ne 0 ]]; then
@@ -75,7 +75,7 @@ phpExtensionEnableAll() {
   local code="$2"
 
   local sapi
-  for sapi in "$PHP_SAPI_LIST"; do
+  for sapi in $PHP_SAPI_LIST; do
     phpExtensionEnableSapi "$sapi" "$name" "$code"
     [[ $? -ne 0 ]] && return 1
   done

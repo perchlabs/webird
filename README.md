@@ -35,8 +35,8 @@ Node.js is required for development only and is not required once a project has 
 
 ### Install Requirements:
 * PHP >= 7.2
-* Phalcon >= 3.3.0
-* MariaDB >= 10.1
+* Phalcon >= 3.4.0
+* MariaDB >= 10.4
 * Node.js >= 10.2
 
 **Installation Instructions:**
@@ -44,15 +44,15 @@ Node.js is required for development only and is not required once a project has 
 # Ubuntu 18.04 Bionic
 
 # System provisioning
-sudo ./setup/provision-system.sh ubuntu-bionic
+sudo ./setup/install ubuntu1804
 
-# Local install of NPM and Composer packages
-./setup/install-local-packages.sh
+# Install local packages
+composer install
+npm install
 
 # mariadb setup
-# set DATABASE_PASSWORD to password for webird user.
-mysqladmin --user=webird --password=DATABASE_PASSWORD create webird
-mysql --user=webird --password=DATABASE_PASSWORD webird < ./etc/schema.sql
+sudo mysqladmin --protocol=socket create webird
+sudo mysql --protocol=socket webird < ./etc/schema.sql
 
 # Development setting configuration
 cp ./etc/templates/dev_config.json ./etc/dev.json

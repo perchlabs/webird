@@ -1,8 +1,0 @@
-# You must add -alpha or -beta if the package is not yet stable
-# Manually downloading, patch and installing mailparse
-# in pecl init script until mbstring issue is resolved
-#mailparse
-apcu
-ev
-zmq-beta
-msgpack

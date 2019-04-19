@@ -1,0 +1,6 @@
+# Prefix with NN- for a runlevel other than the default 20.  Ex; 10-foo
+# You must postfix with -alpha or -beta if the package is not stable.  Ex; foo-beta
+# Both together would look like: 10-foo-beta
+
+apcu
+10-psr

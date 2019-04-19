@@ -1,0 +1,13 @@
+
+NODEJS_DEFAULT=repository:10
+
+# Nodejs menu.
+MENU_NODEJS_NAME=Node.js
+MENU_NODEJS_VERSIONS=https://github.com/nodejs/node/releases
+MENU_NODEJS_REPOSITORY_DEFAULT=10
+MENU_NODEJS_REPOSITORY_LIST="10 11"
+MENU_NODEJS_TARBALL_EXAMPLES="
+  $NODEJS_DEFAULT_VERSION
+  https://github.com/nodejs/node/archive/v${NODEJS_DEFAULT_VERSION}.tar.gz
+  file://${HOME}/v${NODEJS_DEFAULT_VERSION}.tar.gz
+"

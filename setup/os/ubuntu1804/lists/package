@@ -3,32 +3,38 @@ language-pack-en
 language-pack-de
 language-pack-ru
 language-pack-uk
-# translation
-# utilities
-vim
-git
+
+# tools
+composer
 curl
-gcc
-make
-pkg-config
-re2c
-# environments
-nodejs
+dialog
+git
+vim
+
+# servers
 nginx-extras
 mariadb-server
 mariadb-client
-php-pear
-php-common
+
+# php
 php-cli
 php-fpm
+php-common
 php-curl
 php-mbstring
+php-pear
 php-zip
-php-mysql
-#php7.2-phalcon
+
 # dev libraries
-php-dev
+autoconf
+automake
 composer
+gcc
 libpcre3-dev
+make
+php-dev
+re2c
+
+# other
 libczmq4
 libczmq-dev

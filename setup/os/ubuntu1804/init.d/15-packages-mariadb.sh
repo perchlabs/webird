@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Environment variables OS_DIR and TEMP_DIR are available
+# Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 # The package cache has been update so if there is no interest
 # in packages then we can skip expensive operations .

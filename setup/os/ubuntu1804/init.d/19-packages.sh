@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Environment variables OS_DIR and TEMP_DIR are available
+# Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 # Update the package cache again for PPA repositories
 # which may have been added or removed.

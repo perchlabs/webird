@@ -1,5 +1,5 @@
 #!/bin/bash
-# Environment variables OS_DIR and TEMP_DIR are available
+# Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 [[ -z "$WEBIRD_INTEREST" ]] && exit 0
 

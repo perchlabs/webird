@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-// Environment variables OS_DIR and TEMP_DIR are available
+// Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 $COLOR_SECTION=str_replace('\e', "\e", getenv('COLOR_SECTION'));
 $TEXT_RESET=str_replace('\e', "\e", getenv('TEXT_RESET'));

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Environment variables OS_DIR and TEMP_DIR are available
+# Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 method=$(takeMethod "$NODEJS_INSTALLER")
 [[ -z "$method" ]] && exit 0

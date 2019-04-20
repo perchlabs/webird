@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 [[ -z "$MARIADB_INTEREST" ]] && exit 0
 

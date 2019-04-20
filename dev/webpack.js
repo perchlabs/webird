@@ -197,31 +197,6 @@ const wpConf = {
   },
 }
 
-// /**
-//  *
-//  */
-//  function postcssSetup(webpack) {
-//   return [
-//     require('postcss-import')({
-//       // addDependencyTo: webpack,
-//       path: [themeRoot, appModulesRoot, nodeModulesRoot],
-//     }),
-//     require('postcss-url')(),
-//     require('postcss-cssnext')({
-//       // Defined in './app/webpack/config'
-//       import: {
-//         path: [themeRoot],
-//         // Setup watches on these files
-//         onImport: function(files) {
-//           files.forEach(this.addDependency)
-//         }.bind(this),
-//       }
-//     }),
-//     require('postcss-browser-reporter')(),
-//     require('postcss-reporter')(),
-//   ]
-// }
-
 /**
  *
  */

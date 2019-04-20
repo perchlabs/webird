@@ -19,7 +19,7 @@ class FeaturesController extends Controller
      */
     public function indexAction()
     {
-        $this->view->setTemplateBefore('private');
+        // $this->view->setTemplateBefore('private');
     }
 
     /**

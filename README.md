@@ -33,7 +33,7 @@ Node.js is required for development only and is not required once a project has 
 * Google OAuth2 login
 * Integration gettext .po environment for both PHP and Webpack
 * Create a final PHP and Javascript source protected distribution for deployment to the server
-* Vue 2.0 example integration
+* Vue 2 example integration
 * Includes Dockerfile
 
 ### Install Requirements:

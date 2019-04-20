@@ -146,7 +146,7 @@ class Memory extends AclMemory
      */
     protected function mergeResource($namespace, $resource)
     {
-        return ($namespace == '') ? $resource : "{$namespace}::{$resource}";
+        return $namespace == '' ? $resource : "{$namespace}::{$resource}";
     }
 
 }

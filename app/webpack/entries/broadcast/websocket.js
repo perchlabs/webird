@@ -1,12 +1,6 @@
 
-/**
- *
- */
 let conn
 
-/**
- *
- */
 export function startWebsocket(messagesContainer) {
   try {
     const {location} = window
@@ -16,8 +10,8 @@ export function startWebsocket(messagesContainer) {
 
     conn = new WebSocket(wsUri)
     conn.addEventListener('open', function(e) {
-      // appendMessage(messagesContainer, 'Connection established!')
-      console.log('Connection established!')
+      appendMessage(messagesContainer, 'Connection established!')
+      console.log('Websocket connection established!')
     })
     conn.addEventListener('message', function(e) {
       appendMessage(messagesContainer, e.data)
@@ -30,9 +24,6 @@ export function startWebsocket(messagesContainer) {
   }
 }
 
-/**
- *
- */
 function appendMessage(container, message) {
   const p = document.createElement('p')
   p.classList.add('text-info')

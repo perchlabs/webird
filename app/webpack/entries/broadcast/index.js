@@ -4,7 +4,7 @@ import {startServersent} from './serversent'
 const elSend = document.getElementById('send')
 const elMessage = document.getElementById('message')
 
-elSend.addEventListener('click', function(e) {
+elSend.addEventListener('click', e => {
   const message = elMessage.value
   elMessage.value = ''
 

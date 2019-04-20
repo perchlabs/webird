@@ -24,11 +24,11 @@ switch (ENV)
         error_reporting(E_ALL);
         ini_set("display_errors", 1);
         break;
-    // case 'test':
-    //     ini_set("display_errors", 0);
-    //     ini_set("log_errors", 1);
-    //     error_reporting(E_ALL);
-    //     break;
+    case TEST_ENV:
+        ini_set("display_errors", 0);
+        ini_set("log_errors", 1);
+        error_reporting(E_ALL);
+        break;
     case DIST_ENV:
         error_reporting(E_ALL);
         ini_set("display_errors", 0);

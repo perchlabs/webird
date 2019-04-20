@@ -1,7 +1,7 @@
 <?php
 namespace Webird\Auth;
 
-use Phalcon\DI,
+use Phalcon\DI;
 use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\Common\Token\TokenInterface;
 use OAuth\Common\Storage\Exception\TokenNotFoundException;

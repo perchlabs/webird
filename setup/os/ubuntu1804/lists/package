@@ -22,6 +22,7 @@ php-fpm
 php-common
 php-curl
 php-mbstring
+php-mysql
 php-pear
 php-zip
 

@@ -17,21 +17,11 @@
   // Local
   import Page from './Page'
 
-  /**
-   *
-   */
   export default {
-
-    /**
-     *
-     */
     components: {
       Page,
     },
 
-    /**
-     *
-     */
     props: {
       pages: {
         type: Array,
@@ -39,9 +29,6 @@
       },
     },
 
-    /**
-     *
-     */
     data() {
       return {
         spacerY: 30,
@@ -50,21 +37,6 @@
       }
     },
 
-    /**
-     *
-     */
-    computed: {
-    },
-
-    /**
-     *
-     */
-    methods: {
-    },
-
-    /**
-     *
-     */
     created() {
       let top = 0
       const pagesCalc = Array(this.pages.length)
@@ -86,7 +58,6 @@
 
     mounted() {
       console.log(this.pagesCalc)
-
     }
   }
 </script>

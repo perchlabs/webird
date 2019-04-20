@@ -36,14 +36,7 @@
   // System
   import {mapGetters, mapActions} from 'vuex'
 
-  /**
-   *
-   */
   export default {
-
-    /**
-     *
-     */
     props: {
       sections: {
         type: Object,
@@ -51,10 +44,7 @@
       },
     },
 
-    /**
-     *
-     */
-    data: function() {
+    data() {
       return {
         sectionList: [
           {
@@ -69,14 +59,7 @@
       }
     },
 
-    /**
-     *
-     */
     methods: {
-
-      /**
-       *
-       */
       ...mapActions([
         'setActivePanel',
       ]),

@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap'
-import 'bootstrap/dist/css/bootstrap-theme'
-import 'bootstrap/dist/js/bootstrap'
+import 'commons/init_complex'
 import feature from 'browserfeature'
 
 window.addEventListener('load', function() {

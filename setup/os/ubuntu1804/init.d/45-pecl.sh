@@ -31,3 +31,17 @@ for line in $list; do
     exit 1
   fi
 done
+
+
+# # Fix for ridiculous longterm mailparse bug.
+# # https://bugs.php.net/bug.php?id=71813
+# cd "$TEMP_DIR"
+# pecl download mailparse > /dev/null
+# tar -xf mailparse-*.tgz > /dev/null
+# cd mailparse-*/
+# phpize > /dev/null
+# ./configure > /dev/null
+# sed -i 's/#if\s!HAVE_MBSTRING/#ifndef MBFL_MBFILTER_H/' ./mailparse.c
+# make > /dev/null
+# make test > /dev/null
+# phpExtensionEnableAll mailparse 25

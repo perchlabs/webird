@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div>Counter: {{counter}}</div>
@@ -11,16 +10,16 @@
   export default {
     data() {
       return {
-        counter: 0
+        counter: 0,
       }
     },
     methods: {
-      decrease: function() {
+      decrease() {
         this.counter--
       },
-      increase: function() {
+      increase() {
         this.counter++
-      }
+      },
     }
   }
 </script>

@@ -10,13 +10,6 @@
       "pdf-viewer"
     ]
   },
-  "browsers": [
-    "last 5 Chrome versions",
-    "last 5 Firefox versions",
-    "Explorer >= 11",
-    "iOS >= 8",
-    "> 2% in US"
-  ],
   "constants": {
     "HELLO_WORLD_CONSTANT": "Hello World"
   }

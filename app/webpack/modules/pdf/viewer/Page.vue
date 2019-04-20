@@ -27,14 +27,7 @@
   const {PDFJS} = pdflib
   const {getDocument, TextLayerBuilder} = PDFJS
 
-  /**
-   *
-   */
   export default {
-
-    /**
-     *
-     */
     props: {
       src: {
         type: String,
@@ -48,26 +41,6 @@
         type: Number,
         required: true,
       },
-    },
-
-    /**
-     *
-     */
-    data() {
-      return {
-      }
-    },
-
-    /**
-     *
-     */
-    computed: {
-    },
-
-    /**
-     *
-     */
-    methods: {
     },
 
     /**

@@ -133,7 +133,7 @@ class Devel extends Plugin
               'elapsedTime' => round(($endTime - $_SERVER['REQUEST_TIME'] ), 6),
               'mem'         => number_format(memory_get_usage()/1024, 2),
               'memPeak'     => number_format(memory_get_peak_usage()/1024, 2),
-              'sessionSize' => (isset($_SESSION)) ? mb_strlen(serialize($_SESSION)/1024) : 0,
+            //   'sessionSize' => isset($_SESSION) ? mb_strlen(serialize($_SESSION)/1024) : 0,
             ],
         ];
     }

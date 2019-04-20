@@ -4,6 +4,7 @@ import pdflib from 'pdfjs-dist'
 import 'pdfjs-dist/web/pdf_viewer'
 // Application
 import init from 'init'
+import 'commons/vue'
 // Local
 import App from './App'
 
@@ -11,20 +12,10 @@ import App from './App'
 const {PDFJS}  = pdflib
 PDFJS.workerSrc = require('entry?name=js/pdf.worker.js!pdfjs-dist/build/pdf.worker.min.js')
 
-/**
- *
- */
-init().then(function() {
-  new Vue({
-
-    /**
-     *
-     */
-    el: '#app',
-
-    /**
-     *
-     */
-    render: h => h(App),
+init()
+  .then(() => {
+    new Vue({
+      el: '#app',
+      render: h => h(App),
+    })
   })
-})

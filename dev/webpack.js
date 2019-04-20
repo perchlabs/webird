@@ -8,9 +8,6 @@ const WebpackDevServer = require('webpack-dev-server')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
 const DefinePlugin = require('webpack/lib/DefinePlugin')
-const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
-const DedupePlugin = require('webpack/lib/optimize/DedupePlugin')
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin')
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -27,30 +24,14 @@ const projectRootHash = crypto.createHash('md5').update(projectRoot).digest('hex
 
 const appConfig = require(`${webpackRoot}/config.json`)
 
-/**
- *
- */
-const entryMap = {}
-for (const common of getNamesFromDirectory(`${webpackRoot}/commons`)) {
-  entryMap[`commons/${common}`] = `./commons/${common}`
-}
-for (const entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
-  entryMap[`entries/${entry}`] = `./entries/${entry}`
-}
+const environment = process.env.NODE_ENV;
 
 /**
  *
  */
-const commonsChunkPluginArr = []
-for (const commonName in appConfig.commons) {
-  const entryArrPath = appConfig.commons[commonName].map(function(entryName) {
-    return `entries/${entryName}`
-  })
-  commonsChunkPluginArr.push(new CommonsChunkPlugin({
-    name    : `commons/${commonName}`,
-    filename: 'js/[name].js',
-    chunks  : entryArrPath,
-  }))
+const entryMap = {}
+for (const entry of getNamesFromDirectory(`${webpackRoot}/entries`)) {
+  entryMap[`entries/${entry}`] = `./entries/${entry}`
 }
 
 /**
@@ -69,6 +50,7 @@ for (const i in appConfig.constants) {
  *
  */
 const wpConf = {
+  mode: environment,
   cache: true,
   context: webpackRoot,
   entry: entryMap,
@@ -111,19 +93,36 @@ const wpConf = {
   plugins: [
     new VueLoaderPlugin(),
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
-    new LoaderOptionsPlugin({
-      options: {
-        postcss: postcssSetup,
-      },
-    }),
-   ]
-  // Setup each entry chunk to use a common chunk as defined in './app/webpack/config'.
-  .concat(commonsChunkPluginArr),
+    // new LoaderOptionsPlugin({
+    //   options: {
+    //     postcss: postcssSetup,
+    //   },
+    // }),
+  ],
   module: {
     noParse: [
       /$jquery^/,
     ],
     rules: [
+      {
+        test: /\.css$/,
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: `${devRoot}/postcss.config.js`,
+              }
+            },
+          },
+        ],
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -133,16 +132,12 @@ const wpConf = {
         ),
         options: {
           cwd: projectRoot,
-          configFile: `${devRoot}/babel.js`,
+          configFile: `${devRoot}/babel.config.js`,
         },
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
       },
       {
         test: /\.po$/,
@@ -154,15 +149,6 @@ const wpConf = {
               format: 'jed1.x'
             }
           },
-        ],
-      },
-      {
-        test: /\.css$/,
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
-        loaders: [
-          'style-loader',
-          'css-loader?importLoaders=1',
-          'postcss-loader',
         ],
       },
       {
@@ -211,31 +197,30 @@ const wpConf = {
   },
 }
 
-/**
- *
- */
- function postcssSetup(webpack) {
-  return [
-    require('postcss-import')({
-      // addDependencyTo: webpack,
-      path: [themeRoot, appModulesRoot, nodeModulesRoot],
-    }),
-    require('postcss-url')(),
-    require('postcss-cssnext')({
-      // Defined in './app/webpack/config'
-      browsers: appConfig.browsers,
-      import: {
-        path: [themeRoot],
-        // Setup watches on these files
-        onImport: function(files) {
-          files.forEach(this.addDependency)
-        }.bind(this),
-      }
-    }),
-    require('postcss-browser-reporter')(),
-    require('postcss-reporter')(),
-  ]
-}
+// /**
+//  *
+//  */
+//  function postcssSetup(webpack) {
+//   return [
+//     require('postcss-import')({
+//       // addDependencyTo: webpack,
+//       path: [themeRoot, appModulesRoot, nodeModulesRoot],
+//     }),
+//     require('postcss-url')(),
+//     require('postcss-cssnext')({
+//       // Defined in './app/webpack/config'
+//       import: {
+//         path: [themeRoot],
+//         // Setup watches on these files
+//         onImport: function(files) {
+//           files.forEach(this.addDependency)
+//         }.bind(this),
+//       }
+//     }),
+//     require('postcss-browser-reporter')(),
+//     require('postcss-reporter')(),
+//   ]
+// }
 
 /**
  *
@@ -312,8 +297,6 @@ function build() {
       minimize: true,
       debug: false,
     }),
-    new DedupePlugin(),
-    new UglifyJsPlugin(),
   ])
 
   webpack(wpConf, function(err, stats) {
@@ -322,8 +305,11 @@ function build() {
   })
 }
 
-if (process.env.NODE_ENV !== 'production') {
-  dev()
-} else {
-  build()
+switch (environment) {
+  case 'development':
+    dev();
+    break;
+  case 'production':
+    build();
+    break;
 }

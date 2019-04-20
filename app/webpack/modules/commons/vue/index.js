@@ -1,5 +1,4 @@
 // System
-import Vue from 'vue'
 // Application
 import init from 'init'
 import locale from 'locale'

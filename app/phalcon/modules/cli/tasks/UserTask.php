@@ -41,13 +41,19 @@ class UserTask extends Task
         list($emailRaw, $roleRef) = $params['args'];
         $opts = $params['opts'];
 
-        $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
-        if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
-            throw new ArgumentValidationException('Email must be in form: display <address>', 1);
-        }
+        // FIXME: Add back when a new mailer has been found.
+        //        The mailparse extension majorly sucks!!!
 
-        $name = $emailParts[0]['display'];
-        $email = $emailParts[0]['address'];
+        // $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
+        // if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
+        //     throw new ArgumentValidationException('Email must be in form: display <address>', 1);
+        // }
+
+        // $name = $emailParts[0]['display'];
+        // $email = $emailParts[0]['address'];
+
+        $name = 'David Schissler';
+        $email = 'bob@gmail.com';
 
         // Validate the email
         if (($email = filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {

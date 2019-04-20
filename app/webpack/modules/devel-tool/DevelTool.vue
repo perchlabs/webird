@@ -90,14 +90,7 @@
   highlight.registerLanguage('php', langPhp)
   highlight.registerLanguage('javascript', langJavascript)
 
-  /**
-   *
-   */
   export default {
-
-    /**
-     *
-     */
     components: {
       ConfigPanel,
       DatabasePanel,
@@ -106,9 +99,6 @@
       ServerPanel,
     },
 
-    /**
-     *
-     */
     data() {
       return {
         panels: ['config', 'database', 'views', 'request', 'server',],
@@ -116,14 +106,7 @@
       }
     },
 
-    /**
-     *
-     */
     computed: {
-
-      /**
-       *
-       */
       ...mapGetters([
         'wasOpened',
         'isOpen',
@@ -134,14 +117,7 @@
       ]),
     },
 
-    /**
-     *
-     */
     methods: {
-
-      /**
-       *
-       */
       ...mapActions([
         'openTool',
         'setActivePanel',
@@ -151,18 +127,12 @@
       ]),
     },
 
-    /**
-     *
-     */
     mounted() {
       mousetrap.bind([this.shortcut], () => {
         this.toggleTool()
       })
     },
 
-    /**
-     *
-     */
     updated() {
       if (this.isOpen) {
         // Highlight all descendant pre code pairs in this element.

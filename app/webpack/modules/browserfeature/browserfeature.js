@@ -1,31 +1,31 @@
 let cache = {}
 
 let test = {
-  canvas: function() {
+  canvas() {
     return !!document.createElement('canvas').getContext
   },
-  video: function() {
+  video() {
     return !!document.createElement('video').canPlayType
   },
-  storage: function() {
+  storage() {
     return (typeof window !== "undefined" && window !== null ? window.localStorage : void 0) !== void 0
   },
-  workers: function() {
+  workers() {
     return !!window.Worker
   },
-  websocket: function() {
+  websocket() {
     return typeof WebSocket === 'function'
   },
-  appcache: function() {
+  appcache() {
     return !!window.applicationCache
   },
-  geolocator: function() {
+  geolocator() {
     return indexOf.call(navigator, 'geolocation') >= 0
   },
-  history: function() {
+  history() {
     return !!(window.history && history.pushState)
   },
-  intl: function() {
+  intl() {
     return window.Intl && typeof window.Intl === 'object'
   },
 }

@@ -8,21 +8,11 @@
   // Local
   import {DocumentViewer} from 'pdf'
 
-  /**
-   *
-   */
   export default {
-
-    /**
-     *
-     */
     components: {
       DocumentViewer,
     },
 
-    /**
-     *
-     */
     data() {
       const pages = Array(4)
       for (let i = 0; i < pages.length; i++) {
@@ -39,13 +29,6 @@
         pages,
       }
     },
-
-    /**
-     *
-     */
-    methods: {
-    },
-
   }
 </script>
 

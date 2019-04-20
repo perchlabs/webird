@@ -18,7 +18,7 @@ Node.js is required for development only and is not required once a project has 
 * [Nodejs](https://nodejs.org)
 * [Ratchet](http://socketo.me/)
 * [gettext](http://www.gnu.org/software/gettext/gettext.html)
-* [MariaDB](https://mariadb.org/) 10.1
+* [MariaDB](https://mariadb.org/) 10.4
 * [Docker](https://www.docker.com/)
 
 #### Notable aspects of Webird:
@@ -63,7 +63,7 @@ vi ./etc/dev.json
 ./dev/run useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
 
 # nginx setup
-./dev/run nginx | sudo tee /etc/nginx/sites-available/dev.webird.io
+./dev/run nginx | sudo tee /etc/nginx/sites-available/dev.webird.io 1> /dev/null
 sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
 sudo systemctl restart nginx
 ```

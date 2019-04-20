@@ -82,15 +82,16 @@ class ResetPasswords extends Model
         $subjectMsg = sprintf($translate->gettext('Reset your password on %s'),
             $config->site->domains[0]);
 
-        $message = $this->getDI()
-            ->getMailer()
-            ->createMessageFromView('resetPassword', [
-                'resetUrl' => 'reset-password/' . $this->code,
-            ])
-            ->to($this->user->email, $this->user->name)
-            ->subject($subjectMsg);
+        // FIXME: Add back when a new mailer has been found.
+        // $message = $this->getDI()
+        //     ->getMailer()
+        //     ->createMessageFromView('resetPassword', [
+        //         'resetUrl' => 'reset-password/' . $this->code,
+        //     ])
+        //     ->to($this->user->email, $this->user->name)
+        //     ->subject($subjectMsg);
 
-        $message->send();
+        // $message->send();
     }
 
     /**

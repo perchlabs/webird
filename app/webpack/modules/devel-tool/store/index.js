@@ -9,9 +9,6 @@ import actions from './actions'
 
 Vue.use(Vuex)
 
-/**
- *
- */
 export default function(data) {
   return new Vuex.Store({
     mutations,

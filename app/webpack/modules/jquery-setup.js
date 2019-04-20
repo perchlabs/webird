@@ -1,5 +1,6 @@
 import jquery from 'jquery'
+
 Object.assign(window, {
-    $: jquery,
-    jQuery: jquery,
+  $: jquery,
+  jQuery: jquery,
 })

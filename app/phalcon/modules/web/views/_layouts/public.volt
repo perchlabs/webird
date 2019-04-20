@@ -55,7 +55,6 @@
   </div>
 </div>
 {{common('devel_tool')}}
-  {{ javascript_include(['src': 'js/commons/init_complex.js']) }}
   {{ javascript_include(['src': 'js/entries/public.js']) }}
 </body>
 </html>

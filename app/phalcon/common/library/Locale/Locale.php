@@ -54,7 +54,7 @@ class Locale extends DIInjectable
     public function isLocaleSupported($locale)
     {
         $supported = $this->getSupportedLocales();
-        return (array_key_exists($locale, $supported));
+        return array_key_exists($locale, $supported);
     }
 
     /**

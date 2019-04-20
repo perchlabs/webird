@@ -17,8 +17,8 @@ if [[ -z "$MARIADB_PASSWORD" ]]; then
   exit 1
 fi
 
-# MariaDB 10.4+ has a new method to initialize the system using a sudo
-# login through the local socket.
+# MariaDB 10.4+ has a new method to initialize the system
+# using a sudo login through the local socket.
 
 # Delete built in test tables.
 sudo mysql --protocol=socket <<EOF

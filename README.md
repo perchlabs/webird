@@ -27,7 +27,7 @@ Node.js is required for development only and is not required once a project has 
 #### Notable aspects of Webird:
 * PHP CLI utilities for many tasks
 * Manage all third party dependencies with Composer and NPM
-* Bash provisioning and local installation scripts for configuring system
+* Bash provisioning and local installation scripts for configuring system (based on [setupify](https://github.com/perchlabs/setupify))
 * A single PHP command that starts development processes across PHP and Nodejs
 * Live reloading (and waiting) ES6 module and CommonJS front end environment
 * Google OAuth2 login
@@ -49,26 +49,12 @@ Node.js is required for development only and is not required once a project has 
 # System provisioning
 sudo ./setup/install ubuntu1804
 
-# Install local packages
-composer install
-npm install
-
 # mariadb setup
 sudo mysqladmin --protocol=socket create webird
 sudo mysql --protocol=socket webird < ./etc/schema.sql
 
-# Development setting configuration
-cp ./etc/templates/dev_config.json ./etc/dev.json
-# configure setting for local database password. (default is webird:open)
-vi ./etc/dev.json
-# Create a Webird user
-# Change the email and password
+# Create a Webird user. You can use this user to create more users via the web interface.
 ./dev/run useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
-
-# nginx setup
-./dev/run nginx | sudo tee /etc/nginx/sites-available/dev.webird.io 1> /dev/null
-sudo ln -s /etc/nginx/sites-available/dev.webird.io /etc/nginx/sites-enabled/dev.webird.io
-sudo systemctl restart nginx
 ```
 
 ### Poedit Localization editor:
@@ -96,12 +82,11 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 ## Distribution Usage:
 
 #### Create dist environment:
-1. Copy `./etc/templates/dist_config.json` to `./etc/dist.json`
-2. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
-3. Create the dist environment: `./dev/run build`
-4. Enter into dist directory `cd ./build`
-5. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
-6. Follow following instructions within dist environments
+1. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
+2. Create the dist environment: `./dev/run build`
+3. Enter into dist directory `cd ./build`
+4. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
+5. Follow following instructions within dist environments
 
 #### Configure final dist environment:
 
@@ -120,6 +105,12 @@ The nginx configuration must be rebuilt if the distribution environment director
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 
 ## Project Structure:
+
+```
+./setup
+├── install (takes a parameter $distro to provision system)
+└── menu (provides a lightbar menu interface to installation)
+```
 
 ```
 ./app
@@ -159,14 +150,6 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   └── volt/ (compiled Volt templates)
 ├── phalcon/
 └── vendor/ (Composer packages)
-```
-
-```
-./setup
-├── provision-system.sh (takes a parameter $distro to provision system)
-├── install-local-packages.sh (installs local packages into ./dev/)
-├── os/ (operating specific scripts for provision-system.sh)
-└── functions/ (helpers)
 ```
 
 Compare the `./app` directory to a built `./build` directory to notice the differences between the app code and dev environment and the built system.

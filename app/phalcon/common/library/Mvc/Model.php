@@ -17,7 +17,6 @@ class Model extends PhModel
     public function getMessages($filter = null)
     {
         $messages = parent::getMessages($filter);
-        return (is_array($messages)) ? $messages : [];
+        return is_array($messages) ? $messages : [];
     }
-
 }

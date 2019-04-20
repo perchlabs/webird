@@ -1,15 +1,4 @@
 {
-  "commons": {
-    "init_complex": [
-      "admin",
-      "public"
-    ],
-    "vue": [
-      "vue.simple",
-      "vue.vuex",
-      "pdf-viewer"
-    ]
-  },
   "constants": {
     "HELLO_WORLD_CONSTANT": "Hello World"
   }

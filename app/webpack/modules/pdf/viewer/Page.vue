@@ -22,10 +22,8 @@
 <script>
   // System
   import {mapGetters, mapActions} from 'vuex'
-  import pdflib from 'pdfjs-dist'
-
-  const {PDFJS} = pdflib
-  const {getDocument, TextLayerBuilder} = PDFJS
+  import {getDocument, renderTextLayer} from 'pdfjs-dist'
+  import {TextLayerBuilder} from 'pdfjs-dist/lib/web/text_layer_builder'
 
   export default {
     props: {
@@ -46,50 +44,46 @@
     /**
      *
      */
-    mounted() {
-      getDocument(this.src)
-        .then(pdf => pdf.getPage(1))
-        .then(page => {
-          const {pdfCanvas: canvas} = this.$refs
-          const scale = this.dim[0] / page.getViewport(1.0).width
+    async mounted() {
+      const loadingTask = await getDocument(this.src).promise
 
-          // Get viewport (dimensions)
-          const viewport = page.getViewport(scale)
+      const page = await loadingTask.getPage(1)
 
-          const {width, height} = viewport
+      const {pdfCanvas: canvas, textLayer: textLayerDiv} = this.$refs
 
-          // Fetch canvas' 2d context
-          const context = canvas.getContext('2d')
+      const scale = this.dim[0] / page.getViewport({scale: 1.0}).width
 
-          // Prepare object needed by render method
-          const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-          }
+      // Get viewport (dimensions)
+      const viewport = page.getViewport({scale})
+      const {width, height} = viewport
 
-          // Render PDF page
-          page
-            .render(renderContext)
-            .then(() => page.getTextContent())
-            .then(textContent => {
-              const {textLayer: textLayerDiv} = this.$refs
+      // Fetch canvas' 2d context
+      const context = canvas.getContext('2d')
 
-              // Create new instance of TextLayerBuilder class
-              const textLayer = new TextLayerBuilder({
-                textLayerDiv,
-                viewport,
-                pageIndex: page.pageIndex,
-              })
+      // Prepare object needed by render method
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      }
 
-              // Set text-fragments
-              textLayer.setTextContent(textContent)
+      // Render PDF page
+      await page.render(renderContext).promise
 
-              // Render text-fragments
-              textLayer.render()
-            })
-        })
+      // Display text layer
+      const textContent = await page.getTextContent()
+
+      const textLayer = new TextLayerBuilder({
+        textLayerDiv,
+        viewport,
+        pageIndex: page.pageIndex,
+      })
+
+      // Set text-fragments
+      textLayer.setTextContent(textContent)
+
+      // Render text-fragments
+      textLayer.render()
     },
-
   }
 </script>
 
@@ -110,13 +104,9 @@
     z-index: 1;
   }
   .text-layer {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
     z-index: 2;
   }
+
 </style>
 
 <!-- Normal CSS -->
@@ -132,15 +122,11 @@
     line-height: 1.0;
   }
 
-  .textLayer > div {
+  .textLayer > span {
     color: transparent;
     position: absolute;
     white-space: pre;
     cursor: text;
-    -webkit-transform-origin: 0% 0%;
-    -moz-transform-origin: 0% 0%;
-    -o-transform-origin: 0% 0%;
-    -ms-transform-origin: 0% 0%;
     transform-origin: 0% 0%;
   }
 
@@ -168,8 +154,9 @@
     background-color: rgb(0, 100, 0);
   }
 
-  .textLayer ::selection { background: rgb(0,0,255); }
-  .textLayer ::-moz-selection { background: rgb(0,0,255); }
+  .textLayer ::selection {
+    background: rgb(0,0,255);
+  }
 
   .textLayer .endOfContent {
     display: block;
@@ -180,12 +167,11 @@
     bottom: 0px;
     z-index: -1;
     cursor: default;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
+    user-select: none;
   }
 
   .textLayer .endOfContent.active {
     top: 0px;
   }
+
 </style>

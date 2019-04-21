@@ -53,7 +53,8 @@
     "bootstrap": "3.4.1",
     "popper.js": "1.15.0",
     "jed": "1.1.1",
-    "pdfjs-dist": "1.10.100"
+    "pdfjs-dist": "2.1.266",
+    "core-js": "^2.6.5"
   },
   "scripts": {
     "dev": "NODE_ENV=development node dev/webpack.js",

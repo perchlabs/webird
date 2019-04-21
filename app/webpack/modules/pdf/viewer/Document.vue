@@ -57,7 +57,7 @@
     },
 
     mounted() {
-      console.log(this.pagesCalc)
+      // console.log(this.pagesCalc)
     }
   }
 </script>

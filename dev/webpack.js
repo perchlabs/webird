@@ -93,11 +93,6 @@ const wpConf = {
   plugins: [
     new VueLoaderPlugin(),
     // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
-    // new LoaderOptionsPlugin({
-    //   options: {
-    //     postcss: postcssSetup,
-    //   },
-    // }),
   ],
   module: {
     noParse: [

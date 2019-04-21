@@ -119,9 +119,9 @@ The nginx configuration must be rebuilt if the distribution environment director
 │   └── modules/
 └── webpack
     ├── config.json (you can make this .json or .js)
-    ├── commons (common code to be run by multiple entry points)
-    ├── entries (specific code entry points)
-    └── modules (general ES2016 and commonjs modules)
+    ├── entries (code entry points)
+    └── modules (application ES6 modules)
+        └── commons (common code to be run by multiple entry points)
 ```
 
 ```

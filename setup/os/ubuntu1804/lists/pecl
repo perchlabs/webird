@@ -4,4 +4,5 @@
 
 apcu
 10-psr
+swoole
 zmq-beta

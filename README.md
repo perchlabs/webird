@@ -29,12 +29,11 @@ Node.js is required for development only and is not required once a project has 
 * Manage all third party dependencies with Composer and NPM
 * Bash provisioning and local installation scripts for configuring system (based on [setupify](https://github.com/perchlabs/setupify))
 * A single PHP command that starts development processes across PHP and Nodejs
-* Live reloading (and waiting) ES6 module and CommonJS front end environment
+* Live reloading ES6 module front end environment
 * Google OAuth2 login
-* Integration gettext .po environment for both PHP and Webpack
-* Create a final PHP and Javascript source protected distribution for deployment to the server
+* Integrate gettext .po environment for both PHP and Webpack
 * Vue 2 example integration
-* Includes Dockerfile
+* Includes Dockerfile skeleton
 
 ### Install Requirements:
 * PHP >= 7.2
@@ -88,17 +87,13 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 4. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
 5. Follow following instructions within dist environments
 
-#### Configure final dist environment:
+#### Run final dist environment:
 
 **Attention**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
 
-1. Generate nginx configuration with : `./run nginx | sudo tee /etc/nginx/sites-available/dist.webird.io`.
-2. Enable nginx file: `sudo ln -s /etc/nginx/sites-available/dist.webird.io /etc/nginx/sites-enabled/dist.webird.io`
-3. Restart web server
-4. Import database schema located at `./etc/schema.sql`
-5. Run server processes: `./run` (for websockets, beanstalkd loop, etc)
-6. If something is wrong modify `./config.json` and repeated steps 1-3.  To make changes more permanent for dist releases you may go back and modify the original `./etc/dist.json` file and then rebuild the dist environment.
-7. Visit https://dist.webird.io
+1. Import database schema located at `./etc/schema.sql`
+2. Run server processes: `./run` (for websockets, beanstalkd loop, etc)
+3. Visit https://dist.webird.io
 
 The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./run nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
 

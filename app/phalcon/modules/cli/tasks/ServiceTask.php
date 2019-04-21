@@ -65,7 +65,7 @@ class ServiceTask extends Task
                 'optional' => [],
             ],
             'opts' => [
-                'p|wsport:'    => "websockets listen on port (default is {$config->app->wsPort}).",
+                'p|wsport:'  => "websockets listen on port (default is {$config->app->wsPort}).",
                 'z|zmqport:' => "zmq listen on port (default is {$config->app->zmqPort}).",
             ]
         ]);

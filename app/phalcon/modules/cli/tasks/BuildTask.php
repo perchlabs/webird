@@ -251,10 +251,12 @@ WEBIRD_ENTRY;
         $buildDir = $this->config->dev->path->buildDir;
 
         // Copy Composer configuration
-        copy("$devDir/composer.json", $buildDir . 'composer.json');
-        copy("$devDir/composer.lock", $buildDir . 'composer.lock');
-        // Copy Npm/Nodejs configuration
-        copy("$devDir/package.json", $buildDir . 'package.json');
+        copy("$projectDir/composer.json", $buildDir . 'composer.json');
+        copy("$projectDir/composer.lock", $buildDir . 'composer.lock');
+
+        // Copy NPM configuration
+        copy("$projectDir/package.json", $buildDir . 'package.json');
+        copy("$projectDir/package-lock.json", $buildDir . 'package-lock.json');
 
         `cp -R $appDir/theme/assets {$buildDir}public/assets`;
         `cp -R $appDir/static {$buildDir}public/static`;
@@ -272,10 +274,10 @@ WEBIRD_ENTRY;
         $devDir = $this->config->dev->path->devDir;
         $buildDir = $this->config->dev->path->buildDir;
 
-        $config1 = yaml_parse_file($etcDir . 'dist_defaults.yml');
-        $config2 = yaml_parse_file($etcDir . 'dist.yml');
+        $config1 = json_decode(file_get_contents($etcDir . 'dist_defaults.json'), true);
+        $config2 = json_decode(file_get_contents($etcDir . 'dist.json'), true);
 
-        $localeConfig = yaml_parse_file($localeDir . 'config.yml');
+        $localeConfig = json_decode(file_get_contents($localeDir . 'config.json'), true);
         $localeConfig['supported'] = $this->getDI()
             ->getLocale()
             ->getSupportedLocales();
@@ -287,7 +289,7 @@ WEBIRD_ENTRY;
         $configMerged = array_replace_recursive($config1, $config2, $config3);
 
         // Write the merged settings to the build directory
-        yaml_emit_file("$buildDir/etc/config.yml", $configMerged);
+        file_put_contents("$buildDir/etc/config.json", json_encode($configMerged));
     }
 
     /**

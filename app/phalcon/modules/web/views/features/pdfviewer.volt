@@ -3,6 +3,7 @@
 <head>
   <title>{{t('Webird Pdf Viewer Technology Demo')}}</title>
   {{ common('head_init') }}
+  {{ stylesheet_link(['href': 'css/entries/pdf-viewer.css']) }}
 </head>
 <body>
   <div id="app"></div>

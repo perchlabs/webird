@@ -1,3 +1,3 @@
-import 'commons/init_complex'
+// Application
+import init from 'commons/init_complex'
 
-console.log('private')

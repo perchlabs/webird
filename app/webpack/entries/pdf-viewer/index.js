@@ -1,14 +1,12 @@
 // System
 import Vue from 'vue'
-import pdflib from 'pdfjs-dist'
+import {GlobalWorkerOptions} from 'pdfjs-dist'
 // Application
-import init from 'init'
-import 'commons/vue'
+import init from 'commons/init_complex'
 // Local
 import App from './App'
 
 // Configuration for pdf.js library
-const {GlobalWorkerOptions}  = pdflib
 GlobalWorkerOptions.workerSrc = require('entry?name=js/pdf.worker.js!pdfjs-dist/build/pdf.worker.min.js')
 
 init()

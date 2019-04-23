@@ -1,4 +1,2 @@
-
-import 'commons/init_complex'
-
-console.log('admin')
+// Application
+import init from 'commons/init_complex'

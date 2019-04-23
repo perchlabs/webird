@@ -3,7 +3,7 @@
 <head>
   <title>{{t('Webird Public Page')}}</title>
 {{ common('head_init') }}
-  {#{{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}#}
+  {{ stylesheet_link(['href': 'css/entries/bootstrap.css']) }}
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -50,7 +50,7 @@
         Webird
         <a href="{{ url('privacy') }}">{{ t('Privacy Policy') }}</a>
         <a href="{{ url('terms') }}">{{ t('Terms') }}</a>
-    © 2014 Webird Team.
+    © 2019 Webird Team.
     </footer>
   </div>
 </div>

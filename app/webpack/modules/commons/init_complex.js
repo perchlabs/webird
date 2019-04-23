@@ -1,13 +1,11 @@
-import '../jquery-setup'
-import 'bootstrap/dist/css/bootstrap'
-import 'bootstrap/dist/css/bootstrap-theme'
-import 'bootstrap/dist/js/bootstrap'
 import init from 'init'
 import locale from 'locale'
 import DevelTool from 'devel-tool'
 
-var localePromise = locale.init()
-var documentPromise = new Promise((resolve, reject) => {
+export default init
+
+const localePromise = locale.init()
+const documentPromise = new Promise((resolve, reject) => {
   document.addEventListener('DOMContentLoaded', resolve, false)
 })
 

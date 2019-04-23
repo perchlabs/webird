@@ -3,7 +3,7 @@
 <head>
   <title>{{t('Signin')}}</title>
 {{ common('head_init') }}
-  {#{{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}#}
+  {{ stylesheet_link(['href': 'css/entries/bootstrap.css']) }}
 </head>
 <body>
 <div class="container">

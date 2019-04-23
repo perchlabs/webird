@@ -3,7 +3,8 @@
 <head>
   <title>Webird Private Page</title>
 {{ common('head_init') }}
-  {#{{ stylesheet_link(['href': 'css/commons/init_complex.css']) }}#}
+  {{ stylesheet_link(['href': 'css/entries/bootstrap.css']) }}
+  {{ stylesheet_link(['href': 'css/entries/private.css']) }}
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">

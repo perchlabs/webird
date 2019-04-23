@@ -5,9 +5,9 @@ const fs = require('fs')
 const crypto = require('crypto')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
 const DefinePlugin = require('webpack/lib/DefinePlugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -92,7 +92,10 @@ const wpConf = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    // new ExtractTextPlugin('css/[name].css', { allChunks: false}),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[id].css',
+    }),
   ],
   module: {
     noParse: [
@@ -101,9 +104,10 @@ const wpConf = {
     rules: [
       {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
         loaders: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: { importLoaders: 1 },

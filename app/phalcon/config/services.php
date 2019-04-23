@@ -17,13 +17,13 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Logger\Multiple as MultipleStreamLogger;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Adapter\Firephp as FirephpLogger;
+use Phalcon\Mailer\Manager as MailManager;
 use Webird\Mvc\View\Simple as ViewSimple;
 use Webird\Plugins\Devel as DevelPlugin;
 use Webird\Plugins\Reconnect as ReconnectPlugin;
 use Webird\Acl\Acl;
 use Webird\Locale\Locale;
 use Webird\Locale\Gettext;
-use Webird\Mailer\Manager as MailManager;
 use Webird\Logger\Adapter\Error as ErrorLogger;
 use Webird\Logger\Adapter\Firelogger as Firelogger;
 
@@ -137,8 +137,8 @@ $di->set('loader', function() {
         $classes[$class] = $modulesDir . $moduleName . '/Module.php';
     }
     $loader->registerClasses($classes, true);
-
     $loader->register();
+
     return $loader;
 });
 
@@ -252,6 +252,7 @@ $di->set('viewSimple', function() {
         '.volt' => 'volt',
     ]);
     $view->setViewsDir($config->path->viewsSimpleDir);
+
     return $view;
 });
 
@@ -301,6 +302,7 @@ $di->setShared('translate', function() {
         'localeDir'      => $config->path->localeDir,
         'localeCacheDir' => $config->path->localeCacheDir,
     ]);
+
     return $gettext;
 });
 
@@ -310,8 +312,35 @@ $di->setShared('translate', function() {
 $di->setShared('mailer', function() {
     $config = $this->getConfig();
 
-    $mailManager = new MailManager($config->mailer, $config->site->mail);
+    $mailer = $config->mailer;
+    $path = $config->path;
+    $site = $config->site;
+
+    $mailManager = new MailManager([
+        'driver'     => $mailer->driver,
+        'host'       => $mailer->host,
+        'username'   => $mailer->username,
+        'password'   => $mailer->password,
+        'port'       => $mailer->port,
+        'encryption' => $mailer->encryption,
+        'viewsDir'   => $path->viewsSimpleDir . 'email/',
+        'from'    => [
+            'name'  => $site->mail->name,
+            'email' => $site->mail->email,
+        ],
+    ]);
+    $mailManager->setViewEngines([
+        '.volt' => 'volt',
+    ]);
     $mailManager->setDI($this);
+
+    // Fix for terrible Phalcon Incubator API that does
+    // not allow the DI to be added to the simple view.
+    $r = new ReflectionMethod($mailManager, 'getView');
+    $r->setAccessible(true);
+    $view = $r->invoke($mailManager, 'getView');
+    $view->setDI($this);
+
     return $mailManager;
 });
 
@@ -323,6 +352,7 @@ $di->set('crypt', function() {
 
     $crypt = new Crypt();
     $crypt->setKey($config->security->cryptKey);
+
     return $crypt;
 });
 
@@ -348,5 +378,6 @@ $di->setShared('url', function() {
 
     $url = new Url();
     $url->setBaseUri("{$proto}://{$domain}{$uriPathPrefix}");
+
     return $url;
 });

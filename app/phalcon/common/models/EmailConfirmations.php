@@ -87,17 +87,16 @@ class EmailConfirmations extends Model
         $subjectMsg = sprintf($translate->gettext('Please confirm your email on %s'),
             $config->site->domains[0]);
 
-        // FIXME: Add back when a new mailer has been found.
-        // $message = $this->getDI()
-        //     ->getMailer()
-        //     ->createMessageFromView('emailConfirmation', [
-        //         'extraMsg' => isset($this->extraMsg) ? $this->extraMsg : '',
-        //         'resetUrl' => 'confirm/' . $this->code,
-        //     ])
-        //     ->to($this->user->email, $this->user->name)
-        //     ->subject($subjectMsg);
+        $message = $this->getDI()
+            ->getMailer()
+            ->createMessageFromView('emailConfirmation', [
+                'extraMsg' => isset($this->extraMsg) ? $this->extraMsg : '',
+                'resetUrl' => 'confirm/' . $this->code,
+            ])
+            ->to($this->user->email, $this->user->name)
+            ->subject($subjectMsg);
 
-        // $message->send();
+        $message->send();
     }
 
     /**

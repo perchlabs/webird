@@ -53,7 +53,7 @@ sudo mysqladmin --protocol=socket create webird
 sudo mysql --protocol=socket webird < ./etc/schema.sql
 
 # Create a Webird user. You can use this user to create more users via the web interface.
-./dev/run useradd --activate --password 'openopen' 'Your Name <yourname@gmail.com>' Administrators
+./dev/run useradd --activate --password 'openopen' 'Your Name' 'yourname@gmail.com' Administrators
 ```
 
 ### Poedit Localization editor:

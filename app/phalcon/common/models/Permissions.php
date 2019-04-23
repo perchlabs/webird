@@ -75,7 +75,7 @@ class Permissions extends Model
      */
     public function getNamespaceResource()
     {
-        return ($this->namespace == '') ? $this->resource : $this->namespace . '::' . $this->resource;
+        return $this->namespace == '' ? $this->resource : $this->namespace . '::' . $this->resource;
     }
 
     /**

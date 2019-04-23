@@ -29,34 +29,21 @@ class UserTask extends Task
         $params = $this->parseArgs($argv, [
             'title' => 'Add a user with a permission role.',
             'args' => [
-                'required' => ['email', 'role'],
+                'required' => ['name', 'email', 'role'],
                 'optional' => [],
             ],
             'opts' => [
-                'p|password:' => 'set user password (otherwise it will need to be on first login).',
-                'a|activate' => 'activate',
+                'p|password:'   => 'set user password (otherwise it will need to be on first login).',
+                'a|activate'    => 'activate',
                 'E|send-email?' => 'send email confirmation with optional message',
             ],
         ]);
-        list($emailRaw, $roleRef) = $params['args'];
+        [$name, $email, $roleRef] = $params['args'];
         $opts = $params['opts'];
 
-        // FIXME: Add back when a new mailer has been found.
-        //        The mailparse extension majorly sucks!!!
-
-        // $emailParts = mailparse_rfc822_parse_addresses($emailRaw);
-        // if (empty($emailParts) || $emailParts[0]['display'] == $emailParts[0]['address']) {
-        //     throw new ArgumentValidationException('Email must be in form: display <address>', 1);
-        // }
-
-        // $name = $emailParts[0]['display'];
-        // $email = $emailParts[0]['address'];
-
-        $name = 'David Schissler';
-        $email = 'bob@gmail.com';
-
         // Validate the email
-        if (($email = filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
+        $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+        if ($email === false) {
             throw new ArgumentValidationException('Email is invalid', 1);
         }
 
@@ -76,15 +63,15 @@ class UserTask extends Task
         }
 
         // Check for CLI flags
-        $active = (isset($opts['activate'])) ? 'Y' : 'N';
-        $sendEmail = (array_key_exists('send-email', $opts));
-        $emailExtraMsg = (isset($opts['send-email'])) ? trim($opts['send-email']) : '';
+        $active = isset($opts['activate']) ? 'Y' : 'N';
+        $sendEmail = array_key_exists('send-email', $opts);
+        $emailExtraMsg = isset($opts['send-email']) ? trim($opts['send-email']) : '';
 
         $user = new Users([
-            'name' => $name,
-            'rolesId' => $role->id,
-            'email' => $email,
-            'active' => $active,
+            'name'     => $name,
+            'rolesId'  => $role->id,
+            'email'    => $email,
+            'active'   => $active,
             'password' => $password,
         ]);
 
@@ -118,7 +105,7 @@ class UserTask extends Task
             ],
             'opts' => [],
         ]);
-        list($userRef) = $params['args'];
+        [$userRef] = $params['args'];
 
         if (($user = $this->getUserByUniqueRef($userRef)) === false) {
             throw new \Exception("Unable to locate user $userRef", 1);
@@ -150,7 +137,7 @@ class UserTask extends Task
             ],
         ]);
 
-        list($userRef) = $params['args'];
+        [$userRef] = $params['args'];
         $opts = $params['opts'];
 
         if (($user = $this->getUserByUniqueRef($userRef)) === false) {
@@ -208,7 +195,7 @@ class UserTask extends Task
             ],
             'opts' => [],
         ]);
-        list($userRef, $password) = $params['args'];
+        [$userRef, $password] = $params['args'];
 
         $passwordMinLength = $this->config->security->passwordMinLength;
 

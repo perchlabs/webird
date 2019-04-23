@@ -22,10 +22,10 @@ switch (ENV) {
         break;
 }
 
-$isCurrentlyHttps = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on'));
+$isCurrentlyHttps = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on');
 $shouldHttps = $config->security->https;
-$usingHsts = ($config->security->hsts > 0);
-$https = ($isCurrentlyHttps || $shouldHttps || $usingHsts);
+$usingHsts = $config->security->hsts > 0;
+$https = $isCurrentlyHttps || $shouldHttps || $usingHsts;
 
 $config2 = new Config([
     'app' => [
@@ -58,7 +58,7 @@ $config2 = new Config([
         'passwordMinLength' => 8,
     ],
     'server' => [
-        'domain'  => (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : '',
+        'domain'  => isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '',
         'https'   => $https,
         'proto'   => $https ? 'https' : 'http',
     ],

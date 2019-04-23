@@ -4,7 +4,7 @@ namespace Webird\Modules\Web\Controllers;
 use Webird\Mvc\Controller;
 use Webird\Auth\AuthMustChangePasswordException;
 use Webird\Models\Users;
-use Webird\Models\EmailConfirmations,
+use Webird\Models\EmailConfirmations;
 use Webird\Models\ResetPasswords;
 use Webird\Auth\AuthInactiveUserException;
 use Webird\Modules\Web\Forms\ChangePasswordForm;
@@ -22,6 +22,8 @@ class UserspublicController extends Controller
     public function initialize()
     {
         parent::initialize();
+
+        $this->view->setTemplateBefore('public');
     }
 
     /**
@@ -176,12 +178,14 @@ class UserspublicController extends Controller
                 } else {
                     $resetPassword = new ResetPasswords();
                     $resetPassword->usersId = $user->id;
+
                     if ($resetPassword->save()) {
                         $this->flash->success($this->translate->gettext('An email has been sent!'));
                         $this->flash->success($this->translate->gettext('Please check your inbox for a reset password message.'));
+
                         return $this->dispatcher->forward([
                             'controller' => 'index',
-                            'action' => 'notification',
+                            'action'     => 'notification',
                         ]);
                     } else {
                         foreach ($resetPassword->getMessages() as $message) {

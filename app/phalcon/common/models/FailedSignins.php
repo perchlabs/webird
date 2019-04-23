@@ -2,7 +2,7 @@
 namespace Webird\Models;
 
 use Webird\Mvc\Model;
-use Webird\Models\Users
+use Webird\Models\Users;
 
 /**
  * FailedSignins

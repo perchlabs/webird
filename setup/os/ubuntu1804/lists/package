@@ -18,9 +18,10 @@ mariadb-client
 
 # php
 php-cli
-php-fpm
 php-common
 php-curl
+php-fpm
+php-intl
 php-mbstring
 php-mysql
 php-pear

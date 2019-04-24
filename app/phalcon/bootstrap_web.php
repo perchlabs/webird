@@ -9,7 +9,7 @@ if (!defined('ENV')) {
 
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
-define('PROD_ENV', 'prodt');
+define('PROD_ENV', 'prod');
 define('DEVELOPING', ENV === DEV_ENV);
 define('TESTING', ENV === TEST_ENV);
 

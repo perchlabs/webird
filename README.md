@@ -83,9 +83,11 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 #### Create prod (production) environment:
 1. Configure `./etc/prod.json` to override settings from `./etc/prod_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
 2. Create the prod environment: `./dev/run build`
-3. Enter into prod directory `cd ./build`
-4. Add `127.0.0.1 prod.webird.io` to `/etc/hosts`
-5. Follow following instructions within prod environments
+3. Enter into prod directory `cd ./prod`
+4. Run `./run nginx | sudo tee /etc/nginx/sites-available/prod.webird.io 1> /dev/null`
+5. Run `sudo ln -fs /etc/nginx/sites-available/prod.webird.io /etc/nginx/sites-enabled/prod.webird.io`
+6. Add `127.0.0.1 prod.webird.io` to `/etc/hosts`
+7. Follow following instructions within prod environments
 
 #### Run final prod environment:
 

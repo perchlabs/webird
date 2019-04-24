@@ -62,11 +62,11 @@ class BuildTask extends Task
     {
         $config = $this->config;
         $phalconDir = $config->path->phalconDir;
-        $buildDir = $config->dev->path->buildDir;
+        $prodDir = $config->dev->path->prodDir;
 
-        $buildDirEsc = escapeshellarg($buildDir);
+        $prodDirEsc = escapeshellarg($prodDir);
         $phalconAppDirEsc = escapeshellarg($phalconDir);
-        $phalconBuildDirEsc = escapeshellarg($buildDir . 'phalcon');
+        $phalconBuildDirEsc = escapeshellarg($prodDir . 'phalcon');
 
         if (!isset($config->dev->phpEncode)) {
             throw new \Exception('The PHP Encoder value is not set.', 1);
@@ -84,7 +84,7 @@ class BuildTask extends Task
             $encCmdEsc = escapeshellcmd($encoder->path);
             switch ($phpEncode) {
                 case 'ioncube':
-                    $cmd = "$encCmdEsc $phalconAppDirEsc --into $buildDirEsc --merge-target";
+                    $cmd = "$encCmdEsc $phalconAppDirEsc --into $prodDirEsc --merge-target";
                     exec($cmd, $out, $ret);
                     break;
             }
@@ -97,16 +97,16 @@ class BuildTask extends Task
     private function cleanDirectoryStructure()
     {
         $projectDir = $this->config->dev->path->projectDir;
-        $buildDir = $this->config->dev->path->buildDir;
-        $buildDirEsc = escapeshellarg($buildDir);
+        $prodDir = $this->config->dev->path->prodDir;
+        $prodDirEsc = escapeshellarg($prodDir);
 
         // TODO: Add more checks for disasters against the rm -Rf command
         // Check for some disaster cases since the script will try to recursively delete the folder
-        if ($buildDir != "{$projectDir}build/" || $buildDir == '' || $buildDir == '/') {
+        if ($prodDir != "{$projectDir}prod/" || $prodDir == '' || $prodDir == '/') {
             throw new \Exception('Critical Error: Attempting to delete build directory when it is not set correctly.');
         }
-        if (file_exists($buildDir)) {
-            exec("rm -Rf $buildDirEsc", $out, $ret);
+        if (file_exists($prodDir)) {
+            exec("rm -Rf $prodDirEsc", $out, $ret);
             if ($ret != 0) {
                 throw new \Exception('There was a problem deleting the build directory.');
             }
@@ -120,13 +120,13 @@ class BuildTask extends Task
     {
         $appDir = $this->config->path->appDir;
         $projectDir = $this->config->dev->path->projectDir;
-        $buildDir = $this->config->dev->path->buildDir;
+        $prodDir = $this->config->dev->path->prodDir;
 
-        mkdir($buildDir);
-        mkdir($buildDir . 'public/');
-        mkdir($buildDir . 'etc/');
-        mkdir($buildDir . 'cache-static/');
-        mkdir($buildDir . 'cache-static/volt/');
+        mkdir($prodDir);
+        mkdir($prodDir . 'public/');
+        mkdir($prodDir . 'etc/');
+        mkdir($prodDir . 'cache-static/');
+        mkdir($prodDir . 'cache-static/volt/');
     }
 
     /**
@@ -138,7 +138,7 @@ class BuildTask extends Task
         $devPath = $this->config->dev->path;
 
         $voltCacheDirBak = $path->voltCacheDir;
-        $voltCacheDirBuild = $devPath->buildDir . "cache-static/volt/";
+        $voltCacheDirBuild = $devPath->prodDir . "cache-static/volt/";
         $path->voltCacheDir = $voltCacheDirBuild;
         echo "Temporarily changing voltCacheDir to {$voltCacheDirBuild}\n";
 
@@ -218,25 +218,25 @@ class BuildTask extends Task
      */
     private function makeEntryPoints()
     {
-        $buildDir = $this->config->dev->path->buildDir;
+        $prodDir = $this->config->dev->path->prodDir;
 
         // Create CLI bootstrap entry
         $cliEntry = <<<'WEBIRD_ENTRY'
 #!/usr/bin/env php
 <?php
-define('ENV', 'dist');
+define('ENV', 'prod');
 require __DIR__ . '/phalcon/bootstrap_cli.php';
 WEBIRD_ENTRY;
-        file_put_contents("$buildDir/run", $cliEntry);
-        chmod("$buildDir/run", 0775);
+        file_put_contents("$prodDir/run", $cliEntry);
+        chmod("$prodDir/run", 0775);
 
         // Create web bootstrap entry
         $webEntry = <<<'WEBIRD_ENTRY'
 <?php
-define('ENV', 'dist');
+define('ENV', 'prod');
 require __DIR__ . '/../phalcon/bootstrap_web.php';
 WEBIRD_ENTRY;
-        file_put_contents("$buildDir/public/index.php", $webEntry);
+        file_put_contents("$prodDir/public/index.php", $webEntry);
     }
 
     /**
@@ -248,20 +248,20 @@ WEBIRD_ENTRY;
         $appDir = $this->config->path->appDir;
         $etcDir = $this->config->dev->path->etcDir;
         $devDir = $this->config->dev->path->devDir;
-        $buildDir = $this->config->dev->path->buildDir;
+        $prodDir = $this->config->dev->path->prodDir;
 
         // Copy Composer configuration
-        copy("$projectDir/composer.json", $buildDir . 'composer.json');
-        copy("$projectDir/composer.lock", $buildDir . 'composer.lock');
+        copy("$projectDir/composer.json", $prodDir . 'composer.json');
+        copy("$projectDir/composer.lock", $prodDir . 'composer.lock');
 
         // Copy NPM configuration
-        copy("$projectDir/package.json", $buildDir . 'package.json');
-        copy("$projectDir/package-lock.json", $buildDir . 'package-lock.json');
+        copy("$projectDir/package.json", $prodDir . 'package.json');
+        copy("$projectDir/package-lock.json", $prodDir . 'package-lock.json');
 
-        `cp -R $appDir/theme/assets {$buildDir}public/assets`;
-        `cp -R $appDir/static {$buildDir}public/static`;
+        `cp -R $appDir/theme/assets {$prodDir}public/assets`;
+        `cp -R $appDir/static {$prodDir}public/static`;
 
-        copy("$etcDir/schema.sql", $buildDir . 'etc/schema.sql');
+        copy("$etcDir/schema.sql", $prodDir . 'etc/schema.sql');
     }
 
     /**
@@ -272,10 +272,10 @@ WEBIRD_ENTRY;
         $etcDir = $this->config->dev->path->etcDir;
         $localeDir = $this->config->path->localeDir;
         $devDir = $this->config->dev->path->devDir;
-        $buildDir = $this->config->dev->path->buildDir;
+        $prodDir = $this->config->dev->path->prodDir;
 
-        $config1 = json_decode(file_get_contents($etcDir . 'dist_defaults.json'), true);
-        $config2 = json_decode(file_get_contents($etcDir . 'dist.json'), true);
+        $config1 = json_decode(file_get_contents($etcDir . 'prod_defaults.json'), true);
+        $config2 = json_decode(file_get_contents($etcDir . 'prod.json'), true);
 
         $localeConfig = json_decode(file_get_contents($localeDir . 'config.json'), true);
         $localeConfig['supported'] = $this->getDI()
@@ -289,7 +289,7 @@ WEBIRD_ENTRY;
         $configMerged = array_replace_recursive($config1, $config2, $config3);
 
         // Write the merged settings to the build directory
-        file_put_contents("$buildDir/etc/config.json", json_encode($configMerged));
+        file_put_contents("$prodDir/etc/config.json", json_encode($configMerged));
     }
 
     /**
@@ -297,10 +297,10 @@ WEBIRD_ENTRY;
      */
     private function installPackages()
     {
-        $buildDir = $this->config->dev->path->buildDir;
+        $prodDir = $this->config->dev->path->prodDir;
 
         $cwd = getcwd();
-        chdir($buildDir);
+        chdir($prodDir);
 
         exec("composer --no-dev install", $out, $ret);
         exec("skipclean=1 && npm install --production", $out, $ret);
@@ -313,7 +313,7 @@ WEBIRD_ENTRY;
      */
     private function compileLocales()
     {
-        $localeCacheDir = $this->config->dev->path->buildDir . 'cache-static/locale/';
+        $localeCacheDir = $this->config->dev->path->prodDir . 'cache-static/locale/';
 
         $supported = $this->getDI()
             ->getLocale()

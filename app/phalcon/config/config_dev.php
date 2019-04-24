@@ -6,7 +6,7 @@ $projectDir = realpath(__DIR__ . '/../../..') . '/';
 $appDir = $projectDir . 'app/';
 $etcDir = $projectDir . 'etc/';
 $devDir = $projectDir . 'dev/';
-$buildDir = $projectDir . 'build/';
+$prodDir = $projectDir . 'prod/';
 $composerDir = $projectDir . 'vendor/';
 $cacheDir = $tmpDir . 'cache/';
 
@@ -25,7 +25,7 @@ $config3 = new Config([
             'projectDir' => $projectDir,
             'etcDir'     => $etcDir,
             'devDir'     => $devDir,
-            'buildDir'   => $buildDir,
+            'prodDir'    => $prodDir,
         ],
     ],
 ]);

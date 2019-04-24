@@ -8,7 +8,7 @@ use Webird\CLI\Task;
 /**
  *
  */
-class DistTask extends Task
+class ProdTask extends Task
 {
     /**
      *
@@ -60,7 +60,7 @@ HELPMSG;
     public function nginxAction($argv)
     {
         $params = $this->parseArgs($argv, [
-            'title' => 'Generate a dist (distribution/production) nginx configuration',
+            'title' => 'Generate a prod (production) nginx configuration',
             'args' => [
                 'required' => [],
                 'optional' => [],
@@ -81,7 +81,7 @@ HELPMSG;
 
         return $this->getDI()
             ->getViewSimple()
-            ->render('nginx/dist', [
+            ->render('nginx/prod', [
                 'config'      => $config,
                 'random_hash' => uniqid(),
             ]);

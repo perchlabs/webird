@@ -195,7 +195,7 @@ $di->set('volt', function($view) {
     $configDir = $config->path->configDir;
 
     switch (ENV) {
-        case DIST_ENV:
+        case PROD_ENV:
             $compileAlways = false;
             $stat = false;
             break;
@@ -263,7 +263,7 @@ $di->setShared('locale', function() {
     $config = $this->getConfig();
 
     switch (ENV) {
-        case DIST_ENV:
+        case PROD_ENV:
             $supported = $config->locale->supported;
             break;
         case DEV_ENV:
@@ -285,7 +285,7 @@ $di->setShared('translate', function() {
     $locale = $this->getLocale();
 
     switch (ENV) {
-        case DIST_ENV:
+        case PROD_ENV:
             $compileAlways = false;
             break;
         case DEV_ENV:

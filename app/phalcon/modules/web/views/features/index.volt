@@ -36,7 +36,7 @@
       {% if DEVELOPING %}
         <a href="javascript:void(0)" class="btn btn-primary" onclick="devel.toggle()">{{ t('Devel Panel') | escape }}</a>
       {% else %}
-        Debug Panel is not available in dist environment
+        Debug Panel is not available in prod environment
       {% endif %}
     </div>
   </div>

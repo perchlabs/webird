@@ -9,7 +9,7 @@ if (!defined('ENV')) {
 
 define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
-define('DIST_ENV', 'dist');
+define('PROD_ENV', 'prodt');
 define('DEVELOPING', ENV === DEV_ENV);
 define('TESTING', ENV === TEST_ENV);
 
@@ -29,7 +29,7 @@ switch (ENV)
         ini_set("log_errors", 1);
         error_reporting(E_ALL);
         break;
-    case DIST_ENV:
+    case PROD_ENV:
         error_reporting(E_ALL);
         ini_set("display_errors", 0);
         ini_set("log_errors", 1);

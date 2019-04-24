@@ -10,6 +10,7 @@ initCommon() {
     exit 1
   fi
 
+  export SETUP_ROOT_DIR
   export OS_DIR="$SETUP_ROOT_DIR/os/$osName"
   if [[ ! -d "$OS_DIR" ]]; then
     >&2 echo "An installation directory does not exist for '$osName'."

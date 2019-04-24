@@ -5,7 +5,13 @@
 
 echo -e "${COLOR_SECTION}*** Webird setup ***${TEXT_RESET}"
 
+echo "SETUP_ROOT_DIR: $SETUP_ROOT_DIR"
+echo "OS_DIR: $OS_DIR"
+
 projectRoot=$(readlink -f "$SETUP_ROOT_DIR/..")
+echo "projectRoot: $projectRoot"
+exit
+
 cd "$projectRoot"
 
 echo "Installing local composer packages"

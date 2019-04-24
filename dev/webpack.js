@@ -15,7 +15,7 @@ const projectRoot = path.resolve(__dirname + '/..')
 const etcRoot = path.join(projectRoot, 'etc')
 const appRoot = path.join(projectRoot, 'app')
 const devRoot = path.join(projectRoot, 'dev')
-const buildRoot = path.join(projectRoot, 'build')
+const buildRoot = path.join(projectRoot, 'prod')
 const webpackRoot = path.join(appRoot, 'webpack')
 const appModulesRoot = path.join(webpackRoot, 'modules')
 const themeRoot = path.join(appRoot, 'theme')
@@ -257,7 +257,7 @@ function getNamesFromDirectory(filepath) {
  */
 function build() {
 
-  wpConf.output.path = path.join(projectRoot, 'build', 'public')
+  wpConf.output.path = path.join(buildRoot, 'public')
 
   // Constants
   Object.assign(constants, {

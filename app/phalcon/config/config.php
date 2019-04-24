@@ -5,7 +5,7 @@ use Phalcon\Config\Adapter\Json;
 $tmpDir = '/tmp/webird-' .  md5(__DIR__) . '-' . posix_geteuid() . '/';
 
 switch (ENV) {
-    case DIST_ENV:
+    case PROD_ENV:
         // At this point the compliled application is running in its portable directory
         $appDir = realpath(__DIR__ . '/../..') . '/';
         $cacheDir = $appDir . 'cache-static/';

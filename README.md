@@ -78,24 +78,24 @@ Go to File - Preferences... in Poedit and add a new parser in the Parsers tab:
 
 If you see the local host file not configured page then add `127.0.0.1 dev.webird.io` to your `/etc/hosts` file.
 
-## Distribution Usage:
+## Production Usage:
 
-#### Create dist environment:
-1. Configure `./etc/dist.json` to override settings from `./etc/dist_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
-2. Create the dist environment: `./dev/run build`
-3. Enter into dist directory `cd ./build`
-4. Add `127.0.0.1 dist.webird.io` to `/etc/hosts`
-5. Follow following instructions within dist environments
+#### Create prod (production) environment:
+1. Configure `./etc/prod.json` to override settings from `./etc/prod_defaults.json`.  These two files will be merged to form `./build/etc/config.json`.
+2. Create the prod environment: `./dev/run build`
+3. Enter into prod directory `cd ./build`
+4. Add `127.0.0.1 prod.webird.io` to `/etc/hosts`
+5. Follow following instructions within prod environments
 
-#### Run final dist environment:
+#### Run final prod environment:
 
-**Attention**: At this point it will be assumed that you are inside of the portable `dist` directory wherever it is now located (or named).
+**Attention**: At this point it will be assumed that you are inside of the portable `prod` directory wherever it is now located (or named).
 
 1. Import database schema located at `./etc/schema.sql`
 2. Run server processes: `./run` (for websockets, beanstalkd loop, etc)
-3. Visit https://dist.webird.io
+3. Visit https://prod.webird.io
 
-The nginx configuration must be rebuilt if the distribution environment directory is moved or renamed.  It is recommended to use the `./run nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/dist.volt` file and then rebuild the dist environment.
+The nginx configuration must be rebuilt if the production environment directory is moved or renamed.  It is recommended to use the `./run nginx` command to rebuild the configuration instead of manually editing the generated nginx configuration.  If more advanced custom settings are required it is recommended to first modify the source `./app/phalcon/common/views/simple/nginx/prod.volt` file and then rebuild the prod environment.
 
 **Note**: Node.js is no longer a dependency at this point since it is only used to build the browser facing content into static bundles.
 
@@ -103,7 +103,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 
 ```
 ./setup
-├── install (takes a parameter $distro to provision system)
+├── install (takes a parameter $osName to provision system)
 └── menu (provides a lightbar menu interface to installation)
 ```
 
@@ -134,7 +134,7 @@ The nginx configuration must be rebuilt if the distribution environment director
 ```
 
 ```
-./build
+./prod
 ├── run (CLI entry for built system)
 ├── public/
 │   ├── index.php (Web entry for built system)
@@ -147,10 +147,10 @@ The nginx configuration must be rebuilt if the distribution environment director
 └── vendor/ (Composer packages)
 ```
 
-Compare the `./app` directory to a built `./build` directory to notice the differences between the app code and dev environment and the built system.
+Compare the `./app` directory to a built `./prod` directory to notice the differences between the app code and dev environment and the built system.
 
 You may also view the build system routine at `app/phalcon/modules/cli/tasks/DevTask.php`
 
-**Note**: The `./built` directory contains only optimized and uglified JS resources and if Ion Cube has been enabled then the build process will use it to protect the PHP code.
+**Note**: The `./prod` directory contains only optimized and uglified JS resources and if Ion Cube has been enabled then the build process will use it to protect the PHP code.
 
 **Note**: A Vue template and single file component gettext extractor does not current exist as it has yet to be made.

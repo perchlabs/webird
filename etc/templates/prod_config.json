@@ -5,8 +5,8 @@
   },
   "site": {
     "domains": [
-      "dist.webird.io",
-      "www.dist.webird.io"
+      "prod.webird.io",
+      "www.prod.webird.io"
     ],
     "mail": {
       "name": "Webird",

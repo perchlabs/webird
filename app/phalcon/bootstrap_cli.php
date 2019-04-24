@@ -12,9 +12,9 @@ if (!defined('ENV')) {
     exit(1);
 }
 
-define('DEV_ENV', 'dev');
 define('TEST_ENV', 'test');
-define('DIST_ENV', 'dist');
+define('DEV_ENV', 'dev');
+define('PROD_ENV', 'prod');
 define('DEVELOPING', ENV === DEV_ENV);
 define('TESTING', ENV === TEST_ENV);
 

@@ -1,8 +1,8 @@
 app/locale/*/LC_MESSAGES/phalcon.mo
 app/locale/*/LC_MESSAGES/webpack.mo
 etc/dev.json
-etc/dist.json
-build/
+etc/prod.json
+prod/
 node_modules/
 vendor/
 npm-debug.log

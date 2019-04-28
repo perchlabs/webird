@@ -86,7 +86,6 @@ If you see the local host file not configured page then add `127.0.0.1 dev.webir
 3. Enter into prod directory `cd ./prod`
 4. `./run nginx | sudo tee /etc/nginx/sites-available/prod.webird.io 1> /dev/null`
 5. `sudo ln -fs /etc/nginx/sites-available/prod.webird.io /etc/nginx/sites-enabled/prod.webird.io`
-6. Follow following instructions within prod environments
 
 #### Run final prod environment:
 

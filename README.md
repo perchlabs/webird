@@ -1,8 +1,5 @@
 ## Webird full application stack
 
-#### NOTE: Webird is currently undergoing massive code improvements, dependency updates, keeping up with modern language standards, etc. Don't expect things to work well at the moment but if you are interested then there should be a fair amount happening in the near future.  I've historically used Webird to test new technologies and I will continue to use it for that.  By the end of this effort things should be looking quite good.
-
-
 Webird was created to merge the latest PHP and Node.js innovations into a single application stack.
 
 The PHP foundation is comprised of Phalcon and Composer, which are used to create a HMVC foundation that offers everything that is expected of a modern PHP server side framework.

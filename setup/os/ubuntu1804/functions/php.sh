@@ -46,7 +46,7 @@ export -f phpIsUsingSapi
 phpExtensionEnableSapi() {
   local sapi="$1"
   local name="$2"
-  local code="$3"
+  local code=${3:-20}
 
   local modIniPath="${PHP_ETC}/mods-available/$name.ini"
   local sapiIniPath=$(phpConfdIniPath "$sapi" "$name" "$code")

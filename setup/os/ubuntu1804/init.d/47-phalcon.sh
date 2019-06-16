@@ -2,7 +2,7 @@
 # Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 method=$(takeMethod "$PHALCON_INSTALLER")
-[[ -z "$method" ]] && exit 0
+[[ -z "$PHALCON_INTEREST" || -z "$method" ]] && exit 0
 
 echo -e "${COLOR_SECTION}*** Phalcon ***${TEXT_RESET}"
 

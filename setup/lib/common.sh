@@ -26,6 +26,13 @@ initCommon() {
   source "$SETUP_ROOT_DIR/settings"
   source "$LIB_DIR/data.sh"
 
+  # Source defined functions for system.
+  local functionFile
+  for functionFile in "$LIB_DIR/functions/"*; do
+    [ -f "$functionFile" ] || continue
+    source "$functionFile"
+  done
+
   # Define interests while preserving existing values.
   local interestLine
   local interestVar

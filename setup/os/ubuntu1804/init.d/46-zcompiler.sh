@@ -2,7 +2,7 @@
 # Environment variables SETUP_ROOT_DIR, OS_DIR and TEMP_DIR are available
 
 method=$(takeMethod "$ZCOMPILER_INSTALLER")
-[[ -z "$method" ]] && exit 0
+[[ -z "$ZCOMPILER_INTEREST" || -z "$method" ]] && exit 0
 
 echo -e "${COLOR_SECTION}*** Zephir ***${TEXT_RESET}"
 
